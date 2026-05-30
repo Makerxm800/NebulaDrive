@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NebulaDrive - Your Personal Cloud</title>
+    <title>NebulaDrive - Personal Cloud Storage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <div class="logo-icon">☁️</div>
                 <h2>NebulaDrive</h2>
-                <small>Unlimited Cloud</small>
+                <small>Your Personal Cloud</small>
             </div>
             
             <div class="stats-card">
@@ -25,30 +24,15 @@
                     <span class="stat-label">Storage Used</span>
                     <span class="stat-value" id="totalSize">0</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Videos</span>
-                    <span class="stat-value" id="videoCount">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Images</span>
-                    <span class="stat-value" id="imageCount">0</span>
-                </div>
             </div>
             
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="🔍 Search files...">
             </div>
             
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Files</button>
-                <button class="filter-btn" data-filter="video">🎬 Videos</button>
-                <button class="filter-btn" data-filter="image">🖼️ Images</button>
-            </div>
-            
             <button class="clear-btn" id="clearAllBtn">🗑️ Clear All Files</button>
         </aside>
         
-        <!-- Main Content -->
         <main class="main-content">
             <div class="upload-area" id="uploadArea">
                 <input type="file" id="fileInput" multiple style="display: none">
@@ -81,7 +65,6 @@
         </main>
     </div>
     
-    <!-- Preview Modal -->
     <div class="modal" id="previewModal">
         <div class="modal-content">
             <span class="close">&times;</span>
