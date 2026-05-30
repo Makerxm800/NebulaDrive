@@ -17,7 +17,6 @@ body {
     background: #f5f5f5;
 }
 
-/* Sidebar */
 .sidebar {
     width: 300px;
     background: white;
@@ -82,38 +81,11 @@ body {
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 14px;
-    transition: all 0.3s;
 }
 
 .search-box input:focus {
     outline: none;
     border-color: #667eea;
-}
-
-.filter-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.filter-btn {
-    padding: 10px;
-    background: #f5f5f5;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: left;
-    font-size: 14px;
-}
-
-.filter-btn:hover {
-    background: #e0e0e0;
-}
-
-.filter-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
 }
 
 .clear-btn {
@@ -133,7 +105,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     overflow-y: auto;
@@ -195,11 +166,6 @@ body {
     background: linear-gradient(90deg, #667eea, #764ba2);
     width: 0%;
     transition: width 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 12px;
 }
 
 .progress-text {
@@ -226,7 +192,6 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s;
 }
 
 .view-btn.active {
@@ -235,11 +200,16 @@ body {
     border-color: #667eea;
 }
 
-/* Grid View */
 .files-container.grid-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+}
+
+.files-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .file-card {
@@ -254,20 +224,6 @@ body {
 .file-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.file-card.selected {
-    background: #e8eaff;
-    border: 2px solid #667eea;
-}
-
-.file-checkbox {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
 }
 
 .file-icon {
@@ -301,7 +257,6 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-size: 12px;
-    transition: all 0.3s;
 }
 
 .download-btn {
@@ -316,13 +271,6 @@ body {
 .delete-btn {
     background: #ff4757;
     color: white;
-}
-
-/* List View */
-.files-container.list-view {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 .list-view .file-card {
@@ -350,7 +298,6 @@ body {
     width: auto;
 }
 
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -383,14 +330,6 @@ body {
     color: #999;
 }
 
-.close:hover {
-    color: #333;
-}
-
-.modal-body {
-    margin-top: 20px;
-}
-
 .modal-body img, .modal-body video {
     max-width: 100%;
     border-radius: 10px;
@@ -402,23 +341,6 @@ body {
     color: #999;
 }
 
-/* Animations */
-@keyframes slideIn {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.file-card {
-    animation: slideIn 0.3s ease;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
     .app {
         flex-direction: column;
@@ -427,9 +349,5 @@ body {
     .sidebar {
         width: 100%;
         max-height: 300px;
-    }
-    
-    .files-container.grid-view {
-        grid-template-columns: 1fr;
     }
 }
