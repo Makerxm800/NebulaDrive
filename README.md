@@ -1,37 +1,66 @@
-# ☁️ NebulaDrive - Personal Unlimited Cloud Storage
+# ☁️ NebulaCloud - Ultimate Personal Cloud Storage
 
-**Your own Google Drive alternative. Self-hosted. Unlimited. Free.**
+<div align="center">
 
-## ✨ Features
+![NebulaCloud Banner](https://img.shields.io/badge/NebulaCloud-Premium%20Cloud%20Storage-blueviolet?style=for-the-badge&logo=cloud&logoColor=white)
 
-- 🚀 **Unlimited Storage** - Use your hard drive space (upload terabytes!)
-- 🎬 **All Formats Supported** - Videos (MP4, MOV, AVI, MKV), Images (PNG, JPEG, GIF, WebP), Documents, Audio
-- 📤 **No File Size Limits** - Upload 100GB files, no restrictions
-- 🖱️ **Drag & Drop** - Simple, intuitive interface
-- 🔍 **Search & Filter** - Find files instantly
-- 👁️ **Media Preview** - Watch videos/view images directly in browser
-- 📱 **Responsive Design** - Works on phone, tablet, desktop
-- 💾 **Local Storage** - Your files stay on YOUR computer
-- 🔒 **Private & Secure** - No third-party services, no data sharing
+**Your Personal Cloud Storage Solution • Unlimited • Free • Secure**
 
-## 🚀 Quick Start (5 minutes)
+[![Made with JavaScript](https://img.shields.io/badge/Made%20with-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Uses IndexedDB](https://img.shields.io/badge/Storage-IndexedDB-FF6B6B?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+[![Google Sign-In](https://img.shields.io/badge/Auth-Google%20SignIn-4285F4?style=flat-square&logo=google&logoColor=white)](https://developers.google.com/identity)
+[![License MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (Download LTS version)
+</div>
 
-### Installation
+---
 
+## 🌟 Features
+
+### 🔐 **Authentication**
+- ✅ **Google Sign-In** - Login with your Google account
+- ✅ **Local Accounts** - Create username/password accounts
+- ✅ **Guest Mode** - Try without signing up
+- ✅ **Secure Storage** - Your files are private to your account
+
+### 📁 **File Support - ALL Formats!**
+| Category | Formats |
+|----------|---------|
+| 🎬 **Videos** | MP4, MOV, AVI, MKV, WebM, FLV, WMV, M4V |
+| 🖼️ **Images** | PNG, JPG, JPEG, GIF, WebP, BMP, SVG, ICO, HEIC |
+| ⚙️ **Executables** | EXE, MSI, APK, DMG, AppImage, DEB, RPM, BIN |
+| 🐧 **Scripts** | SH, PY, JS, HTML, CSS, PHP, RB, PL |
+| 📄 **Documents** | PDF, TXT, MD, JSON, XML, CSV, LOG |
+| 🗜️ **Archives** | ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ |
+| 🎵 **Audio** | MP3, WAV, OGG, FLAC, M4A |
+
+### 🎨 **User Interface**
+- ✨ **Beautiful Animations** - Smooth transitions and hover effects
+- 🎨 **4 Color Themes** - Dark Nebula, Light Aurora, Deep Ocean, Sunset Glow
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- 🔍 **Search Files** - Quick file lookup
+- 📊 **Grid/List Views** - Toggle between layouts
+- 📈 **Storage Statistics** - Track your usage
+
+### ⚡ **Technical Features**
+- 💾 **Unlimited Storage** - Uses your browser's IndexedDB
+- 🚀 **No Server Required** - Runs entirely in your browser
+- 🔒 **100% Private** - Files never leave your computer
+- 📦 **No Installation** - Single HTML file
+- 🌐 **Offline Capable** - Works without internet
+
+---
+
+## 🚀 Quick Start
+
+### Option 1: Direct Download (Easiest)
+1. Download `NebulaCloud.html`
+2. Double-click to open in your browser
+3. Sign in or continue as guest
+4. Start uploading files!
+
+### Option 2: Clone Repository
 ```bash
-# Clone or create folder
-mkdir nebuladrive && cd nebuladrive
-
-# Install dependencies
-npm init -y
-npm install express multer cors fs-extra dotenv
-
-# Create public folder
-mkdir public
-
-# Add server.js and frontend files (see above)
-# Then run:
-node server.js
+git clone https://github.com/yourusername/nebulacloud.git
+cd nebulacloud
+# Open NebulaCloud.html in your browser
