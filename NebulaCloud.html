@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NebulaCloud ☁️</title>
+    <title>NebulaCloud – Unlimited Beta ☁️</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
     <style>
@@ -83,9 +83,27 @@
             border-radius: 0 0 16px 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
-        .logo { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s; }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
         .logo:hover { transform: scale(1.03); }
         .logo span { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .beta-badge {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
         .nav-tabs {
             display: flex; gap: 4px;
@@ -287,14 +305,16 @@
             border: 1px solid var(--glass-border);
         }
         .move-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-        .folder-list { max-height: 280px; overflow-y: auto; margin: 10px 0; }
+        .folder-list { max-height: 350px; overflow-y: auto; margin: 10px 0; }
         .folder-option {
             padding: 8px 12px; margin: 4px 0;
             background: var(--glass); border: 1px solid var(--glass-border);
             border-radius: 12px; cursor: pointer; transition: 0.2s;
             display: flex; align-items: center; gap: 8px; color: var(--text);
+            font-size: 0.85rem;
         }
         .folder-option:hover { background: var(--glass-hover); transform: translateX(5px); }
+        .folder-option .indent { display: inline-block; width: 16px; }
 
         /* ===== HISTORY ===== */
         .history-list {
@@ -410,22 +430,59 @@
         }
         .media-modal.active { display: flex; }
         .media-content {
-            background: var(--glass); backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 28px; padding: 24px;
             width: 90%; max-width: 780px;
-            border: 1px solid var(--glass-border); position: relative;
+            position: relative;
         }
         .media-close {
-            position: absolute; top: 10px; right: 16px;
-            font-size: 1.6rem; cursor: pointer; color: var(--text-secondary);
+            position: absolute; top: 12px; right: 16px;
+            font-size: 1.6rem; cursor: pointer; color: rgba(255,255,255,0.6);
             transition: 0.2s; background: none; border: none;
         }
         .media-close:hover { color: white; transform: rotate(90deg); }
-        .media-player { width: 100%; border-radius: 12px; background: #000; margin-top: 8px; }
-        .media-player video, .media-player audio {
+        .media-title { font-weight: 600; font-size: 1rem; margin-bottom: 10px; color: white; text-align: center; }
+        .media-player { width: 100%; border-radius: 12px; background: #000; margin-top: 4px; }
+        .media-player video {
             width: 100%; border-radius: 12px; display: block; max-height: 70vh;
+            background: #000;
         }
-        .media-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+        .media-player audio {
+            width: 100%; border-radius: 30px; background: #222; padding: 10px;
+        }
+
+        /* ===== IMAGE LIGHTBOX ===== */
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 1004;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .image-lightbox.active { display: flex; }
+        .image-lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .image-lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: 0.3s;
+        }
+        .image-lightbox .close-lightbox:hover { transform: rotate(90deg); }
 
         /* ===== TOAST ===== */
         .toast {
@@ -453,6 +510,7 @@
 </head>
 <body>
 
+<!-- ===== PARTICLES ===== -->
 <div class="particles" id="particles"></div>
 
 <!-- ===== AUTH ===== -->
@@ -501,7 +559,7 @@
     </div>
 </div>
 
-<!-- ===== MEDIA PLAYER ===== -->
+<!-- ===== MEDIA PLAYER MODAL ===== -->
 <div class="media-modal" id="mediaModal">
     <div class="media-content">
         <button class="media-close" id="mediaCloseBtn">&times;</button>
@@ -510,10 +568,16 @@
     </div>
 </div>
 
+<!-- ===== IMAGE LIGHTBOX ===== -->
+<div class="image-lightbox" id="imageLightbox">
+    <button class="close-lightbox" id="closeLightbox">&times;</button>
+    <img id="lightboxImage" src="" alt="Preview">
+</div>
+
 <!-- ===== MAIN APP ===== -->
 <div id="mainApp" style="display:none">
     <nav class="navbar">
-        <div class="logo">☁️ <span>NebulaCloud</span></div>
+        <div class="logo">☁️ <span>NebulaCloud</span> <span class="beta-badge">BETA</span></div>
         <div class="nav-tabs">
             <button class="nav-tab active" data-tab="files">📁 Files</button>
             <button class="nav-tab" data-tab="history">📜 History</button>
@@ -604,7 +668,7 @@
     let movingFile = null;
 
     // ================================================================
-    // INDEXEDDB – Version 14 with separate data store
+    // INDEXEDDB – Version 14 (separate data store)
     // ================================================================
     function openDB() {
         return new Promise((resolve, reject) => {
@@ -613,45 +677,29 @@
             request.onsuccess = () => { db = request.result; resolve(db); };
             request.onupgradeneeded = (e) => {
                 const db = e.target.result;
-                // Create stores if they don't exist
-                if (!db.objectStoreNames.contains('users')) {
-                    db.createObjectStore('users', { keyPath: 'username' });
-                }
-                if (!db.objectStoreNames.contains('folders')) {
-                    db.createObjectStore('folders', { keyPath: 'id' });
-                }
-                if (!db.objectStoreNames.contains('history')) {
-                    db.createObjectStore('history', { keyPath: 'id', autoIncrement: true });
-                }
-                if (!db.objectStoreNames.contains('files')) {
-                    db.createObjectStore('files', { keyPath: 'id' });
-                }
-                if (!db.objectStoreNames.contains('fileData')) {
-                    db.createObjectStore('fileData', { keyPath: 'id' });
-                }
+                if (!db.objectStoreNames.contains('users')) db.createObjectStore('users', { keyPath: 'username' });
+                if (!db.objectStoreNames.contains('folders')) db.createObjectStore('folders', { keyPath: 'id' });
+                if (!db.objectStoreNames.contains('history')) db.createObjectStore('history', { keyPath: 'id', autoIncrement: true });
+                if (!db.objectStoreNames.contains('files')) db.createObjectStore('files', { keyPath: 'id' });
+                if (!db.objectStoreNames.contains('fileData')) db.createObjectStore('fileData', { keyPath: 'id' });
 
-                // ---- MIGRATION: move data from 'files' to 'fileData' and remove data from files ----
+                // Migrate old data (if any)
                 const tx = e.target.transaction;
                 const filesStore = tx.objectStore('files');
                 const fileDataStore = tx.objectStore('fileData');
-
-                // Only migrate if we have a 'files' store (old version) and data exists
                 const cursorReq = filesStore.openCursor();
                 cursorReq.onsuccess = (ev) => {
                     const cursor = ev.target.result;
                     if (cursor) {
                         const record = cursor.value;
                         if (record.data) {
-                            // Move data to fileData store
                             fileDataStore.put({ id: record.id, data: record.data });
-                            // Remove data from metadata record
                             delete record.data;
                             cursor.update(record);
                         }
                         cursor.continue();
                     }
                 };
-                // No need to wait for migration to finish – it runs async, but the transaction will complete after.
             };
         });
     }
@@ -708,28 +756,23 @@
     }
 
     // ================================================================
-    // FILES – metadata only in 'files', data in 'fileData'
+    // FILES
     // ================================================================
     async function saveFileToDB(fileId, data, metadata, folderPath = []) {
-        // Store metadata (without data) in 'files'
         const metadataRecord = {
             id: `${currentUser}_${fileId}`,
-            userId: currentUser,
-            fileId,
+            userId: currentUser, fileId,
             metadata: { ...metadata, folderPath },
             folderPath
         };
-        // Store data in 'fileData'
         const dataRecord = {
             id: `${currentUser}_${fileId}`,
             data: data
         };
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['files', 'fileData'], 'readwrite');
-            const fileStore = tx.objectStore('files');
-            const dataStore = tx.objectStore('fileData');
-            fileStore.put(metadataRecord);
-            dataStore.put(dataRecord);
+            tx.objectStore('files').put(metadataRecord);
+            tx.objectStore('fileData').put(dataRecord);
             tx.oncomplete = () => {
                 addToHistory(`Uploaded "${metadata.name}"`, 'upload');
                 resolve();
@@ -738,7 +781,6 @@
         });
     }
 
-    // Get metadata for files in a folder (without data)
     async function getFilesInPath(folderPath) {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['files'], 'readonly');
@@ -752,7 +794,6 @@
         });
     }
 
-    // Get all metadata (for stats) – no data
     async function getAllUserFiles() {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['files'], 'readonly');
@@ -762,7 +803,6 @@
         });
     }
 
-    // Update folder path of a file (metadata only)
     async function updateFileFolder(fileId, newFolderPath) {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['files'], 'readwrite');
@@ -784,21 +824,17 @@
         });
     }
 
-    // Delete file (remove from both stores)
     async function deleteFileFromDB(fileId) {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['files', 'fileData'], 'readwrite');
-            const fileStore = tx.objectStore('files');
-            const dataStore = tx.objectStore('fileData');
             const key = `${currentUser}_${fileId}`;
-            fileStore.delete(key);
-            dataStore.delete(key);
+            tx.objectStore('files').delete(key);
+            tx.objectStore('fileData').delete(key);
             tx.oncomplete = resolve;
             tx.onerror = () => reject(tx.error);
         });
     }
 
-    // Fetch file data (for download/preview)
     async function getFileData(fileId) {
         return new Promise((resolve, reject) => {
             const tx = db.transaction(['fileData'], 'readonly');
@@ -964,6 +1000,25 @@
         }
     }
 
+    // Image lightbox
+    function openImageLightbox(url) {
+        const lightbox = document.getElementById('imageLightbox');
+        const img = document.getElementById('lightboxImage');
+        img.src = url;
+        lightbox.classList.add('active');
+        const close = () => {
+            lightbox.classList.remove('active');
+            URL.revokeObjectURL(url);
+            document.getElementById('closeLightbox').removeEventListener('click', close);
+            lightbox.removeEventListener('click', close);
+        };
+        document.getElementById('closeLightbox').addEventListener('click', close);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) close();
+        });
+    }
+
+    // Media player (video / audio)
     function openMediaPlayer(file) {
         const modal = document.getElementById('mediaModal');
         const title = document.getElementById('mediaTitle');
@@ -971,57 +1026,50 @@
         title.textContent = file.name;
         const isVideo = file.type.startsWith('video/');
         const isAudio = file.type.startsWith('audio/');
-        if (isVideo || isAudio) {
-            (async () => {
-                const data = await getFileData(file.fileId);
-                if (data) {
-                    const blob = new Blob([data], { type: file.type });
-                    const url = URL.createObjectURL(blob);
-                    let html = '';
-                    if (isVideo) {
-                        html = `<video controls autoplay style="width:100%; border-radius:12px; max-height:70vh;">
-                                    <source src="${url}" type="${file.type}">
-                                    Your browser does not support the video tag.
-                                </video>`;
-                    } else if (isAudio) {
-                        html = `<audio controls autoplay style="width:100%; border-radius:12px;">
-                                    <source src="${url}" type="${file.type}">
-                                    Your browser does not support the audio element.
-                                </audio>`;
-                    }
-                    container.innerHTML = html;
-                    modal.classList.add('active');
-                } else {
-                    showToast('File data not found');
-                }
-            })();
-        } else {
-            showToast('This file type cannot be played');
-        }
+
+        (async () => {
+            const data = await getFileData(file.fileId);
+            if (!data) { showToast('File data not found'); return; }
+            const blob = new Blob([data], { type: file.type });
+            const url = URL.createObjectURL(blob);
+            let html = '';
+            if (isVideo) {
+                html = `<video controls autoplay style="width:100%; border-radius:12px; max-height:70vh; background:#000;">
+                            <source src="${url}" type="${file.type}">
+                            Your browser does not support the video tag.
+                        </video>`;
+            } else if (isAudio) {
+                html = `<audio controls autoplay style="width:100%; border-radius:30px; background:#222; padding:10px;">
+                            <source src="${url}" type="${file.type}">
+                            Your browser does not support the audio element.
+                        </audio>`;
+            }
+            container.innerHTML = html;
+            modal.classList.add('active');
+            const closeMedia = () => {
+                modal.classList.remove('active');
+                container.innerHTML = '';
+                URL.revokeObjectURL(url);
+                document.getElementById('mediaCloseBtn').removeEventListener('click', closeMedia);
+                modal.removeEventListener('click', closeMedia);
+            };
+            document.getElementById('mediaCloseBtn').addEventListener('click', closeMedia);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeMedia();
+            });
+        })();
     }
 
-    document.getElementById('mediaCloseBtn').onclick = () => {
-        document.getElementById('mediaModal').classList.remove('active');
-        document.getElementById('mediaPlayerContainer').innerHTML = '';
-    };
-    document.getElementById('mediaModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.classList.remove('active');
-            document.getElementById('mediaPlayerContainer').innerHTML = '';
-        }
-    });
-
     async function previewFile(file) {
-        if (file.type.startsWith('video/') || file.type.startsWith('audio/')) {
-            openMediaPlayer(file);
-        } else if (file.type.startsWith('image/')) {
+        if (file.type.startsWith('image/')) {
             const data = await getFileData(file.fileId);
             if (data) {
                 const blob = new Blob([data], { type: file.type });
                 const url = URL.createObjectURL(blob);
-                const win = window.open();
-                win.document.write(`<body style="margin:0;background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh"><img src="${url}" style="max-width:100%;max-height:100vh"></body>`);
+                openImageLightbox(url);
             }
+        } else if (file.type.startsWith('video/') || file.type.startsWith('audio/')) {
+            openMediaPlayer(file);
         } else {
             await downloadFile(file);
         }
@@ -1037,7 +1085,7 @@
     }
 
     // ================================================================
-    // MOVE FILE
+    // MOVE FILE – FIXED WITH SUBFOLDER INDENTATION
     // ================================================================
     function showMoveModal(file) {
         movingFile = file;
@@ -1048,14 +1096,35 @@
     async function updateFolderList() {
         const folders = await getAllFolders();
         const container = document.getElementById('folderList');
+
+        // Build a tree: group folders by parent path
+        const tree = {};
+        folders.forEach(f => {
+            const key = JSON.stringify(f.parentPath);
+            if (!tree[key]) tree[key] = [];
+            tree[key].push(f);
+        });
+
         let html = `<div class="folder-option" onclick='moveFileToFolder([])'><span>📁</span> Root (No folder)</div>`;
-        function renderFolders(folderList, prefix = '') {
-            folderList.forEach(folder => {
-                html += `<div class="folder-option" onclick='moveFileToFolder(${JSON.stringify(folder.path)})'><span>📁</span> ${prefix}${folder.name}</div>`;
+
+        function renderChildren(parentPath, prefix = '') {
+            const key = JSON.stringify(parentPath);
+            const children = tree[key] || [];
+            children.forEach((folder, index) => {
+                const isLast = index === children.length - 1;
+                const line = isLast ? '└── ' : '├── ';
+                html += `
+                    <div class="folder-option" onclick='moveFileToFolder(${JSON.stringify(folder.path)})'>
+                        <span>📁</span>
+                        <span>${prefix}${line}${folder.name}</span>
+                    </div>
+                `;
+                const nextPrefix = prefix + (isLast ? '    ' : '│   ');
+                renderChildren(folder.path, nextPrefix);
             });
         }
-        const rootFolders = folders.filter(f => f.parentPath.length === 0);
-        renderFolders(rootFolders);
+
+        renderChildren([]);
         container.innerHTML = html;
     }
 
@@ -1063,9 +1132,10 @@
         if (movingFile) {
             await updateFileFolder(movingFile.fileId, folderPath);
             await loadCurrentFolder();
+            await updateStats();
             document.getElementById('moveModal').classList.remove('active');
-            updateStats();
-            showToast(`📁 Moved "${movingFile.name}"`);
+            const dest = folderPath.length ? folderPath.join(' › ') : 'Root';
+            showToast(`📁 Moved "${movingFile.name}" to ${dest}`);
             movingFile = null;
         }
     };
@@ -1095,7 +1165,6 @@
             html += `<span class="breadcrumb-item" data-path='${JSON.stringify(path)}'>${p}</span>`;
         });
         breadcrumb.innerHTML = html;
-        // attach click via delegation
         document.querySelectorAll('.breadcrumb-item[data-path]').forEach(el => {
             el.onclick = function() {
                 const path = JSON.parse(this.dataset.path);
@@ -1195,7 +1264,6 @@
 
         grid.innerHTML = html;
 
-        // ---- Event Delegation for Folder Cards ----
         grid.querySelectorAll('.folder-card').forEach(card => {
             card.addEventListener('click', function(e) {
                 if (e.target.closest('.file-btn')) return;
@@ -1204,7 +1272,6 @@
             });
         });
 
-        // ---- File buttons ----
         grid.querySelectorAll('.file-btn.preview').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -1226,7 +1293,6 @@
                 showMoveModalById(id);
             });
         });
-        // Click on file card -> preview
         grid.querySelectorAll('.file-card').forEach(card => {
             card.addEventListener('click', function(e) {
                 if (e.target.closest('.file-btn')) return;
@@ -1295,7 +1361,7 @@
     });
 
     // ================================================================
-    // GOOGLE SIGN-IN (optional)
+    // GOOGLE SIGN-IN
     // ================================================================
     const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
 
