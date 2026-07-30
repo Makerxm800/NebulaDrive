@@ -1,66 +1,65 @@
-# ☁️ NebulaCloud - Ultimate Personal Cloud Storage
+# ☁️ NebulaCloud – Unlimited Personal Cloud Storage (Beta)
 
-<div align="center">
+**Your unlimited, self‑hosted cloud storage – all in a single HTML file.**
 
-![NebulaCloud Banner](https://img.shields.io/badge/NebulaCloud-Premium%20Cloud%20Storage-blueviolet?style=for-the-badge&logo=cloud&logoColor=white)
-
-**Your Personal Cloud Storage Solution • Unlimited • Free • Secure**
-
-[![Made with JavaScript](https://img.shields.io/badge/Made%20with-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Uses IndexedDB](https://img.shields.io/badge/Storage-IndexedDB-FF6B6B?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
-[![Google Sign-In](https://img.shields.io/badge/Auth-Google%20SignIn-4285F4?style=flat-square&logo=google&logoColor=white)](https://developers.google.com/identity)
-[![License MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-
-</div>
+> **⚠️ BETA** – This is a preview release. Features are being refined. Feedback is welcome!
 
 ---
 
-## 🌟 Features
+## ✨ Features
 
-### 🔐 **Authentication**
-- ✅ **Google Sign-In** - Login with your Google account
-- ✅ **Local Accounts** - Create username/password accounts
-- ✅ **Guest Mode** - Try without signing up
-- ✅ **Secure Storage** - Your files are private to your account
-
-### 📁 **File Support - ALL Formats!**
-| Category | Formats |
-|----------|---------|
-| 🎬 **Videos** | MP4, MOV, AVI, MKV, WebM, FLV, WMV, M4V |
-| 🖼️ **Images** | PNG, JPG, JPEG, GIF, WebP, BMP, SVG, ICO, HEIC |
-| ⚙️ **Executables** | EXE, MSI, APK, DMG, AppImage, DEB, RPM, BIN |
-| 🐧 **Scripts** | SH, PY, JS, HTML, CSS, PHP, RB, PL |
-| 📄 **Documents** | PDF, TXT, MD, JSON, XML, CSV, LOG |
-| 🗜️ **Archives** | ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ |
-| 🎵 **Audio** | MP3, WAV, OGG, FLAC, M4A |
-
-### 🎨 **User Interface**
-- ✨ **Beautiful Animations** - Smooth transitions and hover effects
-- 🎨 **4 Color Themes** - Dark Nebula, Light Aurora, Deep Ocean, Sunset Glow
-- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
-- 🔍 **Search Files** - Quick file lookup
-- 📊 **Grid/List Views** - Toggle between layouts
-- 📈 **Storage Statistics** - Track your usage
-
-### ⚡ **Technical Features**
-- 💾 **Unlimited Storage** - Uses your browser's IndexedDB
-- 🚀 **No Server Required** - Runs entirely in your browser
-- 🔒 **100% Private** - Files never leave your computer
-- 📦 **No Installation** - Single HTML file
-- 🌐 **Offline Capable** - Works without internet
+- **Unlimited storage** – uses your browser’s IndexedDB with a performance‑first design (metadata and file data stored separately).
+- **Folders & navigation** – create, open, and move files between folders with a breadcrumb trail.
+- **All file types** – images, videos, audio, documents, executables, scripts, archives – everything is supported.
+- **Media player** – built‑in players for videos, music, and images (lightbox).
+- **User accounts** – create an account, sign in with Google, or continue as a guest.
+- **History** – tracks uploads, downloads, moves, and folder creations.
+- **Themes** – Dark Nebula, Light Aurora, Deep Ocean, Sunset Glow.
+- **Premium UI** – glassmorphism, smooth animations, and a responsive layout.
 
 ---
 
 ## 🚀 Quick Start
 
-### Option 1: Direct Download (Easiest)
-1. Download `NebulaCloud.html`
-2. Double-click to open in your browser
-3. Sign in or continue as guest
-4. Start uploading files!
+1. **Download** `index.html` (or copy the code).
+2. **Double‑click** to open in your browser – no server or installation needed.
+3. **Create an account** (or use Guest) and start uploading files.
+4. **Organise** your files with folders.
+5. **Preview** images, play videos and music directly in the app.
 
-### Option 2: Clone Repository
-```bash
-git clone https://github.com/yourusername/nebulacloud.git
-cd nebulacloud
-# Open NebulaCloud.html in your browser
+---
+
+## 📸 Screenshots
+
+*(The interface is clean, modern, and fully functional.)*
+
+---
+
+## 🔧 Customisation
+
+- **Themes** – change from the Settings panel.
+- **Google Sign‑In** – replace the client ID in the script to enable it on your domain.
+
+---
+
+## 🛠️ Technical Details
+
+- **Storage**: IndexedDB (unlimited, subject to browser quota).
+- **Performance**: Metadata and file data are stored separately; file data is loaded only when needed.
+- **Compatibility**: Works on all modern browsers (Chrome, Firefox, Edge, Safari).
+
+---
+
+## 📝 License
+
+MIT – free to use, modify, and distribute.
+
+---
+
+## 🤝 Contributing
+
+Found a bug or have a suggestion? Open an issue or submit a pull request.
+
+---
+
+**Made with ☁️ by the NebulaCloud team.**
