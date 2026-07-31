@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NebulaCloud – Ultimate ☁️</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>" />
@@ -34,7 +34,6 @@
       min-height: 100vh;
       color: var(--text);
       transition: background 0.4s ease;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -52,7 +51,7 @@
     .logo:hover { transform: scale(1.03); }
     .logo span { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .beta-badge { background: rgba(255,215,0,0.2); border: 1px solid #ffd700; color: #ffd700; padding: 2px 12px; border-radius: 30px; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; }
-    .nav-tabs { display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 40px; border: 1px solid var(--glass-border); }
+    .nav-tabs { display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 40px; border: 1px solid var(--glass-border); position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
     .nav-tab { padding: 6px 18px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; border-radius: 40px; transition: all 0.3s ease; font-weight: 500; font-size: 0.85rem; }
     .nav-tab.active { background: var(--accent); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
     .nav-tab:not(.active):hover { background: var(--glass-hover); }
@@ -74,6 +73,45 @@
     .breadcrumb-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding: 8px 16px; background: var(--glass); backdrop-filter: blur(12px); border-radius: 60px; border: 1px solid var(--glass-border); flex-wrap: wrap; box-shadow: var(--shadow); }
     .back-btn { background: var(--glass); border: none; padding: 4px 10px; border-radius: 30px; color: var(--text); cursor: pointer; transition: 0.2s; font-size: 1rem; }
     .back-btn:hover { background: var(--glass-hover); transform: translateX(-3px); }
+    .new-folder-btn {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 9px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 16px rgba(102,126,234,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: transform 0.25s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .new-folder-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -120%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+    }
+    .new-folder-btn:hover::before { left: 130%; }
+    .new-folder-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 10px 26px rgba(102,126,234,0.55), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .new-folder-btn:active { transform: translateY(-1px) scale(0.97); }
+    .new-folder-btn .nf-plus {
+      display: inline-block;
+      font-size: 1rem;
+      transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    .new-folder-btn:hover .nf-plus { transform: rotate(180deg); }
     .breadcrumb { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex: 1; }
     .breadcrumb-item { color: var(--text-secondary); cursor: pointer; padding: 4px 12px; border-radius: 30px; background: var(--glass); transition: 0.2s; font-size: 0.85rem; }
     .breadcrumb-item:hover { background: var(--glass-hover); color: var(--text); }
@@ -91,6 +129,8 @@
       border-radius: 60px;
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 55;
     }
     .toolbar-group {
       display: flex;
@@ -205,7 +245,7 @@
     .dropdown-menu .divider { height: 1px; background: var(--glass-border); margin: 4px 12px; }
 
     /* ===== STATS ===== */
-    .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 16px; }
+    .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 16px; position: relative; z-index: 1; }
     .stat-card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 14px 8px; text-align: center; transition: all 0.3s ease; }
     .stat-card:hover { transform: translateY(-4px); background: var(--glass-hover); }
     .stat-emoji { font-size: 1.4rem; }
@@ -263,24 +303,7 @@
     .folder-name, .file-name { font-weight: 600; font-size: 0.85rem; margin: 6px 0 2px; word-break: break-all; }
     .folder-size, .file-size { color: var(--text-secondary); font-size: 0.65rem; margin-bottom: 8px; }
     .folder-actions, .file-buttons { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; }
-    .action-btn {
-      padding: 6px 10px;
-      font-size: 0.7rem;
-      border-radius: 20px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: var(--glass);
-      color: var(--text);
-      border: 1px solid var(--glass-border);
-      line-height: 1.4;
-      min-height: 32px;
-      min-width: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .action-btn { padding: 3px 8px; font-size: 0.65rem; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; transition: all 0.2s ease; background: var(--glass); color: var(--text); border: 1px solid var(--glass-border); line-height: 1.4; }
     .action-btn:hover { transform: translateY(-2px); }
     .action-btn:active { transform: scale(0.95); }
     .action-btn.preview { background: rgba(102,126,234,0.25); color: #667eea; }
@@ -304,7 +327,7 @@
     .empty-state { text-align: center; padding: 40px 20px; background: var(--glass); backdrop-filter: blur(12px); border-radius: var(--radius); border: 1px solid var(--glass-border); }
     .empty-emoji { font-size: 3.5rem; margin-bottom: 10px; opacity: 0.5; }
 
-    /* ===== UNIFIED MEDIA PLAYER (unchanged – preserved exactly) ===== */
+    /* ===== UNIFIED MEDIA PLAYER (PREMIUM REDESIGN) ===== */
     .media-player-modal {
       display: none;
       position: fixed;
@@ -461,10 +484,12 @@
     .media-artwork video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 28px;
       background: #000;
     }
+    .fullscreen-btn { display: none; }
+    .media-player-body.video-mode .fullscreen-btn { display: flex !important; }
     .media-loading {
       position: absolute;
       inset: 0;
@@ -815,6 +840,119 @@
     }
 
     /* ===== OTHER MODALS ===== */
+    .global-drop-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(102,126,234,0.12);
+      backdrop-filter: blur(3px);
+      pointer-events: none;
+    }
+    .global-drop-overlay.active { display: flex; }
+    .global-drop-overlay-inner {
+      border: 3px dashed rgba(255,255,255,0.6);
+      border-radius: 32px;
+      padding: 50px 80px;
+      background: rgba(20,17,40,0.55);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .global-drop-icon { font-size: 2.6rem; }
+    /* ===== FILE VIEWER (txt / csv / pdf / json etc.) ===== */
+    .file-viewer-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1003;
+      background: rgba(5,4,15,0.82);
+      backdrop-filter: blur(20px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .file-viewer-modal.active { display: flex; animation: mediaSlideUp 0.35s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .file-viewer-content {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 920px;
+      height: 82vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .file-viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--glass-border);
+      flex-shrink: 0;
+    }
+    .file-viewer-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 12px;
+    }
+    .file-viewer-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .file-viewer-actions button {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .file-viewer-actions button:hover { background: var(--glass-hover); }
+    #fileViewerCloseBtn:hover { background: rgba(255,80,80,0.25); border-color: rgba(255,80,80,0.4); }
+    .file-viewer-body {
+      flex: 1;
+      overflow: auto;
+      background: rgba(0,0,0,0.25);
+    }
+    .viewer-text {
+      margin: 0;
+      padding: 20px 24px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .viewer-iframe { width: 100%; height: 100%; border: none; background: #fff; }
+    .viewer-loading { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); gap: 10px; }
+    .viewer-loading .spinner { width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.15); border-top-color: #a3b1f5; animation: spin 0.8s linear infinite; }
+    .viewer-csv-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .viewer-csv-table th, .viewer-csv-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--glass-border);
+      text-align: left;
+      white-space: nowrap;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .viewer-csv-table th { background: rgba(102,126,234,0.18); position: sticky; top: 0; }
+    .viewer-csv-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    .viewer-csv-note { padding: 10px 20px; color: var(--text-secondary); font-size: 0.78rem; border-top: 1px solid var(--glass-border); }
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(14px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
     .modal-card { background: var(--glass); backdrop-filter: blur(24px); border-radius: 30px; padding: 28px 24px; width: 90%; max-width: 420px; border: 1px solid var(--glass-border); max-height: 80vh; overflow-y: auto; animation: modalIn 0.3s ease; }
@@ -891,12 +1029,11 @@
     @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-    /* ===== RESPONSIVE FIXES (iPhone / mobile) ===== */
     @media (max-width: 768px) {
       .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .files-grid { grid-template-columns: repeat(2, 1fr); }
       .navbar { flex-direction: column; align-items: stretch; }
-      .nav-tabs { justify-content: center; }
+      .nav-tabs { position: static; transform: none; justify-content: center; }
       .user-section { justify-content: center; }
       .breadcrumb-wrap { flex-direction: column; align-items: stretch; }
       .toolbar { flex-direction: column; align-items: stretch; }
@@ -906,17 +1043,6 @@
       .media-buttons .play-btn { width: 56px; height: 56px; font-size: 1.5rem; }
       .media-buttons button { width: 40px; height: 40px; font-size: 1.1rem; }
       .media-volume input[type="range"] { width: 70px; }
-      /* Larger tap targets for actions on mobile */
-      .action-btn { padding: 8px 14px; min-height: 44px; min-width: 44px; font-size: 0.8rem; }
-    }
-
-    @media (max-width: 480px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .files-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .logo { font-size: 1.1rem; }
-      .nav-tab { font-size: 0.75rem; padding: 4px 12px; }
-      .upload-area h3 { font-size: 0.95rem; }
-      .action-btn { font-size: 0.7rem; padding: 6px 10px; min-height: 40px; min-width: 40px; }
     }
   </style>
 </head>
@@ -1003,7 +1129,7 @@
   </div>
 </div>
 
-<!-- ===== UNIFIED MEDIA PLAYER (unchanged) ===== -->
+<!-- ===== UNIFIED MEDIA PLAYER ===== -->
 <div class="media-player-modal" id="mediaPlayerModal">
   <div class="media-player-content" id="mediaPlayerContent">
     <button class="media-player-close" id="mediaPlayerClose">&times;</button>
@@ -1038,6 +1164,7 @@
           <span class="vol-icon" id="mediaMuteBtn">🔊</span>
           <input type="range" id="mediaVolumeBar" min="0" max="1" step="0.05" value="0.8">
           <button id="repeatBtn" class="repeat-btn" title="Repeat: Off" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;">🔁</button>
+          <button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;align-items:center;justify-content:center;">⛶</button>
           <div class="more-menu-wrap">
             <button id="mediaMoreBtn" title="More" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;">⋯</button>
             <div class="more-menu" id="mediaMoreMenu">
@@ -1051,7 +1178,7 @@
   </div>
 </div>
 
-<!-- ===== MINI PLAYER BAR ===== -->
+<!-- ===== MINI PLAYER BAR (docked at bottom) ===== -->
 <div class="mini-player-bar" id="miniPlayerBar">
   <input type="range" class="mini-player-progress" id="miniProgressBar" value="0" step="0.01" title="Seek">
   <div class="mini-player-main">
@@ -1073,6 +1200,28 @@
       <button id="miniExpandBtn" title="Show full player" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;">⤢</button>
       <button id="miniCloseBtn" title="Stop" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;">&times;</button>
     </div>
+  </div>
+</div>
+
+<!-- ===== GLOBAL DRAG OVERLAY (whole page accepts drops) ===== -->
+<div class="global-drop-overlay" id="globalDropOverlay">
+  <div class="global-drop-overlay-inner">
+    <div class="global-drop-icon">📥</div>
+    <div>Drop anywhere to upload</div>
+  </div>
+</div>
+
+<!-- ===== FILE VIEWER (txt / csv / pdf / json / etc, read like an image preview) ===== -->
+<div class="file-viewer-modal" id="fileViewerModal">
+  <div class="file-viewer-content">
+    <div class="file-viewer-header">
+      <div class="file-viewer-title" id="fileViewerTitle">file.txt</div>
+      <div class="file-viewer-actions">
+        <button id="fileViewerDownloadBtn" title="Download">⬇️</button>
+        <button id="fileViewerCloseBtn" title="Close">&times;</button>
+      </div>
+    </div>
+    <div class="file-viewer-body" id="fileViewerBody"></div>
   </div>
 </div>
 
@@ -1104,7 +1253,7 @@
       <div class="breadcrumb-wrap">
         <button class="back-btn" id="backBtn">←</button>
         <div class="breadcrumb" id="breadcrumb"></div>
-        <button class="new-folder-btn" id="newFolderBtn">📁 + New Folder</button>
+        <button class="new-folder-btn" id="newFolderBtn">📁 <span class="nf-plus">+</span> New Folder</button>
       </div>
 
       <!-- ===== TOOLBAR ===== -->
@@ -1157,13 +1306,7 @@
       <div class="upload-area" id="uploadArea">
         <div class="upload-icon">📤</div>
         <h3>Drop files anywhere</h3>
-        <p>or click to browse</p>
-        <div style="display:flex; gap:6px; justify-content:center; margin-top:6px; flex-wrap:wrap;">
-          <span style="background:rgba(102,126,234,0.2); padding:2px 10px; border-radius:20px; font-size:0.65rem;">🎬 Videos</span>
-          <span style="background:rgba(102,126,234,0.2); padding:2px 10px; border-radius:20px; font-size:0.65rem;">⚙️ EXE/MSI</span>
-          <span style="background:rgba(102,126,234,0.2); padding:2px 10px; border-radius:20px; font-size:0.65rem;">🖼️ Images</span>
-          <span style="background:rgba(102,126,234,0.2); padding:2px 10px; border-radius:20px; font-size:0.65rem;">📄 Documents</span>
-        </div>
+        <p>or click to browse — any file type</p>
         <input type="file" id="fileInput" multiple style="display:none">
       </div>
 
@@ -1204,6 +1347,49 @@ for (let i = 0; i < 45; i++) {
 // ================================================================
 let currentUser = null;
 let db = null;
+
+// ================================================================
+// OPFS (Origin Private File System) — fast binary storage backend.
+// Falls back to the existing IndexedDB chunk store automatically
+// on browsers that don't support it (e.g. older Safari).
+// ================================================================
+let opfsRoot = null;
+let opfsSupported = false;
+
+async function initOPFS() {
+  try {
+    if ('storage' in navigator && navigator.storage.getDirectory) {
+      opfsRoot = await navigator.storage.getDirectory();
+      opfsSupported = true;
+      console.log('⚡ OPFS storage enabled — faster file reads/writes');
+    }
+  } catch (e) {
+    opfsSupported = false;
+    console.warn('OPFS unavailable, falling back to IndexedDB storage:', e);
+  }
+}
+function opfsFileName(fileId) { return `${currentUser}_${fileId}.bin`; }
+
+async function opfsWrite(fileId, data) {
+  const handle = await opfsRoot.getFileHandle(opfsFileName(fileId), { create: true });
+  const writable = await handle.createWritable();
+  await writable.write(data);
+  await writable.close();
+}
+async function opfsRead(fileId) {
+  try {
+    const handle = await opfsRoot.getFileHandle(opfsFileName(fileId));
+    const file = await handle.getFile();
+    return await file.arrayBuffer();
+  } catch (e) {
+    return null; // not found / removed
+  }
+}
+async function opfsDelete(fileId) {
+  try {
+    await opfsRoot.removeEntry(opfsFileName(fileId));
+  } catch (e) { /* already gone */ }
+}
 let currentPath = [];
 let currentView = 'grid-medium';
 let currentTab = 'files';
@@ -1472,53 +1658,35 @@ async function putFolder(folder) {
   });
 }
 
-// ----- NEW: Rename folder -----
-async function renameFolder(folderId, newName) {
-  const folder = await getFolderById(folderId);
-  if (!folder) throw new Error('Folder not found');
-  const oldPath = folder.path;
-  const newPath = [...oldPath.slice(0, -1), newName];
-  // Update folder itself
-  const oldName = folder.name;
-  folder.name = newName;
-  folder.path = newPath;
-  folder.parentPath = newPath.slice(0, -1);
-  await putFolder(folder);
-
-  // Update descendants
-  const allFolders = await getAllFolders();
-  const descendants = allFolders.filter(f =>
-    f.id !== folderId &&
-    f.path.length > oldPath.length &&
-    JSON.stringify(f.path.slice(0, oldPath.length)) === JSON.stringify(oldPath)
-  );
-  for (const desc of descendants) {
-    const relPath = desc.path.slice(oldPath.length);
-    desc.parentPath = [...newPath, ...relPath.slice(0, -1)];
-    desc.path = [...newPath, ...relPath];
-    await putFolder(desc);
-  }
-
-  // Update files
-  const allFiles = await getAllUserFilesRaw();
-  for (const file of allFiles) {
-    const fp = file.folderPath || [];
-    if (fp.length >= oldPath.length && JSON.stringify(fp.slice(0, oldPath.length)) === JSON.stringify(oldPath)) {
-      const rel = fp.slice(oldPath.length);
-      file.folderPath = [...newPath, ...rel];
-      file.metadata.folderPath = file.folderPath;
-      await putFileRecord(file);
-    }
-  }
-  addToHistory(`Renamed folder "${oldName}" to "${newName}"`, 'rename');
-}
-
 async function saveFileToDB(fileId, data, metadata, folderPath = []) {
+  if (opfsSupported) {
+    // Fast path: write the raw bytes straight to OPFS, and only store lightweight
+    // metadata (no chunking, no giant IndexedDB transactions) — this is what
+    // eliminates the lag on larger files.
+    await opfsWrite(fileId, data);
+    const metadataRecord = {
+      id: `${currentUser}_${fileId}`,
+      userId: currentUser, fileId,
+      metadata: { ...metadata, folderPath },
+      folderPath,
+      storage: 'opfs',
+      chunkIds: []
+    };
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(['files'], 'readwrite');
+      tx.objectStore('files').put(metadataRecord);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  // Fallback path (no OPFS support): original chunked IndexedDB storage.
   const metadataRecord = {
     id: `${currentUser}_${fileId}`,
     userId: currentUser, fileId,
     metadata: { ...metadata, folderPath },
     folderPath,
+    storage: 'idb',
     chunkIds: []
   };
   const totalChunks = Math.ceil(data.byteLength / CHUNK_SIZE);
@@ -1611,6 +1779,9 @@ async function getLegacyFileData(fileId) {
 async function getFileData(fileId) {
   const manifest = await getManifest(fileId);
   if (!manifest) return null;
+  if (manifest.storage === 'opfs') {
+    return await opfsRead(fileId);
+  }
   if (manifest.chunkIds && manifest.chunkIds.length > 0) {
     const chunks = [];
     for (const chunkId of manifest.chunkIds) {
@@ -1651,6 +1822,15 @@ async function putFileRecord(record) {
 async function deleteFileFromDB(fileId) {
   const manifest = await getManifest(fileId);
   if (manifest) {
+    if (manifest.storage === 'opfs') {
+      await opfsDelete(fileId);
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(['files'], 'readwrite');
+        tx.objectStore('files').delete(`${currentUser}_${fileId}`);
+        tx.oncomplete = resolve;
+        tx.onerror = () => reject(tx.error);
+      });
+    }
     const tx = db.transaction(['files', 'fileChunks'], 'readwrite');
     const fileStore = tx.objectStore('files');
     const chunkStore = tx.objectStore('fileChunks');
@@ -1802,7 +1982,7 @@ async function uploadFile(file, folderPath = currentPath) {
 }
 
 // ================================================================
-// UNIFIED MEDIA PLAYER (unchanged – preserved exactly)
+// UNIFIED MEDIA PLAYER (premium modal + docked mini bar, real queue)
 // ================================================================
 let mediaPlayer = null;
 let mediaFile = null;
@@ -1920,10 +2100,21 @@ function setRepeatMode(mode) {
 }
 
 function openMediaPlayer(file) {
+  // Already loaded (playing or paused, minimized or not) — just bring the modal back up
+  if (mediaFile && mediaPlayer && mediaFile.fileId === file.fileId) {
+    showMediaModal();
+    return;
+  }
   buildMediaQueue(file);
   loadMediaTrack(mediaQueueIndex);
   showMediaModal();
 }
+
+document.getElementById('mediaFullscreenBtn').onclick = () => {
+  if (!mediaPlayer || !isVideoMode) return;
+  const req = mediaPlayer.requestFullscreen || mediaPlayer.webkitRequestFullscreen || mediaPlayer.msRequestFullscreen;
+  if (req) req.call(mediaPlayer);
+};
 
 function loadMediaTrack(index) {
   if (!mediaQueue.length) return;
@@ -1944,7 +2135,8 @@ function loadMediaTrack(index) {
   }
 
   isVideoMode = isVideo;
-  title.textContent = isVideo ? '▶️ Video' : '🎵 Now Playing';
+  document.getElementById('mediaFullscreenBtn').style.display = isVideo ? 'flex' : 'none';
+  title.textContent = isVideo ? ('▶️ ' + file.name) : '🎵 Now Playing';
   trackEl.textContent = file.name;
   artistEl.textContent = isVideo ? 'Video File' : 'Audio Track';
   trackEl.title = file.name;
@@ -2235,43 +2427,13 @@ document.addEventListener('keydown', (e) => {
 async function downloadFile(file) {
   const manifest = await getManifest(file.fileId);
   if (!manifest) { showToast('File metadata not found'); return; }
-  let chunkIds = manifest.chunkIds || [];
-  let fileData = null;
-  if (chunkIds.length === 0) {
-    fileData = await getLegacyFileData(file.fileId);
-    if (fileData) {
-      const blob = new Blob([fileData], { type: file.type || 'application/octet-stream' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = file.name;
-      a.click();
-      URL.revokeObjectURL(url);
-      addToHistory(`Downloaded "${file.name}" (legacy)`, 'download');
-      showToast(`⬇️ Downloaded ${file.name}`);
-      return;
-    } else {
-      showToast('No chunks found for this file');
-      return;
-    }
-  }
   try {
-    const chunks = [];
-    for (const chunkId of chunkIds) {
-      const chunk = await getChunk(chunkId);
-      if (chunk === null) {
-        showToast('Missing chunk data – file may be corrupted');
-        return;
-      }
-      chunks.push(chunk);
+    const fileData = await getFileData(file.fileId);
+    if (!fileData) {
+      showToast('No data found for this file — it may be corrupted');
+      return;
     }
-    const totalSize = chunks.reduce((acc, c) => acc + c.byteLength, 0);
-    const fullData = new Uint8Array(totalSize);
-    let offset = 0;
-    for (const chunk of chunks) {
-      fullData.set(new Uint8Array(chunk), offset);
-      offset += chunk.byteLength;
-    }
-    const blob = new Blob([fullData], { type: file.type || 'application/octet-stream' });
+    const blob = new Blob([fileData], { type: file.type || 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url; a.download = file.name;
@@ -2309,13 +2471,112 @@ async function previewFile(file) {
     }
   } else if (file.type.startsWith('audio/') || file.type.startsWith('video/')) {
     openMediaPlayer(file);
+  } else if (isViewableTextOrPdf(file)) {
+    await openFileViewer(file);
   } else {
     await downloadFile(file);
   }
 }
 
+function isViewableTextOrPdf(file) {
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  if (file.type === 'application/pdf' || ext === 'pdf') return true;
+  if (file.type && file.type.startsWith('text/')) return true;
+  return ['txt', 'csv', 'json', 'md', 'log', 'xml', 'yml', 'yaml', 'ini', 'js', 'css', 'html', 'htm'].includes(ext);
+}
+
 // ================================================================
-// DELETE, RENAME (files & folders)
+// FILE VIEWER (txt / csv / pdf / json etc — readable preview, no forced download)
+// ================================================================
+let fileViewerCurrentFile = null;
+let fileViewerObjectUrl = null;
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function renderCsvTable(text) {
+  const MAX_ROWS = 500;
+  const lines = text.split(/\r\n|\n/).filter(l => l.length > 0);
+  if (lines.length === 0) return '<div class="viewer-loading">This file is empty.</div>';
+  const parseLine = (line) => line.split(',').map(cell => cell.trim());
+  const header = parseLine(lines[0]);
+  const rows = lines.slice(1, MAX_ROWS + 1);
+  let html = '<table class="viewer-csv-table"><thead><tr>';
+  header.forEach(h => html += `<th>${escapeHtml(h)}</th>`);
+  html += '</tr></thead><tbody>';
+  rows.forEach(line => {
+    const cells = parseLine(line);
+    html += '<tr>';
+    cells.forEach(c => html += `<td>${escapeHtml(c)}</td>`);
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  if (lines.length - 1 > MAX_ROWS) {
+    html += `<div class="viewer-csv-note">Showing first ${MAX_ROWS} of ${lines.length - 1} rows. Download the file to see the rest.</div>`;
+  }
+  return html;
+}
+
+async function openFileViewer(file) {
+  const modal = document.getElementById('fileViewerModal');
+  const title = document.getElementById('fileViewerTitle');
+  const body = document.getElementById('fileViewerBody');
+  fileViewerCurrentFile = file;
+  title.textContent = file.name;
+  body.innerHTML = '<div class="viewer-loading"><div class="spinner"></div> Loading…</div>';
+  modal.classList.add('active');
+
+  if (fileViewerObjectUrl) { URL.revokeObjectURL(fileViewerObjectUrl); fileViewerObjectUrl = null; }
+
+  const data = await getFileData(file.fileId);
+  if (fileViewerCurrentFile !== file) return; // closed/switched while loading
+  if (!data) {
+    body.innerHTML = '<div class="viewer-loading">⚠️ Could not load this file.</div>';
+    return;
+  }
+
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  if (file.type === 'application/pdf' || ext === 'pdf') {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    fileViewerObjectUrl = url;
+    body.innerHTML = `<iframe class="viewer-iframe" src="${url}"></iframe>`;
+  } else if (ext === 'csv') {
+    const text = new TextDecoder('utf-8').decode(data);
+    body.innerHTML = renderCsvTable(text);
+  } else {
+    const text = new TextDecoder('utf-8').decode(data);
+    body.innerHTML = '';
+    const pre = document.createElement('pre');
+    pre.className = 'viewer-text';
+    pre.textContent = text;
+    body.appendChild(pre);
+  }
+}
+
+function closeFileViewer() {
+  document.getElementById('fileViewerModal').classList.remove('active');
+  if (fileViewerObjectUrl) { URL.revokeObjectURL(fileViewerObjectUrl); fileViewerObjectUrl = null; }
+  fileViewerCurrentFile = null;
+  document.getElementById('fileViewerBody').innerHTML = '';
+}
+
+document.getElementById('fileViewerCloseBtn').onclick = closeFileViewer;
+document.getElementById('fileViewerModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeFileViewer();
+});
+document.getElementById('fileViewerDownloadBtn').onclick = () => {
+  if (fileViewerCurrentFile) downloadFile(fileViewerCurrentFile);
+};
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Escape' && document.getElementById('fileViewerModal').classList.contains('active')) {
+    closeFileViewer();
+  }
+});
+
+// ================================================================
+// DELETE, RENAME, MOVE
 // ================================================================
 async function deleteFile(fileId, fileName) {
   if (confirm(`Delete "${fileName}"?`)) {
@@ -2335,18 +2596,6 @@ async function renameFileById(fileId) {
     await renameFile(fileId, newName.trim());
     await loadCurrentFolder();
     showToast(`✏️ Renamed to "${newName.trim()}"`);
-  }
-}
-
-// ----- Rename folder -----
-async function renameFolderById(folderId) {
-  const folder = await getFolderById(folderId);
-  if (!folder) return;
-  const newName = prompt('Enter new folder name:', folder.name);
-  if (newName && newName.trim() && newName !== folder.name) {
-    await renameFolder(folderId, newName.trim());
-    await loadCurrentFolder();
-    showToast(`📁 Renamed folder to "${newName.trim()}"`);
   }
 }
 
@@ -2442,6 +2691,10 @@ let currentFiles = [];
 async function loadCurrentFolder() {
   const folders = await getFoldersInPath(currentPath);
   const files = await getFilesInPath(currentPath);
+  // Attach a computed total size to each folder (recursive, includes subfolders) — previously never wired up
+  await Promise.all(folders.map(async (f) => {
+    f.size = await calculateFolderSize(f.path);
+  }));
   currentFolders = folders;
   currentFiles = files;
   updateBreadcrumb();
@@ -2540,7 +2793,6 @@ function renderItems(folders, files) {
         <div class="folder-name">${folder.name}</div>
         <div class="folder-size">${size}</div>
         <div class="folder-actions">
-          <button class="action-btn rename" data-folder-id="${folder.id}" title="Rename folder">✏️</button>
           <button class="action-btn move" data-move-folder='${JSON.stringify({type:'folder', id:folder.id, name:folder.name, path:folder.path})}'>📁</button>
         </div>
       </div>
@@ -2617,30 +2869,14 @@ function renderItems(folders, files) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       const id = this.dataset.id;
-      if (id.startsWith('folder-')) {
-        // Folder rename
-        const folderId = id.replace('folder-', '');
-        renameFolderById(folderId);
-      } else {
-        renameFileById(id);
-      }
-    });
-  });
-  // For folder rename we use data-folder-id
-  grid.querySelectorAll('.folder-card .action-btn.rename').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const folderId = this.dataset.folderId;
-      renameFolderById(folderId);
+      renameFileById(id);
     });
   });
   grid.querySelectorAll('.action-btn.move').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       const id = this.dataset.id;
-      if (id && !id.startsWith('folder-')) {
-        showMoveModalForFileById(id);
-      }
+      showMoveModalForFileById(id);
     });
   });
   grid.querySelectorAll('.action-btn.delete').forEach(btn => {
@@ -2945,31 +3181,40 @@ document.addEventListener('click', function(e) {
 });
 
 // ================================================================
-// UPLOAD HANDLERS & GLOBAL DROP
+// UPLOAD HANDLERS & GLOBAL DROP (single source of truth — no duplicate listeners)
 // ================================================================
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
+const globalDropOverlay = document.getElementById('globalDropOverlay');
 
 uploadArea.onclick = () => fileInput.click();
-uploadArea.ondragover = (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); };
-uploadArea.ondragleave = () => { uploadArea.classList.remove('drag-over'); };
-uploadArea.ondrop = async (e) => {
+
+let dragCounter = 0;
+document.addEventListener('dragenter', (e) => {
   e.preventDefault();
+  dragCounter++;
+  globalDropOverlay.classList.add('active');
+  uploadArea.classList.add('drag-over');
+});
+document.addEventListener('dragover', (e) => e.preventDefault());
+document.addEventListener('dragleave', (e) => {
+  dragCounter--;
+  if (dragCounter <= 0) {
+    dragCounter = 0;
+    globalDropOverlay.classList.remove('active');
+    uploadArea.classList.remove('drag-over');
+  }
+});
+// A single drop listener on the document handles drops anywhere on the page —
+// including inside the upload box — so files are only ever uploaded once.
+document.addEventListener('drop', async (e) => {
+  e.preventDefault();
+  dragCounter = 0;
+  globalDropOverlay.classList.remove('active');
   uploadArea.classList.remove('drag-over');
   const files = Array.from(e.dataTransfer.files);
   for (let file of files) {
     await uploadFile(file);
-  }
-};
-
-document.addEventListener('dragover', (e) => e.preventDefault());
-document.addEventListener('drop', async (e) => {
-  e.preventDefault();
-  const files = Array.from(e.dataTransfer.files);
-  if (files.length > 0) {
-    for (let file of files) {
-      await uploadFile(file);
-    }
   }
 });
 
@@ -3003,7 +3248,7 @@ document.body.className = savedTheme;
 const savedUser = localStorage.getItem('nebula_current_user');
 if (savedUser) {
   currentUser = savedUser;
-  openDB().then(async () => {
+  Promise.all([openDB(), initOPFS()]).then(async () => {
     const avatar = currentUser.startsWith('guest') ? '👤' : currentUser[0].toUpperCase();
     document.getElementById('userAvatar').textContent = avatar;
     document.getElementById('usernameDisplay').textContent = currentUser.startsWith('guest') ? 'Guest' : currentUser.split('@')[0];
@@ -3013,7 +3258,7 @@ if (savedUser) {
     await loadHistory();
   }).catch(console.error);
 } else {
-  openDB().then(() => {
+  Promise.all([openDB(), initOPFS()]).then(() => {
     initGoogleLogin();
   }).catch(console.error);
 }
