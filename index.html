@@ -22,11 +22,69 @@
       --view-size: 160px;
     }
     body.light { --bg: radial-gradient(ellipse at 10% 20%, #f0f4ff, #d9e2ff); --glass: rgba(255,255,255,0.5); --glass-border: rgba(255,255,255,0.6); --glass-hover: rgba(255,255,255,0.7); --text: #1a1a2e; --text-secondary: rgba(0,0,0,0.6); --shadow: 0 8px 32px rgba(0,0,0,0.1); }
-    body.ocean { --bg: radial-gradient(ellipse at 10% 20%, #0a1628, #1a2980 50%, #26d0ce); }
-    body.sunset { --bg: radial-gradient(ellipse at 10% 20%, #2d1b1b, #ff6b6b 50%, #feca57); }
-    body.nord { --bg: radial-gradient(ellipse at 10% 20%, #2e3440, #3b4252 50%, #434c5e); --text: #eceff4; --text-secondary: #d8dee9; --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08); }
-    body.dracula { --bg: radial-gradient(ellipse at 10% 20%, #282a36, #44475a 50%, #6272a4); --text: #f8f8f2; --text-secondary: #bd93f9; --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08); }
-    body.solarized { --bg: radial-gradient(ellipse at 10% 20%, #002b36, #073642 50%, #586e75); --text: #fdf6e3; --text-secondary: #b58900; --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08); }
+
+    /* ----- Classic themes, redesigned: richer gradients + theme-matched accent colors ----- */
+    body.ocean {
+      --bg: radial-gradient(ellipse at 10% 15%, #082032 0%, #0f4c75 45%, #1a998e 80%, #26d0ce 100%);
+      --accent: linear-gradient(135deg, #0ea5e9, #06b6d4);
+      --shadow: 0 8px 32px rgba(6,182,212,0.25);
+    }
+    body.sunset {
+      --bg: radial-gradient(ellipse at 10% 15%, #2d0f1e 0%, #6a1b3d 40%, #d1495b 70%, #f5b942 100%);
+      --accent: linear-gradient(135deg, #fb923c, #ec4899);
+      --shadow: 0 8px 32px rgba(236,72,153,0.25);
+    }
+    body.nord {
+      --bg: radial-gradient(ellipse at 10% 15%, #232833 0%, #2e3440 40%, #3b4252 75%, #5e81ac 100%);
+      --text: #eceff4; --text-secondary: #d8dee9;
+      --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08);
+      --accent: linear-gradient(135deg, #5e81ac, #88c0d0);
+      --shadow: 0 8px 32px rgba(94,129,172,0.25);
+    }
+    body.dracula {
+      --bg: radial-gradient(ellipse at 10% 15%, #1e1f29 0%, #282a36 40%, #44475a 75%, #6272a4 100%);
+      --text: #f8f8f2; --text-secondary: #c9a8f9;
+      --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08);
+      --accent: linear-gradient(135deg, #bd93f9, #ff79c6);
+      --shadow: 0 8px 32px rgba(189,147,249,0.25);
+    }
+    body.solarized {
+      --bg: radial-gradient(ellipse at 10% 15%, #001e26 0%, #002b36 40%, #073642 75%, #2aa198 100%);
+      --text: #fdf6e3; --text-secondary: #93a1a1;
+      --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1); --glass-border: rgba(255,255,255,0.08);
+      --accent: linear-gradient(135deg, #268bd2, #2aa198);
+      --shadow: 0 8px 32px rgba(38,139,210,0.25);
+    }
+
+    /* ----- New Premium themes ----- */
+    body.midnightgold {
+      --bg: radial-gradient(ellipse at 10% 15%, #0a0a0a 0%, #161310 45%, #2b2313 80%, #3d2f10 100%);
+      --text: #f7f0dd; --text-secondary: rgba(247,240,221,0.65);
+      --glass: rgba(255,215,120,0.06); --glass-hover: rgba(255,215,120,0.14); --glass-border: rgba(255,215,120,0.22);
+      --accent: linear-gradient(135deg, #f5d76e, #b8860b);
+      --shadow: 0 8px 32px rgba(184,134,11,0.3);
+    }
+    body.velvetrose {
+      --bg: radial-gradient(ellipse at 10% 15%, #1a0b1f 0%, #3b1249 40%, #7a2c74 75%, #c2478d 100%);
+      --text: #fbe9f6; --text-secondary: rgba(251,233,246,0.7);
+      --glass: rgba(255,111,179,0.08); --glass-hover: rgba(255,111,179,0.16); --glass-border: rgba(255,111,179,0.22);
+      --accent: linear-gradient(135deg, #ff6fb3, #a855f7);
+      --shadow: 0 8px 32px rgba(168,85,247,0.3);
+    }
+    body.emeraldnoir {
+      --bg: radial-gradient(ellipse at 10% 15%, #030f0c 0%, #06211a 40%, #0a3d2e 75%, #14804f 100%);
+      --text: #e8fbf3; --text-secondary: rgba(232,251,243,0.68);
+      --glass: rgba(16,185,129,0.06); --glass-hover: rgba(16,185,129,0.14); --glass-border: rgba(16,185,129,0.22);
+      --accent: linear-gradient(135deg, #10b981, #059669);
+      --shadow: 0 8px 32px rgba(16,185,129,0.28);
+    }
+    body.platinum {
+      --bg: radial-gradient(ellipse at 10% 15%, #eef2f8 0%, #dde5f0 45%, #cbd8ea 80%, #b9c9e3 100%);
+      --text: #1e293b; --text-secondary: rgba(30,41,59,0.62);
+      --glass: rgba(255,255,255,0.55); --glass-hover: rgba(255,255,255,0.75); --glass-border: rgba(148,163,184,0.4);
+      --accent: linear-gradient(135deg, #64748b, #334155);
+      --shadow: 0 8px 32px rgba(51,65,85,0.14);
+    }
 
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -52,9 +110,37 @@
     .logo span { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .beta-badge { background: rgba(255,215,0,0.2); border: 1px solid #ffd700; color: #ffd700; padding: 2px 12px; border-radius: 30px; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; }
     .nav-tabs { display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 40px; border: 1px solid var(--glass-border); position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-    .nav-tab { padding: 6px 18px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; border-radius: 40px; transition: all 0.3s ease; font-weight: 500; font-size: 0.85rem; }
-    .nav-tab.active { background: var(--accent); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
-    .nav-tab:not(.active):hover { background: var(--glass-hover); }
+    .nav-tab {
+      padding: 7px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: 40px;
+      transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+      font-weight: 600;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-tab::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -120%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+      pointer-events: none;
+    }
+    .nav-tab.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 16px rgba(102,126,234,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+      transform: translateY(-1px);
+    }
+    .nav-tab.active:hover::before { left: 130%; }
+    .nav-tab:not(.active):hover { background: var(--glass-hover); transform: translateY(-1px); }
     .user-section { display: flex; align-items: center; gap: 12px; }
     .user-avatar { width: 36px; height: 36px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: white; border: 2px solid var(--glass-border); transition: 0.3s; cursor: pointer; }
     .user-avatar:hover { transform: scale(1.08); }
@@ -181,17 +267,24 @@
       background: rgba(255,255,255,0.05);
       border: 1px solid var(--glass-border);
       border-radius: 30px;
-      padding: 3px;
+      padding: 4px;
     }
     .view-toggle-group .view-btn {
-      padding: 6px 11px;
+      padding: 8px 13px;
       border-radius: 24px;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
+      line-height: 1;
+      transition: all 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
+    }
+    .view-toggle-group .view-btn:hover:not(.active) {
+      background: var(--glass-hover);
+      transform: translateY(-1px);
     }
     .view-toggle-group .view-btn.active {
       background: var(--accent);
       color: white;
-      box-shadow: 0 3px 12px rgba(102,126,234,0.45);
+      box-shadow: 0 3px 12px rgba(102,126,234,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+      transform: scale(1.08);
     }
     .dropdown-menu .item .icon-chip {
       width: 24px;
@@ -323,6 +416,24 @@
     .view-small { --view-size: 120px; }
     .view-medium { --view-size: 160px; }
     .view-large { --view-size: 200px; }
+    .view-gallery { --view-size: 260px; }
+    .view-gallery .folder-card, .view-gallery .file-card { padding: 20px 14px; }
+    .view-gallery .folder-emoji, .view-gallery .file-emoji { font-size: 3.2rem; }
+    .files-grid.compact-view { display: flex; flex-direction: column; gap: 2px; }
+    .files-grid.compact-view .folder-card, .files-grid.compact-view .file-card {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 14px;
+      text-align: left;
+      border-radius: 8px;
+    }
+    .files-grid.compact-view .folder-card:hover, .files-grid.compact-view .file-card:hover { transform: none; }
+    .files-grid.compact-view .folder-emoji, .files-grid.compact-view .file-emoji { font-size: 1.15rem; width: 24px; margin-bottom: 0; }
+    .files-grid.compact-view .folder-name, .files-grid.compact-view .file-name { flex: 1; margin: 0; text-align: left; font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .files-grid.compact-view .folder-size, .files-grid.compact-view .file-size { width: 70px; margin: 0; text-align: right; font-size: 0.68rem; }
+    .files-grid.compact-view .folder-actions, .files-grid.compact-view .file-buttons { width: auto; }
+    .files-grid.compact-view .folder-card .cb, .files-grid.compact-view .file-card .cb { position: relative; top: auto; left: auto; margin-right: 2px; }
 
     .empty-state { text-align: center; padding: 40px 20px; background: var(--glass); backdrop-filter: blur(12px); border-radius: var(--radius); border: 1px solid var(--glass-border); }
     .empty-emoji { font-size: 3.5rem; margin-bottom: 10px; opacity: 0.5; }
@@ -1012,8 +1123,30 @@
 
     .settings-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); z-index: 1001; justify-content: center; align-items: center; }
     .settings-modal.active { display: flex; }
-    .settings-card { background: var(--glass); backdrop-filter: blur(24px); border-radius: 30px; padding: 24px; width: 90%; max-width: 380px; border: 1px solid var(--glass-border); }
+    .settings-card { background: var(--glass); backdrop-filter: blur(24px); border-radius: 30px; padding: 24px; width: 90%; max-width: 380px; border: 1px solid var(--glass-border); max-height: 85vh; overflow-y: auto; }
     .settings-card h3 { font-size: 1.2rem; margin-bottom: 16px; }
+    .theme-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin: 16px 0 6px;
+      opacity: 0.7;
+    }
+    .theme-section-label:first-of-type { margin-top: 4px; }
+    .theme-option { position: relative; }
+    .theme-option .premium-badge {
+      margin-left: auto;
+      background: rgba(255,215,0,0.18);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      padding: 1px 9px;
+      border-radius: 20px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
     .theme-option { padding: 10px 14px; margin: 5px 0; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; color: var(--text); }
     .theme-option:hover { background: var(--glass-hover); transform: translateX(6px); }
     .danger-btn { width: 100%; padding: 10px; margin-top: 10px; background: rgba(255,71,87,0.12); border: 1px solid rgba(255,71,87,0.25); border-radius: 14px; color: #ff4757; font-weight: 600; cursor: pointer; transition: 0.2s; }
@@ -1079,13 +1212,19 @@
 <div class="settings-modal" id="settingsModal">
   <div class="settings-card">
     <h3>⚙️ Settings</h3>
+    <div class="theme-section-label">Classic</div>
     <div class="theme-option" data-theme="dark">🌙 Dark Nebula</div>
     <div class="theme-option" data-theme="light">☀️ Light Aurora</div>
     <div class="theme-option" data-theme="ocean">🌊 Deep Ocean</div>
     <div class="theme-option" data-theme="sunset">🌅 Sunset Glow</div>
     <div class="theme-option" data-theme="nord">❄️ Nord</div>
     <div class="theme-option" data-theme="dracula">🧛 Dracula</div>
-    <div class="theme-option" data-theme="solarized">☀️ Solarized</div>
+    <div class="theme-option" data-theme="solarized">🌤️ Solarized</div>
+    <div class="theme-section-label">✨ Premium</div>
+    <div class="theme-option" data-theme="midnightgold">🖤 Midnight Gold <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="velvetrose">🌹 Velvet Rose <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="emeraldnoir">💎 Emerald Noir <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="platinum">🤍 Platinum Frost <span class="premium-badge">PREMIUM</span></div>
     <button class="danger-btn" id="clearAllFilesBtn">🗑️ Delete All Files</button>
     <button class="guest-btn" id="closeSettingsBtn" style="margin-top:12px;">Close</button>
   </div>
@@ -1261,10 +1400,12 @@
         <div class="toolbar-group">
           <span class="label">View:</span>
           <div class="view-toggle-group">
-            <button class="toolbar-btn view-btn active" data-view="grid-medium" title="Medium Grid">📐</button>
-            <button class="toolbar-btn view-btn" data-view="grid-small" title="Small Grid">📏</button>
-            <button class="toolbar-btn view-btn" data-view="grid-large" title="Large Grid">🔳</button>
+            <button class="toolbar-btn view-btn" data-view="grid-small" title="Small Grid">🔹</button>
+            <button class="toolbar-btn view-btn active" data-view="grid-medium" title="Medium Grid">◼️</button>
+            <button class="toolbar-btn view-btn" data-view="grid-large" title="Large Grid">⬛</button>
+            <button class="toolbar-btn view-btn" data-view="gallery" title="Gallery">🖼️</button>
             <button class="toolbar-btn view-btn" data-view="list" title="List">📋</button>
+            <button class="toolbar-btn view-btn" data-view="compact" title="Compact List">☰</button>
           </div>
         </div>
         <div class="toolbar-group">
@@ -2774,7 +2915,9 @@ function renderItems(folders, files) {
   grid.className = 'files-grid';
   if (currentView === 'grid-small') grid.classList.add('view-small');
   else if (currentView === 'grid-large') grid.classList.add('view-large');
+  else if (currentView === 'gallery') grid.classList.add('view-gallery');
   else if (currentView === 'list') grid.classList.add('list-view');
+  else if (currentView === 'compact') grid.classList.add('compact-view');
 
   if (folders.length === 0 && files.length === 0) {
     grid.innerHTML = `<div class="empty-state"><div class="empty-emoji">📁</div><h3>This folder is empty</h3><p>Create a folder or upload files</p></div>`;
