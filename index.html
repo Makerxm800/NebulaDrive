@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>NebulaCloud – Ultimate ☁️</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>" />
@@ -396,6 +396,19 @@
     .folder-name, .file-name { font-weight: 600; font-size: 0.85rem; margin: 6px 0 2px; word-break: break-all; }
     .folder-size, .file-size { color: var(--text-secondary); font-size: 0.65rem; margin-bottom: 8px; }
     .folder-actions, .file-buttons { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; }
+    .item-path-badge {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1px 8px;
+      margin: 2px 0 4px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .action-btn { padding: 3px 8px; font-size: 0.65rem; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; transition: all 0.2s ease; background: var(--glass); color: var(--text); border: 1px solid var(--glass-border); line-height: 1.4; }
     .action-btn:hover { transform: translateY(-2px); }
     .action-btn:active { transform: scale(0.95); }
@@ -485,6 +498,11 @@
       background: radial-gradient(ellipse at center, rgba(102,126,234,0.35), transparent 70%);
       pointer-events: none;
       z-index: 0;
+      animation: ambientDrift 8s ease-in-out infinite;
+    }
+    @keyframes ambientDrift {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.85; }
+      50% { transform: translateX(-46%) translateY(8px) scale(1.08); opacity: 1; }
     }
     .media-player-close {
       position: absolute;
@@ -627,6 +645,11 @@
       color: var(--text);
       width: 100%;
     }
+    .media-info.track-fade, .media-artwork.track-fade { animation: trackFadeIn 0.4s ease; }
+    @keyframes trackFadeIn {
+      0% { opacity: 0; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
     .media-track {
       font-size: 1.15rem;
       font-weight: 700;
@@ -730,6 +753,7 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.3);
     }
+    .media-buttons button:active:not(:disabled) { transform: translateY(0) scale(0.92); transition: transform 0.1s ease; }
     .media-buttons button:disabled { opacity: 0.3; cursor: default; }
     .media-buttons .play-btn {
       font-size: 1.7rem;
@@ -738,10 +762,25 @@
       background: var(--accent);
       border: none;
       box-shadow: 0 8px 24px rgba(102,126,234,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+      position: relative;
     }
     .media-buttons .play-btn:hover {
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 10px 30px rgba(102,126,234,0.65), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .media-buttons .play-btn:active { transform: translateY(0) scale(0.94); }
+    .media-buttons .play-btn.is-playing::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(102,126,234,0.5);
+      animation: playPulseRing 1.8s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes playPulseRing {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
     }
     .media-volume {
       display: flex;
@@ -885,6 +924,7 @@
       transition: all 0.2s ease;
     }
     .mini-player-controls button:hover:not(:disabled) { background: var(--glass-hover); transform: translateY(-2px); }
+    .mini-player-controls button:active:not(:disabled) { transform: scale(0.9); transition: transform 0.1s ease; }
     .mini-player-controls button:disabled { opacity: 0.3; cursor: default; }
     .mini-player-controls .mini-play-btn {
       width: 40px; height: 40px;
@@ -1073,14 +1113,97 @@
     .modal-card .close-btn { margin-top: 16px; background: var(--glass); border: 1px solid var(--glass-border); padding: 8px 20px; border-radius: 30px; color: var(--text); cursor: pointer; transition: 0.2s; font-weight: 500; width: 100%; }
     .modal-card .close-btn:hover { background: var(--glass-hover); }
 
-    .move-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); z-index: 1002; justify-content: center; align-items: center; }
-    .move-modal.active { display: flex; }
-    .move-card { background: var(--glass); backdrop-filter: blur(24px); border-radius: 30px; padding: 24px; width: 90%; max-width: 380px; border: 1px solid var(--glass-border); }
-    .move-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-    .move-card .sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; }
-    .folder-list { max-height: 350px; overflow-y: auto; margin: 10px 0; }
-    .folder-option { padding: 8px 14px; margin: 4px 0; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 0.85rem; }
-    .folder-option:hover { background: var(--glass-hover); transform: translateX(6px); }
+    .move-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,4,15,0.82); backdrop-filter: blur(16px); z-index: 1002; justify-content: center; align-items: center; padding: 20px; }
+    .move-modal.active { display: flex; animation: mediaSlideUp 0.35s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .move-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.045));
+      backdrop-filter: blur(26px);
+      border-radius: 28px;
+      padding: 26px 26px 24px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .move-card::before {
+      content: '';
+      position: absolute;
+      top: -70%; left: 50%;
+      transform: translateX(-50%);
+      width: 140%; height: 180px;
+      background: radial-gradient(ellipse at center, rgba(102,126,234,0.3), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .move-card-header { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; margin-bottom: 4px; }
+    .move-card-icon {
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(102,126,234,0.4);
+    }
+    .move-card h3 { font-size: 1.05rem; font-weight: 700; }
+    .move-card .sub {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin: 10px 0 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 7px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      z-index: 1;
+    }
+    .folder-list {
+      max-height: 340px;
+      overflow-y: auto;
+      margin: 0 0 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      z-index: 1;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102,126,234,0.5) transparent;
+    }
+    .folder-list::-webkit-scrollbar { width: 7px; }
+    .folder-list::-webkit-scrollbar-track { background: transparent; }
+    .folder-list::-webkit-scrollbar-thumb { background: rgba(102,126,234,0.4); border-radius: 10px; }
+    .folder-list::-webkit-scrollbar-thumb:hover { background: rgba(102,126,234,0.65); }
+    .folder-option {
+      padding: 9px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid transparent;
+      border-left: 2px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      /* Only background/border transition — NO transform here.
+         A transform-on-hover in a scrolling list causes rows to jump
+         as the cursor passes over them while scrolling, which reads as "shaking". */
+      transition: background 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .folder-option .fo-icon { flex-shrink: 0; font-size: 0.95rem; }
+    .folder-option .fo-name { overflow: hidden; text-overflow: ellipsis; }
+    .folder-option:hover {
+      background: rgba(102,126,234,0.14);
+      border-left-color: #8ba0f0;
+    }
+    .folder-option.root-option { font-weight: 600; }
 
     /* ===== HISTORY ===== */
     .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 460px; overflow-y: auto; }
@@ -1121,21 +1244,79 @@
     .forgot-pw { display: block; margin-top: 6px; color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; transition: 0.2s; text-align: right; }
     .forgot-pw:hover { color: #667eea; text-decoration: underline; }
 
-    .settings-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(16px); z-index: 1001; justify-content: center; align-items: center; }
-    .settings-modal.active { display: flex; }
-    .settings-card { background: var(--glass); backdrop-filter: blur(24px); border-radius: 30px; padding: 24px; width: 90%; max-width: 380px; border: 1px solid var(--glass-border); max-height: 85vh; overflow-y: auto; }
-    .settings-card h3 { font-size: 1.2rem; margin-bottom: 16px; }
-    .theme-section-label {
+    .settings-modal { display: none; position: fixed; inset: 0; background: rgba(5,4,15,0.82); backdrop-filter: blur(16px); z-index: 1001; justify-content: center; align-items: center; padding: 20px; }
+    .settings-modal.active { display: flex; animation: mediaSlideUp 0.35s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .settings-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.045));
+      backdrop-filter: blur(26px);
+      border-radius: 28px;
+      padding: 26px 26px 24px;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid var(--glass-border);
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102,126,234,0.5) transparent;
+    }
+    .settings-card::-webkit-scrollbar { width: 7px; }
+    .settings-card::-webkit-scrollbar-track { background: transparent; }
+    .settings-card::-webkit-scrollbar-thumb { background: rgba(102,126,234,0.4); border-radius: 10px; }
+    .settings-card h3 { font-size: 1.05rem; font-weight: 700; }
+    .settings-section-label, .theme-section-label {
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       color: var(--text-secondary);
-      margin: 16px 0 6px;
+      margin: 16px 0 8px;
       opacity: 0.7;
     }
-    .theme-section-label:first-of-type { margin-top: 4px; }
-    .theme-option { position: relative; }
+    .theme-section-label:first-of-type, .settings-section-label:first-of-type { margin-top: 6px; }
+    .settings-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .settings-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 10px 6px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .settings-stat-val { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .settings-stat-label { font-size: 0.62rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+    .settings-note { font-size: 0.72rem; color: var(--text-secondary); margin: 8px 2px 0; opacity: 0.75; }
+    .theme-option {
+      position: relative;
+      padding: 10px 14px;
+      margin: 5px 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-left: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      /* background/border only — NO transform on hover. A transform here would
+         cause rows to visibly jump as the cursor passes over them while the
+         (scrollable) settings list is scrolled, which reads as UI "shaking". */
+      transition: background 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+    .theme-option:hover { background: rgba(102,126,234,0.14); border-left-color: #8ba0f0; }
+    .theme-swatch {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.15), 0 2px 6px rgba(0,0,0,0.3);
+    }
     .theme-option .premium-badge {
       margin-left: auto;
       background: rgba(255,215,0,0.18);
@@ -1147,8 +1328,48 @@
       font-weight: 700;
       letter-spacing: 0.5px;
     }
-    .theme-option { padding: 10px 14px; margin: 5px 0; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; color: var(--text); }
-    .theme-option:hover { background: var(--glass-hover); transform: translateX(6px); }
+    .switch-account-card { max-width: 400px; }
+    .switch-account-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; margin-top: 6px; }
+    .switch-account-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .switch-account-row:hover { background: rgba(102,126,234,0.14); border-color: rgba(102,126,234,0.4); }
+    .switch-account-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .switch-account-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .switch-account-info { flex: 1; min-width: 0; }
+    .switch-account-name { font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .switch-account-sub { font-size: 0.7rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .switch-account-remove {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+    .switch-account-remove:hover { background: rgba(255,80,80,0.25); border-color: rgba(255,80,80,0.4); color: white; }
+    .switch-account-empty { color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 20px 10px; }
     .danger-btn { width: 100%; padding: 10px; margin-top: 10px; background: rgba(255,71,87,0.12); border: 1px solid rgba(255,71,87,0.25); border-radius: 14px; color: #ff4757; font-weight: 600; cursor: pointer; transition: 0.2s; }
     .danger-btn:hover { background: rgba(255,71,87,0.2); }
 
@@ -1176,6 +1397,12 @@
       .media-buttons .play-btn { width: 56px; height: 56px; font-size: 1.5rem; }
       .media-buttons button { width: 40px; height: 40px; font-size: 1.1rem; }
       .media-volume input[type="range"] { width: 70px; }
+      #repeatBtn, #mediaFullscreenBtn, #mediaMoreBtn { width: 38px !important; height: 38px !important; }
+      .navbar { padding-top: calc(10px + env(safe-area-inset-top)); }
+      .mini-player-bar { padding-bottom: env(safe-area-inset-bottom); }
+      .mini-player-controls button { width: 38px; height: 38px; }
+      .mini-player-controls .mini-play-btn { width: 44px; height: 44px; }
+      body.has-mini-player .toast { bottom: calc(92px + env(safe-area-inset-bottom)); }
     }
   </style>
 </head>
@@ -1211,39 +1438,52 @@
 <!-- ===== SETTINGS ===== -->
 <div class="settings-modal" id="settingsModal">
   <div class="settings-card">
-    <h3>⚙️ Settings</h3>
+    <div class="move-card-header">
+      <div class="move-card-icon">⚙️</div>
+      <h3>Settings</h3>
+    </div>
+
+    <div class="settings-section-label">📊 Storage</div>
+    <div class="settings-stats-grid">
+      <div class="settings-stat"><span class="settings-stat-val" id="infoFolders">0</span><span class="settings-stat-label">Folders</span></div>
+      <div class="settings-stat"><span class="settings-stat-val" id="infoFiles">0</span><span class="settings-stat-label">Files</span></div>
+      <div class="settings-stat"><span class="settings-stat-val" id="infoStorage">0 B</span><span class="settings-stat-label">Used</span></div>
+      <div class="settings-stat"><span class="settings-stat-val" id="infoVideos">0</span><span class="settings-stat-label">Videos</span></div>
+      <div class="settings-stat"><span class="settings-stat-val" id="infoImages">0</span><span class="settings-stat-label">Images</span></div>
+      <div class="settings-stat"><span class="settings-stat-val" id="infoDB">0 B</span><span class="settings-stat-label">On Disk</span></div>
+    </div>
+    <div class="settings-note">Everything is stored locally in this browser.</div>
+
     <div class="theme-section-label">Classic</div>
-    <div class="theme-option" data-theme="dark">🌙 Dark Nebula</div>
-    <div class="theme-option" data-theme="light">☀️ Light Aurora</div>
-    <div class="theme-option" data-theme="ocean">🌊 Deep Ocean</div>
-    <div class="theme-option" data-theme="sunset">🌅 Sunset Glow</div>
-    <div class="theme-option" data-theme="nord">❄️ Nord</div>
-    <div class="theme-option" data-theme="dracula">🧛 Dracula</div>
-    <div class="theme-option" data-theme="solarized">🌤️ Solarized</div>
+    <div class="theme-option" data-theme="dark"><span class="theme-swatch" style="background:linear-gradient(135deg,#667eea,#764ba2)"></span>🌙 Dark Nebula</div>
+    <div class="theme-option" data-theme="light"><span class="theme-swatch" style="background:linear-gradient(135deg,#667eea,#764ba2)"></span>☀️ Light Aurora</div>
+    <div class="theme-option" data-theme="ocean"><span class="theme-swatch" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)"></span>🌊 Deep Ocean</div>
+    <div class="theme-option" data-theme="sunset"><span class="theme-swatch" style="background:linear-gradient(135deg,#fb923c,#ec4899)"></span>🌅 Sunset Glow</div>
+    <div class="theme-option" data-theme="nord"><span class="theme-swatch" style="background:linear-gradient(135deg,#5e81ac,#88c0d0)"></span>❄️ Nord</div>
+    <div class="theme-option" data-theme="dracula"><span class="theme-swatch" style="background:linear-gradient(135deg,#bd93f9,#ff79c6)"></span>🧛 Dracula</div>
+    <div class="theme-option" data-theme="solarized"><span class="theme-swatch" style="background:linear-gradient(135deg,#268bd2,#2aa198)"></span>🌤️ Solarized</div>
     <div class="theme-section-label">✨ Premium</div>
-    <div class="theme-option" data-theme="midnightgold">🖤 Midnight Gold <span class="premium-badge">PREMIUM</span></div>
-    <div class="theme-option" data-theme="velvetrose">🌹 Velvet Rose <span class="premium-badge">PREMIUM</span></div>
-    <div class="theme-option" data-theme="emeraldnoir">💎 Emerald Noir <span class="premium-badge">PREMIUM</span></div>
-    <div class="theme-option" data-theme="platinum">🤍 Platinum Frost <span class="premium-badge">PREMIUM</span></div>
-    <button class="danger-btn" id="clearAllFilesBtn">🗑️ Delete All Files</button>
-    <button class="guest-btn" id="closeSettingsBtn" style="margin-top:12px;">Close</button>
+    <div class="theme-option" data-theme="midnightgold"><span class="theme-swatch" style="background:linear-gradient(135deg,#f5d76e,#b8860b)"></span>🖤 Midnight Gold <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="velvetrose"><span class="theme-swatch" style="background:linear-gradient(135deg,#ff6fb3,#a855f7)"></span>🌹 Velvet Rose <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="emeraldnoir"><span class="theme-swatch" style="background:linear-gradient(135deg,#10b981,#059669)"></span>💎 Emerald Noir <span class="premium-badge">PREMIUM</span></div>
+    <div class="theme-option" data-theme="platinum"><span class="theme-swatch" style="background:linear-gradient(135deg,#64748b,#334155)"></span>🤍 Platinum Frost <span class="premium-badge">PREMIUM</span></div>
+
+    <div class="theme-section-label">⚠️ Danger Zone</div>
+    <button class="danger-btn" id="clearAllFilesBtn">🗑️ Clear Cache (Delete All Files)</button>
+    <button class="guest-btn" id="closeSettingsBtn" style="margin-top:10px;">Close</button>
   </div>
 </div>
 
-<!-- ===== INFO MODAL ===== -->
-<div class="modal-overlay" id="infoModal">
-  <div class="modal-card">
-    <h3>📊 Cloud Info</h3>
-    <p><strong>Total Folders:</strong> <span id="infoFolders">0</span></p>
-    <p><strong>Total Files:</strong> <span id="infoFiles">0</span></p>
-    <p><strong>Storage Used:</strong> <span id="infoStorage">0 B</span></p>
-    <p><strong>Videos:</strong> <span id="infoVideos">0</span></p>
-    <p><strong>Images:</strong> <span id="infoImages">0</span></p>
-    <p><strong>IndexedDB Size (approx):</strong> <span id="infoDB">0 B</span></p>
-    <hr style="border-color:var(--glass-border); margin:10px 0;">
-    <p style="font-size:0.75rem; color:var(--text-secondary);">Files stored locally in your browser.</p>
-    <button class="danger-btn" id="clearCacheBtn" style="margin:8px 0;">🧹 Clear Cache</button>
-    <button class="close-btn" id="closeInfoBtn">Close</button>
+<!-- ===== SWITCH ACCOUNT MODAL ===== -->
+<div class="settings-modal" id="switchAccountModal">
+  <div class="settings-card switch-account-card">
+    <div class="move-card-header">
+      <div class="move-card-icon">🔄</div>
+      <h3>Switch Account</h3>
+    </div>
+    <div class="switch-account-list" id="switchAccountList"></div>
+    <button class="new-folder-btn" id="addAccountBtn" style="width:100%; justify-content:center; margin-top:14px;">👤 <span class="nf-plus">+</span> Add Another Account</button>
+    <button class="guest-btn" id="closeSwitchAccountBtn" style="margin-top:10px;">Close</button>
   </div>
 </div>
 
@@ -1261,10 +1501,13 @@
 <!-- ===== MOVE MODAL ===== -->
 <div class="move-modal" id="moveModal">
   <div class="move-card">
-    <h3 id="moveModalTitle">📁 Move to Folder</h3>
+    <div class="move-card-header">
+      <div class="move-card-icon">📁</div>
+      <h3 id="moveModalTitle">Move File</h3>
+    </div>
     <div class="sub" id="moveModalSub">Select destination</div>
     <div class="folder-list" id="folderList"></div>
-    <button class="guest-btn" id="cancelMoveBtn" style="margin-top:10px;">Cancel</button>
+    <button class="guest-btn" id="cancelMoveBtn">Cancel</button>
   </div>
 </div>
 
@@ -1381,7 +1624,7 @@
     <div class="user-section">
       <div class="user-avatar" id="userAvatar">👤</div>
       <span class="username" id="usernameDisplay"></span>
-      <button class="icon-btn" id="infoBtn">ℹ️</button>
+      <button class="icon-btn" id="switchAccountBtn" title="Switch Account">🔄</button>
       <button class="icon-btn" id="settingsBtn">⚙️</button>
       <button class="icon-btn" id="logoutBtn">🚪</button>
     </div>
@@ -1597,6 +1840,34 @@ document.getElementById('forgotPwBtn').onclick = () => {
 // ================================================================
 // LOGIN / SIGNUP / GUEST / GOOGLE
 // ================================================================
+
+// Shared by every successful login path (password, guest, google, switch-account)
+// so folder restoration and the recent-accounts list stay consistent everywhere.
+async function activateSession(username, displayName, avatarHTML, isGuest = false) {
+  currentUser = username;
+  localStorage.setItem('nebula_current_user', username);
+  document.getElementById('userAvatar').innerHTML = avatarHTML;
+  document.getElementById('usernameDisplay').textContent = displayName;
+  document.getElementById('authOverlay').style.display = 'none';
+  document.getElementById('mainApp').style.display = 'block';
+  currentPath = loadLastPath();
+  rememberAccount(username, displayName, avatarHTML, isGuest);
+  await loadCurrentFolder();
+  await loadHistory();
+}
+
+function rememberAccount(id, displayName, avatarHTML, isGuest) {
+  let list = [];
+  try { list = JSON.parse(localStorage.getItem('nebula_recent_accounts') || '[]'); } catch (e) {}
+  list = list.filter(a => a.id !== id);
+  list.unshift({ id, displayName, avatarHTML, isGuest, lastUsed: Date.now() });
+  list = list.slice(0, 6);
+  localStorage.setItem('nebula_recent_accounts', JSON.stringify(list));
+}
+function getRecentAccounts() {
+  try { return JSON.parse(localStorage.getItem('nebula_recent_accounts') || '[]'); } catch (e) { return []; }
+}
+
 document.getElementById('loginBtn').onclick = async () => {
   const username = document.getElementById('loginUsername').value.trim();
   const password = document.getElementById('loginPassword').value;
@@ -1610,14 +1881,7 @@ document.getElementById('loginBtn').onclick = async () => {
     return;
   }
   if (user.password === password) {
-    currentUser = username;
-    localStorage.setItem('nebula_current_user', username);
-    document.getElementById('userAvatar').textContent = username[0].toUpperCase();
-    document.getElementById('usernameDisplay').textContent = username;
-    document.getElementById('authOverlay').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    await loadCurrentFolder();
-    await loadHistory();
+    await activateSession(username, username, username[0].toUpperCase());
     showToast(`Welcome back, ${username}!`);
   } else {
     showToast('❌ Invalid password');
@@ -1635,14 +1899,8 @@ document.getElementById('signupBtn').onclick = async () => {
 };
 
 document.getElementById('guestBtn').onclick = async () => {
-  currentUser = 'guest_' + Math.random().toString(36).substr(2, 6);
-  localStorage.setItem('nebula_current_user', currentUser);
-  document.getElementById('userAvatar').textContent = '👤';
-  document.getElementById('usernameDisplay').textContent = 'Guest';
-  document.getElementById('authOverlay').style.display = 'none';
-  document.getElementById('mainApp').style.display = 'block';
-  await loadCurrentFolder();
-  await loadHistory();
+  const guestId = 'guest_' + Math.random().toString(36).substr(2, 6);
+  await activateSession(guestId, 'Guest', '👤', true);
   showToast('Welcome Guest!');
 };
 
@@ -1677,18 +1935,70 @@ async function handleGoogleLogin(response) {
   const payload = JSON.parse(atob(response.credential.split('.')[1]));
   const username = payload.email;
   if (!getUser(username)) await saveUser(username, 'google_auth', { name: payload.name, picture: payload.picture });
-  currentUser = username;
-  localStorage.setItem('nebula_current_user', username);
-  document.getElementById('userAvatar').innerHTML = `<img src="${payload.picture}">`;
-  document.getElementById('usernameDisplay').textContent = payload.name;
-  document.getElementById('authOverlay').style.display = 'none';
-  document.getElementById('mainApp').style.display = 'block';
-  await loadCurrentFolder();
-  await loadHistory();
+  await activateSession(username, payload.name, `<img src="${payload.picture}">`);
   showToast(`Welcome ${payload.name}! ☁️`);
 }
 
 document.getElementById('logoutBtn').onclick = () => {
+  currentUser = null;
+  localStorage.removeItem('nebula_current_user');
+  document.getElementById('mainApp').style.display = 'none';
+  document.getElementById('authOverlay').style.display = 'flex';
+};
+
+// ================================================================
+// SWITCH ACCOUNT
+// ================================================================
+function openSwitchAccountModal() {
+  const modal = document.getElementById('switchAccountModal');
+  const list = document.getElementById('switchAccountList');
+  const accounts = getRecentAccounts().filter(a => a.id !== currentUser);
+  if (accounts.length === 0) {
+    list.innerHTML = `<div class="switch-account-empty">No other accounts yet on this browser.</div>`;
+  } else {
+    list.innerHTML = accounts.map(a => `
+      <div class="switch-account-row" data-id="${escapeHtml(a.id)}">
+        <div class="switch-account-avatar">${a.avatarHTML}</div>
+        <div class="switch-account-info">
+          <div class="switch-account-name">${escapeHtml(a.displayName)}</div>
+          <div class="switch-account-sub">${a.isGuest ? 'Guest session' : escapeHtml(a.id)}</div>
+        </div>
+        <button class="switch-account-remove" data-remove="${escapeHtml(a.id)}" title="Remove from list">✕</button>
+      </div>
+    `).join('');
+  }
+  modal.classList.add('active');
+
+  list.querySelectorAll('.switch-account-row').forEach(row => {
+    row.addEventListener('click', async (e) => {
+      if (e.target.closest('.switch-account-remove')) return;
+      const id = row.dataset.id;
+      const acc = getRecentAccounts().find(a => a.id === id);
+      if (!acc) return;
+      modal.classList.remove('active');
+      await activateSession(acc.id, acc.displayName, acc.avatarHTML, acc.isGuest);
+      showToast(`Switched to ${acc.displayName}`);
+    });
+  });
+  list.querySelectorAll('.switch-account-remove').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.remove;
+      const remaining = getRecentAccounts().filter(a => a.id !== id);
+      localStorage.setItem('nebula_recent_accounts', JSON.stringify(remaining));
+      openSwitchAccountModal();
+    });
+  });
+}
+document.getElementById('switchAccountBtn').onclick = openSwitchAccountModal;
+document.getElementById('closeSwitchAccountBtn').onclick = () => {
+  document.getElementById('switchAccountModal').classList.remove('active');
+};
+document.getElementById('switchAccountModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) document.getElementById('switchAccountModal').classList.remove('active');
+});
+document.getElementById('addAccountBtn').onclick = () => {
+  document.getElementById('switchAccountModal').classList.remove('active');
   currentUser = null;
   localStorage.removeItem('nebula_current_user');
   document.getElementById('mainApp').style.display = 'none';
@@ -1788,6 +2098,40 @@ async function moveFolder(folderId, newParentPath) {
     }
   }
   addToHistory(`Moved folder "${folder.name}"`, 'move');
+}
+
+async function renameFolder(folderId, newName) {
+  const folder = await getFolderById(folderId);
+  if (!folder) throw new Error('Folder not found');
+  const oldPath = folder.path;
+  const newPath = [...folder.parentPath, newName];
+  folder.name = newName;
+  folder.path = newPath;
+  await putFolder(folder);
+  const allFolders = await getAllFolders();
+  const descendants = allFolders.filter(f =>
+    f.id !== folderId &&
+    f.path.length > oldPath.length &&
+    JSON.stringify(f.path.slice(0, oldPath.length)) === JSON.stringify(oldPath)
+  );
+  for (const desc of descendants) {
+    const relPath = desc.path.slice(oldPath.length);
+    desc.parentPath = [...newPath, ...relPath.slice(0, -1)];
+    desc.path = [...newPath, ...relPath];
+    await putFolder(desc);
+  }
+  const allFiles = await getAllUserFilesRaw();
+  for (const file of allFiles) {
+    const fp = file.folderPath || [];
+    if (fp.length >= oldPath.length && JSON.stringify(fp.slice(0, oldPath.length)) === JSON.stringify(oldPath)) {
+      const rel = fp.slice(oldPath.length);
+      file.folderPath = [...newPath, ...rel];
+      file.metadata.folderPath = file.folderPath;
+      await putFileRecord(file);
+    }
+  }
+  addToHistory(`Renamed folder to "${newName}"`, 'rename');
+  return { oldPath, newPath };
 }
 
 async function putFolder(folder) {
@@ -2200,6 +2544,7 @@ function setArtworkState(playing) {
   mpEls().eq.classList.toggle('active', !!playing);
   const { playBtn, miniPlayBtn } = mpEls();
   playBtn.textContent = playing ? '⏸' : '▶';
+  playBtn.classList.toggle('is-playing', !!playing);
   miniPlayBtn.textContent = playing ? '⏸' : '▶';
 }
 
@@ -2253,6 +2598,12 @@ function openMediaPlayer(file) {
 
 document.getElementById('mediaFullscreenBtn').onclick = () => {
   if (!mediaPlayer || !isVideoMode) return;
+  // iOS Safari doesn't support the standard Fullscreen API on inline video —
+  // it uses its own native video-only fullscreen method instead.
+  if (mediaPlayer.webkitEnterFullscreen) {
+    mediaPlayer.webkitEnterFullscreen();
+    return;
+  }
   const req = mediaPlayer.requestFullscreen || mediaPlayer.webkitRequestFullscreen || mediaPlayer.msRequestFullscreen;
   if (req) req.call(mediaPlayer);
 };
@@ -2285,6 +2636,13 @@ function loadMediaTrack(index) {
   miniTitle.title = file.name;
   miniArtwork.textContent = isVideo ? '🎬' : '🎵';
   miniSubtitle.textContent = '0:00 / 0:00';
+
+  const infoEl = document.querySelector('.media-info');
+  [infoEl, artwork].forEach(el => {
+    el.classList.remove('track-fade');
+    void el.offsetWidth; // restart animation even if the same class was already applied
+    el.classList.add('track-fade');
+  });
 
   body.classList.remove('video-mode');
   content.classList.remove('video-mode-content');
@@ -2728,6 +3086,37 @@ async function deleteFile(fileId, fileName) {
   }
 }
 
+async function renameFolderById(folderId) {
+  const folder = await getFolderById(folderId);
+  if (!folder) return;
+  const newName = prompt('Enter new folder name:', folder.name);
+  if (!newName || !newName.trim() || newName.trim() === folder.name) return;
+  const trimmed = newName.trim();
+  const siblings = await getFoldersInPath(folder.parentPath);
+  if (siblings.some(f => f.id !== folderId && f.name === trimmed)) {
+    showToast('A folder with that name already exists here');
+    return;
+  }
+  const oldPath = folder.path;
+  await renameFolder(folderId, trimmed);
+  // If we're currently browsing inside the folder that got renamed, fix currentPath so we don't get lost
+  if (currentPath.length >= oldPath.length &&
+      JSON.stringify(currentPath.slice(0, oldPath.length)) === JSON.stringify(oldPath)) {
+    currentPath = [...folder.parentPath, trimmed, ...currentPath.slice(oldPath.length)];
+    saveLastPath();
+  }
+  await loadCurrentFolder();
+  showToast(`✏️ Renamed to "${trimmed}"`);
+}
+
+async function deleteFolderById(folderId, folderName) {
+  if (!confirm(`Delete "${folderName}" and everything inside it?`)) return;
+  await deleteFolderAndContents(folderId);
+  await loadCurrentFolder();
+  updateStats();
+  showToast(`🗑️ "${folderName}" deleted`);
+}
+
 async function renameFileById(fileId) {
   const files = await getAllUserFiles();
   const f = files.find(f => f.fileId === fileId);
@@ -2745,7 +3134,7 @@ async function renameFileById(fileId) {
 // ================================================================
 function showMoveModal(context) {
   moveContext = context;
-  document.getElementById('moveModalTitle').textContent = context.type === 'file' ? '📁 Move File' : '📁 Move Folder';
+  document.getElementById('moveModalTitle').textContent = context.type === 'file' ? 'Move File' : 'Move Folder';
   document.getElementById('moveModalSub').textContent = `Moving: ${context.name}`;
   populateFolderList(context);
   document.getElementById('moveModal').classList.add('active');
@@ -2754,7 +3143,7 @@ function showMoveModal(context) {
 async function populateFolderList(context) {
   const folders = await getAllFolders();
   const container = document.getElementById('folderList');
-  let html = `<div class="folder-option" data-path="[]"><span>📁</span> Root (No folder)</div>`;
+  let html = `<div class="folder-option root-option" data-path="[]"><span class="fo-icon">🏠</span><span class="fo-name">Root (No folder)</span></div>`;
 
   const tree = {};
   folders.forEach(f => {
@@ -2763,25 +3152,22 @@ async function populateFolderList(context) {
     tree[key].push(f);
   });
 
-  function renderChildren(parentPath, prefix = '') {
+  function renderChildren(parentPath, depth = 0) {
     const key = JSON.stringify(parentPath);
     const children = tree[key] || [];
-    children.forEach((folder, index) => {
+    children.forEach((folder) => {
       if (context.type === 'folder' && context.id === folder.id) return;
       if (context.type === 'folder' && folder.path.length > context.currentPath.length &&
           JSON.stringify(folder.path.slice(0, context.currentPath.length)) === JSON.stringify(context.currentPath)) {
         return;
       }
-      const isLast = index === children.length - 1;
-      const line = isLast ? '└── ' : '├── ';
       html += `
-        <div class="folder-option" data-path='${JSON.stringify(folder.path)}'>
-          <span>📁</span>
-          <span>${prefix}${line}${folder.name}</span>
+        <div class="folder-option" data-path='${JSON.stringify(folder.path)}' style="padding-left:${14 + depth * 20}px">
+          <span class="fo-icon">📁</span>
+          <span class="fo-name">${escapeHtml(folder.name)}</span>
         </div>
       `;
-      const nextPrefix = prefix + (isLast ? '    ' : '│   ');
-      renderChildren(folder.path, nextPrefix);
+      renderChildren(folder.path, depth + 1);
     });
   }
 
@@ -2864,8 +3250,19 @@ function updateBreadcrumb() {
 
 window.navigateTo = async (path) => {
   currentPath = path;
+  saveLastPath();
   await loadCurrentFolder();
 };
+
+function saveLastPath() {
+  if (currentUser) localStorage.setItem(`nebula_lastpath_${currentUser}`, JSON.stringify(currentPath));
+}
+function loadLastPath() {
+  try {
+    const saved = localStorage.getItem(`nebula_lastpath_${currentUser}`);
+    return saved ? JSON.parse(saved) : [];
+  } catch (e) { return []; }
+}
 
 document.getElementById('backBtn').onclick = () => {
   if (currentPath.length > 0) {
@@ -2910,7 +3307,7 @@ function applySortAndRender() {
   updateSelectBar();
 }
 
-function renderItems(folders, files) {
+function renderItems(folders, files, opts = {}) {
   const grid = document.getElementById('filesGrid');
   grid.className = 'files-grid';
   if (currentView === 'grid-small') grid.classList.add('view-small');
@@ -2920,23 +3317,29 @@ function renderItems(folders, files) {
   else if (currentView === 'compact') grid.classList.add('compact-view');
 
   if (folders.length === 0 && files.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-emoji">📁</div><h3>This folder is empty</h3><p>Create a folder or upload files</p></div>`;
+    grid.innerHTML = opts.emptyMessage
+      ? `<div class="empty-state"><div class="empty-emoji">🔍</div><h3>${opts.emptyMessage}</h3></div>`
+      : `<div class="empty-state"><div class="empty-emoji">📁</div><h3>This folder is empty</h3><p>Create a folder or upload files</p></div>`;
     return;
   }
 
   let html = '';
   for (const folder of folders) {
     const size = folder.size ? formatBytes(folder.size) : 'Empty';
-    const pathStr = JSON.stringify([...currentPath, folder.name]);
+    const pathStr = JSON.stringify(folder.path); // use the folder's own path, not currentPath — matters for search results
     const isSelected = selectedItems.has(folder.id);
+    const pathBadge = opts.showPath ? `<div class="item-path-badge">📍 ${folder.parentPath && folder.parentPath.length ? escapeHtml(folder.parentPath.join(' / ')) : 'Root'}</div>` : '';
     html += `
       <div class="folder-card" data-path='${pathStr}' data-id="${folder.id}" data-type="folder">
         <input type="checkbox" class="cb" data-id="${folder.id}" ${isSelected ? 'checked' : ''}>
         <span class="folder-emoji">📁</span>
         <div class="folder-name">${folder.name}</div>
+        ${pathBadge}
         <div class="folder-size">${size}</div>
         <div class="folder-actions">
-          <button class="action-btn move" data-move-folder='${JSON.stringify({type:'folder', id:folder.id, name:folder.name, path:folder.path})}'>📁</button>
+          <button class="action-btn folder-rename" data-folder-id="${folder.id}" title="Rename">✏️</button>
+          <button class="action-btn move" data-move-folder='${JSON.stringify({type:'folder', id:folder.id, name:folder.name, path:folder.path})}' title="Move">📂</button>
+          <button class="action-btn folder-delete" data-folder-id="${folder.id}" data-folder-name="${escapeHtml(folder.name)}" title="Delete">🗑️</button>
         </div>
       </div>
     `;
@@ -2945,11 +3348,13 @@ function renderItems(folders, files) {
   for (const file of files) {
     const id = file.fileId;
     const isSelected = selectedItems.has(id);
+    const pathBadge = opts.showPath ? `<div class="item-path-badge">📍 ${file.folderPath && file.folderPath.length ? escapeHtml(file.folderPath.join(' / ')) : 'Root'}</div>` : '';
     html += `
       <div class="file-card" data-file-id="${id}" data-id="${id}" data-type="file">
         <input type="checkbox" class="cb" data-id="${id}" ${isSelected ? 'checked' : ''}>
         <span class="file-emoji">${file.icon}</span>
         <div class="file-name" title="${file.name}">${file.name.length > 25 ? file.name.slice(0,22)+'...' : file.name}</div>
+        ${pathBadge}
         <div class="file-size">${file.sizeFormatted}</div>
         <div class="file-buttons">
           <button class="action-btn preview" data-id="${id}">👁️</button>
@@ -2968,6 +3373,7 @@ function renderItems(folders, files) {
     card.addEventListener('click', function(e) {
       if (e.target.closest('.cb') || e.target.closest('.action-btn')) return;
       const path = JSON.parse(this.dataset.path);
+      clearSearch();
       navigateTo(path);
     });
   });
@@ -2990,6 +3396,19 @@ function renderItems(folders, files) {
         selectedItems.delete(id);
       }
       updateSelectBar();
+    });
+  });
+
+  grid.querySelectorAll('.action-btn.folder-rename').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      renameFolderById(this.dataset.folderId);
+    });
+  });
+  grid.querySelectorAll('.action-btn.folder-delete').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      deleteFolderById(this.dataset.folderId, this.dataset.folderName);
     });
   });
 
@@ -3231,14 +3650,8 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.onclick = () => switchTab(tab.dataset.tab);
 });
 
-document.getElementById('infoBtn').onclick = () => {
-  updateInfoPanel();
-  document.getElementById('infoModal').classList.add('active');
-};
-document.getElementById('closeInfoBtn').onclick = () => {
-  document.getElementById('infoModal').classList.remove('active');
-};
 document.getElementById('settingsBtn').onclick = () => {
+  updateInfoPanel();
   document.getElementById('settingsModal').classList.add('active');
 };
 document.getElementById('closeSettingsBtn').onclick = () => {
@@ -3250,18 +3663,6 @@ if (!localStorage.getItem('nebula_terms_accepted')) {
 document.getElementById('closeTermsBtn').onclick = () => {
   document.getElementById('termsModal').classList.remove('active');
   localStorage.setItem('nebula_terms_accepted', 'true');
-};
-document.getElementById('clearCacheBtn').onclick = async () => {
-  if (confirm('⚠️ Clear all cached file data? This will delete ALL your files and folders!')) {
-    const files = await getAllUserFiles();
-    for (let f of files) {
-      await deleteFileFromDB(f.fileId);
-    }
-    await loadCurrentFolder();
-    updateStats();
-    showToast('Cache cleared');
-    document.getElementById('infoModal').classList.remove('active');
-  }
 };
 document.getElementById('clearAllFilesBtn').onclick = async () => {
   if (confirm('⚠️ Delete ALL your files?')) {
@@ -3370,17 +3771,37 @@ fileInput.onchange = async (e) => {
 };
 
 // ================================================================
-// SEARCH
+// SEARCH (global — searches every folder/file, not just the current one)
 // ================================================================
+let searchDebounceTimer = null;
+let isSearchActive = false;
+
 document.getElementById('searchInput').oninput = () => {
-  const term = document.getElementById('searchInput').value.toLowerCase();
-  const cards = document.querySelectorAll('.folder-card, .file-card');
-  cards.forEach(card => {
-    const nameEl = card.querySelector('.folder-name, .file-name');
-    const name = nameEl ? nameEl.textContent.toLowerCase() : '';
-    card.style.display = name.includes(term) ? '' : 'none';
-  });
+  clearTimeout(searchDebounceTimer);
+  searchDebounceTimer = setTimeout(runSearch, 180);
 };
+
+async function runSearch() {
+  const term = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!term) {
+    clearSearch();
+    return;
+  }
+  isSearchActive = true;
+  const [allFolders, allFiles] = await Promise.all([getAllFolders(), getAllUserFiles()]);
+  const matchedFolders = allFolders.filter(f => f.name.toLowerCase().includes(term));
+  const matchedFiles = allFiles.filter(f => f.name.toLowerCase().includes(term));
+  renderItems(matchedFolders, matchedFiles, { showPath: true, emptyMessage: `No results for "${term}"` });
+}
+
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  if (isSearchActive) {
+    isSearchActive = false;
+    applySortAndRender();
+  }
+}
 
 // ================================================================
 // INIT
@@ -3393,12 +3814,8 @@ if (savedUser) {
   currentUser = savedUser;
   Promise.all([openDB(), initOPFS()]).then(async () => {
     const avatar = currentUser.startsWith('guest') ? '👤' : currentUser[0].toUpperCase();
-    document.getElementById('userAvatar').textContent = avatar;
-    document.getElementById('usernameDisplay').textContent = currentUser.startsWith('guest') ? 'Guest' : currentUser.split('@')[0];
-    document.getElementById('authOverlay').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    await loadCurrentFolder();
-    await loadHistory();
+    const displayName = currentUser.startsWith('guest') ? 'Guest' : currentUser.split('@')[0];
+    await activateSession(currentUser, displayName, avatar, currentUser.startsWith('guest'));
   }).catch(console.error);
 } else {
   Promise.all([openDB(), initOPFS()]).then(() => {
