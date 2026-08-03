@@ -153,7 +153,8 @@
     .tab-content { animation: fadeSlide 0.35s ease forwards; }
     @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    .container { max-width: 1300px; margin: 0 auto; padding: 18px 18px 30px; position: relative; z-index: 1; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 18px 18px 30px; position: relative; z-index: 1; transition: padding-bottom 0.3s ease; }
+    body.has-mini-player .container { padding-bottom: 110px; }
 
     /* ===== BREADCRUMB & TOOLBAR ===== */
     .breadcrumb-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding: 8px 16px; background: var(--glass); backdrop-filter: blur(12px); border-radius: 60px; border: 1px solid var(--glass-border); flex-wrap: wrap; box-shadow: var(--shadow); }
@@ -617,8 +618,7 @@
       border-radius: 28px;
       background: #000;
     }
-    .fullscreen-btn { display: none; }
-    .media-player-body.video-mode .fullscreen-btn { display: flex !important; }
+    .fullscreen-btn { display: flex; }
     .media-loading {
       position: absolute;
       inset: 0;
@@ -782,6 +782,18 @@
       0% { transform: scale(0.9); opacity: 0.8; }
       100% { transform: scale(1.35); opacity: 0; }
     }
+    .skip-btn {
+      position: relative;
+      font-size: 1.05rem !important;
+    }
+    .skip-btn .skip-label {
+      position: absolute;
+      bottom: 2px;
+      font-size: 0.5rem;
+      font-weight: 700;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     .media-volume {
       display: flex;
       align-items: center;
@@ -820,6 +832,62 @@
     .media-volume .vol-icon:hover {
       transform: scale(1.15);
     }
+    /* ---- Secondary controls row: volume + speed + repeat + fullscreen + more ---- */
+    .media-secondary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .media-secondary-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .media-secondary-actions button {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s cubic-bezier(0.175,0.885,0.32,1.275);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-secondary-actions button:hover {
+      background: var(--glass-hover);
+      transform: translateY(-2px);
+    }
+    .media-secondary-actions button:active {
+      transform: translateY(0) scale(0.9);
+      transition: transform 0.1s ease;
+    }
+    .speed-btn, .fullscreen-btn, .more-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.75rem !important;
+    }
+    .speed-btn.is-boosted { background: rgba(102,126,234,0.28); border-color: rgba(102,126,234,0.5); color: #a3b1f5; }
+    .repeat-btn {
+      height: 34px;
+      border-radius: 20px;
+      padding: 0 12px 0 10px;
+      gap: 5px;
+      font-size: 0.72rem !important;
+      font-weight: 600;
+    }
+    .repeat-btn .repeat-icon { font-size: 0.95rem; }
+    .repeat-btn .repeat-label { letter-spacing: 0.2px; }
+    .repeat-btn.state-all, .repeat-btn.state-one {
+      background: rgba(102,126,234,0.28) !important;
+      color: #cdd6fb;
+      border-color: rgba(102,126,234,0.55) !important;
+      box-shadow: 0 3px 10px rgba(102,126,234,0.3);
+    }
     /* Video mode */
     .media-player-content.video-mode-content {
       max-width: 780px;
@@ -841,6 +909,76 @@
     }
     .media-player-body.video-mode .media-controls {
       margin-top: 4px;
+    }
+
+    /* ===== CUSTOM FULLSCREEN ("Now Playing" immersive mode) =====
+       Built entirely with our own CSS/JS rather than the native Fullscreen API,
+       so it looks and behaves identically everywhere — including iPhone Safari,
+       which doesn't support fullscreening arbitrary elements at all. */
+    .media-player-modal.custom-fullscreen {
+      padding: 0;
+      background: #000;
+    }
+    .media-player-modal.custom-fullscreen .media-player-content {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      padding: 26px clamp(16px, 6vw, 60px) 22px;
+      display: flex;
+      flex-direction: column;
+      animation: fsEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      background: radial-gradient(ellipse at 50% 0%, rgba(40,30,70,0.6), #05040d 65%);
+    }
+    @keyframes fsEnter {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .media-player-modal.custom-fullscreen .media-player-title {
+      font-size: 0.78rem;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .media-player-modal.custom-fullscreen .media-player-close {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .media-player-modal.custom-fullscreen .media-player-body {
+      flex: 1;
+      justify-content: center;
+      min-height: 0;
+    }
+    .media-player-modal.custom-fullscreen .media-artwork {
+      width: min(48vh, 60vw);
+      height: min(48vh, 60vw);
+    }
+    .media-player-modal.custom-fullscreen .media-player-body.video-mode .media-artwork {
+      width: 100%;
+      max-width: 100%;
+      max-height: min(66vh, 78vw);
+      flex: 1;
+      min-height: 0;
+    }
+    .media-player-modal.custom-fullscreen .media-track { font-size: 1.5rem; }
+    .media-player-modal.custom-fullscreen .media-controls {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    /* Idle state (controls auto-hidden during uninterrupted playback) */
+    .media-player-modal.custom-fullscreen.controls-hidden .media-controls,
+    .media-player-modal.custom-fullscreen.controls-hidden .media-player-close,
+    .media-player-modal.custom-fullscreen.controls-hidden .media-player-title {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+    }
+    .media-player-modal.custom-fullscreen.controls-hidden { cursor: none; }
+    @media (max-width: 768px) {
+      .media-player-modal.custom-fullscreen .media-artwork { width: min(40vh, 78vw); height: min(40vh, 78vw); }
+      .media-player-modal.custom-fullscreen .media-track { font-size: 1.15rem; }
     }
 
     /* ===== MINI PLAYER BAR (docked, Windows/Spotify-style) ===== */
@@ -954,7 +1092,6 @@
     .mini-player-extra input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%; background: #fff; cursor: pointer;
     }
-    .repeat-btn.state-all, .repeat-btn.state-one { background: rgba(102,126,234,0.3) !important; color: #a3b1f5; border-color: rgba(102,126,234,0.5) !important; }
     .more-menu-wrap { position: relative; }
     .more-menu {
       display: none;
@@ -1162,6 +1299,23 @@
       position: relative;
       z-index: 1;
     }
+    .move-search-input {
+      width: 100%;
+      padding: 9px 14px;
+      margin: 4px 0 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 0.82rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .move-search-input:focus { outline: none; border-color: rgba(102,126,234,0.5); background: rgba(255,255,255,0.08); }
+    .move-search-input::placeholder { color: var(--text-secondary); }
+    .fo-text { display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+    .fo-text .fo-name { font-size: 0.85rem; }
+    .fo-text .fo-path { font-size: 0.65rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .move-search-empty { color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 24px 10px; }
     .folder-list {
       max-height: 340px;
       overflow-y: auto;
@@ -1397,12 +1551,15 @@
       .media-buttons .play-btn { width: 56px; height: 56px; font-size: 1.5rem; }
       .media-buttons button { width: 40px; height: 40px; font-size: 1.1rem; }
       .media-volume input[type="range"] { width: 70px; }
-      #repeatBtn, #mediaFullscreenBtn, #mediaMoreBtn { width: 38px !important; height: 38px !important; }
+      #mediaFullscreenBtn, #mediaMoreBtn, #mediaSpeedBtn { width: 32px !important; height: 32px !important; }
+      .repeat-btn { height: 32px !important; padding: 0 10px 0 8px !important; }
+      .media-secondary-row { justify-content: center !important; }
       .navbar { padding-top: calc(10px + env(safe-area-inset-top)); }
       .mini-player-bar { padding-bottom: env(safe-area-inset-bottom); }
       .mini-player-controls button { width: 38px; height: 38px; }
       .mini-player-controls .mini-play-btn { width: 44px; height: 44px; }
       body.has-mini-player .toast { bottom: calc(92px + env(safe-area-inset-bottom)); }
+      body.has-mini-player .container { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
     }
   </style>
 </head>
@@ -1506,6 +1663,7 @@
       <h3 id="moveModalTitle">Move File</h3>
     </div>
     <div class="sub" id="moveModalSub">Select destination</div>
+    <input type="text" id="moveFolderSearch" class="move-search-input" placeholder="🔍 Search folders...">
     <div class="folder-list" id="folderList"></div>
     <button class="guest-btn" id="cancelMoveBtn">Cancel</button>
   </div>
@@ -1538,20 +1696,29 @@
           <span id="mediaDuration">0:00</span>
         </div>
         <div class="media-buttons">
+          <button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s">⏪<span class="skip-label">5</span></button>
           <button id="mediaPrevBtn" title="Previous">⏮</button>
           <button class="play-btn" id="mediaPlayBtn" title="Play / Pause">▶</button>
           <button id="mediaNextBtn" title="Next">⏭</button>
+          <button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s">⏩<span class="skip-label">5</span></button>
         </div>
-        <div class="media-volume">
-          <span class="vol-icon" id="mediaMuteBtn">🔊</span>
-          <input type="range" id="mediaVolumeBar" min="0" max="1" step="0.05" value="0.8">
-          <button id="repeatBtn" class="repeat-btn" title="Repeat: Off" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;">🔁</button>
-          <button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;align-items:center;justify-content:center;">⛶</button>
-          <div class="more-menu-wrap">
-            <button id="mediaMoreBtn" title="More" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);color:white;cursor:pointer;font-size:0.9rem;">⋯</button>
-            <div class="more-menu" id="mediaMoreMenu">
-              <div class="item" id="mediaDownloadItem">⬇️ Download file</div>
-              <div class="item" id="mediaMinimizeItem">🗕 Minimize player</div>
+        <div class="media-secondary-row">
+          <div class="media-volume">
+            <span class="vol-icon" id="mediaMuteBtn">🔊</span>
+            <input type="range" id="mediaVolumeBar" min="0" max="1" step="0.05" value="0.8">
+          </div>
+          <div class="media-secondary-actions">
+            <button id="mediaSpeedBtn" class="speed-btn" title="Playback speed">1×</button>
+            <button id="repeatBtn" class="repeat-btn" title="Repeat: Off">
+              <span class="repeat-icon">🔁</span><span class="repeat-label">Off</span>
+            </button>
+            <button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen">⛶</button>
+            <div class="more-menu-wrap">
+              <button id="mediaMoreBtn" class="more-btn" title="More">⋯</button>
+              <div class="more-menu" id="mediaMoreMenu">
+                <div class="item" id="mediaDownloadItem">⬇️ Download file</div>
+                <div class="item" id="mediaMinimizeItem">🗕 Minimize player</div>
+              </div>
             </div>
           </div>
         </div>
@@ -2580,9 +2747,20 @@ function setRepeatMode(mode) {
   repeatMode = mode;
   const { repeatBtn } = mpEls();
   repeatBtn.classList.remove('state-all', 'state-one');
-  if (mode === 'all') { repeatBtn.classList.add('state-all'); repeatBtn.textContent = '🔁'; repeatBtn.title = 'Repeat: All'; }
-  else if (mode === 'one') { repeatBtn.classList.add('state-one'); repeatBtn.textContent = '🔂'; repeatBtn.title = 'Repeat: One'; }
-  else { repeatBtn.textContent = '🔁'; repeatBtn.title = 'Repeat: Off'; }
+  const icon = repeatBtn.querySelector('.repeat-icon');
+  const label = repeatBtn.querySelector('.repeat-label');
+  if (mode === 'all') {
+    repeatBtn.classList.add('state-all');
+    icon.textContent = '🔁'; label.textContent = 'All';
+    repeatBtn.title = 'Repeat: All tracks in this folder';
+  } else if (mode === 'one') {
+    repeatBtn.classList.add('state-one');
+    icon.textContent = '🔂'; label.textContent = 'One';
+    repeatBtn.title = 'Repeat: This track on loop';
+  } else {
+    icon.textContent = '🔁'; label.textContent = 'Off';
+    repeatBtn.title = 'Repeat: Off';
+  }
 }
 
 function openMediaPlayer(file) {
@@ -2596,17 +2774,78 @@ function openMediaPlayer(file) {
   showMediaModal();
 }
 
+// ---- Custom fullscreen "Now Playing" mode (works identically everywhere, incl. iPhone) ----
+let fsIdleTimer = null;
+
+function enterCustomFullscreen() {
+  const { modal } = mpEls();
+  modal.classList.add('custom-fullscreen');
+  document.getElementById('mediaFullscreenBtn').textContent = '🗗';
+  document.getElementById('mediaFullscreenBtn').title = 'Exit fullscreen';
+  resetFullscreenIdleTimer();
+  document.addEventListener('mousemove', onFullscreenActivity);
+  document.addEventListener('touchstart', onFullscreenActivity, { passive: true });
+  document.addEventListener('keydown', onFullscreenActivity);
+}
+function exitCustomFullscreen() {
+  const { modal } = mpEls();
+  modal.classList.remove('custom-fullscreen', 'controls-hidden');
+  document.getElementById('mediaFullscreenBtn').textContent = '⛶';
+  document.getElementById('mediaFullscreenBtn').title = 'Fullscreen';
+  clearTimeout(fsIdleTimer);
+  document.removeEventListener('mousemove', onFullscreenActivity);
+  document.removeEventListener('touchstart', onFullscreenActivity);
+  document.removeEventListener('keydown', onFullscreenActivity);
+}
+function onFullscreenActivity() {
+  mpEls().modal.classList.remove('controls-hidden');
+  resetFullscreenIdleTimer();
+}
+function resetFullscreenIdleTimer() {
+  clearTimeout(fsIdleTimer);
+  fsIdleTimer = setTimeout(() => {
+    const { modal } = mpEls();
+    if (modal.classList.contains('custom-fullscreen') && mediaPlayer && !mediaPlayer.paused) {
+      modal.classList.add('controls-hidden');
+    }
+  }, 3000);
+}
+
 document.getElementById('mediaFullscreenBtn').onclick = () => {
-  if (!mediaPlayer || !isVideoMode) return;
-  // iOS Safari doesn't support the standard Fullscreen API on inline video —
-  // it uses its own native video-only fullscreen method instead.
-  if (mediaPlayer.webkitEnterFullscreen) {
-    mediaPlayer.webkitEnterFullscreen();
-    return;
+  const { modal } = mpEls();
+  if (modal.classList.contains('custom-fullscreen')) {
+    exitCustomFullscreen();
+  } else {
+    enterCustomFullscreen();
   }
-  const req = mediaPlayer.requestFullscreen || mediaPlayer.webkitRequestFullscreen || mediaPlayer.msRequestFullscreen;
-  if (req) req.call(mediaPlayer);
 };
+
+// ---- 5s skip + playback speed (applies equally to audio and video) ----
+let mediaPlaybackSpeed = 1;
+const SPEED_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+
+document.getElementById('mediaSkipBackBtn').onclick = () => {
+  if (!mediaPlayer) return;
+  mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - 5);
+};
+document.getElementById('mediaSkipFwdBtn').onclick = () => {
+  if (!mediaPlayer) return;
+  const dur = mediaPlayer.duration || Infinity;
+  mediaPlayer.currentTime = Math.min(dur, mediaPlayer.currentTime + 5);
+};
+document.getElementById('mediaSpeedBtn').onclick = () => {
+  const idx = SPEED_STEPS.indexOf(mediaPlaybackSpeed);
+  mediaPlaybackSpeed = SPEED_STEPS[(idx + 1) % SPEED_STEPS.length];
+  applyPlaybackSpeed();
+};
+function applyPlaybackSpeed() {
+  const btn = document.getElementById('mediaSpeedBtn');
+  const display = Number.isInteger(mediaPlaybackSpeed) ? mediaPlaybackSpeed : mediaPlaybackSpeed;
+  btn.textContent = display + '×';
+  btn.classList.toggle('is-boosted', mediaPlaybackSpeed !== 1);
+  btn.title = `Playback speed: ${display}×`;
+  if (mediaPlayer) mediaPlayer.playbackRate = mediaPlaybackSpeed;
+}
 
 function loadMediaTrack(index) {
   if (!mediaQueue.length) return;
@@ -2627,7 +2866,6 @@ function loadMediaTrack(index) {
   }
 
   isVideoMode = isVideo;
-  document.getElementById('mediaFullscreenBtn').style.display = isVideo ? 'flex' : 'none';
   title.textContent = isVideo ? ('▶️ ' + file.name) : '🎵 Now Playing';
   trackEl.textContent = file.name;
   artistEl.textContent = isVideo ? 'Video File' : 'Audio Track';
@@ -2704,6 +2942,7 @@ function loadMediaTrack(index) {
       mediaPlayer.src = url;
       mediaPlayer.load();
     }
+    mediaPlayer.playbackRate = mediaPlaybackSpeed;
 
     mediaPlayer.oncanplay = () => {
       mp.loading.classList.remove('active');
@@ -2827,12 +3066,14 @@ function showMediaModal() {
   mpEls().miniBar.classList.remove('active');
 }
 function minimizeMediaPlayer() {
+  if (mpEls().modal.classList.contains('custom-fullscreen')) exitCustomFullscreen();
   if (!mediaPlayer) { closeMediaPlayer(); return; }
   mpEls().modal.classList.remove('active');
   mpEls().miniBar.classList.add('active');
 }
 function closeMediaPlayer() {
   const { modal, body, artwork, playBtn, content, miniBar } = mpEls();
+  if (modal.classList.contains('custom-fullscreen')) exitCustomFullscreen();
   modal.classList.remove('active');
   miniBar.classList.remove('active');
   document.body.classList.remove('has-mini-player');
@@ -2914,10 +3155,14 @@ document.addEventListener('keydown', (e) => {
   if (!modal.classList.contains('active')) return;
   const tag = (e.target.tagName || '').toLowerCase();
   if (tag === 'input' || tag === 'textarea') return;
-  if (e.code === 'Escape') { minimizeMediaPlayer(); }
+  if (e.code === 'Escape') {
+    if (modal.classList.contains('custom-fullscreen')) exitCustomFullscreen();
+    else minimizeMediaPlayer();
+  }
   else if (e.code === 'Space') { e.preventDefault(); document.getElementById('mediaPlayBtn').click(); }
   else if (e.code === 'ArrowRight') { document.getElementById('mediaNextBtn').click(); }
   else if (e.code === 'ArrowLeft') { document.getElementById('mediaPrevBtn').click(); }
+  else if (e.code === 'KeyF') { document.getElementById('mediaFullscreenBtn').click(); }
 });
 
 // ================================================================
@@ -3140,13 +3385,32 @@ function showMoveModal(context) {
   document.getElementById('moveModal').classList.add('active');
 }
 
+let moveFolderCandidates = [];
+let moveFolderContext = null;
+
 async function populateFolderList(context) {
+  moveFolderContext = context;
   const folders = await getAllFolders();
+  // Pre-filter out the folder being moved and any of its own descendants (can't move a folder into itself)
+  moveFolderCandidates = folders.filter(folder => {
+    if (context.type === 'folder' && context.id === folder.id) return false;
+    if (context.type === 'folder' && folder.path.length > context.currentPath.length &&
+        JSON.stringify(folder.path.slice(0, context.currentPath.length)) === JSON.stringify(context.currentPath)) {
+      return false;
+    }
+    return true;
+  });
+  const searchInput = document.getElementById('moveFolderSearch');
+  if (searchInput) searchInput.value = '';
+  renderMoveFolderTree();
+}
+
+function renderMoveFolderTree() {
   const container = document.getElementById('folderList');
   let html = `<div class="folder-option root-option" data-path="[]"><span class="fo-icon">🏠</span><span class="fo-name">Root (No folder)</span></div>`;
 
   const tree = {};
-  folders.forEach(f => {
+  moveFolderCandidates.forEach(f => {
     const key = JSON.stringify(f.parentPath);
     if (!tree[key]) tree[key] = [];
     tree[key].push(f);
@@ -3156,11 +3420,6 @@ async function populateFolderList(context) {
     const key = JSON.stringify(parentPath);
     const children = tree[key] || [];
     children.forEach((folder) => {
-      if (context.type === 'folder' && context.id === folder.id) return;
-      if (context.type === 'folder' && folder.path.length > context.currentPath.length &&
-          JSON.stringify(folder.path.slice(0, context.currentPath.length)) === JSON.stringify(context.currentPath)) {
-        return;
-      }
       html += `
         <div class="folder-option" data-path='${JSON.stringify(folder.path)}' style="padding-left:${14 + depth * 20}px">
           <span class="fo-icon">📁</span>
@@ -3173,7 +3432,30 @@ async function populateFolderList(context) {
 
   renderChildren([]);
   container.innerHTML = html;
+  bindFolderOptionClicks(container);
+}
 
+function renderMoveFolderFlat(term) {
+  const container = document.getElementById('folderList');
+  const matches = moveFolderCandidates.filter(f => f.name.toLowerCase().includes(term));
+  if (matches.length === 0) {
+    container.innerHTML = `<div class="move-search-empty">No folders match "${escapeHtml(term)}"</div>`;
+    return;
+  }
+  let html = matches.map(folder => `
+    <div class="folder-option" data-path='${JSON.stringify(folder.path)}'>
+      <span class="fo-icon">📁</span>
+      <div class="fo-text">
+        <span class="fo-name">${escapeHtml(folder.name)}</span>
+        <span class="fo-path">${folder.parentPath.length ? escapeHtml(folder.parentPath.join(' / ')) : 'Root'}</span>
+      </div>
+    </div>
+  `).join('');
+  container.innerHTML = html;
+  bindFolderOptionClicks(container);
+}
+
+function bindFolderOptionClicks(container) {
   container.querySelectorAll('.folder-option').forEach(el => {
     el.addEventListener('click', function() {
       const path = JSON.parse(this.dataset.path);
@@ -3207,6 +3489,12 @@ window.confirmMoveTo = async (newParentPath) => {
 document.getElementById('cancelMoveBtn').onclick = () => {
   document.getElementById('moveModal').classList.remove('active');
   moveContext = null;
+};
+
+document.getElementById('moveFolderSearch').oninput = function() {
+  const term = this.value.trim().toLowerCase();
+  if (!term) renderMoveFolderTree();
+  else renderMoveFolderFlat(term);
 };
 
 // ================================================================
