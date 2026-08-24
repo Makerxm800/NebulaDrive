@@ -20,7 +20,7 @@
       --glass-border: rgba(255, 255, 255, 0.12);
       --glass-hover: rgba(255, 255, 255, 0.18);
       --text: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.75);
+      --text-secondary: rgba(255, 255, 255, 0.78);
       --accent: linear-gradient(135deg, #667eea, #764ba2);
       --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
       --radius: 16px;
@@ -29,28 +29,36 @@
       --card-transition: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       --glass-bg: rgba(255, 255, 255, 0.05);
       --glass-border-light: rgba(255, 255, 255, 0.08);
+      --tab-slider-color: #667eea;
     }
+    /* ─── LIGHT THEME (FIXED) ─── */
     body.light {
-      --bg: radial-gradient(ellipse at 10% 20%, #f0f4ff, #d9e2ff);
-      --glass: rgba(255, 255, 255, 0.5);
-      --glass-border: rgba(255, 255, 255, 0.6);
-      --glass-hover: rgba(255, 255, 255, 0.7);
+      --bg: radial-gradient(ellipse at 10% 20%, #eef2f7, #d5dce6);
+      --glass: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(200, 200, 220, 0.5);
+      --glass-hover: rgba(255, 255, 255, 0.8);
       --text: #1a1a2e;
-      --text-secondary: rgba(0, 0, 0, 0.7);
+      --text-secondary: rgba(26, 26, 46, 0.7);
       --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --glass-bg: rgba(255, 255, 255, 0.3);
+      --glass-bg: rgba(255, 255, 255, 0.4);
       --glass-border-light: rgba(200, 200, 220, 0.3);
+      --tab-slider-color: #667eea;
     }
+    /* ─── OCEAN ─── */
     body.ocean {
       --bg: radial-gradient(ellipse at 10% 15%, #041826 0%, #0f4c75 45%, #0e7490 75%, #155e75 100%);
       --accent: linear-gradient(135deg, #0ea5e9, #06b6d4);
       --shadow: 0 8px 32px rgba(6, 182, 212, 0.25);
+      --tab-slider-color: #0ea5e9;
     }
+    /* ─── SUNSET ─── */
     body.sunset {
       --bg: radial-gradient(ellipse at 10% 15%, #22091a 0%, #6a1b3d 40%, #b83b5e 70%, #c2622f 100%);
       --accent: linear-gradient(135deg, #fb923c, #ec4899);
       --shadow: 0 8px 32px rgba(236, 72, 153, 0.25);
+      --tab-slider-color: #ec4899;
     }
+    /* ─── NORD ─── */
     body.nord {
       --bg: radial-gradient(ellipse at 10% 15%, #232833 0%, #2e3440 40%, #3b4252 75%, #5e81ac 100%);
       --text: #eceff4;
@@ -60,7 +68,9 @@
       --glass-border: rgba(255, 255, 255, 0.08);
       --accent: linear-gradient(135deg, #5e81ac, #88c0d0);
       --shadow: 0 8px 32px rgba(94, 129, 172, 0.25);
+      --tab-slider-color: #88c0d0;
     }
+    /* ─── DRACULA ─── */
     body.dracula {
       --bg: radial-gradient(ellipse at 10% 15%, #1e1f29 0%, #282a36 40%, #44475a 75%, #6272a4 100%);
       --text: #f8f8f2;
@@ -70,7 +80,9 @@
       --glass-border: rgba(255, 255, 255, 0.08);
       --accent: linear-gradient(135deg, #bd93f9, #ff79c6);
       --shadow: 0 8px 32px rgba(189, 147, 249, 0.25);
+      --tab-slider-color: #bd93f9;
     }
+    /* ─── SOLARIZED ─── */
     body.solarized {
       --bg: radial-gradient(ellipse at 10% 15%, #001e26 0%, #002b36 40%, #073642 75%, #2aa198 100%);
       --text: #fdf6e3;
@@ -80,127 +92,151 @@
       --glass-border: rgba(255, 255, 255, 0.08);
       --accent: linear-gradient(135deg, #268bd2, #2aa198);
       --shadow: 0 8px 32px rgba(38, 139, 210, 0.25);
+      --tab-slider-color: #268bd2;
     }
+    /* ─── MIDNIGHT GOLD ─── */
     body.midnightgold {
       --bg: radial-gradient(ellipse at 10% 15%, #0a0a0a 0%, #161310 45%, #2b2313 80%, #3d2f10 100%);
       --text: #f7f0dd;
-      --text-secondary: rgba(247, 240, 221, 0.65);
+      --text-secondary: rgba(247, 240, 221, 0.7);
       --glass: rgba(255, 215, 120, 0.06);
       --glass-hover: rgba(255, 215, 120, 0.14);
       --glass-border: rgba(255, 215, 120, 0.22);
       --accent: linear-gradient(135deg, #f5d76e, #b8860b);
       --shadow: 0 8px 32px rgba(184, 134, 11, 0.3);
+      --tab-slider-color: #f5d76e;
     }
+    /* ─── VELVET ROSE ─── */
     body.velvetrose {
       --bg: radial-gradient(ellipse at 10% 15%, #1a0b1f 0%, #3b1249 40%, #7a2c74 75%, #c2478d 100%);
       --text: #fbe9f6;
-      --text-secondary: rgba(251, 233, 246, 0.7);
+      --text-secondary: rgba(251, 233, 246, 0.75);
       --glass: rgba(255, 111, 179, 0.08);
       --glass-hover: rgba(255, 111, 179, 0.16);
       --glass-border: rgba(255, 111, 179, 0.22);
       --accent: linear-gradient(135deg, #ff6fb3, #a855f7);
       --shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
+      --tab-slider-color: #ff6fb3;
     }
+    /* ─── EMERALD NOIR ─── */
     body.emeraldnoir {
       --bg: radial-gradient(ellipse at 10% 15%, #030f0c 0%, #06211a 40%, #0a3d2e 75%, #14804f 100%);
       --text: #e8fbf3;
-      --text-secondary: rgba(232, 251, 243, 0.68);
+      --text-secondary: rgba(232, 251, 243, 0.72);
       --glass: rgba(16, 185, 129, 0.06);
       --glass-hover: rgba(16, 185, 129, 0.14);
       --glass-border: rgba(16, 185, 129, 0.22);
       --accent: linear-gradient(135deg, #10b981, #059669);
       --shadow: 0 8px 32px rgba(16, 185, 129, 0.28);
+      --tab-slider-color: #10b981;
     }
+    /* ─── PLATINUM ─── */
     body.platinum {
       --bg: radial-gradient(ellipse at 10% 15%, #eef2f8 0%, #dde5f0 45%, #cbd8ea 80%, #b9c9e3 100%);
       --text: #1e293b;
-      --text-secondary: rgba(30, 41, 59, 0.62);
+      --text-secondary: rgba(30, 41, 59, 0.65);
       --glass: rgba(255, 255, 255, 0.55);
       --glass-hover: rgba(255, 255, 255, 0.75);
       --glass-border: rgba(148, 163, 184, 0.4);
       --accent: linear-gradient(135deg, #64748b, #334155);
       --shadow: 0 8px 32px rgba(51, 65, 85, 0.14);
+      --tab-slider-color: #64748b;
     }
+    /* ─── CRIMSON EMBER ─── */
     body.crimsonember {
       --bg: radial-gradient(ellipse at 10% 15%, #0d0505 0%, #2b0a0a 40%, #5c1414 75%, #8a2020 100%);
       --text: #fdeeee;
-      --text-secondary: rgba(253, 238, 238, 0.65);
+      --text-secondary: rgba(253, 238, 238, 0.7);
       --glass: rgba(255, 90, 90, 0.06);
       --glass-hover: rgba(255, 90, 90, 0.14);
       --glass-border: rgba(255, 90, 90, 0.2);
       --accent: linear-gradient(135deg, #ef4444, #f97316);
       --shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+      --tab-slider-color: #ef4444;
     }
+    /* ─── SAPPHIRE ROYALE ─── */
     body.sapphireroyale {
       --bg: radial-gradient(ellipse at 10% 15%, #030714 0%, #0a1633 40%, #142a5c 75%, #1e3a8a 100%);
       --text: #eaf0ff;
-      --text-secondary: rgba(234, 240, 255, 0.65);
+      --text-secondary: rgba(234, 240, 255, 0.7);
       --glass: rgba(96, 140, 255, 0.07);
       --glass-hover: rgba(96, 140, 255, 0.15);
       --glass-border: rgba(96, 140, 255, 0.22);
       --accent: linear-gradient(135deg, #3b82f6, #1e40af);
       --shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+      --tab-slider-color: #3b82f6;
     }
+    /* ─── OBSIDIAN CHROME ─── */
     body.obsidianchrome {
       --bg: radial-gradient(ellipse at 10% 15%, #050505 0%, #141416 45%, #24262b 80%, #3a3d44 100%);
       --text: #f1f2f4;
-      --text-secondary: rgba(241, 242, 244, 0.62);
+      --text-secondary: rgba(241, 242, 244, 0.65);
       --glass: rgba(200, 210, 225, 0.06);
       --glass-hover: rgba(200, 210, 225, 0.13);
       --glass-border: rgba(200, 210, 225, 0.2);
       --accent: linear-gradient(135deg, #94a3b8, #475569);
       --shadow: 0 8px 32px rgba(148, 163, 184, 0.22);
+      --tab-slider-color: #94a3b8;
     }
-    /* ─── NEW PREMIUM THEMES ─── */
+    /* ─── AURORA BOREALIS ─── */
     body.auroraborealis {
       --bg: radial-gradient(ellipse at 10% 15%, #0a0e1a 0%, #132044 35%, #1a3a5c 60%, #1f5a4a 80%, #2a7a5a 100%);
       --text: #e8f0ff;
-      --text-secondary: rgba(232, 240, 255, 0.7);
+      --text-secondary: rgba(232, 240, 255, 0.72);
       --glass: rgba(80, 180, 255, 0.06);
       --glass-hover: rgba(80, 180, 255, 0.13);
       --glass-border: rgba(80, 200, 255, 0.2);
       --accent: linear-gradient(135deg, #00d4ff, #7b2fbe);
       --shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+      --tab-slider-color: #00d4ff;
     }
+    /* ─── COSMIC LATTE ─── */
     body.cosmiclatte {
       --bg: radial-gradient(ellipse at 10% 15%, #0b0816 0%, #1a1333 35%, #2d1f4e 60%, #4a2a6a 80%, #6a3a8a 100%);
       --text: #f5eefe;
-      --text-secondary: rgba(245, 238, 254, 0.7);
+      --text-secondary: rgba(245, 238, 254, 0.72);
       --glass: rgba(180, 120, 255, 0.06);
       --glass-hover: rgba(180, 120, 255, 0.13);
       --glass-border: rgba(180, 120, 255, 0.2);
       --accent: linear-gradient(135deg, #a78bfa, #ec4899);
       --shadow: 0 8px 32px rgba(167, 139, 250, 0.25);
+      --tab-slider-color: #a78bfa;
     }
+    /* ─── FOREST WHISPER ─── */
     body.forestwhisper {
       --bg: radial-gradient(ellipse at 10% 15%, #050f08 0%, #0d1f12 35%, #1a3a22 60%, #2a5532 80%, #3a7042 100%);
       --text: #e8f5e8;
-      --text-secondary: rgba(232, 245, 232, 0.7);
+      --text-secondary: rgba(232, 245, 232, 0.72);
       --glass: rgba(80, 200, 120, 0.06);
       --glass-hover: rgba(80, 200, 120, 0.13);
       --glass-border: rgba(80, 200, 120, 0.2);
       --accent: linear-gradient(135deg, #34d399, #059669);
       --shadow: 0 8px 32px rgba(52, 211, 153, 0.2);
+      --tab-slider-color: #34d399;
     }
+    /* ─── ROSE GOLD ─── */
     body.rosegold {
       --bg: radial-gradient(ellipse at 10% 15%, #1a0a0a 0%, #3a1520 35%, #5a2035 60%, #7a2a4a 80%, #9a3a5a 100%);
       --text: #fde8f0;
-      --text-secondary: rgba(253, 232, 240, 0.7);
+      --text-secondary: rgba(253, 232, 240, 0.72);
       --glass: rgba(255, 160, 180, 0.06);
       --glass-hover: rgba(255, 160, 180, 0.13);
       --glass-border: rgba(255, 160, 180, 0.2);
       --accent: linear-gradient(135deg, #f472b6, #f97316);
       --shadow: 0 8px 32px rgba(244, 114, 182, 0.25);
+      --tab-slider-color: #f472b6;
     }
+    /* ─── NEBULA ROSE ─── */
     body.nebularose {
       --bg: radial-gradient(ellipse at 10% 15%, #0c0618 0%, #1c0d2a 35%, #2c1540 60%, #3c1f55 80%, #4c2a6a 100%);
       --text: #f0e8ff;
-      --text-secondary: rgba(240, 232, 255, 0.7);
+      --text-secondary: rgba(240, 232, 255, 0.72);
       --glass: rgba(200, 160, 255, 0.06);
       --glass-hover: rgba(200, 160, 255, 0.13);
       --glass-border: rgba(200, 160, 255, 0.2);
       --accent: linear-gradient(135deg, #c084fc, #f472b6);
       --shadow: 0 8px 32px rgba(192, 132, 252, 0.25);
+      --tab-slider-color: #c084fc;
     }
 
     body {
@@ -222,7 +258,7 @@
     }
     .particle {
       position: absolute;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border-radius: 50%;
       animation: floatParticle linear infinite;
     }
@@ -232,11 +268,11 @@
         opacity: 0;
       }
       10% {
-        opacity: 0.5;
+        opacity: 0.4;
         transform: translateY(90vh) rotate(20deg) scale(1);
       }
       90% {
-        opacity: 0.5;
+        opacity: 0.4;
       }
       100% {
         transform: translateY(-10vh) rotate(720deg) scale(0.2);
@@ -256,7 +292,7 @@
     .glow-orb.orb1 {
       width: 400px;
       height: 400px;
-      background: rgba(102, 126, 234, 0.25);
+      background: rgba(102, 126, 234, 0.2);
       top: -10%;
       right: -10%;
       animation-delay: 0s;
@@ -264,7 +300,7 @@
     .glow-orb.orb2 {
       width: 350px;
       height: 350px;
-      background: rgba(118, 75, 162, 0.2);
+      background: rgba(118, 75, 162, 0.18);
       bottom: -10%;
       left: -10%;
       animation-delay: 2s;
@@ -272,7 +308,7 @@
     .glow-orb.orb3 {
       width: 300px;
       height: 300px;
-      background: rgba(6, 182, 212, 0.15);
+      background: rgba(6, 182, 212, 0.12);
       bottom: 20%;
       right: 20%;
       animation-delay: 4s;
@@ -591,14 +627,15 @@
         box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
       }
     }
+    /* ─── REVAMPED TABS ─── */
     .nav-tabs {
       display: flex;
-      gap: 4px;
+      gap: 2px;
       background: var(--glass);
-      padding: 4px;
+      padding: 6px 8px;
       border-radius: 40px;
       border: 1px solid var(--glass-border);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       position: relative;
       margin-left: 16px;
       transition: background 0.3s ease, border-color 0.3s ease;
@@ -606,18 +643,18 @@
     .nav-tab-wrapper {
       position: relative;
       display: flex;
-      gap: 4px;
+      gap: 2px;
     }
     .nav-tab {
-      padding: 7px 18px;
+      padding: 7px 20px;
       border: none;
       background: transparent;
       color: var(--text-secondary);
       cursor: pointer;
-      border-radius: 40px;
-      transition: all 0.3s var(--transition);
+      border-radius: 30px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.4;
       position: relative;
       overflow: hidden;
@@ -625,43 +662,58 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      letter-spacing: 0.3px;
     }
     .nav-tab::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -120%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.6s ease;
-      pointer-events: none;
+      inset: 0;
+      border-radius: 30px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
     }
-    .nav-tab.active::before {
-      left: 130%;
+    .nav-tab:hover:not(.active)::before {
+      opacity: 0.08;
     }
-    .nav-tab:not(.active):hover {
-      background: var(--glass-hover);
-      transform: translateY(-1px);
+    .nav-tab:hover:not(.active) {
+      transform: translateY(-1px) scale(1.02);
+      color: var(--text);
+    }
+    .nav-tab:active:not(.active) {
+      transform: scale(0.95);
+      transition-duration: 0.08s;
     }
     .nav-tab.active {
-      background: var(--accent);
       color: white;
-      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
       transform: translateY(-1px);
+    }
+    .nav-tab.active::before {
+      opacity: 1;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.35);
+    }
+    .nav-tab .tab-icon {
+      font-size: 1rem;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    .nav-tab.active .tab-icon {
+      opacity: 1;
     }
     .tab-slider {
       position: absolute;
-      bottom: 0;
+      bottom: 4px;
       left: 0;
       height: 3px;
-      background: var(--accent);
+      background: var(--tab-slider-color);
       border-radius: 3px;
-      transition: left 0.35s var(--transition), width 0.35s var(--transition);
+      transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 1;
-      box-shadow: 0 0 12px rgba(102, 126, 234, 0.5);
+      box-shadow: 0 0 16px var(--tab-slider-color);
     }
+
     .user-section {
       display: flex;
       align-items: center;
@@ -760,6 +812,8 @@
     body.has-mini-player .container {
       padding-bottom: 130px;
     }
+
+    /* ─── BREADCRUMB WRAP ─── */
     .breadcrumb-wrap {
       display: flex;
       align-items: center;
@@ -772,20 +826,110 @@
       flex-wrap: wrap;
       box-shadow: var(--shadow);
       transition: background 0.3s ease;
+      min-height: 56px;
     }
-    .back-btn {
+    .nav-controls {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .nav-ctrl-btn {
       background: var(--glass);
-      border: none;
-      padding: 4px 10px;
+      border: 1px solid var(--glass-border);
+      padding: 5px 12px;
       border-radius: 30px;
       color: var(--text);
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      min-height: 36px;
+      font-weight: 600;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
     }
-    .back-btn:hover {
+    .nav-ctrl-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 30px;
+    }
+    .nav-ctrl-btn:hover:not(:disabled)::before {
+      opacity: 0.12;
+    }
+    .nav-ctrl-btn:hover:not(:disabled) {
+      transform: translateY(-3px) scale(1.06);
+      border-color: rgba(102, 126, 234, 0.4);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15);
+    }
+    .nav-ctrl-btn:active:not(:disabled) {
+      transform: scale(0.92) translateY(-1px);
+      transition-duration: 0.08s;
+    }
+    .nav-ctrl-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .nav-ctrl-btn.spinning {
+      animation: spinRefresh 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes spinRefresh {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      min-width: 120px;
+      overflow-x: auto;
+      padding: 4px 2px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102, 126, 234, 0.3) transparent;
+    }
+    .breadcrumb::-webkit-scrollbar {
+      height: 4px;
+    }
+    .breadcrumb::-webkit-scrollbar-thumb {
+      background: rgba(102, 126, 234, 0.3);
+      border-radius: 4px;
+    }
+    .breadcrumb-item {
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 30px;
+      background: var(--glass);
+      transition: 0.2s;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .breadcrumb-item:hover {
       background: var(--glass-hover);
-      transform: translateX(-3px);
+      color: var(--text);
+      transform: translateX(2px);
+    }
+    .breadcrumb-sep {
+      color: var(--text-secondary);
+      opacity: 0.4;
+      font-size: 0.8rem;
+      flex-shrink: 0;
     }
     .new-folder-btn {
       background: var(--accent);
@@ -804,6 +948,7 @@
       position: relative;
       overflow: hidden;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .new-folder-btn::before {
       content: '';
@@ -834,32 +979,8 @@
     .new-folder-btn:hover .nf-plus {
       transform: rotate(180deg);
     }
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      flex: 1;
-    }
-    .breadcrumb-item {
-      color: var(--text-secondary);
-      cursor: pointer;
-      padding: 4px 12px;
-      border-radius: 30px;
-      background: var(--glass);
-      transition: 0.2s;
-      font-size: 0.85rem;
-    }
-    .breadcrumb-item:hover {
-      background: var(--glass-hover);
-      color: var(--text);
-      transform: translateX(2px);
-    }
-    .breadcrumb-sep {
-      color: var(--text-secondary);
-      opacity: 0.4;
-      font-size: 0.8rem;
-    }
+
+    /* ─── TOOLBAR ─── */
     .toolbar {
       display: flex;
       align-items: center;
@@ -941,76 +1062,125 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 10px);
       left: 0;
-      min-width: 190px;
-      background: var(--glass);
+      min-width: 200px;
+      background: rgba(20, 17, 38, 0.92);
+      backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
-      border-radius: 18px;
-      padding: 8px 0;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+      border-radius: 20px;
+      padding: 8px 6px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
       z-index: 50;
-      animation: dropFade 0.2s var(--transition);
+      animation: dropFadePremium 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transform-origin: top left;
+      opacity: 0;
+      transform: scale(0.92) translateY(-6px);
     }
-    @keyframes dropFade {
+    @keyframes dropFadePremium {
       0% {
         opacity: 0;
-        transform: translateY(-6px) scale(0.97);
+        transform: scale(0.92) translateY(-8px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
       }
     }
     .dropdown-menu.show {
       display: block;
     }
     .dropdown-menu .item {
-      padding: 8px 18px;
+      padding: 9px 16px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 12px;
       color: var(--text-secondary);
-      transition: all 0.15s ease;
-      font-size: 0.85rem;
-      border-radius: 10px;
-      margin: 2px 8px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 0.82rem;
+      border-radius: 12px;
+      margin: 2px 4px;
       font-weight: 500;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
     .dropdown-menu .item:hover {
-      background: var(--glass-hover);
+      background: rgba(102, 126, 234, 0.15);
       color: var(--text);
-      transform: translateX(4px);
+      transform: translateX(6px) scale(1.02);
+    }
+    .dropdown-menu .item:active {
+      transform: scale(0.95);
     }
     .dropdown-menu .item .check {
       margin-left: auto;
       opacity: 0;
       font-size: 0.9rem;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.25s ease;
+      color: var(--tab-slider-color);
     }
     .dropdown-menu .item.active .check {
       opacity: 1;
-      color: #667eea;
+    }
+    .dropdown-menu .item .icon-chip {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      background: rgba(102, 126, 234, 0.08);
     }
     .dropdown-menu .divider {
       height: 1px;
       background: var(--glass-border);
       margin: 4px 12px;
-      opacity: 0.5;
+      opacity: 0.3;
     }
-    .dropdown-menu .item .icon-chip {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
+
+    /* ─── SELECTION TOGGLE ─── */
+    .selection-toggle-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.05);
+      gap: 8px;
     }
+    .selection-toggle-btn:hover {
+      background: var(--glass-hover);
+      transform: translateY(-2px) scale(1.03);
+      border-color: rgba(102, 126, 234, 0.4);
+    }
+    .selection-toggle-btn:active {
+      transform: scale(0.95);
+    }
+    .selection-toggle-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.35);
+    }
+    .selection-toggle-btn .toggle-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+    .selection-toggle-btn.active .toggle-dot {
+      background: #4caf50;
+      box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+    }
+
     .select-bar {
       display: none;
       align-items: center;
@@ -1081,13 +1251,13 @@
       flex-shrink: 0;
     }
     .select-toggle.active .toggle-indicator {
-      background: #667eea;
-      border-color: #667eea;
+      background: var(--tab-slider-color);
+      border-color: var(--tab-slider-color);
       color: white;
     }
     .select-toggle.indeterminate .toggle-indicator {
       background: rgba(102, 126, 234, 0.4);
-      border-color: #667eea;
+      border-color: var(--tab-slider-color);
       color: white;
     }
     .select-actions {
@@ -1189,21 +1359,141 @@
       transform: translateY(-2px) scale(0.98);
       transition-duration: 0.08s;
     }
+    /* Checkboxes - hidden when selection mode is off */
     .folder-card .cb,
     .file-card .cb {
       position: absolute;
       top: 8px;
       left: 8px;
-      accent-color: #667eea;
-      width: 16px;
-      height: 16px;
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.25);
       cursor: pointer;
       z-index: 5;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, border-color 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.5);
+      pointer-events: none;
+    }
+    .selection-mode-active .folder-card .cb,
+    .selection-mode-active .file-card .cb {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
     }
     .folder-card .cb:hover,
     .file-card .cb:hover {
-      transform: scale(1.2);
+      transform: scale(1.15);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+    .folder-card .cb:checked,
+    .file-card .cb:checked {
+      background: var(--accent);
+      border-color: transparent;
+      animation: cbPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .folder-card .cb:checked::after,
+    .file-card .cb:checked::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      animation: cbCheckIn 0.25s ease 0.05s backwards;
+    }
+    @keyframes cbPop {
+      0% {
+        transform: scale(0.7);
+      }
+      50% {
+        transform: scale(1.25);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes cbCheckIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .folder-card:has(.cb:checked),
+    .file-card:has(.cb:checked) {
+      border-color: rgba(102, 126, 234, 0.55);
+      background: rgba(102, 126, 234, 0.1);
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.25), 0 12px 30px rgba(102, 126, 234, 0.15);
+    }
+
+    .card-more-wrap {
+      position: relative;
+      display: inline-flex;
+    }
+    .card-more-dropdown {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      right: 0;
+      min-width: 150px;
+      background: rgba(20, 17, 38, 0.97);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      z-index: 30;
+      text-align: left;
+    }
+    .card-more-dropdown.show {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      animation: cardMenuIn 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes cardMenuIn {
+      0% {
+        opacity: 0;
+        transform: translateY(6px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .card-more-dropdown .action-btn {
+      width: 100%;
+      justify-content: flex-start;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      padding: 7px 10px;
+      font-size: 0.72rem;
+      min-height: unset;
+      gap: 8px;
+    }
+    .card-more-dropdown .action-btn:hover {
+      background: var(--glass-hover);
+      transform: none;
+      box-shadow: none;
+    }
+    .card-more-dropdown .action-btn.delete {
+      color: #ff6b6b;
+    }
+    .card-more-dropdown .action-btn.delete:hover {
+      background: rgba(255, 71, 87, 0.15);
+    }
+    .file-card.menu-open,
+    .folder-card.menu-open {
+      z-index: 50;
     }
     .folder-emoji,
     .file-emoji {
@@ -1227,7 +1517,7 @@
     }
     .folder-card:hover .folder-name,
     .file-card:hover .file-name {
-      color: #fff;
+      color: var(--text);
       transform: scale(1.02);
     }
     .folder-size,
@@ -1269,7 +1559,7 @@
     .card-actions {
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 2px;
@@ -1279,8 +1569,8 @@
       border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
     .action-btn {
-      padding: 3px 6px;
-      font-size: 0.55rem;
+      padding: 3px 8px;
+      font-size: 0.6rem;
       border-radius: 20px;
       border: none;
       font-weight: 600;
@@ -1289,28 +1579,23 @@
       background: var(--glass);
       color: var(--text-secondary);
       border: 1px solid var(--glass-border);
-      line-height: 1.3;
+      line-height: 1.4;
       display: inline-flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1px;
+      gap: 3px;
       pointer-events: auto;
-      min-height: 34px;
-      min-width: 44px;
-      flex: 1 0 auto;
-      max-width: 60px;
+      min-height: 26px;
     }
     .action-btn .btn-icon {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       line-height: 1;
     }
     .action-btn .btn-label {
-      font-size: 0.45rem;
+      font-size: 0.5rem;
       opacity: 0.8;
       letter-spacing: 0.2px;
-      text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 500;
     }
     .action-btn:hover {
       transform: translateY(-2px) scale(1.06);
@@ -1395,23 +1680,6 @@
       background: rgba(255, 152, 0, 0.35);
       color: #ffcc80;
     }
-    .action-btn.fav-btn {
-      background: transparent;
-      border: none;
-      padding: 3px 4px;
-      min-width: 30px;
-      flex: 0 1 auto;
-    }
-    .action-btn.fav-btn .btn-icon {
-      font-size: 1rem;
-    }
-    .action-btn.fav-btn .btn-label {
-      font-size: 0.4rem;
-    }
-    .action-btn.fav-btn.active .btn-icon {
-      color: #f1c40f;
-    }
-
     .favorite-btn {
       background: transparent;
       border: none;
@@ -1432,6 +1700,16 @@
       color: #f1c40f;
       opacity: 1;
       text-shadow: 0 0 16px rgba(241, 196, 15, 0.4);
+      animation: favGlow 1.8s ease-in-out infinite;
+    }
+    @keyframes favGlow {
+      0%,
+      100% {
+        text-shadow: 0 0 8px rgba(241, 196, 15, 0.4);
+      }
+      50% {
+        text-shadow: 0 0 24px rgba(241, 196, 15, 0.8);
+      }
     }
     .favorite-btn.active:hover {
       transform: scale(1.3) rotate(12deg);
@@ -1509,15 +1787,6 @@
       height: 22px;
       font-size: 0.65rem;
       flex-shrink: 0;
-    }
-    .files-grid.list-view .action-btn {
-      min-width: 36px;
-      padding: 2px 4px;
-      min-height: 28px;
-      flex: 0 1 auto;
-    }
-    .files-grid.list-view .action-btn .btn-label {
-      font-size: 0.4rem;
     }
 
     .view-small {
@@ -1604,16 +1873,6 @@
       font-size: 0.6rem;
       flex-shrink: 0;
     }
-    .files-grid.compact-view .action-btn {
-      min-width: 30px;
-      padding: 2px 4px;
-      min-height: 24px;
-      flex: 0 1 auto;
-    }
-    .files-grid.compact-view .action-btn .btn-label {
-      display: none;
-    }
-
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -1645,12 +1904,12 @@
       z-index: 10;
     }
     .upload-area:hover {
-      border-color: #667eea;
+      border-color: var(--tab-slider-color);
       background: var(--glass-hover);
       transform: scale(1.01);
     }
     .upload-area.drag-over {
-      border-color: #667eea;
+      border-color: var(--tab-slider-color);
       background: rgba(102, 126, 234, 0.15);
       transform: scale(1.02);
     }
@@ -1677,6 +1936,7 @@
       margin-bottom: 12px;
       display: none;
       border: 1px solid var(--glass-border);
+      overflow: hidden;
     }
     .progress-bar {
       height: 24px;
@@ -1709,6 +1969,47 @@
       }
     }
 
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 2px 14px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      flex: 0 1 220px;
+    }
+    .search-wrapper:focus-within {
+      border-color: var(--tab-slider-color);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .search-wrapper svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--text-secondary);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.6;
+      flex-shrink: 0;
+      margin-right: 8px;
+    }
+    .search-wrapper input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-size: 0.8rem;
+      padding: 6px 0;
+      min-width: 60px;
+    }
+    .search-wrapper input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+
     /* ── FOLDER ICON PICKER ── */
     .icon-picker-modal {
       display: none;
@@ -1731,10 +2032,10 @@
       border-radius: 28px;
       padding: 24px;
       width: 100%;
-      max-width: 420px;
+      max-width: 450px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
-      max-height: 80vh;
+      max-height: 85vh;
       overflow-y: auto;
     }
     .icon-picker-card h3 {
@@ -1746,13 +2047,16 @@
       font-size: 0.78rem;
       color: var(--text-secondary);
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     .icon-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+    }
+    .icon-grid.expanded {
+      grid-template-columns: repeat(7, 1fr);
     }
     .icon-option {
       font-size: 1.6rem;
@@ -1770,7 +2074,7 @@
       border-color: rgba(102, 126, 234, 0.3);
     }
     .icon-option.active {
-      border-color: #667eea;
+      border-color: var(--tab-slider-color);
       background: rgba(102, 126, 234, 0.15);
       box-shadow: 0 0 20px rgba(102, 126, 234, 0.15);
     }
@@ -1785,30 +2089,71 @@
     .icon-option.custom-icon-option .custom-icon-preview {
       font-size: 1.6rem;
     }
+    .icon-option.custom-icon-option .custom-icon-preview img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
     .icon-option.custom-icon-option .custom-icon-label {
       font-size: 0.45rem;
       opacity: 0.6;
       text-transform: uppercase;
       letter-spacing: 0.3px;
     }
+    .icon-picker-more-wrap {
+      display: flex;
+      gap: 6px;
+      margin: 4px 0 12px;
+      flex-wrap: wrap;
+    }
+    .icon-picker-more-wrap button {
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .icon-picker-more-wrap button:hover {
+      background: var(--glass-hover);
+      transform: translateY(-2px);
+      color: var(--text);
+    }
+    .icon-picker-more-wrap button.active {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: rgba(102, 126, 234, 0.4);
+      color: #8ba0f0;
+    }
     .custom-icon-upload-area {
       border: 2px dashed var(--glass-border);
       border-radius: 12px;
-      padding: 12px;
+      padding: 16px;
       text-align: center;
       cursor: pointer;
       transition: all 0.25s ease;
       margin-bottom: 12px;
       background: rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
     .custom-icon-upload-area:hover {
-      border-color: #667eea;
+      border-color: var(--tab-slider-color);
       background: rgba(102, 126, 234, 0.08);
+    }
+    .custom-icon-upload-area .upload-icon-big {
+      font-size: 2rem;
     }
     .custom-icon-upload-area .upload-hint {
       font-size: 0.7rem;
       color: var(--text-secondary);
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .custom-icon-upload-area input[type="file"] {
       display: none;
@@ -1930,7 +2275,7 @@
       line-height: 1;
       cursor: pointer;
       color: var(--text-secondary);
-      transition: 0.25s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--glass-border);
       border-radius: 50%;
@@ -1943,7 +2288,11 @@
       color: white;
       background: rgba(255, 80, 80, 0.25);
       border-color: rgba(255, 80, 80, 0.4);
-      transform: rotate(90deg);
+      transform: rotate(90deg) scale(1.1);
+    }
+    .media-player-close:active {
+      transform: scale(0.85) rotate(60deg);
+      transition-duration: 0.08s;
     }
     .media-player-title {
       font-weight: 700;
@@ -2208,7 +2557,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 22px;
+      gap: 12px;
     }
     .media-buttons button {
       background: rgba(255, 255, 255, 0.06);
@@ -2217,12 +2566,22 @@
       font-size: 1.3rem;
       cursor: pointer;
       transition: all 0.2s ease;
-      width: 46px;
-      height: 46px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 1px;
+      padding: 4px;
+    }
+    .media-buttons button .btn-label {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+      text-transform: uppercase;
     }
     .media-buttons button:hover:not(:disabled) {
       background: rgba(255, 255, 255, 0.14);
@@ -2245,6 +2604,15 @@
       border: none;
       box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .media-buttons .play-btn .btn-label {
+      font-size: 0.6rem;
+      opacity: 0.9;
     }
     .media-buttons .play-btn:hover {
       transform: translateY(-2px) scale(1.04);
@@ -2274,22 +2642,34 @@
     }
     .skip-btn {
       position: relative;
-      font-size: 1.05rem !important;
     }
     .skip-btn .skip-label {
       position: absolute;
       bottom: 2px;
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       font-weight: 700;
       left: 50%;
       transform: translateX(-50%);
+      opacity: 0.6;
     }
+
+    /* ─── PREMIUM VOLUME ─── */
     .media-volume {
       display: flex;
       align-items: center;
       gap: 10px;
       color: white;
       justify-content: center;
+      position: relative;
+      padding: 4px 8px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    .media-volume:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(102, 126, 234, 0.3);
     }
     .media-volume input[type="range"] {
       --progress: 80%;
@@ -2299,22 +2679,32 @@
       border-radius: 2px;
       -webkit-appearance: none;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .media-volume input[type="range"]:hover {
+      height: 6px;
     }
     .media-volume input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #fff;
       cursor: pointer;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+    .media-volume input[type="range"]:hover::-webkit-slider-thumb {
+      box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.4), 0 2px 12px rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
     }
     .media-volume input[type="range"]::-moz-range-thumb {
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #fff;
       border: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
     }
     .media-volume .vol-icon {
       font-size: 1.15rem;
@@ -2334,7 +2724,11 @@
       text-align: right;
       font-variant-numeric: tabular-nums;
       flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0 6px;
+      border-radius: 12px;
     }
+
     .media-secondary-row {
       display: flex;
       align-items: center;
@@ -2358,6 +2752,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 3px;
+      padding: 4px 8px;
+      border-radius: 20px;
+      height: 34px;
+      width: auto;
+    }
+    .media-secondary-actions button .btn-label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      opacity: 0.7;
     }
     .media-secondary-actions button:hover {
       background: var(--glass-hover);
@@ -2370,9 +2775,9 @@
     .speed-btn,
     .fullscreen-btn,
     .more-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+      width: auto !important;
+      height: 34px !important;
+      border-radius: 20px !important;
       font-weight: 700;
       font-size: 0.75rem !important;
     }
@@ -2381,6 +2786,7 @@
       border-color: rgba(102, 126, 234, 0.5);
       color: #a3b1f5;
     }
+
     .repeat-btn {
       height: 34px;
       border-radius: 20px;
@@ -2388,20 +2794,37 @@
       gap: 5px;
       font-size: 0.72rem !important;
       font-weight: 600;
+      color: var(--tab-slider-color) !important;
+      border-color: rgba(102, 126, 234, 0.3) !important;
     }
     .repeat-btn .repeat-icon {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      line-height: 1;
     }
     .repeat-btn .repeat-label {
       letter-spacing: 0.2px;
+      font-size: 0.6rem;
     }
     .repeat-btn.state-all,
     .repeat-btn.state-one {
       background: rgba(102, 126, 234, 0.28) !important;
-      color: #cdd6fb;
+      color: #cdd6fb !important;
       border-color: rgba(102, 126, 234, 0.55) !important;
       box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
     }
+
+    .cinema-btn {
+      width: auto !important;
+      height: 34px !important;
+      border-radius: 20px !important;
+      font-weight: 700;
+      font-size: 0.75rem !important;
+    }
+    .cinema-btn .btn-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
     .media-player-content.video-mode-content {
       max-width: 780px;
     }
@@ -2425,8 +2848,6 @@
     .media-player-body.video-mode .media-controls {
       margin-top: 4px;
     }
-
-    /* ─── QUALITY SELECTOR ─── */
     .quality-selector-wrap {
       position: relative;
       display: inline-block;
@@ -2489,7 +2910,7 @@
       position: absolute;
       bottom: calc(100% + 8px);
       right: 0;
-      min-width: 200px;
+      min-width: 220px;
       background: rgba(20, 17, 40, 0.96);
       backdrop-filter: blur(18px);
       border: 1px solid var(--glass-border);
@@ -2500,7 +2921,7 @@
     }
     .quality-dropdown.show {
       display: block;
-      animation: dropFade 0.18s ease;
+      animation: dropFadePremium 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .quality-dropdown .q-info-header {
       padding: 6px 14px 8px;
@@ -2536,7 +2957,7 @@
     .quality-dropdown .q-item .q-check {
       margin-left: auto;
       opacity: 0;
-      color: #667eea;
+      color: var(--tab-slider-color);
     }
     .quality-dropdown .q-item.active .q-check {
       opacity: 1;
@@ -2546,6 +2967,34 @@
       background: var(--glass-border);
       margin: 4px 8px;
       opacity: 0.3;
+    }
+    .quality-level-btn {
+      padding: 6px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: none;
+      background: transparent;
+      width: 100%;
+    }
+    .quality-level-btn:hover {
+      background: rgba(102, 126, 234, 0.15);
+      color: var(--text);
+      transform: translateX(4px);
+    }
+    .quality-level-btn .q-check {
+      opacity: 0;
+      color: var(--tab-slider-color);
+    }
+    .quality-level-btn.active .q-check {
+      opacity: 1;
     }
 
     .media-player-modal.custom-fullscreen {
@@ -2626,6 +3075,73 @@
       .media-player-modal.custom-fullscreen .media-track {
         font-size: 1.15rem;
       }
+    }
+
+    .more-menu-wrap {
+      position: relative;
+    }
+    .more-menu {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 12px);
+      right: 0;
+      min-width: 190px;
+      background: rgba(20, 17, 40, 0.96);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 8px 6px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+      z-index: 60;
+    }
+    .more-menu.show {
+      display: block;
+      animation: moreMenuIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transform-origin: bottom right;
+      opacity: 0;
+      transform: scale(0.92) translateY(8px);
+    }
+    @keyframes moreMenuIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    .more-menu .item {
+      padding: 10px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+    .more-menu .item:hover {
+      background: rgba(102, 126, 234, 0.15);
+      color: var(--text);
+      transform: translateX(4px) scale(1.02);
+    }
+    .more-menu .item:active {
+      transform: scale(0.95);
+    }
+    .more-menu .item .item-icon {
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .more-menu .divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 4px 12px;
+      opacity: 0.3;
     }
 
     /* ─── MINI PLAYER ─── */
@@ -2765,12 +3281,28 @@
       box-shadow: 0 4px 14px rgba(102, 126, 234, 0.5);
     }
     .mini-repeat-btn {
-      font-size: 0.85rem !important;
+      font-size: 0.75rem !important;
+      color: var(--tab-slider-color) !important;
+      border-color: rgba(102, 126, 234, 0.3) !important;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0 10px !important;
+      width: auto !important;
+      border-radius: 20px !important;
+      height: 34px !important;
+    }
+    .mini-repeat-btn .rep-icon {
+      font-size: 0.8rem;
+    }
+    .mini-repeat-btn .rep-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.3px;
     }
     .mini-repeat-btn.state-all,
     .mini-repeat-btn.state-one {
       background: rgba(102, 126, 234, 0.28) !important;
-      color: #cdd6fb;
+      color: #cdd6fb !important;
       border-color: rgba(102, 126, 234, 0.55) !important;
     }
     .mini-vol-pct {
@@ -2781,49 +3313,85 @@
       text-align: right;
       font-variant-numeric: tabular-nums;
       flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0 6px;
+      border-radius: 12px;
     }
     .mini-player-extra {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex: 1 1 160px;
+      gap: 8px;
+      flex: 0 1 auto;
+      min-width: 0;
       justify-content: flex-end;
+    }
+    .mini-volume {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 4px 10px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    .mini-volume:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(102, 126, 234, 0.3);
     }
     .mini-player-extra .vol-icon {
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
       transition: 0.2s;
     }
     .mini-player-extra .vol-icon:hover {
       transform: scale(1.15);
     }
     .mini-player-extra input[type="range"] {
-      width: 80px;
+      flex: 0 1 90px;
+      width: 90px;
+      min-width: 44px;
       --progress: 80%;
       background: linear-gradient(to right, #667eea 0%, #764ba2 var(--progress), rgba(255, 255, 255, 0.15) var(--progress));
       height: 4px;
       border-radius: 2px;
       -webkit-appearance: none;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mini-player-extra input[type="range"]:hover {
+      height: 6px;
     }
     .mini-player-extra input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #fff;
       cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3), 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+    .mini-player-extra input[type="range"]:hover::-webkit-slider-thumb {
+      box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.4), 0 2px 12px rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
     }
     .mini-player-extra input[type="range"]::-moz-range-thumb {
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: #fff;
       border: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
     }
     .mini-expand-btn {
       width: 34px;
       height: 34px;
+      flex-shrink: 0;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--glass-border);
@@ -2842,6 +3410,7 @@
     .mini-close-btn {
       width: 34px;
       height: 34px;
+      flex-shrink: 0;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--glass-border);
@@ -2858,45 +3427,15 @@
       border-color: rgba(255, 80, 80, 0.4);
       transform: translateY(-2px) scale(1.05);
     }
-
-    .more-menu-wrap {
-      position: relative;
+    /* click pop animation for mini player buttons (appearance unchanged) */
+    @keyframes miniBtnPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(0.82); }
+      70% { transform: scale(1.12); }
+      100% { transform: scale(1); }
     }
-    .more-menu {
-      display: none;
-      position: absolute;
-      bottom: calc(100% + 10px);
-      right: 0;
-      min-width: 170px;
-      background: rgba(20, 17, 40, 0.95);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--glass-border);
-      border-radius: 14px;
-      padding: 6px 0;
-      box-shadow: var(--shadow);
-      z-index: 60;
-    }
-    .more-menu.show {
-      display: block;
-      animation: dropFade 0.18s ease;
-    }
-    .more-menu .item {
-      padding: 8px 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      transition: 0.2s;
-      white-space: nowrap;
-    }
-    .more-menu .item:hover {
-      background: var(--glass-hover);
-      color: var(--text);
-    }
-    body.has-mini-player .toast {
-      bottom: 92px;
+    .mini-player-bar .btn-pop {
+      animation: miniBtnPop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .global-drop-overlay {
@@ -3545,75 +4084,71 @@
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.045));
       backdrop-filter: blur(26px);
       border-radius: 28px;
-      padding: 28px 28px 24px;
+      padding: 24px 24px 20px;
       width: 100%;
-      max-width: 500px;
+      max-width: 520px;
       border: 1px solid var(--glass-border);
-      max-height: 88vh;
+      max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       scrollbar-width: thin;
       scrollbar-color: rgba(102, 126, 234, 0.5) transparent;
+      color: var(--text);
     }
     .settings-card::-webkit-scrollbar {
-      width: 7px;
-    }
-    .settings-card::-webkit-scrollbar-track {
-      background: transparent;
+      width: 6px;
     }
     .settings-card::-webkit-scrollbar-thumb {
       background: rgba(102, 126, 234, 0.4);
       border-radius: 10px;
     }
-
     .settings-header {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 18px;
-      padding-bottom: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--glass-border);
     }
     .settings-header .gear {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
       box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
     }
     .settings-header h2 {
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       font-weight: 700;
     }
     .settings-header .subtitle {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: var(--text-secondary);
       opacity: 0.7;
       letter-spacing: 0.5px;
     }
-
     .settings-section {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .settings-section:last-of-type {
       margin-bottom: 0;
     }
     .settings-section-title {
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--text-secondary);
-      margin-bottom: 10px;
-      opacity: 0.7;
+      margin-bottom: 8px;
+      opacity: 0.6;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .settings-section-title .title-icon {
       font-size: 0.8rem;
@@ -3622,55 +4157,55 @@
     .storage-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 6px;
+      gap: 6px;
+      margin-bottom: 4px;
     }
     .storage-stat {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--glass-border);
-      border-radius: 14px;
-      padding: 10px 6px;
+      border-radius: 10px;
+      padding: 8px 4px;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
       transition: all 0.25s var(--transition);
     }
     .storage-stat:hover {
-      transform: translateY(-3px) scale(1.02);
+      transform: translateY(-2px) scale(1.02);
       background: rgba(255, 255, 255, 0.07);
       border-color: rgba(102, 126, 234, 0.3);
     }
     .storage-stat .stat-val {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--text);
     }
     .storage-stat .stat-label {
-      font-size: 0.55rem;
+      font-size: 0.5rem;
       color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
     .storage-stat .stat-icon {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       opacity: 0.6;
     }
     .storage-note {
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       color: var(--text-secondary);
       opacity: 0.65;
       margin-top: 4px;
-      padding: 6px 10px;
+      padding: 5px 10px;
       background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid var(--glass-border);
     }
 
     .account-controls {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
     .account-controls .ctrl-row {
       display: flex;
@@ -3678,8 +4213,8 @@
       gap: 10px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 6px 12px 6px 10px;
+      border-radius: 10px;
+      padding: 6px 12px;
       transition: all 0.2s ease;
     }
     .account-controls .ctrl-row:hover {
@@ -3695,16 +4230,16 @@
     }
     .account-controls .ctrl-row .ctrl-label {
       flex: 1;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 500;
     }
     .account-controls .ctrl-row .ctrl-btn {
       background: var(--glass);
       border: 1px solid var(--glass-border);
-      padding: 4px 14px;
-      border-radius: 20px;
+      padding: 3px 14px;
+      border-radius: 18px;
       color: var(--text);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -3717,20 +4252,20 @@
     .themes-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      gap: 5px;
     }
     .theme-option {
-      padding: 8px 12px;
+      padding: 6px 10px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.25s var(--transition);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: var(--text);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 500;
     }
     .theme-option:hover {
@@ -3743,8 +4278,8 @@
       transform: scale(0.97);
     }
     .theme-option .theme-swatch {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       flex-shrink: 0;
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -3754,9 +4289,9 @@
       background: rgba(255, 215, 0, 0.18);
       border: 1px solid #ffd700;
       color: #ffd700;
-      padding: 1px 8px;
-      border-radius: 20px;
-      font-size: 0.5rem;
+      padding: 0 6px;
+      border-radius: 16px;
+      font-size: 0.45rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       flex-shrink: 0;
@@ -3769,17 +4304,17 @@
     }
     .solarized-row {
       margin-top: 6px;
-      padding: 8px 14px;
+      padding: 6px 12px;
       background: rgba(38, 139, 210, 0.08);
       border: 1px solid rgba(38, 139, 210, 0.2);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
       transition: all 0.25s var(--transition);
       font-weight: 500;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
     }
     .solarized-row:hover {
       background: rgba(38, 139, 210, 0.15);
@@ -3787,35 +4322,76 @@
       border-color: rgba(38, 139, 210, 0.4);
     }
     .solarized-row .swatch {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: linear-gradient(135deg, #268bd2, #2aa198);
       flex-shrink: 0;
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
     }
     .solarized-row .solar-icon {
-      font-size: 1rem;
+      font-size: 0.9rem;
       opacity: 0.7;
     }
-
+    .premium-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+    }
+    .premium-toggle-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .toggle-switch {
+      width: 36px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s ease;
+      flex-shrink: 0;
+    }
+    .toggle-switch.active {
+      background: var(--tab-slider-color);
+    }
+    .toggle-switch .toggle-knob {
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .toggle-switch.active .toggle-knob {
+      transform: translateX(16px);
+    }
     .danger-zone {
       margin-top: 4px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
     .danger-btn {
       width: 100%;
-      padding: 8px 14px;
+      padding: 6px 12px;
       background: rgba(255, 71, 87, 0.12);
       border: 1px solid rgba(255, 71, 87, 0.25);
-      border-radius: 12px;
+      border-radius: 10px;
       color: #ff4757;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
     .danger-btn:hover {
       background: rgba(255, 71, 87, 0.2);
@@ -3824,21 +4400,20 @@
     .danger-btn:active {
       transform: scale(0.97);
     }
-
     .settings-close-row {
       margin-top: 14px;
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
     .settings-close-row button {
       flex: 1;
-      padding: 10px;
-      border-radius: 14px;
+      padding: 8px;
+      border-radius: 12px;
       border: 1px solid var(--glass-border);
       background: var(--glass);
       color: var(--text);
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -3856,7 +4431,7 @@
     .switch-account-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       max-height: 320px;
       overflow-y: auto;
       margin-top: 6px;
@@ -3864,11 +4439,11 @@
     .switch-account-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
+      gap: 10px;
+      padding: 8px 10px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--glass-border);
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
       transition: background 0.15s ease, border-color 0.15s ease;
     }
@@ -3877,14 +4452,14 @@
       border-color: rgba(102, 126, 234, 0.4);
     }
     .switch-account-avatar {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: white;
       flex-shrink: 0;
@@ -3901,28 +4476,28 @@
       min-width: 0;
     }
     .switch-account-name {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .switch-account-sub {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .switch-account-remove {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--glass-border);
       color: var(--text-secondary);
       cursor: pointer;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       flex-shrink: 0;
       transition: 0.2s;
     }
@@ -3933,7 +4508,7 @@
     }
     .switch-account-empty {
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-align: center;
       padding: 20px 10px;
     }
@@ -3944,12 +4519,12 @@
     .diag-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 9px 12px;
+      gap: 8px;
+      padding: 7px 10px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--glass-border);
       border-left: 3px solid var(--glass-border);
-      border-radius: 12px;
+      border-radius: 10px;
     }
     .diag-row.diag-missing {
       border-left-color: #ef4444;
@@ -3962,14 +4537,14 @@
       min-width: 0;
     }
     .diag-row-name {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .diag-row-meta {
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
@@ -3982,15 +4557,14 @@
       color: #fbbf24;
     }
     .diag-row-remove {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--glass-border);
       color: var(--text-secondary);
       cursor: pointer;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       transition: 0.2s;
     }
     .diag-row-remove:hover {
@@ -4121,29 +4695,27 @@
         height: 48px;
         font-size: 2rem;
       }
+      .media-buttons button {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+      }
       .media-buttons .play-btn {
         width: 56px;
         height: 56px;
         font-size: 1.5rem;
       }
-      .media-buttons button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
       .media-volume input[type="range"] {
         width: 70px;
       }
-      #mediaFullscreenBtn,
-      #mediaTrueFullscreenBtn,
-      #mediaMoreBtn,
-      #mediaSpeedBtn {
-        width: 32px !important;
-        height: 32px !important;
+      .media-secondary-actions button {
+        height: 30px;
+        font-size: 0.7rem;
+        padding: 2px 6px;
       }
       .repeat-btn {
-        height: 32px !important;
-        padding: 0 10px 0 8px !important;
+        height: 30px !important;
+        padding: 0 8px 0 6px !important;
       }
       .media-secondary-row {
         justify-content: center !important;
@@ -4154,6 +4726,10 @@
       .mini-player-bar {
         padding-bottom: env(safe-area-inset-bottom);
       }
+      .mini-player-main {
+        gap: 10px;
+        padding: 10px 14px;
+      }
       .mini-player-controls button {
         width: 38px;
         height: 38px;
@@ -4162,6 +4738,13 @@
         width: 44px;
         height: 44px;
       }
+      .mini-player-extra .mini-vol-pct {
+        display: none;
+      }
+      .mini-player-extra input[type="range"] {
+        flex-basis: 60px;
+        width: 60px;
+      }
       body.has-mini-player .toast {
         bottom: calc(92px + env(safe-area-inset-bottom));
       }
@@ -4169,22 +4752,22 @@
         padding-bottom: calc(130px + env(safe-area-inset-bottom));
       }
       .settings-card {
-        padding: 20px 18px;
+        padding: 18px 16px;
         max-height: 92vh;
       }
       .settings-header h2 {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       .storage-stat .stat-val {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
       }
       .account-controls .ctrl-row {
         flex-wrap: wrap;
         gap: 4px;
       }
       .account-controls .ctrl-row .ctrl-btn {
-        font-size: 0.65rem;
-        padding: 3px 10px;
+        font-size: 0.6rem;
+        padding: 2px 8px;
       }
       .settings-close-row {
         flex-direction: column;
@@ -4210,37 +4793,31 @@
       .icon-grid {
         grid-template-columns: repeat(5, 1fr);
       }
-      .action-btn {
-        min-width: 36px;
-        padding: 2px 4px;
-        min-height: 28px;
-      }
-      .action-btn .btn-label {
-        font-size: 0.4rem;
-      }
-      .files-grid.list-view .action-btn {
-        min-width: 30px;
-        min-height: 24px;
+      .icon-grid.expanded {
+        grid-template-columns: repeat(6, 1fr);
       }
     }
     @media (max-width: 480px) {
+      /* keep expand + close always visible: collapse the volume slider, keep the mute icon toggle */
+      .mini-player-extra input[type="range"] {
+        display: none;
+      }
+      .mini-volume {
+        padding: 4px 8px;
+      }
       .icon-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-      .action-btn {
-        min-width: 30px;
-        padding: 2px 3px;
-        min-height: 24px;
-        flex: 0 1 auto;
+      .icon-grid.expanded {
+        grid-template-columns: repeat(5, 1fr);
       }
-      .action-btn .btn-label {
-        display: none;
+      .action-btn {
+        font-size: 0.5rem;
+        padding: 2px 6px;
+        min-height: 22px;
       }
       .action-btn .btn-icon {
-        font-size: 0.7rem;
-      }
-      .files-grid {
-        grid-template-columns: repeat(2, 1fr);
+        font-size: 0.6rem;
       }
     }
   </style>
@@ -4249,7 +4826,6 @@
 
   <!-- ─── PARTICLES ─── -->
   <div class="particles" id="particles"></div>
-
   <!-- ─── GLOW ORBS ─── -->
   <div class="glow-orb orb1"></div>
   <div class="glow-orb orb2"></div>
@@ -4297,7 +4873,7 @@
         <div class="storage-stat"><span class="stat-icon">🎬</span><span class="stat-val" id="infoVideos">0</span><span class="stat-label">Videos</span></div>
         <div class="storage-stat"><span class="stat-icon">🖼️</span><span class="stat-val" id="infoImages">0</span><span class="stat-label">Images</span></div>
         <div class="storage-stat"><span class="stat-icon">💿</span><span class="stat-val" id="infoDB">0 B</span><span class="stat-label">On Disk</span></div>
-        <div class="storage-stat" style="grid-column:span 2;"><span class="stat-icon">🔒</span><span class="stat-val" style="font-size:.7rem;">Local &amp; Secure</span><span class="stat-label">Everything stored in your browser</span></div>
+        <div class="storage-stat" style="grid-column:span 2;"><span class="stat-icon">🔒</span><span class="stat-val" style="font-size:.65rem;">Local &amp; Secure</span><span class="stat-label">Everything in your browser</span></div>
       </div>
       <div class="storage-note">📌 Everything is stored locally and securely in your browser.</div>
     </div>
@@ -4314,35 +4890,40 @@
         <div class="ctrl-row"><span class="ctrl-icon">📥</span><span class="ctrl-label">Restore from ZIP Backup</span><button class="ctrl-btn" id="importBackupBtn">Import</button></div>
         <input type="file" id="importBackupInput" accept=".zip" style="display:none;">
       </div>
-      <div class="storage-note" style="margin:4px 0 0;">📦 Exports a real .zip with your actual files inside — usable even outside NebulaCloud.</div>
+      <div class="storage-note" style="margin:4px 0 0;">📦 Exports a real .zip with your actual files inside.</div>
     </div>
     <div class="settings-section"><div class="settings-section-title"><span class="title-icon">🩺</span> Diagnostics</div>
       <div class="account-controls"><div class="ctrl-row"><span class="ctrl-icon">🔍</span><span class="ctrl-label">Check for missing or corrupted files</span><button class="ctrl-btn" id="diagnosticsBtn">Scan</button></div></div>
     </div>
     <div class="settings-section"><div class="settings-section-title"><span class="title-icon">🎨</span> Themes</div>
-      <div class="themes-grid">
+      <div class="premium-toggle-row">
+        <span class="premium-toggle-label">Show Premium Themes</span>
+        <div class="toggle-switch active" id="premiumToggle"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="themes-grid" id="themesGrid">
         <div class="theme-option" data-theme="dark"><span class="theme-swatch" style="background:linear-gradient(135deg,#667eea,#764ba2)"></span><span class="theme-name">Dark Nebula</span></div>
         <div class="theme-option" data-theme="light"><span class="theme-swatch" style="background:linear-gradient(135deg,#667eea,#764ba2)"></span><span class="theme-name">Light Aurora</span></div>
         <div class="theme-option" data-theme="ocean"><span class="theme-swatch" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)"></span><span class="theme-name">Azure Abyss</span></div>
         <div class="theme-option" data-theme="sunset"><span class="theme-swatch" style="background:linear-gradient(135deg,#fb923c,#ec4899)"></span><span class="theme-name">Crimson Horizon</span></div>
         <div class="theme-option" data-theme="nord"><span class="theme-swatch" style="background:linear-gradient(135deg,#5e81ac,#88c0d0)"></span><span class="theme-name">Nordic Frost</span></div>
         <div class="theme-option" data-theme="dracula"><span class="theme-swatch" style="background:linear-gradient(135deg,#bd93f9,#ff79c6)"></span><span class="theme-name">Dracula Noir</span></div>
-        <div class="theme-option" data-theme="midnightgold"><span class="theme-swatch" style="background:linear-gradient(135deg,#f5d76e,#b8860b)"></span><span class="theme-name">Midnight Gold</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="velvetrose"><span class="theme-swatch" style="background:linear-gradient(135deg,#ff6fb3,#a855f7)"></span><span class="theme-name">Velvet Rose</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="emeraldnoir"><span class="theme-swatch" style="background:linear-gradient(135deg,#10b981,#059669)"></span><span class="theme-name">Emerald Noir</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="platinum"><span class="theme-swatch" style="background:linear-gradient(135deg,#64748b,#334155)"></span><span class="theme-name">Platinum Frost</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="crimsonember"><span class="theme-swatch" style="background:linear-gradient(135deg,#ef4444,#f97316)"></span><span class="theme-name">Crimson Ember</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="sapphireroyale"><span class="theme-swatch" style="background:linear-gradient(135deg,#3b82f6,#1e40af)"></span><span class="theme-name">Sapphire Royale</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="obsidianchrome"><span class="theme-swatch" style="background:linear-gradient(135deg,#94a3b8,#475569)"></span><span class="theme-name">Obsidian Chrome</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="auroraborealis"><span class="theme-swatch" style="background:linear-gradient(135deg,#00d4ff,#7b2fbe)"></span><span class="theme-name">Aurora Borealis</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="cosmiclatte"><span class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#ec4899)"></span><span class="theme-name">Cosmic Latte</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="forestwhisper"><span class="theme-swatch" style="background:linear-gradient(135deg,#34d399,#059669)"></span><span class="theme-name">Forest Whisper</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="rosegold"><span class="theme-swatch" style="background:linear-gradient(135deg,#f472b6,#f97316)"></span><span class="theme-name">Rose Gold</span><span class="premium-badge">★</span></div>
-        <div class="theme-option" data-theme="nebularose"><span class="theme-swatch" style="background:linear-gradient(135deg,#c084fc,#f472b6)"></span><span class="theme-name">Nebula Rose</span><span class="premium-badge">★</span></div>
+        <!-- Premium themes (hidden by default, shown with toggle) -->
+        <div class="theme-option premium" data-theme="midnightgold"><span class="theme-swatch" style="background:linear-gradient(135deg,#f5d76e,#b8860b)"></span><span class="theme-name">Midnight Gold</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="velvetrose"><span class="theme-swatch" style="background:linear-gradient(135deg,#ff6fb3,#a855f7)"></span><span class="theme-name">Velvet Rose</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="emeraldnoir"><span class="theme-swatch" style="background:linear-gradient(135deg,#10b981,#059669)"></span><span class="theme-name">Emerald Noir</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="platinum"><span class="theme-swatch" style="background:linear-gradient(135deg,#64748b,#334155)"></span><span class="theme-name">Platinum Frost</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="crimsonember"><span class="theme-swatch" style="background:linear-gradient(135deg,#ef4444,#f97316)"></span><span class="theme-name">Crimson Ember</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="sapphireroyale"><span class="theme-swatch" style="background:linear-gradient(135deg,#3b82f6,#1e40af)"></span><span class="theme-name">Sapphire Royale</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="obsidianchrome"><span class="theme-swatch" style="background:linear-gradient(135deg,#94a3b8,#475569)"></span><span class="theme-name">Obsidian Chrome</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="auroraborealis"><span class="theme-swatch" style="background:linear-gradient(135deg,#00d4ff,#7b2fbe)"></span><span class="theme-name">Aurora Borealis</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="cosmiclatte"><span class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#ec4899)"></span><span class="theme-name">Cosmic Latte</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="forestwhisper"><span class="theme-swatch" style="background:linear-gradient(135deg,#34d399,#059669)"></span><span class="theme-name">Forest Whisper</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="rosegold"><span class="theme-swatch" style="background:linear-gradient(135deg,#f472b6,#f97316)"></span><span class="theme-name">Rose Gold</span><span class="premium-badge">★</span></div>
+        <div class="theme-option premium" data-theme="nebularose"><span class="theme-swatch" style="background:linear-gradient(135deg,#c084fc,#f472b6)"></span><span class="theme-name">Nebula Rose</span><span class="premium-badge">★</span></div>
       </div>
-      <div class="solarized-row" data-theme="solarized"><span class="swatch"></span><span class="solar-icon">🌤️</span><span style="flex:1;">Solarized Dusk</span><span style="font-size:.6rem;opacity:.5;">✦</span></div>
+      <div class="solarized-row" data-theme="solarized"><span class="swatch"></span><span class="solar-icon">🌤️</span><span style="flex:1;">Solarized Dusk</span><span style="font-size:.55rem;opacity:.5;">✦</span></div>
     </div>
-    <div class="settings-section" style="margin-bottom:4px;"><div class="settings-section-title"><span class="title-icon">⚠️</span> Danger Zone</div>
+    <div class="settings-section" style="margin-bottom:2px;"><div class="settings-section-title"><span class="title-icon">⚠️</span> Danger Zone</div>
       <div class="danger-zone"><button class="danger-btn" id="clearAllFilesBtn">🗑️ Clear Cache (Delete All Files)</button></div>
     </div>
     <div class="settings-close-row"><button id="closeSettingsBtn">Close</button></div>
@@ -4392,7 +4973,7 @@
   <div class="move-modal" id="moveModal"><div class="move-card"><div class="move-card-header"><div class="move-card-icon">📁</div><h3 id="moveModalTitle">Move File</h3></div><div class="sub" id="moveModalSub">Select destination</div><div class="move-search-wrap"><span class="search-icon">🔍</span><input type="text" id="moveFolderSearch" class="move-search-input" placeholder="Search folders..."><button class="clear-search-btn" id="clearMoveSearch" aria-label="Clear search">✕</button></div><div class="folder-list" id="folderList"></div><button class="guest-btn" id="cancelMoveBtn">Cancel</button></div></div>
 
   <!-- ─── MEDIA PLAYER ─── -->
-  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">&times;</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork"><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><span class="quality-selector-wrap" id="qualitySelectorWrap"><button class="quality-gear-btn" id="qualityGearBtn" title="Playback info">⚙️<span class="gear-badge" id="qualityBadge">Auto</span></button><div class="quality-dropdown" id="qualityDropdown"></div></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;">▶️ YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s">⏪<span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous">⏮</button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause">▶</button><button id="mediaNextBtn" title="Next">⏭</button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s">⏩<span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn">🔊</span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.05" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed">1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">🔁</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Immersive Fullscreen">⛶</button><button id="mediaTrueFullscreenBtn" class="fullscreen-btn true-fullscreen-btn" title="True Fullscreen">⤢</button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More">⋯</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem">⬇️ Download file</div><div class="item" id="mediaMinimizeItem">🗕 Minimize player</div><div class="item" id="mediaPipItem">⛶ Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
+  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork"><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><span class="quality-selector-wrap" id="qualitySelectorWrap"><button class="quality-gear-btn" id="qualityGearBtn" title="Playback info">⚙️<span class="gear-badge" id="qualityBadge">Auto</span></button><div class="quality-dropdown" id="qualityDropdown"></div></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;">▶️ YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s">⏪<span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous"><span class="btn-label">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause"><span class="btn-label">Play</span></button><button id="mediaNextBtn" title="Next"><span class="btn-label">Next</span></button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s">⏩<span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn">🔊</span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed"><span class="btn-label">Speed</span> 1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">↻</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Immersive Fullscreen"><span class="btn-label">⛶</span> Full</button><button id="cinemaBtn" class="cinema-btn" title="Cinema Mode"><span class="btn-icon">⊞</span><span class="btn-label">Cinema</span></button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More"><span class="btn-label">⋯</span> More</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon">⬇</span> Download</div><div class="item" id="mediaMinimizeItem"><span class="item-icon">🗕</span> Minimize</div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
 
   <!-- ─── MINI PLAYER ─── -->
   <div class="mini-player-bar" id="miniPlayerBar">
@@ -4406,14 +4987,16 @@
         <button id="miniPrevBtn" title="Previous">⏮</button>
         <button class="mini-play-btn" id="miniPlayBtn" title="Play / Pause">▶</button>
         <button id="miniNextBtn" title="Next">⏭</button>
-        <button id="miniRepeatBtn" class="mini-repeat-btn" title="Repeat: Off">🔁</button>
+        <button id="miniRepeatBtn" class="mini-repeat-btn" title="Repeat: Off"><span class="rep-icon">↻</span><span class="rep-label">Off</span></button>
       </div>
       <div class="mini-player-extra">
-        <span class="vol-icon" id="miniMuteBtn">🔊</span>
-        <input type="range" id="miniVolumeBar" min="0" max="1" step="0.05" value="0.8">
-        <span class="vol-pct mini-vol-pct" id="miniVolumePct">80%</span>
+        <div class="mini-volume" id="miniVolume" title="Scroll to change volume">
+          <span class="vol-icon" id="miniMuteBtn">🔊</span>
+          <input type="range" id="miniVolumeBar" min="0" max="1" step="0.01" value="0.8">
+          <span class="vol-pct mini-vol-pct" id="miniVolumePct">80%</span>
+        </div>
         <button class="mini-expand-btn" id="miniExpandBtn" title="Show full player">⤢</button>
-        <button class="mini-close-btn" id="miniCloseBtn" title="Stop">&times;</button>
+        <button class="mini-close-btn" id="miniCloseBtn" title="Stop">✕</button>
       </div>
     </div>
   </div>
@@ -4422,10 +5005,10 @@
   <div class="global-drop-overlay" id="globalDropOverlay"><div class="global-drop-overlay-inner"><div class="global-drop-icon">📥</div><div>Drop anywhere to upload</div></div></div>
 
   <!-- ─── FILE VIEWER ─── -->
-  <div class="file-viewer-modal" id="fileViewerModal"><div class="file-viewer-content"><div class="file-viewer-header"><div class="file-viewer-title" id="fileViewerTitle">file.txt</div><div class="file-viewer-actions"><button id="fileViewerDownloadBtn" title="Download">⬇️</button><button id="fileViewerCloseBtn" title="Close">&times;</button></div></div><div class="file-viewer-body" id="fileViewerBody"></div></div></div>
+  <div class="file-viewer-modal" id="fileViewerModal"><div class="file-viewer-content"><div class="file-viewer-header"><div class="file-viewer-title" id="fileViewerTitle">file.txt</div><div class="file-viewer-actions"><button id="fileViewerDownloadBtn" title="Download">⬇️</button><button id="fileViewerCloseBtn" title="Close">✕</button></div></div><div class="file-viewer-body" id="fileViewerBody"></div></div></div>
 
   <!-- ─── IMAGE LIGHTBOX ─── -->
-  <div class="image-lightbox" id="imageLightbox"><button class="close-lightbox" id="closeLightbox">&times;</button><img id="lightboxImage" src="" alt="Preview"></div>
+  <div class="image-lightbox" id="imageLightbox"><button class="close-lightbox" id="closeLightbox">✕</button><img id="lightboxImage" src="" alt="Preview"></div>
 
   <!-- ─── MAIN APP ─── -->
   <div id="mainApp" style="display:none">
@@ -4433,9 +5016,10 @@
       <div class="logo">☁️ <span>NebulaCloud</span> <span class="beta-badge">BETA</span></div>
       <div class="nav-tabs" id="navTabsContainer">
         <div class="nav-tab-wrapper">
-          <button class="nav-tab active" data-tab="files">📁 Files</button>
-          <button class="nav-tab" data-tab="history">📜 History</button>
-          <button class="nav-tab" data-tab="trash">🗑️ Trash</button>
+          <button class="nav-tab active" data-tab="files"><span class="tab-icon">📁</span> Files</button>
+          <button class="nav-tab" data-tab="favorites"><span class="tab-icon">⭐</span> Favorites</button>
+          <button class="nav-tab" data-tab="history"><span class="tab-icon">📜</span> History</button>
+          <button class="nav-tab" data-tab="trash"><span class="tab-icon">🗑️</span> Trash</button>
           <div class="tab-slider" id="tabSlider"></div>
         </div>
       </div>
@@ -4449,7 +5033,11 @@
     <div class="container">
       <div id="filesTab" class="tab-content">
         <div class="breadcrumb-wrap">
-          <button class="back-btn" id="backBtn">←</button>
+          <div class="nav-controls">
+            <button class="nav-ctrl-btn" id="backBtn" title="Go back">←</button>
+            <button class="nav-ctrl-btn" id="forwardBtn" title="Go forward">→</button>
+            <button class="nav-ctrl-btn" id="refreshBtn" title="Refresh current folder">⟳</button>
+          </div>
           <div class="breadcrumb" id="breadcrumb"></div>
           <button class="new-folder-btn" id="newFolderBtn">📁 <span class="nf-plus">+</span> New Folder</button>
         </div>
@@ -4457,10 +5045,24 @@
           <div class="toolbar-group"><div class="dropdown"><button class="toolbar-btn" id="viewBtn">◼️ View: Medium Grid <span class="badge">▼</span></button><div class="dropdown-menu" id="viewMenu"><div class="item active" data-view="grid-medium"><span class="icon-chip">◼️</span> Medium Grid <span class="check">✓</span></div><div class="item" data-view="grid-small"><span class="icon-chip">🔹</span> Small Grid <span class="check">✓</span></div><div class="item" data-view="grid-large"><span class="icon-chip">⬛</span> Large Grid <span class="check">✓</span></div><div class="item" data-view="gallery"><span class="icon-chip">🖼️</span> Gallery <span class="check">✓</span></div><div class="item" data-view="list"><span class="icon-chip">📋</span> List <span class="check">✓</span></div><div class="item" data-view="compact"><span class="icon-chip">☰</span> Compact <span class="check">✓</span></div></div></div></div>
           <div class="toolbar-group"><div class="dropdown"><button class="toolbar-btn" id="sortBtn">📛 Sort: Name <span class="badge">▼</span></button><div class="dropdown-menu" id="sortMenu"><div class="item active" data-sort="name"><span class="icon-chip">📛</span> Name <span class="check">✓</span></div><div class="item" data-sort="size"><span class="icon-chip">📦</span> Size <span class="check">✓</span></div><div class="item" data-sort="date"><span class="icon-chip">📅</span> Date <span class="check">✓</span></div><div class="divider"></div><div class="item active" data-order="asc"><span class="icon-chip">⬆</span> Ascending <span class="check">✓</span></div><div class="item" data-order="desc"><span class="icon-chip">⬇</span> Descending <span class="check">✓</span></div></div></div></div>
           <div class="toolbar-group"><button class="toolbar-btn" id="favoritesFilterBtn">⭐ Favorites</button></div>
-          <div style="flex:1;display:flex;justify-content:flex-end;"><input type="text" id="searchInput" placeholder="🔍 Search..." style="padding:6px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:30px;color:var(--text);font-size:.8rem;max-width:200px;"></div>
+          <div style="flex:1;display:flex;justify-content:flex-end;">
+            <div class="search-wrapper">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="22" y2="22"/></svg>
+              <input type="text" id="searchInput" placeholder="Search...">
+            </div>
+          </div>
         </div>
         <div class="upload-area" id="uploadArea"><span class="upload-icon">📤</span><span>Drop files anywhere or click to browse</span><input type="file" id="fileInput" multiple></div>
         <div class="progress-container" id="progressContainer"><div class="progress-bar" id="progressBar">0%</div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+          <button class="selection-toggle-btn" id="selectionToggleBtn">
+            <span class="toggle-dot"></span>
+            <span class="toggle-label">Select</span>
+          </button>
+          <span style="color:var(--text-secondary);font-size:0.75rem;opacity:0.5;">Toggle selection mode</span>
+        </div>
+
         <div class="select-bar" id="selectBar">
           <div class="select-group"><div class="select-toggle" id="selectAllToggle" title="Toggle all"><span class="toggle-indicator" id="selectAllIndicator">✓</span><span class="toggle-label">Select All</span></div><div class="select-count"><span class="count-num" id="selectedCountNum">0</span> selected</div></div>
           <div class="select-actions"><button class="select-action-btn" id="invertSelectionBtn">🔄 Invert</button><button class="select-action-btn" id="deselectAllBtn">✕ Deselect</button><button class="delete-selected-btn" id="deleteSelectedBtn" disabled>🗑️ Delete Selected</button></div>
@@ -4468,6 +5070,7 @@
         <div class="files-grid" id="filesGrid"></div>
       </div>
       <div id="historyTab" class="tab-content" style="display:none;"><div class="history-list" id="historyList"></div><button class="clear-history-btn" id="clearHistoryBtn">🗑️ Clear History</button></div>
+      <div id="favoritesTab" class="tab-content" style="display:none;"><div style="color:var(--text-secondary);font-size:.85rem;margin-bottom:16px;">⭐ Everything you've starred, from anywhere in your cloud. Click an item to jump straight to where it actually lives.</div><div class="files-grid" id="favoritesGrid"></div></div>
       <div id="trashTab" class="tab-content" style="display:none;"><div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;"><span style="color:var(--text-secondary);font-size:.9rem;">🗑️ Deleted files will stay here until you restore or permanently delete them.</span><button class="danger-btn" id="emptyTrashBtn" style="width:auto;padding:6px 16px;margin:0;">Empty Trash</button><button class="new-folder-btn" id="restoreAllTrashBtn" style="width:auto;padding:6px 16px;background:#4caf50;box-shadow:0 4px 16px rgba(76,175,80,0.3);">♻️ Restore All</button></div><div class="files-grid" id="trashGrid"></div></div>
     </div>
   </div>
@@ -4493,6 +5096,11 @@
       showFavoritesOnly = false;
     let folderIcons = {};
     let customIcons = {};
+    let selectionMode = false;
+
+    // ─── NAVIGATION HISTORY ───
+    let pathHistory = [];
+    let pathHistoryIndex = -1;
 
     // ─── OPFS ───
     async function initOPFS() { try { if ('storage' in navigator && navigator.storage.getDirectory) { opfsRoot = await navigator
@@ -4606,6 +5214,9 @@
       document.getElementById('authOverlay').style.display = 'none';
       document.getElementById('mainApp').style.display = 'block';
       currentPath = loadLastPath();
+      pathHistory = [currentPath];
+      pathHistoryIndex = 0;
+      updateNavButtons();
       rememberAccount(username, displayName, avatarHTML, isGuest);
       await loadFolderIcons();
       await loadCustomIcons();
@@ -4801,7 +5412,7 @@
     async function createFolder(name, parentPath = []) {
       const folderId = Date.now() + '_' + Math.random().toString(36).substr(2, 6);
       const folder = { id: folderId, name, parentPath, path: [...parentPath, name], createdAt: new Date().toISOString(),
-        userId: currentUser };
+        userId: currentUser, favorite: false };
       return new Promise((resolve, reject) => { const tx = db.transaction(['folders'], 'readwrite');
         tx.objectStore('folders').put(folder);
         tx.oncomplete = () => { addToHistory(`Created folder "${name}"`, 'create');
@@ -4989,7 +5600,13 @@
     async function toggleFavorite(fileId) { const manifest = await getManifest(fileId); if (!manifest) return;
       manifest.metadata.favorite = !manifest.metadata.favorite;
       await putFileRecord(manifest);
-      loadCurrentFolder(); }
+      if (currentTab === 'favorites') loadFavorites(); else loadCurrentFolder(); }
+
+    async function toggleFolderFavorite(folderId) {
+      const folder = await getFolderById(folderId); if (!folder) return;
+      folder.favorite = !folder.favorite;
+      await putFolder(folder);
+      if (currentTab === 'favorites') loadFavorites(); else loadCurrentFolder(); }
 
     // ─── REPAIR ───
     async function repairFile(fileId) {
@@ -5237,6 +5854,7 @@
       mp.qualityBadge = document.getElementById('qualityBadge');
       mp.qualityDropdown = document.getElementById('qualityDropdown');
       mp.qualityWrap = document.getElementById('qualitySelectorWrap');
+      mp.cinemaBtn = document.getElementById('cinemaBtn');
       mp.ready = true;
       return mp;
     }
@@ -5253,9 +5871,14 @@
       mpEls().artwork.classList.toggle('glow', !!playing && !isVideoMode);
       mpEls().eq.classList.toggle('active', !!playing);
       const { playBtn, miniPlayBtn } = mpEls();
-      playBtn.textContent = playing ? '⏸' : '▶';
+      const icon = playing ? '⏸' : '▶';
+      const label = playing ? 'Pause' : 'Play';
+      playBtn.innerHTML = `${icon}<span class="btn-label">${label}</span>`;
       playBtn.classList.toggle('is-playing', !!playing);
-      miniPlayBtn.textContent = playing ? '⏸' : '▶'; }
+      miniPlayBtn.textContent = icon;
+      const miniLabel = miniPlayBtn.querySelector('.btn-label');
+      if (miniLabel) miniLabel.textContent = label;
+    }
 
     function updateProgressFill() { const { progressBar, miniProgressBar, currentTimeEl, durationEl, miniSubtitle } = mpEls();
       const max = parseFloat(progressBar.max) || 0;
@@ -5286,17 +5909,23 @@
       repeatBtn.classList.remove('state-all', 'state-one');
       miniRepeatBtn.classList.remove('state-all', 'state-one');
       const icon = repeatBtn.querySelector('.repeat-icon');
-      const label = repeatBtn.querySelector('.repeat-label'); if (mode === 'all') { repeatBtn.classList.add('state-all');
+      const label = repeatBtn.querySelector('.repeat-label');
+      const miniIcon = miniRepeatBtn.querySelector('.rep-icon');
+      const miniLabel = miniRepeatBtn.querySelector('.rep-label');
+      if (mode === 'all') { repeatBtn.classList.add('state-all');
         miniRepeatBtn.classList.add('state-all');
-        icon.textContent = '🔁';
+        icon.textContent = '↻';
         label.textContent = 'All';
-        miniRepeatBtn.textContent = '🔁'; } else if (mode === 'one') { repeatBtn.classList.add('state-one');
+        miniIcon.textContent = '↻';
+        miniLabel.textContent = 'All'; } else if (mode === 'one') { repeatBtn.classList.add('state-one');
         miniRepeatBtn.classList.add('state-one');
-        icon.textContent = '🔂';
+        icon.textContent = '↺';
         label.textContent = 'One';
-        miniRepeatBtn.textContent = '🔂'; } else { icon.textContent = '🔁';
+        miniIcon.textContent = '↺';
+        miniLabel.textContent = 'One'; } else { icon.textContent = '↻';
         label.textContent = 'Off';
-        miniRepeatBtn.textContent = '🔁'; } }
+        miniIcon.textContent = '↻';
+        miniLabel.textContent = 'Off'; } }
 
     function extractYouTubeId(filename) { const match = filename.match(/\[([A-Za-z0-9_-]{11})\]\.[a-zA-Z0-9]+$/); return match ?
         match[1] : null; }
@@ -5317,6 +5946,17 @@
         videoBitrate = bitrateKbps; }
       updateQualityUI(sizeBytes, bitrateKbps, videoEl); }
 
+    // ─── VIDEO QUALITY CHANGER ───
+    let currentQualityLevel = 'auto';
+    const QUALITY_LEVELS = [
+      { label: 'Auto', value: 'auto', height: 0 },
+      { label: '1080p', value: '1080', height: 1080 },
+      { label: '720p', value: '720', height: 720 },
+      { label: '480p', value: '480', height: 480 },
+      { label: '360p', value: '360', height: 360 },
+      { label: '240p', value: '240', height: 240 }
+    ];
+
     function updateQualityUI(sizeBytes, bitrateKbps, videoEl) {
       const { qualityGearBtn, qualityBadge, qualityDropdown, qualityWrap } = mpEls();
       if (!qualityWrap) return;
@@ -5325,11 +5965,12 @@
       const kbps = bitrateKbps || videoBitrate || 0;
       const size = sizeBytes || mediaFile.size || 0;
       const isVideo = mediaFile.type && mediaFile.type.startsWith('video/');
-      const rows = [];
+      let rows = [];
       if (isVideo) {
         const hasRes = videoEl && videoEl.videoWidth;
+        const resText = hasRes ? `${videoEl.videoWidth}×${videoEl.videoHeight}` : 'Detecting…';
         qualityBadge.textContent = hasRes ? `${videoEl.videoHeight}p` : '…';
-        rows.push({ label: 'Resolution', value: hasRes ? `${videoEl.videoWidth}×${videoEl.videoHeight}` : 'Detecting…' });
+        rows.push({ label: 'Resolution', value: resText });
         rows.push({ label: 'Bitrate', value: kbps ? `${kbps.toLocaleString()} kbps` : 'Calculating…' });
         rows.push({ label: 'Size', value: formatBytes(size) });
         rows.push({ label: 'Format', value: mediaFile.type || 'Unknown' });
@@ -5341,10 +5982,55 @@
         rows.push({ label: 'Format', value: mediaFile.type || 'Unknown' });
         if (mediaFile.duration) rows.push({ label: 'Duration', value: formatTime(mediaFile.duration) });
       }
-      qualityDropdown.innerHTML =
-        `<div class="q-info-header">${isVideo ? '🎬 Video Info' : '🎧 Audio Info'}</div>${rows.map(r => `<div class="q-item"><span class="q-label">${r.label}</span><span class="q-sub">${escapeHtml(String(r.value))}</span></div>`).join('')}`;
+      let html = `<div class="q-info-header">${isVideo ? '🎬 Video Info' : '🎧 Audio Info'}</div>`;
+      if (isVideo && videoEl) {
+        html += `<div class="q-divider"></div><div style="padding:4px 6px;font-size:0.7rem;color:var(--text-secondary);font-weight:600;letter-spacing:0.5px;">Quality</div>`;
+        QUALITY_LEVELS.forEach(level => {
+          const active = currentQualityLevel === level.value ? 'active' : '';
+          html += `<button class="quality-level-btn ${active}" data-quality="${level.value}">
+            <span class="q-label">${level.label}</span>
+            <span class="q-check">✓</span>
+          </button>`;
+        });
+        html += `<div class="q-divider"></div>`;
+      }
+      html += rows.map(r => `<div class="q-item"><span class="q-label">${r.label}</span><span class="q-sub">${escapeHtml(String(r.value))}</span></div>`).join('');
+      qualityDropdown.innerHTML = html;
+      qualityDropdown.querySelectorAll('.quality-level-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const level = this.dataset.quality;
+          setVideoQuality(level, videoEl);
+          qualityDropdown.querySelectorAll('.quality-level-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentQualityLevel = level;
+          showToast(`🎬 Quality: ${this.querySelector('.q-label').textContent}`);
+          qualityDropdown.classList.remove('show');
+        });
+      });
       qualityGearBtn.onclick = (e) => { e.stopPropagation();
         qualityDropdown.classList.toggle('show'); };
+    }
+
+    function setVideoQuality(level, videoEl) {
+      if (!videoEl || !videoEl.src) return;
+      currentQualityLevel = level;
+      if (level === 'auto') {
+        videoEl.style.width = '';
+        videoEl.style.height = '';
+        videoEl.style.transform = 'scale(1)';
+        videoEl.style.imageRendering = 'auto';
+      } else {
+        const height = parseInt(level);
+        if (height) {
+          const currentHeight = videoEl.videoHeight || 720;
+          const scale = Math.min(1, height / currentHeight);
+          videoEl.style.transform = `scale(${scale})`;
+          videoEl.style.imageRendering = height < 480 ? 'pixelated' : 'auto';
+          videoEl.style.width = '100%';
+          videoEl.style.height = 'auto';
+        }
+      }
     }
 
     function closeMediaPlayerSmooth() { const { modal } = mpEls(); if (!modal.classList.contains('active')) return;
@@ -5362,7 +6048,7 @@
 
     function enterCustomFullscreen() { const { modal } = mpEls();
       modal.classList.add('custom-fullscreen');
-      document.getElementById('mediaFullscreenBtn').textContent = '🗗';
+      document.getElementById('mediaFullscreenBtn').textContent = '⛶';
       document.getElementById('mediaFullscreenBtn').title = 'Exit fullscreen';
       resetFullscreenIdleTimer();
       document.addEventListener('mousemove', onFullscreenActivity);
@@ -5388,19 +6074,20 @@
           'custom-fullscreen')) { exitCustomFullscreen(); } else { enterCustomFullscreen(); } };
 
     function isNativeFullscreenActive() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
-    document.getElementById('mediaTrueFullscreenBtn').onclick = () => { if (!mediaPlayer || !isVideoMode) return; if (
+    document.getElementById('cinemaBtn').onclick = () => { if (!mediaPlayer || !isVideoMode) return; if (
         isNativeFullscreenActive()) { const exit = document.exitFullscreen || document.webkitExitFullscreen; if (exit) exit
           .call(document); return; } if (mediaPlayer.webkitEnterFullscreen) { mediaPlayer.webkitEnterFullscreen(); return; }
       const req = mediaPlayer.requestFullscreen || mediaPlayer.webkitRequestFullscreen || mediaPlayer.msRequestFullscreen; if (
         req) req.call(mediaPlayer); else showToast(
-          'True fullscreen isn\'t supported here — try the ⛶ immersive mode instead'); };
+          'Cinema Mode isn\'t supported here — try the immersive fullscreen mode instead'); };
 
-    function updateTrueFullscreenBtn() { const btn = document.getElementById('mediaTrueFullscreenBtn'); if (!btn) return; const
-        active = isNativeFullscreenActive();
-      btn.textContent = active ? '⤡' : '⤢';
-      btn.title = active ? 'Exit True Fullscreen' : 'True Fullscreen'; }
-    document.addEventListener('fullscreenchange', updateTrueFullscreenBtn);
-    document.addEventListener('webkitfullscreenchange', updateTrueFullscreenBtn);
+    function updateCinemaBtn() { const btn = document.getElementById('cinemaBtn'); if (!btn) return; const active =
+        isNativeFullscreenActive();
+      btn.innerHTML = active ? `<span class="btn-icon">⊟</span><span class="btn-label">Exit</span>` :
+        `<span class="btn-icon">⊞</span><span class="btn-label">Cinema</span>`;
+      btn.title = active ? 'Exit Cinema Mode' : 'Cinema Mode'; }
+    document.addEventListener('fullscreenchange', updateCinemaBtn);
+    document.addEventListener('webkitfullscreenchange', updateCinemaBtn);
 
     let mediaPlaybackSpeed = 1;
     const SPEED_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
@@ -5415,7 +6102,7 @@
 
     function applyPlaybackSpeed() { const btn = document.getElementById('mediaSpeedBtn'); const display = Number.isInteger(
         mediaPlaybackSpeed) ? mediaPlaybackSpeed : mediaPlaybackSpeed;
-      btn.textContent = display + '×';
+      btn.innerHTML = `<span class="btn-label">Speed</span> ${display}×`;
       btn.classList.toggle('is-boosted', mediaPlaybackSpeed !== 1);
       btn.title = `Playback speed: ${display}×`; if (mediaPlayer) mediaPlayer.playbackRate = mediaPlaybackSpeed; }
 
@@ -5434,11 +6121,45 @@
     document.addEventListener('leavepictureinpicture', () => { mediaPipActive = false; if (mediaPlayer && !mediaPlayer.paused &&
         mediaFile) { showMediaModal(); } });
 
-    document.getElementById('mediaVolumeBar').addEventListener('wheel', function(e) { e.preventDefault(); const delta = e
-        .deltaY > 0 ? -0.05 : 0.05; let newVal = parseFloat(this.value) + delta;
-      newVal = Math.min(1, Math.max(0, newVal));
+    document.getElementById('mediaVolumeBar').addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? -0.05 : 0.05;
+      let newVal = parseFloat(this.value) + delta;
+      newVal = Math.min(1, Math.max(0, Math.round(newVal * 100) / 100));
       this.value = newVal;
-      this.dispatchEvent(new Event('input')); });
+      this.dispatchEvent(new Event('input'));
+    });
+
+    function setupVolumeStepping() {
+      const volBar = document.getElementById('mediaVolumeBar');
+      if (volBar) {
+        volBar.step = '0.01';
+        volBar.addEventListener('input', function() {
+          const val = Math.round(parseFloat(this.value) * 100) / 100;
+          this.value = val;
+          updateVolumeFill();
+          if (mediaPlayer) mediaPlayer.volume = val;
+          const icon = val === 0 ? '🔇' : '🔊';
+          document.getElementById('mediaMuteBtn').textContent = icon;
+          document.getElementById('miniMuteBtn').textContent = icon;
+        });
+      }
+      const miniVol = document.getElementById('miniVolumeBar');
+      if (miniVol) {
+        miniVol.step = '0.01';
+        miniVol.addEventListener('input', function() {
+          const val = Math.round(parseFloat(this.value) * 100) / 100;
+          this.value = val;
+          document.getElementById('mediaVolumeBar').value = val;
+          updateVolumeFill();
+          if (mediaPlayer) mediaPlayer.volume = val;
+          const icon = val === 0 ? '🔇' : '🔊';
+          document.getElementById('mediaMuteBtn').textContent = icon;
+          document.getElementById('miniMuteBtn').textContent = icon;
+        });
+      }
+    }
+    setupVolumeStepping();
 
     function loadMediaTrack(index) {
       if (!mediaQueue.length) return;
@@ -5453,7 +6174,7 @@
           'This file type is not playable'); return; } if (mpEls().pipItem) mpEls().pipItem.style.display = isVideo ?
         'flex' : 'none';
       isVideoMode = isVideo;
-      document.getElementById('mediaTrueFullscreenBtn').style.display = isVideo ? 'flex' : 'none';
+      document.getElementById('cinemaBtn').style.display = isVideo ? 'flex' : 'none';
       title.textContent = isVideo ? ('▶️ ' + file.name) : '🎵 Now Playing';
       trackEl.textContent = file.name;
       artistEl.textContent = isVideo ? 'Video File' : 'Audio Track';
@@ -5475,7 +6196,7 @@
         artwork.innerHTML =
           `<div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading active" id="mediaLoading"><div class="spinner"></div></div>`; }
       mp.loading = document.getElementById('mediaLoading');
-      playBtn.textContent = '▶';
+      playBtn.innerHTML = '▶<span class="btn-label">Play</span>';
       mpEls().miniPlayBtn.textContent = '▶';
       playBtn.disabled = true;
       progressBar.value = 0;
@@ -5623,7 +6344,7 @@
       content.classList.remove('video-mode-content');
       artwork.innerHTML =
         `<div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div>`;
-      if (playBtn) playBtn.textContent = '▶';
+      if (playBtn) { playBtn.innerHTML = '▶<span class="btn-label">Play</span>'; }
       const qWrap = document.getElementById('qualitySelectorWrap'); if (qWrap) qWrap.style.display = 'none'; }
     document.getElementById('mediaPlayerClose').onclick = minimizeMediaPlayer;
     document.getElementById('mediaPlayerModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
@@ -5658,6 +6379,34 @@
     document.getElementById('miniExpandBtn').onclick = () => { if (mediaPlayer && mediaFile) { showMediaModal(); } };
     document.getElementById('miniTrackInfo').onclick = () => { if (mediaPlayer && mediaFile) { showMediaModal(); } };
     document.getElementById('miniCloseBtn').onclick = closeMediaPlayer;
+
+    // Scroll to change volume on the mini player volume control
+    (function setupMiniVolumeWheel() {
+      const zone = document.getElementById('miniVolume');
+      const miniVol = document.getElementById('miniVolumeBar');
+      if (!zone || !miniVol) return;
+      zone.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.05 : 0.05;
+        let newVal = parseFloat(miniVol.value) + delta;
+        newVal = Math.min(1, Math.max(0, Math.round(newVal * 100) / 100));
+        miniVol.value = newVal;
+        miniVol.dispatchEvent(new Event('input'));
+      }, { passive: false });
+    })();
+
+    // Click pop animation for mini player buttons (does not change their appearance)
+    (function setupMiniBtnPop() {
+      const btns = document.querySelectorAll('.mini-player-controls button, .mini-expand-btn, .mini-close-btn, #miniMuteBtn');
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          btn.classList.remove('btn-pop');
+          void btn.offsetWidth; // reflow so the animation can replay
+          btn.classList.add('btn-pop');
+        });
+        btn.addEventListener('animationend', () => btn.classList.remove('btn-pop'));
+      });
+    })();
     document.addEventListener('keydown', (e) => { const modal = document.getElementById('mediaPlayerModal'); if (!modal
         .classList.contains('active')) return; const tag = (e.target.tagName || '').toLowerCase(); if (tag === 'input' ||
         tag === 'textarea') return; if (e.code === 'Escape') { if (modal.classList.contains('custom-fullscreen'))
@@ -6080,6 +6829,49 @@
       void grid.offsetWidth;
       grid.style.animation = 'fadeSlide 0.4s var(--transition) forwards'; }
 
+    function updateNavButtons() {
+      const backBtn = document.getElementById('backBtn');
+      const forwardBtn = document.getElementById('forwardBtn');
+      if (backBtn) backBtn.disabled = (pathHistoryIndex <= 0);
+      if (forwardBtn) forwardBtn.disabled = (pathHistoryIndex >= pathHistory.length - 1);
+    }
+
+    window.navigateTo = async (path, isHistoryNav = false) => {
+      if (!isHistoryNav) {
+        pathHistory = pathHistory.slice(0, pathHistoryIndex + 1);
+        pathHistory.push(path);
+        pathHistoryIndex = pathHistory.length - 1;
+      } else {
+        currentPath = path;
+      }
+      currentPath = path;
+      saveLastPath();
+      await loadCurrentFolder();
+      updateNavButtons();
+    };
+
+    document.getElementById('backBtn').onclick = () => {
+      if (pathHistoryIndex > 0) {
+        pathHistoryIndex--;
+        navigateTo(pathHistory[pathHistoryIndex], true);
+      }
+    };
+
+    document.getElementById('forwardBtn').onclick = () => {
+      if (pathHistoryIndex < pathHistory.length - 1) {
+        pathHistoryIndex++;
+        navigateTo(pathHistory[pathHistoryIndex], true);
+      }
+    };
+
+    document.getElementById('refreshBtn').onclick = async () => {
+      const btn = document.getElementById('refreshBtn');
+      btn.classList.add('spinning');
+      await loadCurrentFolder();
+      setTimeout(() => btn.classList.remove('spinning'), 600);
+      showToast('🔄 Refreshed');
+    };
+
     async function loadCurrentFolder() {
       const folders = await getFoldersInPath(currentPath);
       const files = await getFilesInPath(currentPath);
@@ -6092,36 +6884,63 @@
       updateInfoPanel();
       updateSelectBar();
       animateFolderTransition();
+      updateSelectionModeUI();
     }
 
-    function updateBreadcrumb() { const breadcrumb = document.getElementById('breadcrumb'); let html =
-        `<span class="breadcrumb-item" data-path="[]">🏠 Root</span>`;
+    function updateBreadcrumb() {
+      const breadcrumb = document.getElementById('breadcrumb');
+      let html = `<span class="breadcrumb-item" data-path="[]">🏠 Root</span>`;
       currentPath.forEach((p, i) => { html += `<span class="breadcrumb-sep">›</span>`; const path = currentPath.slice(0, i +
           1);
         html += `<span class="breadcrumb-item" data-path='${JSON.stringify(path)}'>${escapeHtml(p)}</span>`; });
       breadcrumb.innerHTML = html;
       document.querySelectorAll('.breadcrumb-item[data-path]').forEach(el => { el.onclick = function() { const path = JSON
             .parse(this.dataset.path);
-          navigateTo(path); }; }); }
-
-    window.navigateTo = async (path) => { currentPath = path;
-      saveLastPath();
-      await loadCurrentFolder(); };
+          navigateTo(path); }; });
+    }
 
     function saveLastPath() { if (currentUser) localStorage.setItem(`nebula_lastpath_${currentUser}`, JSON.stringify(
         currentPath)); }
 
     function loadLastPath() { try { const saved = localStorage.getItem(`nebula_lastpath_${currentUser}`); return saved ? JSON
           .parse(saved) : []; } catch (e) { return []; } }
-    document.getElementById('backBtn').onclick = () => { if (currentPath.length > 0) { const newPath = currentPath.slice(0,
-          -1);
-        navigateTo(newPath); } };
 
     async function createNewFolder() { const name = prompt('Enter folder name:'); if (name && name.trim()) { await createFolder(
           name.trim(), currentPath);
         await loadCurrentFolder();
         showToast(`📁 Folder "${name}" created`); } }
     document.getElementById('newFolderBtn').onclick = createNewFolder;
+
+    // ─── SELECTION MODE ───
+    const selectionToggle = document.getElementById('selectionToggleBtn');
+
+    function updateSelectionModeUI() {
+      const grid = document.getElementById('filesGrid');
+      if (selectionMode) {
+        grid.classList.add('selection-mode-active');
+        selectionToggle.classList.add('active');
+        if (selectedItems.size > 0) {
+          document.getElementById('selectBar').classList.add('active');
+        }
+      } else {
+        grid.classList.remove('selection-mode-active');
+        selectionToggle.classList.remove('active');
+        document.getElementById('selectBar').classList.remove('active');
+        selectedItems.clear();
+        document.querySelectorAll('.cb').forEach(cb => cb.checked = false);
+        updateSelectBar();
+      }
+    }
+
+    selectionToggle.addEventListener('click', function() {
+      selectionMode = !selectionMode;
+      updateSelectionModeUI();
+      if (selectionMode) {
+        showToast('✏️ Selection mode enabled');
+      } else {
+        showToast('✏️ Selection mode disabled');
+      }
+    });
 
     // ─── RENDER ITEMS ───
     function applySortAndRender() {
@@ -6137,10 +6956,11 @@
       const files = items.filter(i => !i.isFolder);
       renderItems(folders, files);
       updateSelectBar();
+      updateSelectionModeUI();
     }
 
     function renderItems(folders, files, opts = {}) {
-      const grid = document.getElementById('filesGrid');
+      const grid = document.getElementById(opts.targetGrid || 'filesGrid');
       grid.className = 'files-grid'; if (currentView === 'grid-small') grid.classList.add('view-small'); else if (currentView ===
         'grid-large') grid.classList.add('view-large'); else if (currentView === 'gallery') grid.classList.add(
         'view-gallery'); else if (currentView === 'list') grid.classList.add('list-view'); else if (currentView ===
@@ -6163,6 +6983,7 @@
             icon = '📁';
           }
         }
+        const isFolderFav = folder.favorite || false;
         const pathBadge = opts.showPath ?
           `<div class="item-path-badge">📍 ${folder.parentPath && folder.parentPath.length ? escapeHtml(folder.parentPath.join(' / ')) : 'Root'}</div>` :
           '';
@@ -6175,6 +6996,7 @@
             ${pathBadge}
             <div class="folder-size">${size}</div>
             <div class="card-actions">
+              <button class="favorite-btn ${isFolderFav ? 'active' : ''}" data-id="${folder.id}" data-type="folder" data-action="favorite" title="Toggle favorite">⭐</button>
               <button class="action-btn rename" data-id="${folder.id}" data-action="rename" data-type="folder"><span class="btn-icon">✏️</span><span class="btn-label">Rename</span></button>
               <button class="action-btn move" data-id="${folder.id}" data-action="move" data-type="folder"><span class="btn-icon">📂</span><span class="btn-label">Move</span></button>
               <button class="action-btn delete" data-id="${folder.id}" data-action="delete" data-type="folder"><span class="btn-icon">🗑️</span><span class="btn-label">Delete</span></button>
@@ -6198,42 +7020,74 @@
             ${pathBadge}
             <div class="file-size">${file.sizeFormatted}</div>
             <div class="card-actions">
-              <button class="action-btn fav-btn ${isFavorite ? 'active' : ''}" data-id="${id}" data-action="favorite" data-type="file" title="Toggle favorite"><span class="btn-icon">⭐</span><span class="btn-label">${isFavorite ? '★' : '☆'}</span></button>
+              <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-id="${id}" data-type="file" data-action="favorite" title="Toggle favorite">⭐</button>
               <button class="action-btn preview" data-id="${id}" data-action="preview" data-type="file"><span class="btn-icon">👁️</span><span class="btn-label">View</span></button>
               <button class="action-btn download" data-id="${id}" data-action="download" data-type="file"><span class="btn-icon">⬇️</span><span class="btn-label">Save</span></button>
-              <button class="action-btn rename" data-id="${id}" data-action="rename" data-type="file"><span class="btn-icon">✏️</span><span class="btn-label">Rename</span></button>
-              <button class="action-btn move" data-id="${id}" data-action="move" data-type="file"><span class="btn-icon">📁</span><span class="btn-label">Move</span></button>
-              <button class="action-btn delete" data-id="${id}" data-action="delete" data-type="file"><span class="btn-icon">🗑️</span><span class="btn-label">Delete</span></button>
-              ${dataMissing ? `<button class="action-btn repair" data-id="${id}" data-action="repair" data-type="file"><span class="btn-icon">🔧</span><span class="btn-label">Repair</span></button>` : ''}
+              <div class="card-more-wrap">
+                <button class="action-btn more-card-btn" data-card-more="${id}" title="More options"><span class="btn-icon">⋯</span><span class="btn-label">More</span></button>
+                <div class="card-more-dropdown" id="cardMore_${id}">
+                  <button class="action-btn rename" data-id="${id}" data-action="rename" data-type="file"><span class="btn-icon">✏️</span> Rename</button>
+                  <button class="action-btn move" data-id="${id}" data-action="move" data-type="file"><span class="btn-icon">📁</span> Move</button>
+                  ${dataMissing ? `<button class="action-btn repair" data-id="${id}" data-action="repair" data-type="file"><span class="btn-icon">🔧</span> Repair</button>` : ''}
+                  <button class="action-btn delete" data-id="${id}" data-action="delete" data-type="file"><span class="btn-icon">🗑️</span> Delete</button>
+                </div>
+              </div>
             </div>
           </div>
         `;
       }
       grid.innerHTML = html;
 
+      // ─── EVENT HANDLERS ───
       grid.querySelectorAll('.folder-card').forEach(card => { card.addEventListener('click', function(e) { if (e.target
               .closest('.cb') || e.target.closest('.action-btn') || e.target.closest('.favorite-btn') || e.target
-              .closest('.folder-icon-badge')) return; const path = JSON.parse(this.dataset.path);
+              .closest('.folder-icon-badge') || (selectionMode && e.target.closest('.cb'))) return; const path = JSON.parse(
+              this.dataset.path);
           clearSearch();
+          if (opts.showPath && currentTab !== 'files') switchTab('files');
           navigateTo(path); }); });
       grid.querySelectorAll('.file-card').forEach(card => { card.addEventListener('click', function(e) { if (e.target
-              .closest('.cb') || e.target.closest('.action-btn') || e.target.closest('.favorite-btn')) return; const id =
-            this.dataset.fileId; if (id) previewFileById(id); }); });
+              .closest('.cb') || e.target.closest('.action-btn') || e.target.closest('.favorite-btn') || e.target
+              .closest('.card-more-wrap') || (selectionMode && e.target.closest('.cb'))) return; const id = this.dataset
+            .fileId; if (!id) return;
+          if (opts.showPath) {
+            const file = files.find(f => f.fileId === id);
+            if (file) {
+              clearSearch();
+              const goto = () => { navigateTo(file.folderPath || []).then(() => previewFileById(id)); };
+              if (currentTab !== 'files') { switchTab('files'); setTimeout(goto, 0); } else { goto(); }
+              return;
+            }
+          }
+          previewFileById(id); }); });
+      grid.querySelectorAll('.more-card-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const id = this.dataset.cardMore;
+          const dropdown = document.getElementById('cardMore_' + id);
+          const card = this.closest('.file-card, .folder-card');
+          const isOpen = dropdown.classList.contains('show');
+          document.querySelectorAll('.card-more-dropdown.show').forEach(d => d.classList.remove('show'));
+          document.querySelectorAll('.file-card.menu-open, .folder-card.menu-open').forEach(c => c.classList.remove('menu-open'));
+          if (!isOpen) {
+            dropdown.classList.add('show');
+            if (card) card.classList.add('menu-open');
+          }
+        });
+      });
       grid.querySelectorAll('.cb').forEach(cb => { cb.addEventListener('change', function(e) { e.stopPropagation(); const id =
             this.dataset.id; if (this.checked) { selectedItems.add(id); } else { selectedItems.delete(id); }
           updateSelectBar(); }); });
-      grid.querySelectorAll('.fav-btn').forEach(btn => { btn.addEventListener('click', async function(e) { e
-            .stopPropagation(); const id = this.dataset.id;
-          await toggleFavorite(id);
-          const isFav = this.classList.toggle('active');
-          this.querySelector('.btn-label').textContent = isFav ? '★' : '☆'; }); });
+      grid.querySelectorAll('.favorite-btn').forEach(btn => { btn.addEventListener('click', async function(e) { e
+            .stopPropagation(); const id = this.dataset.id; const type = this.dataset.type;
+          if (type === 'folder') { await toggleFolderFavorite(id); } else { await toggleFavorite(id); }
+          this.classList.toggle('active'); }); });
       grid.querySelectorAll('.action-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
           const action = this.dataset.action;
           const id = this.dataset.id;
           const isFolder = this.closest('.folder-card') !== null;
-          if (action === 'favorite') return;
           switch (action) {
             case 'preview':
               previewFileById(id);
@@ -6272,7 +7126,7 @@
       const deleteBtn = document.getElementById('deleteSelectedBtn');
       const toggle = document.getElementById('selectAllToggle');
       const indicator = document.getElementById('selectAllIndicator');
-      if (count > 0) { bar.classList.add('active');
+      if (count > 0 && selectionMode) { bar.classList.add('active');
         countEl.textContent = count;
         deleteBtn.disabled = false; } else { bar.classList.remove('active');
         deleteBtn.disabled = true; }
@@ -6364,6 +7218,10 @@
       slider.style.left = (rect.left - containerRect.left) + 'px';
       slider.style.width = rect.width + 'px'; }
 
+    let sliderTimeout = null;
+    window.addEventListener('resize', () => { clearTimeout(sliderTimeout);
+      sliderTimeout = setTimeout(() => updateTabSlider(), 100); });
+
     function switchTab(tab) { if (currentTab === tab) return;
       currentTab = tab;
       const container = document.getElementById('navTabsContainer');
@@ -6373,15 +7231,21 @@
         'active');
       updateTabSlider(activeTab);
       const filesTab = document.getElementById('filesTab');
+      const favoritesTab = document.getElementById('favoritesTab');
       const historyTab = document.getElementById('historyTab');
       const trashTab = document.getElementById('trashTab');
       filesTab.style.display = 'none';
+      favoritesTab.style.display = 'none';
       historyTab.style.display = 'none';
       trashTab.style.display = 'none'; if (tab === 'files') { filesTab.style.display = 'block';
         filesTab.classList.remove('tab-content');
         void filesTab.offsetWidth;
         filesTab.classList.add('tab-content');
-        loadCurrentFolder(); } else if (tab === 'history') { historyTab.style.display = 'block';
+        loadCurrentFolder(); } else if (tab === 'favorites') { favoritesTab.style.display = 'block';
+        favoritesTab.classList.remove('tab-content');
+        void favoritesTab.offsetWidth;
+        favoritesTab.classList.add('tab-content');
+        loadFavorites(); } else if (tab === 'history') { historyTab.style.display = 'block';
         historyTab.classList.remove('tab-content');
         void historyTab.offsetWidth;
         historyTab.classList.add('tab-content');
@@ -6391,6 +7255,22 @@
         trashTab.classList.add('tab-content');
         loadTrash(); } }
     document.querySelectorAll('.nav-tab').forEach(tab => { tab.onclick = () => switchTab(tab.dataset.tab); });
+
+    async function loadFavorites() {
+      const allFolders = await getAllFolders();
+      const allFiles = await getAllUserFiles();
+      const favFolders = allFolders.filter(f => f.favorite === true);
+      const favFiles = allFiles.filter(f => f.favorite === true);
+      const items = [...favFolders.map(f => ({ ...f, isFolder: true })), ...favFiles.map(f => ({ ...f, isFolder: false }))];
+      items.sort((a, b) => a.name.localeCompare(b.name));
+      const sortedFolders = items.filter(i => i.isFolder);
+      const sortedFiles = items.filter(i => !i.isFolder);
+      renderItems(sortedFolders, sortedFiles, {
+        targetGrid: 'favoritesGrid',
+        showPath: true,
+        emptyMessage: 'No favorites yet — tap the ⭐ on any file or folder to add it here'
+      });
+    }
 
     // ─── SETTINGS UI ───
     document.getElementById('settingsBtn').onclick = () => { updateInfoPanel();
@@ -6449,6 +7329,18 @@
         document.body.className = theme;
         localStorage.setItem('nebula_theme', theme);
         document.getElementById('settingsModal').classList.remove('active'); }; });
+
+    // ─── PREMIUM TOGGLE ───
+    const premiumToggle = document.getElementById('premiumToggle');
+    const premiumThemes = document.querySelectorAll('.theme-option.premium');
+    let showPremium = true;
+    premiumToggle.addEventListener('click', function() {
+      showPremium = !showPremium;
+      this.classList.toggle('active', showPremium);
+      premiumThemes.forEach(el => { el.style.display = showPremium ? 'flex' : 'none'; });
+    });
+    premiumToggle.classList.add('active');
+    premiumThemes.forEach(el => el.style.display = 'flex');
 
     // ─── VIEW DROPDOWN ───
     document.getElementById('viewBtn').addEventListener('click', function(e) { e.stopPropagation();
@@ -6532,8 +7424,10 @@
           currentUser[0].toUpperCase(); const displayName = currentUser.startsWith('guest') ? 'Guest' : currentUser.split(
           '@')[0];
         await activateSession(currentUser, displayName, avatar, currentUser.startsWith('guest'));
-        setTimeout(updateTabSlider, 100); }).catch(console.error); } else { Promise.all([openDB(), initOPFS()]).catch(
-        console.error); }
+        setTimeout(updateTabSlider, 100);
+        updateNavButtons();
+        updateCinemaBtn();
+      }).catch(console.error); } else { Promise.all([openDB(), initOPFS()]).catch(console.error); }
 
     window.renameFolderById = async (id) => { const folder = currentFolders.find(f => f.id === id); if (!folder) return; const
         newName = prompt('Rename folder to:', folder.name); if (newName && newName.trim() && newName.trim() !== folder
