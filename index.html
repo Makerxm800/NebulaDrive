@@ -41,19 +41,20 @@
     }
     /* ─── LIGHT THEME (FIXED) ─── */
     body.light {
-      --bg: #eef2f7;
-      --glass: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(180, 190, 210, 0.5);
-      --glass-hover: rgba(255, 255, 255, 0.9);
-      --text: #1a1a2e;
-      --text-secondary: rgba(26, 26, 46, 0.8);
-      --text-muted: rgba(26, 26, 46, 0.5);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      --glass-bg: rgba(255, 255, 255, 0.5);
-      --glass-border-light: rgba(180, 190, 210, 0.3);
+      --bg: linear-gradient(135deg, #f5f7fa 0%, #e9ecf1 100%);
+      --glass: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(102, 126, 234, 0.15);
+      --glass-hover: rgba(255, 255, 255, 0.95);
+      --text: #2c2e3a;
+      --text-secondary: rgba(44, 46, 58, 0.7);
+      --text-muted: rgba(44, 46, 58, 0.5);
+      --shadow: 0 8px 32px rgba(102, 126, 234, 0.12);
+      --glass-bg: rgba(255, 255, 255, 0.8);
+      --glass-border-light: rgba(102, 126, 234, 0.1);
+      --accent: linear-gradient(135deg, #667eea, #764ba2);
       --accent-solid: #667eea;
-      --glow-color: rgba(102, 126, 234, 0.2);
-      --card-bg: rgba(255, 255, 255, 0.5);
+      --glow-color: rgba(102, 126, 234, 0.15);
+      --card-bg: rgba(255, 255, 255, 0.75);
     }
     /* ─── OCEAN ─── */
     body.ocean {
@@ -684,14 +685,17 @@
       margin-left: 12px;
       transition: background 0.3s ease, border-color 0.3s ease;
       backdrop-filter: blur(6px);
+      overflow: hidden;
+      isolation: isolate;
     }
     .nav-tab-wrapper {
       position: relative;
       display: flex;
       gap: 2px;
+      z-index: 2;
     }
     .nav-tab {
-      padding: 6px 18px;
+      padding: 8px 18px;
       border: none;
       background: transparent;
       color: var(--text-secondary);
@@ -706,61 +710,65 @@
       z-index: 2;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 5px;
       letter-spacing: 0.2px;
+      min-width: 82px;
     }
     .nav-tab::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 30px;
-      background: var(--accent);
+      background: linear-gradient(135deg, rgba(102,126,234,0.22), rgba(118,75,162,0.28));
       opacity: 0;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: -1;
-      transform: scale(0.92);
+      transform: scale(0.9);
     }
     .nav-tab:hover:not(.active)::before {
-      opacity: 0.1;
+      opacity: 1;
       transform: scale(1);
     }
     .nav-tab:hover:not(.active) {
-      transform: translateY(-2px) scale(1.04);
+      transform: translateY(-2px);
       color: var(--text);
-      text-shadow: 0 0 20px rgba(102, 126, 234, 0.15);
     }
     .nav-tab:active:not(.active) {
-      transform: scale(0.94) translateY(0px);
-      transition-duration: 0.1s;
+      transform: scale(0.97) translateY(0px);
+      transition-duration: 0.12s;
     }
     .nav-tab.active {
       color: white;
-      transform: translateY(-2px) scale(1.02);
+      transform: translateY(-1px);
+      text-shadow: 0 0 12px rgba(255,255,255,0.2);
     }
     .nav-tab.active::before {
       opacity: 1;
       transform: scale(1);
-      box-shadow: 0 4px 24px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
     .nav-tab .tab-icon {
       font-size: 0.9rem;
       line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      opacity: 0.75;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .nav-tab.active .tab-icon {
       opacity: 1;
+      transform: scale(1.08);
     }
     .tab-slider {
       position: absolute;
-      bottom: 2px;
+      top: 4px;
+      bottom: 4px;
       left: 0;
-      height: 3px;
-      background: var(--accent-solid);
-      border-radius: 3px;
-      transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      height: auto;
+      background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9));
+      border-radius: 26px;
+      transition: left 0.42s cubic-bezier(0.22, 1, 0.36, 1), width 0.42s cubic-bezier(0.22, 1, 0.36, 1);
       z-index: 1;
-      box-shadow: 0 0 20px var(--glow-color);
+      box-shadow: 0 8px 22px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255,255,255,0.18);
     }
 
     .user-section {
@@ -2592,6 +2600,40 @@
       display: flex;
       animation: mediaSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
+    @keyframes pauseAnimationIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-15deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(0deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    @keyframes pauseAnimationOut {
+      0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(15deg);
+      }
+    }
+    @keyframes fadeOutScale {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+    }
     .media-player-modal.closing {
       animation: mediaSlideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
@@ -2715,6 +2757,27 @@
       justify-content: center;
       flex-shrink: 0;
       position: relative;
+      background: radial-gradient(circle at 30% 30%, rgba(102,126,234,0.15), transparent 60%);
+    }
+    .pause-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .pause-icon {
+      font-size: 7.2rem;
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 80px rgba(102, 126, 234, 0.4), inset 0 0 30px rgba(255,255,255,0.1);
+      animation: pauseAnimationIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 0 25px rgba(102, 126, 234, 0.9));
+      will-change: transform, opacity;
+    }
+    .pause-overlay.hiding .pause-icon {
+      animation: pauseAnimationOut 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
     .artwork-disc {
       width: 100%;
@@ -3123,44 +3186,44 @@
     .media-secondary-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content: flex-end;
+      gap: 6px;
       flex-wrap: wrap;
+      padding: 0 4px;
+      margin-top: 8px;
     }
     .media-secondary-actions {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
+      justify-content: flex-end;
+      flex: 1;
     }
     .media-secondary-actions button {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--glass-border);
       color: white;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 3px;
-      padding: 4px 8px;
-      border-radius: 20px;
-      height: 34px;
+      padding: 4px 10px;
+      border-radius: 18px;
+      height: 32px;
       width: auto;
-    }
-    .media-secondary-actions button .btn-label {
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      opacity: 0.7;
+      min-width: 32px;
     }
     .media-secondary-actions button:hover {
       background: var(--glass-hover);
-      transform: translateY(-3px) scale(1.05);
+      transform: translateY(-2px) scale(1.05);
+      border-color: rgba(102, 126, 234, 0.4);
     }
     .media-secondary-actions button:active {
-      transform: scale(0.9) translateY(1px);
+      transform: scale(0.92) translateY(0px);
       transition: transform 0.1s ease;
     }
     .speed-btn,
@@ -3179,30 +3242,31 @@
     }
 
     .repeat-btn {
-      height: 34px;
-      border-radius: 20px;
-      padding: 0 12px 0 10px;
-      gap: 5px;
-      font-size: 0.72rem !important;
+      height: 32px;
+      border-radius: 18px;
+      padding: 0 8px;
+      gap: 3px;
+      font-size: 0.7rem !important;
       font-weight: 600;
-      color: var(--accent-solid) !important;
-      border-color: rgba(102, 126, 234, 0.3) !important;
+      color: var(--text-secondary) !important;
+      border-color: var(--glass-border) !important;
       transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .repeat-btn .repeat-icon {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       line-height: 1;
     }
     .repeat-btn .repeat-label {
       letter-spacing: 0.2px;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
+      opacity: 0.7;
     }
     .repeat-btn.state-all,
     .repeat-btn.state-one {
-      background: rgba(102, 126, 234, 0.28) !important;
-      color: #cdd6fb !important;
-      border-color: rgba(102, 126, 234, 0.55) !important;
-      box-shadow: 0 3px 14px rgba(102, 126, 234, 0.3);
+      background: rgba(102, 126, 234, 0.25) !important;
+      color: #b3c3ff !important;
+      border-color: rgba(102, 126, 234, 0.4) !important;
+      box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
     }
 
     .cinema-btn {
@@ -4253,6 +4317,36 @@
         transform: scale(1) translateY(0);
       }
     }
+    @keyframes modalFadeOut {
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.94) translateY(12px);
+      }
+    }
+    @keyframes themeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes themeSlideOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+    }
     .move-card {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
       backdrop-filter: blur(32px);
@@ -4642,6 +4736,9 @@
       display: flex;
       animation: modalFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+    .settings-modal.closing {
+      animation: modalFadeOut 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
     .settings-card {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
       backdrop-filter: blur(32px);
@@ -4987,6 +5084,19 @@
     }
     .toggle-switch.active .toggle-knob {
       transform: translateX(16px);
+    }
+    .theme-option.premium {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: themeSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .theme-option.premium.hiding {
+      animation: themeSlideOut 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .premium-section {
+      animation: themeSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .premium-section.hiding {
+      animation: themeSlideOut 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
     .danger-zone {
       margin-top: 4px;
@@ -5461,6 +5571,57 @@
       .download-progress-card {
         padding: 24px 20px;
       }
+      .media-player-modal {
+        padding: 0;
+      }
+      .media-player-content {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+      }
+      .media-player-body {
+        flex-direction: column;
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+      }
+      .media-artwork {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        border-radius: 0;
+      }
+      .media-player-body.video-mode .media-artwork {
+        aspect-ratio: 16/9;
+      }
+      .media-controls {
+        padding: 10px;
+        position: sticky;
+        bottom: 0;
+        background: rgba(10, 10, 25, 0.95);
+        border-top: 1px solid var(--glass-border);
+      }
+      .media-buttons {
+        gap: 5px;
+      }
+      .media-buttons button {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        min-height: 32px;
+      }
+      .media-secondary-row {
+        margin-top: 6px;
+        justify-content: flex-end;
+      }
+      .media-secondary-actions button {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+        height: 28px;
+      }
+      .cinema-btn {
+        height: 28px !important;
+        padding: 0 4px !important;
+        font-size: 0.6rem !important;
+      }
     }
     @media (max-width: 480px) {
       .mini-player-extra input[type="range"] {
@@ -5482,6 +5643,42 @@
       }
       .action-btn .btn-icon {
         font-size: 0.6rem;
+      }
+      .media-player-body {
+        height: calc(100vh - 70px);
+      }
+      .media-artwork {
+        aspect-ratio: 1;
+      }
+      .media-player-body.video-mode .media-artwork {
+        aspect-ratio: 3/2;
+      }
+      .pause-icon {
+        font-size: 4.5rem;
+      }
+      .media-buttons {
+        gap: 4px;
+      }
+      .media-buttons button {
+        padding: 4px 6px;
+        font-size: 0.65rem;
+        min-height: 30px;
+      }
+      .media-secondary-row {
+        gap: 3px;
+      }
+      .media-secondary-actions button {
+        padding: 2px 4px;
+        font-size: 0.6rem;
+        height: 26px;
+      }
+      .media-secondary-actions button .btn-label {
+        display: none;
+      }
+      .cinema-btn {
+        height: 26px !important;
+        padding: 0 3px !important;
+        font-size: 0.55rem !important;
       }
     }
   </style>
@@ -5544,7 +5741,9 @@
     <div class="settings-section"><div class="settings-section-title"><span class="title-icon">👤</span> Account Controls</div>
       <div class="account-controls">
         <div class="ctrl-row"><span class="ctrl-icon">✏️</span><span class="ctrl-label">Rename Account</span><button class="ctrl-btn" id="renameAccountBtn">Rename</button></div>
-        <div class="ctrl-row"><span class="ctrl-icon">🔄</span><span class="ctrl-label">Switch Account</span><button class="ctrl-btn" id="switchAccountBtnSettings">Switch</button></div>
+        <div class="ctrl-row"><span class="ctrl-icon"> </span><span class="ctrl-label">Set Password</span><button class="ctrl-btn" id="setPasswordBtn">Set Password</button></div>
+        <div class="ctrl-row"><span class="ctrl-icon">📥</span><span class="ctrl-label">Download User Data</span><button class="ctrl-btn" id="downloadUserDataBtn">Download</button></div>
+        <div class="ctrl-row"><span class="ctrl-icon"> 🔄</span><span class="ctrl-label">Switch Account</span><button class="ctrl-btn" id="switchAccountBtnSettings">Switch</button></div>
         <div class="ctrl-row"><span class="ctrl-icon">🚪</span><span class="ctrl-label">Log Out</span><button class="ctrl-btn" id="logoutBtnSettings">Log Out</button></div>
       </div>
     </div>
@@ -5645,7 +5844,7 @@
   <div class="move-modal" id="moveModal"><div class="move-card"><div class="move-card-header"><div class="move-card-icon">📁</div><h3 id="moveModalTitle">Move File</h3></div><div class="sub" id="moveModalSub">Select destination</div><div class="move-search-wrap"><span class="search-icon">🔍</span><input type="text" id="moveFolderSearch" class="move-search-input" placeholder="Search folders..."><button class="clear-search-btn" id="clearMoveSearch" aria-label="Clear search">✕</button></div><div class="folder-list" id="folderList"></div><button class="guest-btn" id="cancelMoveBtn">Cancel</button></div></div>
 
   <!-- ─── MEDIA PLAYER ─── -->
-  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork"><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><span class="quality-selector-wrap" id="qualitySelectorWrap"><button class="quality-gear-btn" id="qualityGearBtn" title="Playback info">⚙️<span class="gear-badge" id="qualityBadge">Auto</span></button><div class="quality-dropdown" id="qualityDropdown"></div></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;">▶️ YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s">⏪<span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous"><span class="btn-label">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause"><span class="btn-label">Play</span></button><button id="mediaNextBtn" title="Next"><span class="btn-label">Next</span></button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s">⏩<span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn">🔊</span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed"><span class="btn-label">Speed</span> 1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">↻</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Immersive Fullscreen"><span class="btn-label">⛶</span> Full</button><button id="cinemaBtn" class="cinema-btn" title="Cinema Mode"><span class="btn-icon">⊞</span><span class="btn-label">Cinema</span></button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More"><span class="btn-label">⋯</span> More</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon">⬇</span> Download</div><div class="item" id="mediaMinimizeItem"><span class="item-icon">🗕</span> Minimize</div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
+  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork"><div class="pause-overlay" id="pauseOverlay" style="display:none;"><div class="pause-icon">⏸</div></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><span class="quality-selector-wrap" id="qualitySelectorWrap"><button class="quality-gear-btn" id="qualityGearBtn" title="Playback info">⚙️<span class="gear-badge" id="qualityBadge">Auto</span></button><div class="quality-dropdown" id="qualityDropdown"></div></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;">▶️ YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s">⏪<span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous"><span class="btn-label">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause"><span class="btn-label">Play</span></button><button id="mediaNextBtn" title="Next"><span class="btn-label">Next</span></button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s">⏩<span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn">🔊</span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed"><span class="btn-label">Speed</span> 1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">↻</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Full Screen"><span class="btn-label">⛶</span> Full</button><button id="cinemaBtn" class="cinema-btn" title="Exit Full Screen"><span class="btn-icon">⊟</span></button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More"><span class="btn-label">⋯</span> More</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon">⬇</span> Download</div><div class="item" id="mediaCutItem"><span class="item-icon">✂️</span> Cut / Trim</div><div class="item" id="mediaMinimizeItem"><span class="item-icon">🗕</span> Minimize</div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
 
   <!-- ─── MINI PLAYER ─── -->
   <div class="mini-player-bar" id="miniPlayerBar">
@@ -6545,14 +6744,21 @@
         'spinning', !!playing);
       mpEls().artwork.classList.toggle('glow', !!playing && !isVideoMode);
       mpEls().eq.classList.toggle('active', !!playing);
+      const pauseOverlay = document.getElementById('pauseOverlay');
+      if (pauseOverlay) {
+        if (!playing && !isVideoMode) {
+          pauseOverlay.style.display = 'flex';
+          pauseOverlay.classList.remove('hiding');
+        } else {
+          pauseOverlay.classList.add('hiding');
+          setTimeout(() => { if (pauseOverlay) pauseOverlay.style.display = 'none'; pauseOverlay.classList.remove('hiding'); }, 300);
+        }
+      }
       const { playBtn, miniPlayBtn } = mpEls();
       const icon = playing ? '⏸' : '▶';
-      const label = playing ? 'Pause' : 'Play';
-      playBtn.innerHTML = `${icon}<span class="btn-label">${label}</span>`;
+      playBtn.innerHTML = icon;
       playBtn.classList.toggle('is-playing', !!playing);
       miniPlayBtn.textContent = icon;
-      const miniLabel = miniPlayBtn.querySelector('.btn-label');
-      if (miniLabel) miniLabel.textContent = label;
     }
 
     function updateProgressFill() { const { progressBar, miniProgressBar, currentTimeEl, durationEl, miniSubtitle } = mpEls();
@@ -6758,8 +6964,8 @@
 
     function updateCinemaBtn() { const btn = document.getElementById('cinemaBtn'); if (!btn) return; const active =
         isNativeFullscreenActive();
-      btn.innerHTML = active ? `<span class="btn-icon">⊟</span><span class="btn-label">Exit</span>` :
-        `<span class="btn-icon">⊞</span><span class="btn-label">Cinema</span>`;
+      btn.innerHTML = active ? `<span class="btn-icon">⊟</span>` :
+        `<span class="btn-icon">⊞</span>`;
       btn.title = active ? 'Exit Cinema Mode' : 'Cinema Mode'; }
     document.addEventListener('fullscreenchange', updateCinemaBtn);
     document.addEventListener('webkitfullscreenchange', updateCinemaBtn);
@@ -6771,9 +6977,21 @@
     document.getElementById('mediaSkipFwdBtn').onclick = () => { if (!mediaPlayer) return; const dur = mediaPlayer.duration ||
         Infinity;
       mediaPlayer.currentTime = Math.min(dur, mediaPlayer.currentTime + 5); };
-    document.getElementById('mediaSpeedBtn').onclick = () => { const idx = SPEED_STEPS.indexOf(mediaPlaybackSpeed);
-      mediaPlaybackSpeed = SPEED_STEPS[(idx + 1) % SPEED_STEPS.length];
-      applyPlaybackSpeed(); };
+    document.getElementById('mediaSpeedBtn').onclick = () => {
+      const modal = document.createElement('div');
+      modal.className = 'settings-modal';
+      modal.style.cssText = 'display:flex;z-index:2000;';
+      modal.innerHTML = `<div class="settings-card" style="max-width:280px;"><div class="settings-header"><div class="gear">⚙️</div><div><h2>Playback Speed</h2></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">${SPEED_STEPS.map(s => `<button style="padding:10px;border:2px solid ${s === mediaPlaybackSpeed ? 'var(--accent-solid)' : 'rgba(102,126,234,0.2)'};border-radius:8px;background:rgba(102,126,234,0.05);cursor:pointer;transition:all 0.2s;font-weight:${s === mediaPlaybackSpeed ? 'bold' : 'normal'};color:${s === mediaPlaybackSpeed ? 'var(--accent-solid)' : 'var(--text)'}" class="speed-option" data-speed="${s}">${s}×</button>`).join('')}</div></div>`;
+      document.body.appendChild(modal);
+      modal.querySelectorAll('.speed-option').forEach(btn => {
+        btn.onclick = () => {
+          mediaPlaybackSpeed = parseFloat(btn.dataset.speed);
+          applyPlaybackSpeed();
+          modal.remove();
+        };
+      });
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+    };
 
     function applyPlaybackSpeed() { const btn = document.getElementById('mediaSpeedBtn'); const display = Number.isInteger(
         mediaPlaybackSpeed) ? mediaPlaybackSpeed : mediaPlaybackSpeed;
@@ -6871,7 +7089,7 @@
         artwork.innerHTML =
           `<div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading active" id="mediaLoading"><div class="spinner"></div></div>`; }
       mp.loading = document.getElementById('mediaLoading');
-      playBtn.innerHTML = '▶<span class="btn-label">Play</span>';
+      playBtn.innerHTML = '▶';
       mpEls().miniPlayBtn.textContent = '▶';
       playBtn.disabled = true;
       progressBar.value = 0;
@@ -6986,6 +7204,109 @@
     function formatTime(seconds) { if (isNaN(seconds)) return '0:00'; const mins = Math.floor(seconds / 60); const secs = Math
         .floor(seconds % 60); return `${mins}:${secs.toString().padStart(2, '0')}`; }
 
+    function showCutModal(startTime, endTime, file, isVideo) {
+      const modal = document.createElement('div');
+      modal.className = 'settings-modal';
+      modal.style.cssText = 'display:flex;z-index:2000;';
+      const timespan = endTime - startTime;
+      modal.innerHTML = `<div class="settings-card" style="max-width:420px;"><div class="settings-header"><div class="gear">✂️</div><div><h2>Trim ${isVideo ? 'Video' : 'Audio'}</h2><div class="subtitle">Select start and end times</div></div></div><div style="display:flex;flex-direction:column;gap:14px;"><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">Start Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutStart" min="0" max="${endTime}" step="0.1" value="${startTime}" style="flex:1;"><span id="cutStartText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(startTime)}</span></div></div><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">End Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutEnd" min="0" max="${endTime}" step="0.1" value="${endTime}" style="flex:1;"><span id="cutEndText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(endTime)}</span></div></div><div style="background:rgba(102,126,234,0.15);padding:10px;border-radius:12px;font-size:0.75rem;color:var(--text-secondary);"><strong>Duration:</strong> <span id="cutDuration">${formatTime(timespan)}</span></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="guest-btn" style="flex:1;" id="cutCancel">Cancel</button><button class="new-folder-btn" style="flex:1;background:var(--accent-solid);color:white;" id="cutConfirm">✂️ Cut & Download</button></div></div>`;
+      document.body.appendChild(modal);
+      const startInput = modal.querySelector('#cutStart');
+      const endInput = modal.querySelector('#cutEnd');
+      const startText = modal.querySelector('#cutStartText');
+      const endText = modal.querySelector('#cutEndText');
+      const durationText = modal.querySelector('#cutDuration');
+      startInput.oninput = () => {
+        const val = Math.min(parseFloat(startInput.value), parseFloat(endInput.value));
+        startInput.value = val;
+        startText.textContent = formatTime(val);
+        durationText.textContent = formatTime(parseFloat(endInput.value) - val);
+      };
+      endInput.oninput = () => {
+        const val = Math.max(parseFloat(endInput.value), parseFloat(startInput.value));
+        endInput.value = val;
+        endText.textContent = formatTime(val);
+        durationText.textContent = formatTime(val - parseFloat(startInput.value));
+      };
+      modal.querySelector('#cutCancel').onclick = () => { modal.remove(); };
+      modal.querySelector('#cutConfirm').onclick = async () => {
+        const start = parseFloat(startInput.value);
+        const end = parseFloat(endInput.value);
+        if (start >= end) { showToast('❌ Invalid time range'); return; }
+        try {
+          const data = await getFileData(file.fileId);
+          if (!data) { showToast('❌ Could not load file'); return; }
+          showToast('⏳ Processing trim...');
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const blob = new Blob([data], { type: file.type });
+          const arrayBuf = await blob.arrayBuffer();
+          const audioBuffer = await audioCtx.decodeAudioData(arrayBuf);
+          const sampleRate = audioBuffer.sampleRate;
+          const numberOfChannels = audioBuffer.numberOfChannels;
+          const startSample = Math.floor(start * sampleRate);
+          const endSample = Math.floor(end * sampleRate);
+          const trimmedBuffer = audioCtx.createBuffer(numberOfChannels, endSample - startSample, sampleRate);
+          for (let c = 0; c < numberOfChannels; c++) {
+            trimmedBuffer.getChannelData(c).set(audioBuffer.getChannelData(c).slice(startSample, endSample));
+          }
+          const offlineCtx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(numberOfChannels, trimmedBuffer.length, sampleRate);
+          const source = offlineCtx.createBufferSource();
+          source.buffer = trimmedBuffer;
+          source.connect(offlineCtx.destination);
+          source.start(0);
+          const result = await offlineCtx.startRendering();
+          const encoder = new WavEncoder(sampleRate, numberOfChannels);
+          result.audioBuffers = [];
+          for (let c = 0; c < numberOfChannels; c++) { result.audioBuffers.push(result.getChannelData(c)); }
+          const wavBlob = encodeWAV(result, sampleRate, numberOfChannels);
+          const url = URL.createObjectURL(wavBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = file.name.replace(/\.[^.]+$/, '') + '_trimmed.' + (file.type === 'audio/mpeg' ? 'mp3' : file.type.split('/')[1] || 'wav');
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast('✅ Trimmed file downloaded');
+          modal.remove();
+        } catch (err) {
+          console.error('Trim error:', err);
+          showToast('❌ Trim failed: ' + err.message);
+        }
+      };
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+    }
+
+    function encodeWAV(audioBuffer, sampleRate, channels) {
+      const length = audioBuffer.length * channels * 2 + 36;
+      const arrayBuffer = new ArrayBuffer(44 + length);
+      const view = new DataView(arrayBuffer);
+      function writeString(offset, string) {
+        for (let i = 0; i < string.length; i++) { view.setUint8(offset + i, string.charCodeAt(i)); }
+      }
+      writeString(0, 'RIFF');
+      view.setUint32(4, 36 + length, true);
+      writeString(8, 'WAVE');
+      writeString(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, channels, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2 * channels, true);
+      view.setUint16(32, channels * 2, true);
+      view.setUint16(34, 16, true);
+      writeString(36, 'data');
+      view.setUint32(40, length, true);
+      let offset = 44;
+      for (let c = 0; c < channels; c++) {
+        const channel = audioBuffer.getChannelData(c);
+        for (let i = 0; i < channel.length; i++) {
+          const sample = Math.max(-1, Math.min(1, channel[i]));
+          view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+          offset += 2;
+        }
+      }
+      return new Blob([arrayBuffer], { type: 'audio/wav' });
+    }
+
     function showMediaModal() { mpEls().modal.classList.remove('closing');
       mpEls().modal.classList.add('active');
       mpEls().miniBar.classList.remove('active'); }
@@ -7019,7 +7340,7 @@
       content.classList.remove('video-mode-content');
       artwork.innerHTML =
         `<div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon">🎵</span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div>`;
-      if (playBtn) { playBtn.innerHTML = '▶<span class="btn-label">Play</span>'; }
+      if (playBtn) { playBtn.innerHTML = '▶'; }
       const qWrap = document.getElementById('qualitySelectorWrap'); if (qWrap) qWrap.style.display = 'none'; }
     document.getElementById('mediaPlayerClose').onclick = minimizeMediaPlayer;
     document.getElementById('mediaPlayerModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
@@ -7043,6 +7364,12 @@
       document.getElementById('mediaMoreMenu').classList.toggle('show'); };
     document.getElementById('mediaDownloadItem').onclick = () => { document.getElementById('mediaMoreMenu').classList.remove(
         'show'); if (mediaFile) downloadFile(mediaFile); };
+    document.getElementById('mediaCutItem').onclick = () => { document.getElementById('mediaMoreMenu').classList.remove(
+        'show');
+      if (!mediaPlayer || !mediaFile) { showToast('⚠️ No media loaded'); return; }
+      const startTime = 0;
+      const endTime = mediaPlayer.duration || 0;
+      showCutModal(startTime, endTime, mediaFile, isVideoMode); };
     document.getElementById('mediaMinimizeItem').onclick = () => { document.getElementById('mediaMoreMenu').classList.remove(
         'show');
       minimizeMediaPlayer(); };
@@ -7147,53 +7474,75 @@
 
     // ─── BACKUP ─── with download progress
     async function backupAllFiles() {
-      if (typeof JSZip === 'undefined') { showToast('❌ Backup library not loaded. Please check your internet connection.');
-        return; }
+      if (typeof JSZip === 'undefined') {
+        showToast('❌ Backup library not loaded. Please check your internet connection.');
+        return;
+      }
+
       const files = await getAllUserFiles();
-      if (!files.length) { showToast('No files to backup'); return; }
+      if (!files.length) {
+        showToast('No files to backup');
+        return;
+      }
+
       const modal = document.getElementById('downloadProgressModal');
       const fill = document.getElementById('downloadProgressFill');
       const text = document.getElementById('downloadProgressText');
       const speedText = document.getElementById('downloadSpeedText');
       const title = document.getElementById('downloadProgressTitle');
       const sub = document.getElementById('downloadProgressSub');
+      const totalBytes = files.reduce((sum, file) => sum + (Number(file.size) || 0), 0);
+      const totalFiles = files.length;
+
       title.textContent = '📦 Downloading ZIP';
-      sub.textContent = 'Preparing your files...';
+      sub.textContent = `Scanning ${totalFiles} files • ${formatBytes(totalBytes)}`;
       modal.classList.add('active');
       fill.style.width = '0%';
       text.textContent = '0%';
       speedText.textContent = '0 MB/s';
+
       try {
         const zip = new JSZip();
-        let loaded = 0;
-        const startTime = Date.now();
+        let processed = 0;
+        let bytesDone = 0;
+        const startTime = performance.now();
         let lastUpdate = startTime;
-        let lastLoaded = 0;
-        const total = files.length;
+
         for (const file of files) {
           const data = await getFileData(file.fileId);
-          if (data) {
+          if (data && data.byteLength !== 0) {
             const path = file.folderPath && file.folderPath.length ? file.folderPath.join('/') + '/' : '';
             zip.file('files/' + path + file.name, data);
+            bytesDone += Number(file.size) || data.byteLength || 0;
           }
-          loaded++;
-          const pct = Math.min(99, Math.floor((loaded / total) * 100));
+
+          processed += 1;
+          const pct = Math.min(98, Math.floor((processed / totalFiles) * 100));
           fill.style.width = pct + '%';
-          text.textContent = pct + '%';
-          const now = Date.now();
-          if (now - lastUpdate > 500) {
-            const elapsed = (now - startTime) / 1000;
-            const speed = elapsed > 0 ? (loaded / elapsed) : 0;
-            speedText.textContent = speed.toFixed(1) + ' files/s';
+          text.textContent = `${pct}%`;
+          sub.textContent = `Adding: ${file.name}`;
+
+          const now = performance.now();
+          if (now - lastUpdate > 250) {
+            const elapsedSec = Math.max((now - startTime) / 1000, 0.001);
+            const megabytesPerSecond = (bytesDone / 1048576) / elapsedSec;
+            speedText.textContent = `${megabytesPerSecond.toFixed(2)} MB/s`;
             lastUpdate = now;
           }
-          if (loaded % 5 === 0) await new Promise(r => setTimeout(r, 0));
+
+          if (processed % 5 === 0) await new Promise(r => setTimeout(r, 0));
         }
-        // Finalize
+
         sub.textContent = 'Creating ZIP archive...';
         text.textContent = '99%';
         fill.style.width = '99%';
-        const blob = await zip.generateAsync({ type: 'blob' });
+
+        const blob = await zip.generateAsync({
+          type: 'blob',
+          compression: 'DEFLATE',
+          compressionOptions: { level: 5 }
+        }, (meta) => { if (meta.currentFile) { sub.textContent = `Compressing: ${meta.currentFile}...`; } });
+
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -7202,10 +7551,19 @@
         a.click();
         document.body.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(url), 5000);
-        showToast(`✅ Downloaded ${files.length} files as ZIP`);
-      } catch (e) { showToast('❌ Backup failed: ' + e.message);
-        console.error(e); } finally {
-        modal.classList.remove('active');
+
+        fill.style.width = '100%';
+        text.textContent = '100%';
+        speedText.textContent = `${(blob.size / 1048576).toFixed(2)} MB`;
+        sub.textContent = `Ready: ${totalFiles} files • ${formatBytes(totalBytes)}`;
+        showToast(`✅ Backup ready: ${totalFiles} files • ${formatBytes(totalBytes)}`);
+      } catch (e) {
+        showToast('❌ Backup failed: ' + e.message);
+        console.error(e);
+      } finally {
+        setTimeout(() => {
+          modal.classList.remove('active');
+        }, 700);
       }
     }
 
@@ -7987,26 +8345,88 @@
     // Apply initial state
     premiumToggle.classList.toggle('active', showPremium);
     premiumThemes.forEach(el => { el.style.display = showPremium ? 'flex' : 'none'; });
-    // Save on toggle
+    // Save on toggle with animation
     premiumToggle.addEventListener('click', function() {
       showPremium = !showPremium;
       this.classList.toggle('active', showPremium);
-      premiumThemes.forEach(el => { el.style.display = showPremium ? 'flex' : 'none'; });
+      if (showPremium) {
+        premiumThemes.forEach(el => {
+          el.classList.remove('hiding');
+          el.style.display = 'flex';
+        });
+      } else {
+        premiumThemes.forEach(el => {
+          el.classList.add('hiding');
+          setTimeout(() => {
+            el.style.display = 'none';
+            el.classList.remove('hiding');
+          }, 400);
+        });
+      }
       localStorage.setItem('nebula_premium_visible', showPremium ? 'true' : 'false');
     });
 
     document.getElementById('settingsBtn').onclick = () => { updateInfoPanel();
       document.getElementById('settingsModal').classList.add('active'); };
-    document.getElementById('closeSettingsBtn').onclick = () => { document.getElementById('settingsModal').classList.remove(
-        'active'); };
+    
+    function closeSettingsWithAnimation() {
+      const modal = document.getElementById('settingsModal');
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('active', 'closing');
+      }, 350);
+    }
+    
+    document.getElementById('closeSettingsBtn').onclick = closeSettingsWithAnimation;
+    document.getElementById('settingsModal').addEventListener('click', (e) => {
+      if (e.target.id === 'settingsModal') {
+        closeSettingsWithAnimation();
+      }
+    });
     document.getElementById('renameAccountBtn').onclick = () => { const newName = prompt('Enter new username:', currentUser); if (
         newName && newName.trim() && newName.trim() !== currentUser) { renameAccount(newName.trim()); } };
-    document.getElementById('switchAccountBtnSettings').onclick = () => { document.getElementById('settingsModal').classList
-        .remove('active');
-      openSwitchAccountModal(); };
-    document.getElementById('logoutBtnSettings').onclick = () => { document.getElementById('settingsModal').classList.remove(
-        'active');
-      document.getElementById('logoutBtn').click(); };
+    document.getElementById('switchAccountBtnSettings').onclick = () => { closeSettingsWithAnimation();
+      setTimeout(() => openSwitchAccountModal(), 350);
+    };
+    document.getElementById('logoutBtnSettings').onclick = () => { closeSettingsWithAnimation();
+      setTimeout(() => document.getElementById('logoutBtn').click(), 350);
+    };
+    document.getElementById('setPasswordBtn').addEventListener('click', () => {
+      const modal = document.createElement('div');
+      modal.className = 'settings-modal';
+      modal.style.cssText = 'display:flex;z-index:2000;';
+      modal.innerHTML = `<div class="settings-card" style="max-width:380px;"><div class="settings-header"><div class="gear">🔐</div><div><h2>Set Password</h2><div class="subtitle">Protect your account with a password</div></div></div><div style="display:flex;flex-direction:column;gap:12px;"><input type="password" id="passInput" placeholder="New password" style="padding:10px;border:1px solid rgba(102,126,234,0.3);border-radius:8px;background:rgba(255,255,255,0.05);color:var(--text);" /><input type="password" id="passConfirm" placeholder="Confirm password" style="padding:10px;border:1px solid rgba(102,126,234,0.3);border-radius:8px;background:rgba(255,255,255,0.05);color:var(--text);" /><div style="font-size:0.75rem;color:var(--text-secondary);">🔒 Password stored securely locally</div><div style="display:flex;gap:8px;margin-top:8px;"><button class="guest-btn" style="flex:1;" onclick="this.closest('.settings-modal').remove()">Cancel</button><button class="new-folder-btn" id="savePassBtn" style="flex:1;background:var(--accent-solid);color:white;">Save Password</button></div></div></div>`;
+      document.body.appendChild(modal);
+      modal.querySelector('#savePassBtn').onclick = () => {
+        const pass = modal.querySelector('#passInput').value;
+        const conf = modal.querySelector('#passConfirm').value;
+        if (pass.length < 6) { showToast('❌ Password must be 6+ chars'); return; }
+        if (pass !== conf) { showToast('❌ Passwords dont match'); return; }
+        localStorage.setItem(`nebula_pass_${currentUser}`, btoa(pass));
+        showToast('✅ Password saved');
+        modal.remove();
+      };
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+    });
+    document.getElementById('downloadUserDataBtn').addEventListener('click', async () => {
+      try {
+        const userData = { user: currentUser, timestamp: Date.now(), data: {} };
+        const files = await getAllUserFiles();
+        userData.fileCount = files.length;
+        userData.totalSize = files.reduce((s, f) => s + (Number(f.size) || 0), 0);
+        const json = JSON.stringify(userData, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `nebula_userdata_${currentUser}_${Date.now()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('✅ User data downloaded');
+      } catch (e) {
+        showToast('❌ Download failed: ' + e.message);
+      }
+    });
     document.getElementById('backupAllFilesBtn').addEventListener('click', backupAllFiles);
     document.getElementById('importBackupBtn').addEventListener('click', () => document.getElementById('importBackupInput')
       .click());
