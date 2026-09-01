@@ -1,5 +1,7 @@
 # ☁️ NebulaCloud — Your Private Cloud, Offline‑First
 
+Sorry Some stuff are not steel finished and yeah its made by ai but i made it myself as my thinking and ik how to make it human by how i use the ai to make it work for me so thats wye
+
 > **One HTML file. Zero servers. Unlimited control.**
 
 ---
