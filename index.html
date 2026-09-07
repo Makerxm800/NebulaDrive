@@ -278,9 +278,9 @@
     body.light .more-menu #mediaMinimizeItem:hover { color: #0b7f96; }
     body.light .more-menu #mediaPipItem:hover { color: #9d4ecf; }
     body.light .pause-icon {
-      color: rgba(50, 50, 90, 0.8);
-      text-shadow: 0 0 40px rgba(102, 126, 234, 0.6), 0 0 80px rgba(102, 126, 234, 0.3);
-      filter: drop-shadow(0 0 25px rgba(102, 126, 234, 0.6));
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(102, 126, 234, 0.4), 0 0 80px rgba(102, 126, 234, 0.15);
     }
     body.light .media-track { color: #1a1d2e; }
     /* LIGHT: move modal */
@@ -758,9 +758,9 @@
     body.platinum .more-menu #mediaMinimizeItem:hover { color: #167a96; }
     body.platinum .more-menu #mediaPipItem:hover { color: #8a3fc0; }
     body.platinum .pause-icon {
-      color: rgba(50, 60, 90, 0.8);
-      text-shadow: 0 0 40px rgba(95, 131, 184, 0.6), 0 0 80px rgba(95, 131, 184, 0.3);
-      filter: drop-shadow(0 0 25px rgba(95, 131, 184, 0.6));
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(95, 131, 184, 0.4), 0 0 80px rgba(95, 131, 184, 0.15);
     }
     body.platinum .media-track { color: #1c2940; }
     /* PLATINUM: move modal */
@@ -2935,6 +2935,45 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   animation: cardBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
+.file-card.now-playing {
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.35), 0 8px 24px rgba(102, 126, 234, 0.25);
+  animation: nowPlayingPulse 2s ease-in-out infinite;
+}
+@keyframes nowPlayingPulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.35), 0 8px 24px rgba(102, 126, 234, 0.25); }
+  50% { box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.55), 0 10px 30px rgba(102, 126, 234, 0.4); }
+}
+.now-playing-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #667eea, #8b5cf6);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 3px 7px 3px 6px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+  z-index: 5;
+  animation: cardMenuIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+.now-playing-badge .np-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  animation: npBlink 1s ease-in-out infinite;
+}
+@keyframes npBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
 .folder-card:hover,
 .file-card:hover {
   transform: translateY(-5px) scale(1.02);
@@ -3964,10 +4003,6 @@
       grid-template-columns: repeat(6, 1fr);
       gap: 6px;
       margin-bottom: 8px;
-      max-height: 340px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      padding-right: 4px;
     }
     .icon-grid::-webkit-scrollbar { width: 4px; }
     .icon-grid::-webkit-scrollbar-track { background: transparent; }
@@ -4117,10 +4152,6 @@
       grid-template-columns: repeat(8, 1fr);
       gap: 4px;
       margin-bottom: 8px;
-      max-height: 340px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      padding-right: 4px;
     }
     .emoji-grid::-webkit-scrollbar { width: 4px; }
     .emoji-grid::-webkit-scrollbar-track { background: transparent; }
@@ -4320,30 +4351,6 @@
       40% { opacity: 1; }
       100% { opacity: 0; }
     }
-    @keyframes pauseAnimationIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.3) rotate(-15deg);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.1) rotate(0deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-    }
-    @keyframes pauseAnimationOut {
-      0% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.8) rotate(15deg);
-      }
-    }
     @keyframes fadeOutScale {
       0% {
         opacity: 1;
@@ -4481,15 +4488,48 @@
       z-index: 10;
     }
     .pause-icon {
-      font-size: 7.2rem;
-      color: rgba(255, 255, 255, 0.95);
-      text-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 80px rgba(102, 126, 234, 0.4), inset 0 0 30px rgba(255,255,255,0.1);
-      animation: pauseAnimationIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      filter: drop-shadow(0 0 25px rgba(102, 126, 234, 0.9));
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(102, 126, 234, 0.5), 0 0 80px rgba(102, 126, 234, 0.2), inset 0 0 20px rgba(255,255,255,0.05);
+      animation: pauseIconIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       will-change: transform, opacity;
+      position: relative;
+      overflow: hidden;
+    }
+    .pause-icon::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent, rgba(102,126,234,0.4), transparent);
+      animation: pauseRingSpin 2s linear infinite;
+      opacity: 0.6;
+    }
+    @keyframes pauseRingSpin {
+      to { transform: rotate(360deg); }
+    }
+    .pause-icon svg {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.4));
     }
     .pause-overlay.hiding .pause-icon {
-      animation: pauseAnimationOut 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: pauseIconOut 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes pauseIconIn {
+      0% { opacity: 0; transform: scale(0.3); }
+      60% { opacity: 1; transform: scale(1.12); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pauseIconOut {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.5); }
     }
     .artwork-disc {
       width: 100%;
@@ -6908,7 +6948,7 @@
       gap: 8px;
       margin-bottom: 14px;
     }
-    .speed-option {
+     .speed-option {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -6921,6 +6961,21 @@
       transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(12px) scale(0.9);
+      animation: speedOptionIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .speed-option:nth-child(1) { animation-delay: 0.04s; }
+    .speed-option:nth-child(2) { animation-delay: 0.08s; }
+    .speed-option:nth-child(3) { animation-delay: 0.12s; }
+    .speed-option:nth-child(4) { animation-delay: 0.16s; }
+    .speed-option:nth-child(5) { animation-delay: 0.2s; }
+    .speed-option:nth-child(6) { animation-delay: 0.24s; }
+    .speed-option:nth-child(7) { animation-delay: 0.28s; }
+    .speed-option:nth-child(8) { animation-delay: 0.32s; }
+    .speed-option:nth-child(9) { animation-delay: 0.36s; }
+    @keyframes speedOptionIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
     .speed-option::before {
       content: "";
@@ -6945,6 +7000,124 @@
       border-color: var(--accent-solid, #667eea);
       background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.15));
       box-shadow: 0 0 0 3px rgba(102,126,234,0.15), 0 4px 16px rgba(102,126,234,0.25);
+      animation: speedOptionIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, speedPulseActive 2s ease-in-out infinite 0.5s;
+    }
+    @keyframes speedPulseActive {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(102,126,234,0.15), 0 4px 16px rgba(102,126,234,0.25); }
+      50% { box-shadow: 0 0 0 5px rgba(102,126,234,0.25), 0 4px 24px rgba(102,126,234,0.4); }
+    }
+    @keyframes speedModalOut {
+      to { transform: scale(0.9); opacity: 0; }
+    }
+    @keyframes speedModalIn {
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes cutModalIn {
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    @keyframes cutModalOut {
+      to { transform: scale(0.92) translateY(20px); opacity: 0; }
+    }
+
+    /* ─── VIDEO SKIP OVERLAY ─── */
+    .video-skip-overlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 8;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .media-player-body.video-mode .media-artwork:hover .video-skip-overlay {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .media-player-body.video-mode .media-artwork:hover .pause-overlay {
+      z-index: 12;
+    }
+    .video-skip-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .video-skip-btn:hover {
+      transform: scale(1.15);
+      background: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 4px 24px rgba(102, 126, 234, 0.4);
+    }
+    .video-skip-btn:active {
+      transform: scale(0.92);
+    }
+    .video-skip-btn svg {
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3));
+    }
+    .vs-label {
+      position: absolute;
+      bottom: 4px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: white;
+      z-index: 2;
+      opacity: 0.8;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .vs-ripple {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102,126,234,0.6) 0%, transparent 70%);
+      opacity: 0;
+      transform: scale(0);
+      pointer-events: none;
+    }
+    .video-skip-btn.ripple .vs-ripple {
+      animation: vsRipple 0.5s ease-out;
+    }
+    @keyframes vsRipple {
+      0% { opacity: 0.8; transform: scale(0); }
+      100% { opacity: 0; transform: scale(2.5); }
+    }
+    .video-skip-btn.clicked svg {
+      animation: vsBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes vsBounce {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.3) rotate(-8deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .video-skip-btn.skip-left.clicked svg {
+      animation: vsBounceLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes vsBounceLeft {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.3) translateX(-3px); }
+      100% { transform: scale(1) translateX(0); }
+    }
+    .video-skip-btn.skip-right.clicked svg {
+      animation: vsBounceRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes vsBounceRight {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.3) translateX(3px); }
+      100% { transform: scale(1) translateX(0); }
     }
     .speed-option.active .speed-val {
       color: var(--accent-solid, #667eea);
@@ -8176,7 +8349,8 @@
         aspect-ratio: 3/2;
       }
       .pause-icon {
-        font-size: 4.5rem;
+        width: 64px;
+        height: 64px;
       }
       .media-buttons {
         gap: 3px;
@@ -8438,7 +8612,7 @@
   <div class="move-modal" id="moveModal"><div class="move-card"><div class="move-card-header"><div class="move-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><h3 id="moveModalTitle">Move File</h3></div><div class="sub" id="moveModalSub">Select destination</div><div class="move-search-wrap"><span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input type="text" id="moveFolderSearch" class="move-search-input" placeholder="Search folders..."><button class="clear-search-btn" id="clearMoveSearch" aria-label="Clear search">✕</button></div><div class="folder-list" id="folderList"></div><button class="guest-btn" id="cancelMoveBtn">Cancel</button></div></div>
 
   <!-- ─── MEDIA PLAYER ─── -->
-  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork"><div class="pause-overlay" id="pauseOverlay" style="display:none;"><div class="pause-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></div></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg><span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous"><span class="btn-label">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause"><span class="btn-label">Play</span></button><button id="mediaNextBtn" title="Next"><span class="btn-label">Next</span></button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg><span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="quality-pill-wrap" id="qualityPillWrap"><button id="mediaQualityBtn" class="quality-pill" title="Info"><span class="qpill-icon">ℹ</span><span class="qpill-text">Info</span><span class="qpill-label" id="qualityPillLabel">Auto</span><span class="qpill-caret">▾</span></button><div class="quality-dropdown" id="qualityDropdown"></div></div><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed"><span class="btn-label">Speed</span> 1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">↻</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Full Screen"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span> Full</button><button id="cinemaBtn" class="cinema-btn" title="Exit Full Screen"><span class="btn-icon">⊟</span></button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More"><span class="btn-label">⋯</span> More</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Download</div><div class="item" id="mediaCutItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span> Cut video</div><div class="item" id="mediaMinimizeItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> Minimize</div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
+  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle">Now Playing</div><div class="media-player-body" id="mediaPlayerBody"><div class="media-artwork" id="mediaArtwork">        <div class="pause-overlay" id="pauseOverlay" style="display:none;"><div class="pause-icon" id="pauseIconInner"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="video-skip-overlay" id="videoSkipOverlay"><button class="video-skip-btn video-skip-left" id="videoSkipBack" title="Back 5s"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg><span class="vs-label">5s</span><span class="vs-ripple"></span></button><button class="video-skip-btn video-skip-right" id="videoSkipFwd" title="Forward 5s"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg><span class="vs-label">5s</span><span class="vs-ripple"></span></button></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaSkipBackBtn" class="skip-btn" title="Back 5s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg><span class="skip-label">5</span></button><button id="mediaPrevBtn" title="Previous"><span class="btn-label">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause"><span class="btn-label">Play</span></button><button id="mediaNextBtn" title="Next"><span class="btn-label">Next</span></button><button id="mediaSkipFwdBtn" class="skip-btn" title="Forward 5s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg><span class="skip-label">5</span></button></div><div class="media-secondary-row"><div class="quality-pill-wrap" id="qualityPillWrap"><button id="mediaQualityBtn" class="quality-pill" title="Info"><span class="qpill-icon">ℹ</span><span class="qpill-text">Info</span><span class="qpill-label" id="qualityPillLabel">Auto</span><span class="qpill-caret">▾</span></button><div class="quality-dropdown" id="qualityDropdown"></div></div><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaSpeedBtn" class="speed-btn" title="Playback speed"><span class="btn-label">Speed</span> 1×</button><button id="repeatBtn" class="repeat-btn" title="Repeat: Off"><span class="repeat-icon">↻</span><span class="repeat-label">Off</span></button><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Full Screen"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span> Full</button><button id="cinemaBtn" class="cinema-btn" title="Exit Full Screen"><span class="btn-icon">⊟</span></button><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More"><span class="btn-label">⋯</span> More</button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> Download</div><div class="item" id="mediaCutItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span> Cut video</div><div class="item" id="mediaMinimizeItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> Minimize</div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> Picture‑in‑Picture</div></div></div></div></div></div></div></div></div>
 
   <!-- ─── MINI PLAYER ─── -->
   <div class="mini-player-bar" id="miniPlayerBar">
@@ -9308,13 +9482,18 @@
     // ─── SAVE FILE ───
     async function saveFileToDB(fileId, data, metadata, folderPath = []) {
       if (opfsSupported) {
-        await opfsWrite(fileId, data);
-        const metadataRecord = { id: `${currentUser}_${fileId}`, userId: currentUser, fileId, metadata: { ...metadata,
-            folderPath }, folderPath, storage: 'opfs', chunkIds: [] };
-        return new Promise((resolve, reject) => { const tx = db.transaction(['files'], 'readwrite');
-          tx.objectStore('files').put(metadataRecord);
-          tx.oncomplete = resolve;
-          tx.onerror = () => reject(tx.error); });
+        try {
+          await opfsWrite(fileId, data);
+          const metadataRecord = { id: `${currentUser}_${fileId}`, userId: currentUser, fileId, metadata: { ...metadata,
+              folderPath }, folderPath, storage: 'opfs', chunkIds: [] };
+          return await new Promise((resolve, reject) => { const tx = db.transaction(['files'], 'readwrite');
+            tx.objectStore('files').put(metadataRecord);
+            tx.oncomplete = resolve;
+            tx.onerror = () => reject(tx.error); });
+        } catch (e) {
+          console.warn('OPFS write failed, falling back to IndexedDB storage:', e);
+          opfsSupported = false;
+        }
       }
       const metadataRecord = { id: `${currentUser}_${fileId}`, userId: currentUser, fileId, metadata: { ...metadata,
           folderPath }, folderPath, storage: 'idb', chunkIds: [] };
@@ -9366,7 +9545,7 @@
 
     async function checkFileDataExists(manifest) {
       if (!manifest) return false; if (manifest.storage === 'opfs') { try { const h = await opfsRoot.getFileHandle(
-            opfsFileName(manifest.fileId)); const f = await h.getFile(); return f.size > 0; } catch (e) { return false; } }
+            opfsFileName(manifest.fileId)); await h.getFile(); return true; } catch (e) { return false; } }
       if (manifest.chunkIds && manifest.chunkIds.length > 0) return true; const legacy = await getLegacyFileData(manifest
         .fileId); return legacy !== null; }
 
@@ -9692,18 +9871,40 @@
       else { mediaQueue = playable; mediaQueueIndex = idx; }
     }
 
+    function updateNowPlayingCard() {
+      document.querySelectorAll('.file-card.now-playing').forEach(el => { el.classList.remove('now-playing');
+        const b = el.querySelector('.now-playing-badge'); if (b) b.remove(); });
+      if (!mediaFile || !mediaPlayer || mediaPlayer.paused) return;
+      const card = document.querySelector(`.file-card[data-file-id="${mediaFile.fileId}"]`);
+      if (card) { card.classList.add('now-playing');
+        const badge = document.createElement('div');
+        badge.className = 'now-playing-badge';
+        badge.innerHTML = '<span class="np-dot"></span> Playing';
+        card.appendChild(badge); }
+    }
     function setArtworkState(playing) { const disc = document.getElementById('artworkDisc'); if (disc) disc.classList.toggle(
         'spinning', !!playing);
       mpEls().artwork.classList.toggle('glow', !!playing && !isVideoMode);
       mpEls().eq.classList.toggle('active', !!playing);
+      updateNowPlayingCard();
       const pauseOverlay = document.getElementById('pauseOverlay');
+      const pauseIconInner = document.getElementById('pauseIconInner');
       if (pauseOverlay) {
-        if (!playing && !isVideoMode) {
+        if (!playing) {
+          if (pauseIconInner) {
+            pauseIconInner.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+            pauseIconInner.style.animation = 'none';
+            void pauseIconInner.offsetWidth;
+            pauseIconInner.style.animation = '';
+          }
           pauseOverlay.style.display = 'flex';
           pauseOverlay.classList.remove('hiding');
         } else {
+          if (pauseIconInner) {
+            pauseIconInner.innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+          }
           pauseOverlay.classList.add('hiding');
-          setTimeout(() => { if (pauseOverlay) pauseOverlay.style.display = 'none'; pauseOverlay.classList.remove('hiding'); }, 300);
+          setTimeout(() => { if (pauseOverlay) { pauseOverlay.style.display = 'none'; pauseOverlay.classList.remove('hiding'); } }, 350);
         }
       }
       const { playBtn, miniPlayBtn } = mpEls();
@@ -10034,19 +10235,32 @@
     document.addEventListener('webkitfullscreenchange', updateCinemaBtn);
 
     let mediaPlaybackSpeed = 1;
-    const SPEED_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+    const SPEED_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
     document.getElementById('mediaSkipBackBtn').onclick = () => { if (!mediaPlayer) return;
       mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - 5); };
     document.getElementById('mediaSkipFwdBtn').onclick = () => { if (!mediaPlayer) return; const dur = mediaPlayer.duration ||
         Infinity;
       mediaPlayer.currentTime = Math.min(dur, mediaPlayer.currentTime + 5); };
+
+    document.getElementById('videoSkipBack').onclick = (e) => { if (!mediaPlayer) return;
+      mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - 5);
+      const btn = e.currentTarget; btn.classList.remove('clicked','ripple'); void btn.offsetWidth;
+      btn.classList.add('clicked','ripple'); setTimeout(() => btn.classList.remove('clicked','ripple'), 500); };
+    document.getElementById('videoSkipFwd').onclick = (e) => { if (!mediaPlayer) return;
+      const dur = mediaPlayer.duration || Infinity;
+      mediaPlayer.currentTime = Math.min(dur, mediaPlayer.currentTime + 5);
+      const btn = e.currentTarget; btn.classList.remove('clicked','ripple'); void btn.offsetWidth;
+      btn.classList.add('clicked','ripple'); setTimeout(() => btn.classList.remove('clicked','ripple'), 500); };
     document.getElementById('mediaSpeedBtn').onclick = () => {
+      const existing = document.getElementById('speedPickerModal');
+      if (existing) { existing.remove(); return; }
       const modal = document.createElement('div');
+      modal.id = 'speedPickerModal';
       modal.className = 'settings-modal';
       modal.style.cssText = 'display:flex;z-index:2000;';
-      modal.innerHTML = `<div class="settings-card" style="max-width:340px;">
+      modal.innerHTML = `<div class="settings-card" style="max-width:340px;animation:speedModalIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;transform:scale(0.92);opacity:0;">
         <div class="settings-header">
-          <button class="settings-x" onclick="this.closest('.settings-modal').classList.remove('active')" title="Close">&times;</button>
+          <button class="settings-x" title="Close">&times;</button>
           <div class="gear"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
           <div><h2>Playback Speed</h2><div class="subtitle">Choose playback rate</div></div>
         </div>
@@ -10061,14 +10275,19 @@
         <div class="speed-current">Current: <strong>${mediaPlaybackSpeed}x</strong></div>
       </div>`;
       document.body.appendChild(modal);
+      modal.querySelector('.settings-x').onclick = () => { const card = modal.querySelector('.settings-card'); card.style.animation = 'speedModalOut 0.25s ease forwards'; setTimeout(() => modal.remove(), 250); };
       modal.querySelectorAll('.speed-option').forEach(btn => {
         btn.onclick = () => {
           mediaPlaybackSpeed = parseFloat(btn.dataset.speed);
           applyPlaybackSpeed();
-          modal.remove();
+          const card = modal.querySelector('.settings-card');
+          btn.style.transform = 'scale(1.15)';
+          btn.style.boxShadow = '0 0 30px rgba(102,126,234,0.6)';
+          card.style.animation = 'speedModalOut 0.3s ease 0.15s forwards';
+          setTimeout(() => modal.remove(), 450);
         };
       });
-      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+      modal.onclick = (e) => { if (e.target === modal) { const card = modal.querySelector('.settings-card'); card.style.animation = 'speedModalOut 0.25s ease forwards'; setTimeout(() => modal.remove(), 250); } };
     };
 
     function applyPlaybackSpeed() { const btn = document.getElementById('mediaSpeedBtn'); const display = Number.isInteger(
@@ -10158,6 +10377,8 @@
         'flex' : 'none';
       isVideoMode = isVideo;
       document.getElementById('cinemaBtn').style.display = isVideo ? 'flex' : 'none';
+      const cutItemEl = document.getElementById('mediaCutItem');
+      if (cutItemEl) { const cutSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>'; cutItemEl.innerHTML = '<span class="item-icon">' + cutSvg + '</span> Cut ' + (isVideo ? 'Video' : 'Audio'); }
       title.textContent = isVideo ? file.name : 'Now Playing';
       trackEl.textContent = file.name;
       artistEl.textContent = isVideo ? 'Video File' : 'Audio Track';
@@ -10323,7 +10544,7 @@
       const timespan = endTime - startTime;
       const ext = file.name.split('.').pop().toLowerCase();
       const outExt = isVideo ? (['webm','mp4','ogg'].includes(ext) ? ext : 'webm') : (file.type === 'audio/mpeg' ? 'mp3' : ext);
-      modal.innerHTML = `<div class="settings-card" style="max-width:480px;"><div class="settings-header"><button class="settings-x" id="cutClose" title="Close">×</button><div class="gear"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div><div><h2>Cut ${isVideo ? 'Video' : 'Audio'}</h2><div class="subtitle">Select range to keep</div></div></div><div style="display:flex;flex-direction:column;gap:14px;"><div id="cutVideoPreview" style="display:${isVideo ? 'block' : 'none'};border-radius:12px;overflow:hidden;background:#000;max-height:200px;"><video id="cutPreviewVid" style="width:100%;max-height:200px;object-fit:contain;" muted></video></div><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">Start Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutStart" min="0" max="${endTime}" step="0.1" value="${startTime}" style="flex:1;"><span id="cutStartText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(startTime)}</span></div></div><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">End Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutEnd" min="0" max="${endTime}" step="0.1" value="${endTime}" style="flex:1;"><span id="cutEndText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(endTime)}</span></div></div><div style="background:rgba(102,126,234,0.15);padding:10px;border-radius:12px;font-size:0.75rem;color:var(--text-secondary);display:flex;justify-content:space-between;"><span><strong>Duration:</strong> <span id="cutDuration">${formatTime(timespan)}</span></span><span><strong>Output:</strong> .${outExt}</span></div><div id="cutProgress" style="display:none;"><div style="background:rgba(255,255,255,0.08);border-radius:8px;height:6px;overflow:hidden;"><div id="cutProgressBar" style="height:100%;background:var(--accent-solid);width:0%;transition:width 0.3s ease;border-radius:8px;"></div></div><div id="cutProgressText" style="font-size:0.7rem;color:var(--text-secondary);margin-top:4px;text-align:center;">Preparing...</div></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="guest-btn" style="flex:1;" id="cutCancel">Cancel</button><button class="new-folder-btn" style="flex:1;background:var(--accent-solid);color:white;" id="cutConfirm">Cut & Download</button></div></div>`;
+      modal.innerHTML = `<div class="settings-card" style="max-width:480px;animation:cutModalIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;transform:scale(0.92) translateY(20px);opacity:0;"><div class="settings-header"><button class="settings-x" id="cutClose" title="Close">×</button><div class="gear"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div><div><h2>Cut ${isVideo ? 'Video' : 'Audio'}</h2><div class="subtitle">Select range to keep</div></div></div><div style="display:flex;flex-direction:column;gap:14px;"><div id="cutVideoPreview" style="display:${isVideo ? 'block' : 'none'};border-radius:12px;overflow:hidden;background:#000;max-height:200px;"><video id="cutPreviewVid" style="width:100%;max-height:200px;object-fit:contain;" muted></video></div><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">Start Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutStart" min="0" max="${endTime}" step="0.1" value="${startTime}" style="flex:1;"><span id="cutStartText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(startTime)}</span></div></div><div><label style="font-size:0.75rem;color:var(--text-secondary);display:block;margin-bottom:6px;">End Time</label><div style="display:flex;gap:8px;align-items:center;"><input type="range" id="cutEnd" min="0" max="${endTime}" step="0.1" value="${endTime}" style="flex:1;"><span id="cutEndText" style="font-size:0.8rem;width:50px;text-align:right;">${formatTime(endTime)}</span></div></div><div style="background:rgba(102,126,234,0.15);padding:10px;border-radius:12px;font-size:0.75rem;color:var(--text-secondary);display:flex;justify-content:space-between;"><span><strong>Duration:</strong> <span id="cutDuration">${formatTime(timespan)}</span></span><span><strong>Output:</strong> .${outExt}</span></div><div id="cutProgress" style="display:none;"><div style="background:rgba(255,255,255,0.08);border-radius:8px;height:6px;overflow:hidden;"><div id="cutProgressBar" style="height:100%;background:var(--accent-solid);width:0%;transition:width 0.3s ease;border-radius:8px;"></div></div><div id="cutProgressText" style="font-size:0.7rem;color:var(--text-secondary);margin-top:4px;text-align:center;">Preparing...</div></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="guest-btn" style="flex:1;" id="cutCancel">Cancel</button><button class="new-folder-btn" style="flex:1;background:var(--accent-solid);color:white;" id="cutConfirm">Cut & Download</button></div></div>`;
       document.body.appendChild(modal);
 
       const startInput = modal.querySelector('#cutStart');
@@ -10355,9 +10576,10 @@
         }
       };
 
-      modal.querySelector('#cutClose').onclick = () => modal.remove();
-      modal.querySelector('#cutCancel').onclick = () => modal.remove();
-      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+      const closeCutModal = () => { const card = modal.querySelector('.settings-card'); if (card) { card.style.animation = 'cutModalOut 0.25s ease forwards'; setTimeout(() => modal.remove(), 250); } else { modal.remove(); } };
+      modal.querySelector('#cutClose').onclick = closeCutModal;
+      modal.querySelector('#cutCancel').onclick = closeCutModal;
+      modal.onclick = (e) => { if (e.target === modal) closeCutModal(); };
 
       if (isVideo) {
         const vid = modal.querySelector('#cutPreviewVid');
@@ -11644,6 +11866,7 @@
         `;
       }
       grid.innerHTML = html;
+      updateNowPlayingCard();
 
       // ─── EVENT HANDLERS ───
       grid.querySelectorAll('.folder-card').forEach(card => { card.addEventListener('click', function(e) { if (e.target
@@ -12161,7 +12384,6 @@
         localStorage.setItem('nebula_theme', theme);
         updateActiveTheme();
         document.getElementById('settingsModal').classList.remove('active'); }; });
-    updateActiveTheme();
 
     // ─── VIEW DROPDOWN ───
     document.getElementById('viewBtn').addEventListener('click', function(e) { e.stopPropagation();
@@ -12283,6 +12505,7 @@
     // ─── INIT ───
     const savedTheme = localStorage.getItem('nebula_theme') || 'dark';
     document.body.className = savedTheme;
+    updateActiveTheme();
     const savedUser = localStorage.getItem('nebula_current_user'); if (savedUser) { currentUser = savedUser;
       Promise.all([openDB(), initOPFS()]).then(async () => { const avatar = currentUser.startsWith('guest') ? "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>" :
           currentUser[0].toUpperCase(); const displayName = currentUser.startsWith('guest') ? 'Guest' : currentUser.split(
