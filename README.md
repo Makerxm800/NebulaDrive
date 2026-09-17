@@ -12,9 +12,10 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 
 - 🔒 **100% local** — no tracking, no analytics, no server calls
 - ⚡ **OPFS + IndexedDB** — fast binary storage with automatic chunking fallback
-- 🎬 **Built-in media player** — audio & video with PiP, speed control, trimming, and premium animations
-- 🎨 **25 themes** — 6 standard + 19 premium, all apply instantly
+- 🎬 **Built-in media player** — audio & video with PiP, speed control, trimming, precise seeking, and premium animations
+- 🎨 **25 themes + Liquid Glass** — 11 standard + 14 premium, plus a site-wide glass effect toggle
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
+- ✨ **Premium UI everywhere** — spring animations, ripple presses, staggered entrances, glow accents
 
 ---
 
@@ -22,15 +23,58 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 
 Upload anything by dragging files onto the page or clicking the upload area — a progress bar tracks everything in real time.
 
+- 🧭 **Breadcrumb** — Root home pill + glowing active-folder pill, chevron separators, back/forward/refresh, staggered slide-in
 - 📂 **Folders** — create nested folders, navigate with the clickable breadcrumb path
-- ✏️ **Rename** — rename any file or folder from its action menu
+- ✏️ **Rename** — rename any file or folder from its card menu
 - 📤 **Move** — move files anywhere with a searchable folder picker
-- 🗑️ **Delete** — soft-delete into Trash, restore or permanently remove later
-- ⭐ **Favourites** — star anything for quick access from the dedicated tab
+- ⭐ **Favourites** — star anything; the tab icon turns gold when active, card stars fill yellow
 - 🔍 **Search** — real-time search across everything with full paths shown
-- 📦 **Batch ops** — select multiple items, invert, deselect, or delete in bulk
+- 📦 **Batch ops** — select multiple items, invert, deselect, or delete in bulk (with a real confirm dialog)
 - 🎯 **Folder & file icons** — pick from emojis, standard SVG icons, or upload your own image
 - 🏷️ **File type detection** — automatic icon for PDF, Word, Excel, PowerPoint, audio, video, code, fonts, and more
+
+### ⋯ Card menus
+
+Every card has a **More** menu — a real menu, not three similar buttons:
+
+- 📝 **Header** — shows whether it's file or folder options plus the item name
+- 📖 **Descriptions** — each action explains itself ("Move to another folder", "Move file to Trash"…)
+- 🎨 **Distinct actions** — Rename (cyan), Move (amber), Delete (rose), Cut (violet), Repair (orange)
+- ✨ **Animation** — spring pop with cascading item entrance
+- 📍 **Smart positioning** — spans the card so it never clips, flips upward near the viewport bottom, works in all 8 view modes and on touch devices
+
+### 🔘 File buttons vs folders
+
+- **Files** — blue **View** + green **Get** duo plus a dashed More row
+- **Folders** — star + solid More
+- Labels always fit: ellipsis truncation in every view mode, icon-first buttons that never squash
+
+---
+
+## 🗑️ Trash
+
+A proper trash system with zero native browser popups — every delete flows through a premium in-app confirm dialog (with native-confirm fallback so deletes never break).
+
+- 🧾 **Header** — Trash title, live item count badge, Empty Trash (red) + Restore All (green) buttons that disable when empty
+- ✅ **Select** — tick checkboxes on cards, then **Restore selected** or **Delete selected** in the bulk bar
+- 🎞️ **Animations** — cards shrink out on restore/delete, cascade in on load
+- 🔄 **Restore** — single restore, Restore All (cascades out first), or bulk restore
+
+---
+
+## 🕘 History
+
+- 🔎 **Search + filters** — All, Uploaded, Deleted, Restored, Downloaded pills plus live search
+- 👆 **Click to jump** — any entry with a file jumps straight to it with a flash highlight
+- ✅ **Select mode** — toggle Select, tick entries, bulk-delete with confirm (files stay untouched)
+- 🧹 **Clear** — premium confirm; empty and no-match states included
+- 🏷️ **True action icons** — upload arrow, download arrow, trash, restore… each in its type colour
+
+---
+
+## ⭐ Favourites
+
+Gold-starred header with a live count. Everything you've starred, from anywhere — click to jump to where it lives. Empty state guides you to tap the star.
 
 ---
 
@@ -40,7 +84,7 @@ Eight layouts, all with smooth transitions — pick what fits:
 
 🔲 Small Grid · 📐 Medium Grid · 🖼️ Large Grid · 🎞️ Gallery · 📋 List · 📄 Compact · 🧱 Masonry · 🕐 Timeline
 
-Sort by **name**, **size**, **date**, **type**, or **extension** — ascending or descending. Group by any field.
+Sort by **name**, **size**, **date**, **type**, or **extension** — ascending or descending. Group by any field. The Sort/View toolbar buttons are premium pills with ripple, press squash, and an active glow while their menu is open.
 
 ---
 
@@ -49,6 +93,13 @@ Sort by **name**, **size**, **date**, **type**, or **extension** — ascending o
 ### Controls
 
 Play / pause, drag-to-seek, volume with percentage, skip ±5 seconds with overlay buttons, and playback speed from 0.5× to 3×. Three repeat modes: off, all, or one — with visual indicators.
+
+### 🎯 Progress & precise seeking (PC beta)
+
+- The bar thickens with an accent ring + glow on hover; the thumb grows
+- Hover shows a YouTube-style glass tooltip with a live frame thumbnail + timestamp
+- Pull **up** while dragging for fine 0.22× seeking with a highlighted precise state
+- Hover preview and precise mode are PC-only — touch devices just drag to seek
 
 ### ✨ Visuals
 
@@ -59,9 +110,11 @@ Play / pause, drag-to-seek, volume with percentage, skip ±5 seconds with overla
 - ⏩ **Video skip overlay** — back/forward 5s buttons with ripple + bounce animation on hover
 - 🎵 **Track fade-in** — smooth transition when the next track loads
 
-### ⚡ Speed Selector
+### ⚙️ Settings menu
 
-Premium staggered entrance animation with active pulse glow. All speeds preserved: 0.5×, 0.75×, 1×, 1.25×, 1.5×, 1.75×, 2×, 2.5×, 3×.
+- ⚡ **Playback speed + Repeat hero rows** — accent-tinted with white value pills, press-squash with pill pop
+- 🎛️ **Remade toggles** — Ambient mode, Volume boost, Stable Volume, Annotations: bordered spring switches with shine knobs and accent glow when on
+- Long titles truncate cleanly; controls wrap on narrow screens; hover lifts disabled on touch
 
 ### Modes
 
@@ -90,11 +143,13 @@ Click any file to preview it — each format gets its own viewer:
 
 ---
 
-## 🎨 Themes
+## 🎨 Themes + Liquid Glass
 
-Six standard themes and nineteen premium ones — toggle the switch in Settings to unlock the full collection.
+Eleven standard themes and fourteen premium ones — toggle the switches in **Settings → Themes** to show each collection.
 
-Every theme has custom gradients, adaptive text colours, accent glows, and speed selector overrides. Switch instantly with no reload. Your choice is saved and persists across refreshes.
+- ⚡ **Instant switching** — custom gradients, adaptive text colours, accent glows, and speed selector overrides. No reload; your choice persists.
+- 🫧 **Liquid Glass ✦** — site-wide glass effect toggle at the top of the Themes section. Deep blur + saturation on bars, cards, and dialogs. Works with every theme, saved across sessions.
+- 🎚️ **Remade switches** — spring sliding knobs that widen when pressed, glow when on, keyboard accessible.
 
 ---
 
@@ -126,7 +181,7 @@ Open **Settings → Diagnostics** to scan every file record against actual stora
 3. 📤 Drag files in or click the upload area
 4. 📂 Make folders, sort, search, star favourites
 5. 🎬 Click any file to preview or play it
-6. ⚙️ Open Settings for themes, storage stats, and diagnostics
+6. ⚙️ Open Settings for Liquid Glass, themes, storage stats, and diagnostics
 
 ---
 
@@ -134,9 +189,13 @@ Open **Settings → Diagnostics** to scan every file record against actual stora
 
 | Key | Action |
 |---|---|
-| `Space` | ▶️ Play / Pause |
-| `←` / `→` | ⏮️ / ⏭️ Previous / Next track |
+| `Space` / `K` | ▶️ Play / Pause |
+| `←` / `→` or `J` / `L` | ⏪ / ⏩ Seek 5s (Shift: prev / next track) |
+| `↑` / `↓` | 🔊 Volume |
+| `M` | 🔇 Mute |
 | `F` | 🖥️ Toggle immersive fullscreen |
+| `P` | 🖼️ Picture-in-Picture |
+| `,` / `.` | ⚡ Speed down / up |
 | `Escape` | ✕ Exit fullscreen, minimise player, or close viewer |
 
 ---
@@ -169,7 +228,7 @@ Browser memory limits. Use Chromium with OPFS for best results.
 Check 🗑️ Trash first, then run 🩺 Diagnostics.
 
 **Works on mobile?**
-Yes — responsive across Android and iOS. Slower for large files on iOS (no OPFS).
+Yes — responsive across Android and iOS, touch-safe menus and controls. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
 
 **Is my data encrypted?**
 Not by default — it's local, so only you and your browser can access it. Client-side encryption is on the roadmap.
