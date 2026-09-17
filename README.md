@@ -82,9 +82,9 @@ Gold-starred header with a live count. Everything you've starred, from anywhere 
 
 Eight layouts, all with smooth transitions — pick what fits:
 
-🔲 Small Grid · 📐 Medium Grid · 🖼️ Large Grid · 🎞️ Gallery · 📋 List · 📄 Compact · 🧱 Masonry · 🕐 Timeline
+🔲 Small Grid · 📐 Medium Grid · 🖼️ Large Grid 
 
-Sort by **name**, **size**, **date**, **type**, or **extension** — ascending or descending. Group by any field. The Sort/View toolbar buttons are premium pills with ripple, press squash, and an active glow while their menu is open.
+Sort by **name**, **size**, **date**, **type**, or * The Sort/View toolbar buttons are premium pills with ripple, press squash, and an active glow while their menu is open.
 
 ---
 
