@@ -13,7 +13,7 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 - 🔒 **100% local** — no tracking, no analytics, no server calls
 - ⚡ **OPFS + IndexedDB** — fast binary storage with automatic chunking fallback
 - 🎬 **Built-in media player** — audio & video with PiP, speed control, trimming, precise seeking, and premium animations
-- 🎨 **25 themes + Liquid Glass** — 11 standard + 14 premium, plus a site-wide glass effect toggle
+- 🎨 **30 themes + Liquid Glass** — 11 standard + 19 premium, plus a site-wide glass effect toggle
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
 - ✨ **Premium UI everywhere** — spring animations, ripple presses, staggered entrances, glow accents
 
@@ -43,7 +43,7 @@ Every card has a **More** menu — a real menu, not three similar buttons:
 - 📖 **Descriptions** — each action explains itself ("Move to another folder", "Move file to Trash"…)
 - 🎨 **Distinct actions** — Rename (cyan), Move (amber), Delete (rose), Cut (violet), Repair (orange)
 - ✨ **Animation** — spring pop with cascading item entrance
-- 📍 **Smart positioning** — spans the card so it never clips, flips upward near the viewport bottom, works in all 8 view modes and on touch devices
+- 📍 **Smart positioning** — spans the card so it never clips, flips upward near the viewport bottom, works in all 4 view modes and on touch devices
 
 ### 🔘 File buttons vs folders
 
@@ -90,7 +90,8 @@ Sort by **name**, **size**, **date**, **type**, or **extension** — ascending o
 
 - 📱 **Responsive toolbar** — PC keeps the full row; tablet drops search to its own row; mobile scrolls Sort/View/Favorites in one row with full-width dropdowns
 - 📜 **Scrollframe menus** — Sort and View menus scroll inside the viewport on small screens, submenus drop below instead of off-screen
-- ⭐ **Favourites has its own layout** — tidy adaptive grid on PC, compact two-column cards on mobile (row layouts stay in Files) The Sort/View toolbar buttons are premium pills with ripple, press squash, and an active glow while their menu is open.
+- ⭐ **Favourites has its own layout** — tidy adaptive grid on PC, compact two-column cards on mobile (row layouts stay in Files)
+- 🔘 **Premium toolbar pills** — Sort and View have ripple, press squash, and an active glow while open; only one menu opens at a time
 
 ---
 
@@ -151,7 +152,7 @@ Click any file to preview it — each format gets its own viewer:
 
 ## 🎨 Themes + Liquid Glass
 
-Eleven standard themes and fourteen premium ones — toggle the switches in **Settings → Themes** to show each collection.
+Eleven standard themes and nineteen premium ones — toggle the switches in **Settings → Themes** to show each collection.
 
 - ⚡ **Instant switching** — custom gradients, adaptive text colours, accent glows, and speed selector overrides. No reload; your choice persists.
 - 📱 **iPhone-friendly Light theme** — same colours, minus the costly extras: no glow layers, no shine sweeps, no backdrop blur, no floating orbs. Flat and still, easy on mobile GPUs.
@@ -233,6 +234,9 @@ Browser memory limits. Use Chromium with OPFS for best results.
 
 **Files disappeared?**
 Check 🗑️ Trash first, then run 🩺 Diagnostics.
+
+**An MP3 or video won't play?**
+File types are auto-detected from the extension, so it should just work. If it still fails, run 🩺 Diagnostics and use 🔧 Repair to re-upload it.
 
 **Works on mobile?**
 Yes — responsive across Android and iOS, touch-safe menus and controls. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
