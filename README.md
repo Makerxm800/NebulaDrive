@@ -16,6 +16,7 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 - 🎨 **30 themes + Liquid Glass** — 11 standard + 19 premium, plus a site-wide glass effect toggle
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
 - ✨ **Premium UI everywhere** — spring animations, ripple presses, staggered entrances, glow accents
+- 🌐 **8 languages** — English, Español, Français, Deutsch, Português, हिन्दी, العربية, 中文 from the globe button: nav, toolbar, menus, dialogs, cards, profile, themes, player, settings, hover hints, empty states — everything switches instantly and remembers your choice
 
 ---
 
@@ -30,7 +31,7 @@ Upload anything by dragging files onto the page or clicking the upload area — 
 - 📤 **Move** — move files anywhere with a searchable folder picker
 - ⭐ **Favourites** — star anything; the tab icon turns gold when active, card stars fill yellow
 - 🔍 **Search** — real-time search across everything with full paths shown
-- 📦 **Batch ops** — select multiple items, invert, deselect, or delete in bulk (with a real confirm dialog)
+- 📦 **Batch ops** — Select mode with a sticky command bar: Select All, Invert, Deselect, bulk **Download**, bulk Delete (with a real confirm dialog). Trash and History have matching select bars with Restore/Delete.
 - 🎯 **Folder & file icons** — pick from emojis, standard SVG icons, or upload your own image
 - 🏷️ **File type detection** — automatic icon for PDF, Word, Excel, PowerPoint, audio, video, code, fonts, and more
 - 🩹 **Missing MIME fix** — MP3/WAV/FLAC/M4A/OGG and videos whose browser reported no type are auto-detected from the extension, so they always open in the player
@@ -239,7 +240,7 @@ Check 🗑️ Trash first, then run 🩺 Diagnostics.
 File types are auto-detected from the extension, so it should just work. If it still fails, run 🩺 Diagnostics and use 🔧 Repair to re-upload it.
 
 **Works on mobile?**
-Yes — responsive across Android and iOS, touch-safe menus and controls. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
+Yes — responsive across Android and iOS, touch-safe menus and controls. Music keeps playing with the screen locked (lock-screen controls included); just keep Volume Boost off, as iOS suspends boosted audio in the background. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
 
 **Is my data encrypted?**
 Not by default — it's local, so only you and your browser can access it. Client-side encryption is on the roadmap.
