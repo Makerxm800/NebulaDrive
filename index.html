@@ -382,6 +382,38 @@
     body.light .settings-menu { box-shadow: 0 4px 14px rgba(26, 29, 46, 0.12); }
     body.light .move-card { box-shadow: 0 2px 8px rgba(26, 29, 46, 0.1); }
     body.light .toolbar-btn { box-shadow: inset 0 1px 0 #fff; }
+    /* ─── LIGHT-ACCENT READABILITY (dark text on pale accents) ─── */    body.midnightgold .nav-tab.active, body.pinegrove .nav-tab.active, body.graphite .nav-tab.active,
+    body.midnightgold .breadcrumb-item.crumb-current, body.pinegrove .breadcrumb-item.crumb-current, body.graphite .breadcrumb-item.crumb-current,
+    body.midnightgold .hist-pill.active, body.pinegrove .hist-pill.active, body.graphite .hist-pill.active {
+      color: #151515;
+      text-shadow: none;
+    }
+    body.midnightgold .new-folder-btn, body.pinegrove .new-folder-btn, body.graphite .new-folder-btn,
+    body.midnightgold .tour-next, body.pinegrove .tour-next, body.graphite .tour-next { color: #151515; }
+    body.midnightgold .select-count, body.pinegrove .select-count, body.graphite .select-count,
+    body.midnightgold .trash-select-bar .sel-count, body.pinegrove .trash-select-bar .sel-count, body.graphite .trash-select-bar .sel-count,
+    body.midnightgold .history-bulk-bar .sel-count, body.pinegrove .history-bulk-bar .sel-count, body.graphite .history-bulk-bar .sel-count,
+    body.midnightgold .settings-menu-row.speed-btn .settings-row-value, body.pinegrove .settings-menu-row.speed-btn .settings-row-value, body.graphite .settings-menu-row.speed-btn .settings-row-value,
+    body.midnightgold .settings-menu-row.repeat-btn .settings-row-value, body.pinegrove .settings-menu-row.repeat-btn .settings-row-value, body.graphite .settings-menu-row.repeat-btn .settings-row-value { color: #151515; }
+    body.desertclay .nav-tab.active, body.desertclay .breadcrumb-item.crumb-current, body.desertclay .hist-pill.active,
+    body.desertclay .new-folder-btn, body.desertclay .tour-next,
+    body.desertclay .select-count, body.desertclay .trash-select-bar .sel-count, body.desertclay .history-bulk-bar .sel-count,
+    body.desertclay .settings-menu-row.speed-btn .settings-row-value, body.desertclay .settings-menu-row.repeat-btn .settings-row-value { color: #241708; text-shadow: none; }
+    body.desertclay .new-folder-btn, body.desertclay .tour-next { text-shadow: 0 1px 2px rgba(255,255,255,0.25); }
+    /* ─── DESERT CLAY + SILVER MIST: light surfaces for dark-hardcoded menus ─── */
+    body.silvermist .dropdown-menu, body.desertclay .dropdown-menu,
+    body.silvermist .card-more-dropdown, body.desertclay .card-more-dropdown,
+    body.silvermist .submenu-panel, body.desertclay .submenu-panel,
+    body.silvermist .confirm-card, body.desertclay .confirm-card {
+      background: rgba(255, 255, 255, 0.97);
+      border-color: rgba(100, 116, 139, 0.3);
+      box-shadow: 0 16px 44px rgba(39, 49, 66, 0.15);
+    }
+    body.silvermist .dropdown-menu .item, body.desertclay .dropdown-menu .item { color: #3c4a5e; }
+    body.silvermist .dropdown-menu .item:hover, body.desertclay .dropdown-menu .item:hover { background: rgba(100,116,139,0.12); color: #1c2940; }
+    body.silvermist .auth-input, body.desertclay .auth-input { background: #ffffff; border-color: rgba(100,116,139,0.35); color: #273142; }
+    body.silvermist .auth-input::placeholder, body.desertclay .auth-input::placeholder { color: rgba(39,49,66,0.45); }
+    body.silvermist .modal-card, body.desertclay .modal-card { background: #ffffff; color: #273142; }
     /* ─── OCEAN ─── */
     body.ocean {
       --bg: radial-gradient(ellipse at 10% 15%, #041826 0%, #0f4c75 45%, #0e7490 75%, #155e75 100%);
@@ -2122,6 +2154,10 @@
     .tab-slider.ready {
       opacity: 1;
     }
+    /* ─── NO SHINY SWEEPS (all devices, pro lag) ─── */
+    .nav-tab.active::after, #viewBtn::after, #sortBtn::after, .breadcrumb-item.crumb-current::after { animation: none !important; opacity: 0 !important; }
+    .tab-slider { animation: none !important; }
+    .new-folder-btn::before { display: none; }
     @keyframes sliderShimmer {
       0%,
       100% {
@@ -2246,6 +2282,58 @@
     .account-actions .dropdown { position: relative; }
     #langMenu { left: auto; right: 0; min-width: 160px; }
     #langMenu .item .lang-code { margin-left: auto; font-size: 0.62rem; opacity: 0.55; font-weight: 700; }
+    /* ─── LANGUAGE CENTER MENU (profile-style) + WELCOME ─── */
+    #langMenu.as-modal {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      min-width: min(300px, calc(100vw - 48px));
+      z-index: 1501;
+      animation: profileCenterIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: calc(100dvh - 60px);
+      overflow-y: auto;
+    }
+    #langMenu .lang-head {
+      padding: 10px 12px 8px; margin-bottom: 4px;
+      border-bottom: 1px solid var(--glass-border);
+      font-weight: 800; font-size: 0.82rem; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    #langMenu .lang-head .lang-globe {
+      width: 28px; height: 28px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(118,75,162,0.15));
+      border: 1px solid rgba(102,126,234,0.4);
+    }
+    #langMenu .item .icon-chip { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.4px; min-width: 34px; }
+    #langMenu .item.active { background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(118,75,162,0.12)); border-color: var(--accent-solid); }
+    .welcome-lang {
+      position: fixed; inset: 0; z-index: 7000;
+      background: rgba(4, 3, 12, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      animation: tourFade 0.3s ease;
+    }
+    .welcome-card {
+      width: min(380px, calc(100vw - 40px));
+      background: linear-gradient(180deg, rgba(32, 29, 58, 0.98), rgba(18, 16, 35, 0.98));
+      border: 1px solid rgba(102, 126, 234, 0.35);
+      border-radius: 24px; padding: 26px 22px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 40px var(--glow-color);
+      text-align: center;
+      animation: tourCardIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: calc(100dvh - 60px); overflow-y: auto;
+    }
+    body.light .welcome-card, body.platinum .welcome-card { background: linear-gradient(180deg, #ffffff, #f2f5fb); }
+    .welcome-card h2 { font-size: 1.15rem; font-weight: 800; color: var(--text); margin: 6px 0 4px; }
+    .welcome-card p { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 14px; }
+    .welcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .welcome-grid button {
+      padding: 11px 8px; border-radius: 13px; font-weight: 700; font-size: 0.82rem; cursor: pointer;
+      border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.05); color: var(--text);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, box-shadow 0.25s ease;
+    }
+    .welcome-grid button:hover { transform: translateY(-2px); border-color: var(--accent-solid); box-shadow: 0 6px 20px var(--glow-color); }
+    .welcome-grid button:active { transform: scale(0.94); }
     /* ─── PROFILE DROPDOWN (solid, no overlap) ─── */
     .profile-wrap { position: relative; display: flex; align-items: center; gap: 9px; cursor: pointer; border-radius: 30px; padding: 3px 6px 3px 3px; transition: background 0.25s ease; }
     .profile-wrap:hover { background: var(--glass); }
@@ -2258,6 +2346,54 @@
     }
     body.light .profile-menu, body.platinum .profile-menu, body.silvermist .profile-menu, body.desertclay .profile-menu { background: #ffffff; }
     .profile-menu.open { display: block; animation: profilePop 0.22s ease; }
+    /* ─── PROFILE CENTER STAGE + BACKDROP + DANGER ─── */
+    .profile-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 3, 12, 0.6);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 1500;
+    }
+    .profile-backdrop.show { display: block; animation: tourFade 0.25s ease; }
+    .profile-menu.open {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(340px, calc(100vw - 32px));
+      max-height: calc(100dvh - 40px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      z-index: 1501;
+      animation: profileCenterIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes profileCenterIn {
+      from { opacity: 0; transform: translate(-50%, -48%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .profile-actions .danger-btn {
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 0;
+      background: linear-gradient(135deg, rgba(239,68,68,0.16), rgba(239,68,68,0.06));
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #ff8a95;
+      border-radius: 12px;
+      padding: 9px 12px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile-actions .danger-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(239, 68, 68, 0.45);
+    }
+    .profile-actions .danger-btn:active:not(:disabled) { transform: scale(0.95); }
     @keyframes profilePop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
     .profile-banner { height: 84px; background: var(--accent); background-size: cover; background-position: center; position: relative; flex-shrink: 0; }
     .profile-banner .banner-edit { position: absolute; right: 8px; bottom: 8px; font-size: 0.65rem; background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 10px; cursor: pointer; }
@@ -2333,6 +2469,24 @@
     .profile-custom-status input:focus { border-color: var(--accent-solid); box-shadow: 0 0 0 3px var(--glow-color); }
     .profile-rename-row input { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
     .profile-rename-row input:focus { border-color: var(--accent-solid); box-shadow: 0 0 0 3px var(--glow-color); }
+    .profile-danger { margin-top: 4px; }
+    .profile-danger summary {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.7px; text-transform: uppercase;
+      color: #ff8a95; cursor: pointer; padding: 8px 4px 4px; list-style: none;
+      display: flex; align-items: center; gap: 6px; user-select: none;
+    }
+    .profile-danger summary::-webkit-details-marker { display: none; }
+    .profile-danger summary::before { content: '▸'; transition: transform 0.25s ease; font-size: 0.7rem; }
+    .profile-danger[open] summary::before { transform: rotate(90deg); }
+    .profile-danger .danger-btn { margin-top: 6px; }
+    /* ─── TOUCH iOS FIX: blur + scroll blanks card content ─── */
+    @media (hover: none), (pointer: coarse) {
+      .settings-card, .confirm-card, .move-card, .modal-card,
+      .dropdown-menu, .settings-menu, .more-menu, .tour-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
     .profile-actions .soon-badge { margin-left: auto; font-size: 0.6rem; background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); padding: 2px 8px; border-radius: 20px; color: var(--text-secondary); flex-shrink: 0; }
     .user-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center; display: block; }
     .user-status .st-dot { font-size: 0.45rem; }
@@ -3343,6 +3497,55 @@
       box-shadow: 0 0 16px rgba(76, 175, 80, 0.6);
       transform: scale(1.2);
     }
+    /* ─── GUIDED TOUR ─── */
+    .tour-btn { border-style: dashed; }
+    .tour-btn .toggle-dot { background: var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); }
+    .tour-overlay {
+      position: fixed; inset: 0; z-index: 6000;
+      background: rgba(4, 3, 12, 0.72);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      animation: tourFade 0.3s ease;
+    }
+    @keyframes tourFade { from { opacity: 0; } to { opacity: 1; } }
+    .tour-spotlight {
+      position: relative !important; z-index: 6001 !important;
+      outline: 3px solid var(--accent-solid) !important;
+      outline-offset: 4px;
+      border-radius: 14px;
+      box-shadow: 0 0 0 6px var(--glow-color), 0 0 44px var(--glow-color) !important;
+      animation: tourPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes tourPulse {
+      0%, 100% { box-shadow: 0 0 0 4px var(--glow-color), 0 0 24px var(--glow-color); }
+      50% { box-shadow: 0 0 0 9px var(--glow-color), 0 0 54px var(--glow-color); }
+    }
+    .tour-card {
+      position: fixed; z-index: 6002;
+      width: min(340px, calc(100vw - 32px));
+      background: linear-gradient(180deg, rgba(32, 29, 58, 0.98), rgba(18, 16, 35, 0.98));
+      border: 1px solid rgba(102, 126, 234, 0.35);
+      border-radius: 20px;
+      padding: 18px 18px 14px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 30px var(--glow-color);
+      animation: tourCardIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    body.light .tour-card, body.platinum .tour-card { background: linear-gradient(180deg, #ffffff, #f2f5fb); }
+    @keyframes tourCardIn { from { opacity: 0; transform: translateY(12px) scale(0.95); } to { opacity: 1; transform: none; } }
+    .tour-step { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent-solid); }
+    .tour-title { font-size: 1rem; font-weight: 800; color: var(--text); margin: 4px 0 6px; }
+    .tour-desc { font-size: 0.82rem; line-height: 1.55; color: var(--text-secondary); }
+    .tour-progress { height: 5px; border-radius: 4px; background: rgba(255, 255, 255, 0.1); margin: 12px 0 10px; overflow: hidden; }
+    .tour-progress > div { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 10px var(--glow-color); }
+    .tour-actions { display: flex; gap: 8px; }
+    .tour-actions button {
+      flex: 1; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 0.78rem; cursor: pointer;
+      border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.06); color: var(--text);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
+    }
+    .tour-actions button:active { transform: scale(0.93); }
+    .tour-actions .tour-next { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 4px 18px var(--glow-color); }
+    .tour-actions .tour-next:hover { filter: brightness(1.1); }
 
     .select-bar {
       display: none;
@@ -5399,6 +5602,9 @@
       display: flex;
       animation: mediaSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
+    /* ─── PLAYER PREMIUM ENTRANCE (same buttons, new feel) ─── */
+    .media-player-modal.active .media-player-content { animation: playerIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes playerIn { from { opacity: 0; transform: translateY(26px) scale(0.94); } to { opacity: 1; transform: none; } }
     .media-player-modal.active::before {
       content: "";
       position: fixed;
@@ -5467,6 +5673,9 @@
   padding: 30px 34px 34px;
   width: 92%;
   max-width: 460px;
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid var(--glass-border);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 90px rgba(118, 75, 162, 0.18);
   position: relative;
@@ -8829,7 +9038,18 @@
       scrollbar-color: rgba(102, 126, 234, 0.3) transparent;
       color: var(--text);
       position: relative;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
     }
+    /* ─── SETTINGS REMAKE: staged section entrances ─── */
+    .settings-modal.active .settings-section { animation: settingsSecIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    .settings-modal.active .settings-section:nth-of-type(2) { animation-delay: 0.05s; }
+    .settings-modal.active .settings-section:nth-of-type(3) { animation-delay: 0.1s; }
+    .settings-modal.active .settings-section:nth-of-type(4) { animation-delay: 0.15s; }
+    .settings-modal.active .settings-section:nth-of-type(5) { animation-delay: 0.2s; }
+    .settings-modal.active .settings-section:nth-of-type(n+6) { animation-delay: 0.25s; }
+    @keyframes settingsSecIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .settings-modal.active .settings-close-row { animation: settingsSecIn 0.45s 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
     .settings-card::before {
       content: '';
       position: absolute;
@@ -9498,8 +9718,7 @@
     }
     .toggle-hint { opacity: 0.55; font-size: 0.62rem; font-weight: 400; }
     .liquid-glass-row { border-color: rgba(102,126,234,0.3); background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(102,126,234,0.03)); }
-    /* ─── SITE-WIDE LIQUID GLASS (body.liquid-glass) ─── */
-    body.liquid-glass .breadcrumb-wrap, body.liquid-glass .toolbar, body.liquid-glass .nav-tabs,
+    /* ─── SITE-WIDE LIQUID GLASS (body.liquid-glass) ─── */    body.liquid-glass .breadcrumb-wrap, body.liquid-glass .toolbar, body.liquid-glass .nav-tabs,
     body.liquid-glass .trash-head, body.liquid-glass .history-head, body.liquid-glass .fav-head,
     body.liquid-glass .trash-select-bar, body.liquid-glass .history-bulk-bar {
       backdrop-filter: blur(22px) saturate(1.5);
@@ -9513,6 +9732,19 @@
       backdrop-filter: blur(22px) saturate(1.5);
       -webkit-backdrop-filter: blur(22px) saturate(1.5);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+    /* ─── REDUCE MOTION (site-wide calm mode) ─── */
+    body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
     .theme-option.premium {
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -9820,6 +10052,12 @@
       #favoritesGrid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       #favoritesGrid .file-card, #favoritesGrid .folder-card { padding: 12px 8px 8px; }
       #favoritesGrid .folder-emoji, #favoritesGrid .file-emoji { font-size: 1.8rem; }
+      #favoritesGrid .item-path-badge { display: none; }
+      #favoritesGrid .file-name, #favoritesGrid .folder-name { font-size: 0.76rem; }
+      #favoritesGrid .file-size, #favoritesGrid .folder-size { font-size: 0.64rem; margin: 0; }
+      #favoritesGrid .card-actions { gap: 5px; margin-top: 4px; }
+      #favoritesGrid .card-actions .action-btn { padding: 5px 6px; font-size: 0.62rem; }
+      #favoritesGrid .card-actions .favorite-btn { padding: 3px 6px; }
     }
     .settings-close-row {
       margin-top: 14px;
@@ -10088,6 +10326,22 @@
       user-select: none;
       -webkit-user-drag: none;
       will-change: transform;
+    }
+    /* ─── LIGHTBOX PREMIUM REMAKE (all devices) ─── */
+    .image-lightbox.active img { animation: lbIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes lbIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    .image-lightbox .img-viewport { touch-action: none; }
+    .image-lightbox img { border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 40px var(--glow-color); }
+    .image-lightbox .close-lightbox, .image-lightbox .nav-arrow { min-width: 44px; min-height: 44px; }
+    .image-lightbox .img-toolbar button { min-width: 40px; min-height: 40px; }
+    .image-lightbox .img-filename {
+      max-width: calc(100vw - 120px);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    @media (max-width: 768px) {
+      .image-lightbox { padding-bottom: env(safe-area-inset-bottom); }
+      .image-lightbox img { max-width: 94vw; max-height: 78dvh; }
+      .image-lightbox .nav-arrow { opacity: 0.9; }
     }
     .image-lightbox .close-lightbox {
       position: absolute;
@@ -10615,6 +10869,8 @@
       .media-secondary-row {
         gap: 3px;
       }
+      .media-player-modal { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+      .media-player-content { padding: 20px 16px 22px; gap: 14px; border-radius: 24px; }
       .media-secondary-actions button {
         padding: 2px 4px;
         font-size: 0.6rem;
@@ -10722,8 +10978,10 @@
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ctrl-label" data-i18n="set.setPw">Set Password</span><button class="ctrl-btn" id="setPasswordBtn"><span data-i18n="set.setPw">Set Password</span></button></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><span class="ctrl-label" data-i18n="set.saveLogin">Save Login on This Device</span><div class="toggle-switch active" id="saveLoginToggle"><div class="toggle-knob"></div></div></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="ctrl-label" data-i18n="set.dlUser">Download User Data</span><button class="ctrl-btn" id="downloadUserDataBtn"><span data-i18n="set.download">Download</span></button></div>
+      <div class="storage-note" style="margin:4px 0 0;"><span data-i18n="set.dlUserInfo">Downloads your account data as JSON — bring it to a new browser.</span></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span class="ctrl-label"><span data-i18n="set.logout">Log Out</span></span><button class="ctrl-btn" id="logoutBtnSettings"><span data-i18n="set.logout">Log Out</span></button></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/></svg></span><span class="ctrl-label" data-i18n="set.resetCache">Reset Cache</span><button class="ctrl-btn" id="resetCacheBtn"><span data-i18n="set.reset">Reset</span></button></div>
+      <div class="storage-note" style="margin:4px 0 0;"><span data-i18n="set.resetInfo">Clears cached app files only — your library stays untouched.</span></div>
       </div>
     </div>
     <div class="settings-section"><div class="settings-section-title"><span class="title-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> <span data-i18n="set.backup">Backup (ZIP)</span></div>
@@ -10743,6 +11001,10 @@
       <div class="premium-toggle-row liquid-glass-row">
         <span class="premium-toggle-label" data-i18n-html="set.liquid">Liquid Glass ✦ <small class="toggle-hint">site-wide glass effect</small></span>
         <div class="toggle-switch active" id="liquidGlassToggle" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="premium-toggle-row">
+        <span class="premium-toggle-label" data-i18n-html="set.calm">Reduce Motion ✦ <small class="toggle-hint">calm UI, kinder battery</small></span>
+        <div class="toggle-switch" id="calmToggle" role="switch" aria-checked="false" tabindex="0"><div class="toggle-knob"></div></div>
       </div>
       <div class="premium-toggle-row">
         <span class="premium-toggle-label" data-i18n="set.showStd">Show Standard Themes</span>
@@ -10789,17 +11051,6 @@
       </div>
     </div>
 
-    <div class="settings-section" style="margin-bottom:2px;"><div class="settings-section-title"><span class="title-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> <span data-i18n="set.danger">Danger Zone</span></div>
-      <div class="premium-toggle-row" style="margin-bottom:8px;">
-        <span class="premium-toggle-label" style="color:#ef4444;" data-i18n="set.showDanger">Show Danger Actions</span>
-        <div class="toggle-switch" id="dangerToggle"><div class="toggle-knob"></div></div>
-      </div>
-      <div class="danger-zone" id="dangerZoneContent" style="display:none;">
-        <button class="danger-btn" id="clearAllFilesBtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Clear Cache (Delete All Files)</button>
-        <button class="danger-btn" id="deleteAccountBtn" style="margin-top:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="2" y1="2" x2="22" y2="22" stroke="#ef4444" stroke-width="2"/></svg> Delete Account</button>
-        <button class="danger-btn" id="terminateAccountBtn" style="margin-top:6px;color:#ef4444;border-color:rgba(239,68,68,0.3);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" style="vertical-align:-2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Terminate Account (Permanent)</button>
-      </div>
-    </div>
     <div class="settings-close-row"><button id="closeSettingsBtn" data-i18n="set.close">Close</button></div>
   </div></div>
 
@@ -10887,7 +11138,7 @@
   </div>
 
   <!-- ─── MOVE MODAL ─── -->
-  <div class="move-modal" id="moveModal"><div class="move-card"><div class="move-card-header"><div class="move-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><h3 id="moveModalTitle">Move File</h3></div><div class="sub" id="moveModalSub">Select destination</div><div class="move-search-wrap"><span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input type="text" id="moveFolderSearch" class="move-search-input" placeholder="Search folders..."><button class="clear-search-btn" id="clearMoveSearch" aria-label="Clear search">✕</button></div><div class="folder-list" id="folderList"></div><button class="guest-btn" id="cancelMoveBtn">Cancel</button></div></div>
+  <div class="move-modal" id="moveModal"><div class="move-card"><div class="move-card-header"><div class="move-card-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><h3 id="moveModalTitle">Move File</h3></div><div class="sub" id="moveModalSub">Select destination</div><div class="move-search-wrap"><span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input type="text" id="moveFolderSearch" class="move-search-input" placeholder="Search folders..." data-i18n-ph="move.search"><button class="clear-search-btn" id="clearMoveSearch" aria-label="Clear search">✕</button></div><div class="folder-list" id="folderList"></div><button class="guest-btn" id="cancelMoveBtn"><span data-i18n="mv.cancel">Cancel</span></button></div></div>
 
   <!-- ─── MEDIA PLAYER ─── -->
   <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle"><span data-i18n="mp.nowPlaying">Now Playing</span></div><div class="media-player-body" id="mediaPlayerBody"><div class="ambient-glow" id="ambientGlow"></div><div class="media-artwork" id="mediaArtwork"><div class="pause-overlay" id="pauseOverlay"><div class="pause-icon" id="pauseIconInner"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><div class="scrub-preview" id="scrubPreview"><canvas id="scrubCanvas" width="160" height="90"></canvas><div class="scrub-time" id="scrubTime">0:00</div><div class="scrub-precise-tag" id="scrubPreciseTag">Pull up for precise seeking</div></div><video id="scrubShadowVideo" muted playsinline preload="auto" style="position:fixed;width:4px;height:4px;left:-9999px;top:0;opacity:0;pointer-events:none;"></video><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaPrevBtn" title="Previous" data-i18n-title="mp.tPrev"><span class="btn-label" data-i18n="mp.prev">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause" data-i18n-title="mp.tPlay"><span class="btn-label" data-i18n="mp.play">Play</span></button><button id="mediaNextBtn" title="Next" data-i18n-title="mp.tNext"><span class="btn-label" data-i18n="mp.next">Next</span></button></div><div class="media-secondary-row"><div class="quality-pill-wrap" id="qualityPillWrap"><button id="mediaQualityBtn" class="quality-pill" title="Info" data-i18n-title="mp.tInfo"><span class="qpill-icon">ℹ</span><span class="qpill-text" data-i18n="mp.info">Info</span><span class="qpill-label" id="qualityPillLabel">Auto</span><span class="qpill-caret">▾</span></button><div class="quality-dropdown" id="qualityDropdown"></div></div><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen" data-i18n-title="mp.tFull"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span> <span data-i18n="mp.fullscreen">Fullscreen</span></button><button id="cinemaBtn" class="cinema-btn" title="Cinema Mode" data-i18n-title="mp.tCinema"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="10" y1="4" x2="10" y2="8"/><line x1="14" y1="4" x2="14" y2="8"/><line x1="18" y1="4" x2="18" y2="8"/></svg></span> <span data-i18n="mp.cinema">Cinema</span></button><button id="mediaKeybindsBtn" class="keybinds-btn" title="Keyboard Shortcuts" data-i18n-title="gen.keys"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg></span></button><div class="settings-menu-wrap" id="settingsMenuWrap"><button id="mediaSettingsBtn" class="settings-gear-btn" title="Settings" data-i18n-title="gen.settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><div class="settings-menu" id="settingsMenu"><div class="settings-panels-container"><div class="settings-panel settings-panel-main" id="settingsPanelMain"><button id="mediaSpeedBtn" class="settings-menu-row speed-btn" title="Playback speed"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M5 3 3 5"/><path d="M19 3l2 2"/></svg></span><span class="settings-row-label" data-i18n="mp.speed">Playback speed</span><span class="settings-row-value">1x</span></button><button id="repeatBtn" class="settings-menu-row repeat-btn" title="Repeat: Off"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><span class="settings-row-label" data-i18n="mp.repeat">Repeat</span><span class="settings-row-value"><span class="repeat-icon">↻</span> <span class="repeat-label">Off</span></span></button><div class="settings-menu-divider"></div><div class="settings-menu-row" id="ambientModeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></span><span class="settings-row-label" data-i18n="mp.ambient">Ambient mode</span><button class="pswitch" id="ambientModeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="volumeBoostRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span><span class="settings-row-label" data-i18n="mp.boost">Volume boost</span><button class="pswitch" id="volumeBoostToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="stableVolumeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M8 8v8"/><path d="M4 6v12"/><path d="M16 6v12"/><path d="M20 8v8"/></svg></span><span class="settings-row-label" data-i18n="mp.stable">Stable Volume</span><button class="pswitch" id="stableVolumeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="annotationsRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="settings-row-label" data-i18n="mp.notes">Annotations</span><button class="pswitch" id="annotationsToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div></div></div><div class="settings-panel settings-panel-speed" id="settingsPanelSpeed"><div class="settings-sub-header"><button class="settings-back-btn" id="speedBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.speed">Playback speed</span></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="speedCurrentVal">1x</strong></div><div class="settings-speed-grid" id="settingsSpeedGrid"></div></div><div class="settings-panel settings-panel-repeat" id="settingsPanelRepeat"><div class="settings-sub-header"><button class="settings-back-btn" id="repeatBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.repeat">Repeat</span></div><div class="settings-repeat-grid" id="settingsRepeatGrid"></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="repeatCurrentVal">Off</strong></div></div></div></div></div><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More" data-i18n-title="mp.tMore"><span class="btn-label">⋯</span> <span data-i18n="mp.more">More</span></button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> <span data-i18n="mp.download">Download</span></div><div class="item" id="mediaCutItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span> <span data-i18n="mp.cutVideo">Cut video</span></div><div class="item" id="mediaMinimizeItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> <span data-i18n="mp.minimize">Minimize</span></div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> <span data-i18n="mp.pip">Picture‑in‑Picture</span></div></div></div></div></div></div></div></div></div>
@@ -10965,7 +11216,7 @@
           <div class="user-info"><span class="username" id="usernameDisplay"></span><span class="user-status" id="headerStatus"><span class="st-dot">●</span>&nbsp;<span id="headerStatusText">Online</span></span></div>
           <span style="color:var(--text-muted);font-size:0.7rem;">▾</span>
           <div class="profile-menu" id="profileMenu">
-            <div class="profile-banner" id="profileBanner"><button class="banner-edit" id="bannerBtn" disabled data-i18n-title="gen.soon" title="Coming soon"><span data-i18n="pf.bannerSoon">Banner · Coming Soon</span></button></div>
+            <div class="profile-banner" id="profileBanner"><button class="banner-edit" id="bannerBtn" data-i18n-title="pf.banner" title="Change banner"><span data-i18n="pf.banner">Change banner</span></button></div>
             <div class="profile-head">
               <div class="profile-big-avatar" id="profileBigAvatar" data-i18n-title="pf.changePic" title="Change profile picture">?</div>
               <div class="profile-id"><div class="profile-name"><span id="profileName">User</span><button class="profile-edit-btn" id="profileRenameBtn" data-i18n-title="pf.editName" title="Edit display name">✎</button></div><div class="profile-sub" id="profileSub">@user · Local account</div><div class="profile-status-line"><span class="profile-status-dot" id="profileStatusDot"></span><span id="profileStatusText">Online</span></div></div>
@@ -10983,11 +11234,18 @@
             <div class="profile-custom-status"><input id="profileCustomStatus" maxlength="40" placeholder="Custom status… (e.g. Sorting photos)" data-i18n-ph="pf.customPh"><button class="icon-btn primary-btn" id="profileCustomSave" style="padding:6px 12px;"><span data-i18n="pf.set">Set</span></button></div>
             <div class="profile-actions">
               <button id="changePfpBtn">🖼️ <span data-i18n="pf.changePic">Change profile picture</span></button>
-              <button id="profileThemesBtn" disabled>🎨 <span data-i18n="pf.themes">Profile themes</span> <span class="soon-badge" data-i18n="pf.soon">Coming Soon</span></button>
-              <button id="profileBannerBtn" disabled>🌄 <span data-i18n="pf.banner">Change banner</span> <span class="soon-badge" data-i18n="pf.soon">Coming Soon</span></button>
+              <button id="profileThemesBtn">🎨 <span data-i18n="pf.themes">Profile themes</span></button>
+              <button id="profileBannerBtn">🌄 <span data-i18n="pf.banner">Change banner</span></button>
+              <details class="profile-danger">
+                <summary data-i18n="set.danger">Danger Zone</summary>
+              <button class="danger-btn" id="clearAllFilesBtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> <span data-i18n="pf.clearAll">Clear Cache (Delete All Files)</span></button>
+              <button class="danger-btn" id="deleteAccountBtn" style="margin-top:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="2" y1="2" x2="22" y2="22" stroke="#ef4444" stroke-width="2"/></svg> <span data-i18n="pf.delAccount">Delete Account</span></button>
+              <button class="danger-btn" id="terminateAccountBtn" style="margin-top:6px;color:#ef4444;border-color:rgba(239,68,68,0.3);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" style="vertical-align:-2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> <span data-i18n="pf.terminate">Terminate Account (Permanent)</span></button>
+              </details>
             </div>
           </div>
         </div>
+        <div class="profile-backdrop" id="profileBackdrop"></div>
         <input type="file" id="pfpInput" accept="image/*" style="display:none;">
         <input type="file" id="bannerInput" accept="image/*" style="display:none;">
         <div class="account-actions">
@@ -11032,6 +11290,11 @@
             <span class="toggle-label" data-i18n="sel.toggle">Select</span>
           </button>
           <span style="color:var(--text-secondary);font-size:0.7rem;opacity:0.4;" data-i18n="sel.hint">Toggle selection mode</span>
+          <span style="flex:1"></span>
+          <button class="selection-toggle-btn tour-btn" id="tutorialBtn" data-i18n-title="tour.btn">
+            <span class="toggle-dot"></span>
+            <span class="toggle-label" data-i18n="tour.btn">Tour</span>
+          </button>
         </div>
 
         <div class="select-bar" id="selectBar">
@@ -11384,7 +11647,24 @@
       'theme.forestwhisper': 'Forest Whisper', 'theme.rosegold': 'Rose Gold', 'theme.nebularose': 'Nebula Rose',
       'theme.arcticmidnight': 'Arctic Midnight', 'theme.sunsetboulevard': 'Sunset Boulevard', 'theme.twilightamethyst': 'Twilight Amethyst',
       'theme.carbonfiber': 'Carbon Fiber', 'theme.emeraldfrost': 'Emerald Frost', 'theme.crimsonvelvet': 'Crimson Velvet',
-      'theme.solarized': 'Solarized Dusk'
+      'theme.solarized': 'Solarized Dusk',
+      'tour.btn': 'Tour', 'tour.next': 'Next', 'tour.back': 'Back', 'tour.skip': 'Skip', 'tour.done': "Let's go",
+      'tour.s1t': 'Add your files', 'tour.s1d': 'Drop files anywhere, click to browse, or paste with Ctrl+V. A live bar tracks every upload.',
+      'tour.s2t': 'Make folders', 'tour.s2d': 'Group things up — folders nest as deep as you like.',
+      'tour.s3t': 'Find your way', 'tour.s3d': 'The breadcrumb shows where you are. Root jumps home; the arrows step back and forward.',
+      'tour.s4t': 'Sort everything', 'tour.s4d': 'Order by name, size, date, type, or extension — ascending or descending.',
+      'tour.s5t': 'Change the layout', 'tour.s5d': 'Four views, from tight grids to a clean list.',
+      'tour.s6t': 'Search instantly', 'tour.s6d': 'Filter everything as you type, with full paths shown.',
+      'tour.s7t': 'Batch actions', 'tour.s7d': 'Flip on Select, tick cards, then download or delete them all at once.',
+      'tour.s8t': 'Special tabs', 'tour.s8d': 'Starred favorites, full history, and the safety-net Trash live up here.',
+      'tour.s9t': 'Settings & themes', 'tour.s9d': 'Thirty themes, Liquid Glass, backups, and diagnostics live behind this button.',
+      'tour.s10t': 'Open & manage', 'tour.s10d': 'Click any card to preview it. The More menu holds rename, move, and delete.',
+      'tour.s11t': "You're ready", 'tour.s11d': "That's the whole tour — your cloud is yours. Have fun!",
+      'move.file': 'Move File', 'move.folder': 'Move Folder', 'move.moving': 'Moving: {name}',
+      'move.search': 'Search folders...', 'move.noMatch': 'No folders match "{term}"', 'mv.cancel': 'Cancel',
+      'pf.clearAll': 'Clear Cache (Delete All Files)', 'pf.delAccount': 'Delete Account', 'pf.terminate': 'Terminate Account (Permanent)',
+      'set.resetInfo': 'Clears cached app files only — your library stays untouched.', 'set.dlUserInfo': 'Downloads your account data as JSON — bring it to a new browser.',
+      'set.calm': 'Reduce Motion ✦ <small class="toggle-hint">calm UI, kinder battery</small>'
     } };
     let currentLang = 'en';
     try { currentLang = localStorage.getItem('nebula_lang') || 'en'; } catch (e) {}
@@ -11440,8 +11720,21 @@
     }
     function buildLangMenu() {
       const menu = document.getElementById('langMenu'); if (!menu) return;
-      menu.innerHTML = LANGS.map(l => `<div class="item${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}"><span class="icon-chip">🌐</span> ${l.name} <span class="lang-code">${l.short}</span><span class="check">✓</span></div>`).join('');
-      menu.querySelectorAll('.item[data-lang]').forEach(it => it.addEventListener('click', (e) => { e.stopPropagation(); setLang(it.dataset.lang); }));
+      if (menu.parentNode !== document.body) document.body.appendChild(menu);
+      menu.innerHTML = `<div class="lang-head"><span class="lang-globe"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>${escapeHtml(t('gen.language'))}</div>` + LANGS.map(l => `<div class="item${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}"><span class="icon-chip">${l.short}</span> ${l.name}<span class="check">✓</span></div>`).join('');
+      menu.querySelectorAll('.item[data-lang]').forEach(it => it.addEventListener('click', (e) => { e.stopPropagation(); setLang(it.dataset.lang); closeLangMenu(); }));
+    }
+    function closeLangMenu() {
+      const lm = document.getElementById('langMenu'); if (lm) lm.classList.remove('show', 'as-modal');
+      const bd = document.getElementById('profileBackdrop'); if (bd && !document.getElementById('profileMenu').classList.contains('open')) bd.classList.remove('show');
+    }
+    function showWelcomeLang() {
+      if (document.getElementById('welcomeLang')) return;
+      const w = document.createElement('div');
+      w.className = 'welcome-lang'; w.id = 'welcomeLang';
+      w.innerHTML = `<div class="welcome-card"><div style="font-size:2rem;">🌐</div><h2>Welcome to NebulaCloud</h2><p>Choose your language · Elige tu idioma · Choisis ta langue</p><div class="welcome-grid">` + LANGS.map(l => `<button data-wlang="${l.code}">${l.name}</button>`).join('') + `</div></div>`;
+      document.body.appendChild(w);
+      w.querySelectorAll('[data-wlang]').forEach(b => b.addEventListener('click', () => { setLang(b.dataset.wlang); w.remove(); }));
     }
 
     Object.assign(I18N, { es: {
@@ -11526,7 +11819,24 @@
       'theme.forestwhisper': 'Susurro del Bosque', 'theme.rosegold': 'Oro Rosa', 'theme.nebularose': 'Rosa Nebular',
       'theme.arcticmidnight': 'Medianoche Ártica', 'theme.sunsetboulevard': 'Bulevar Atardecer', 'theme.twilightamethyst': 'Amatista Crepúsculo',
       'theme.carbonfiber': 'Fibra de Carbono', 'theme.emeraldfrost': 'Escarcha Esmeralda', 'theme.crimsonvelvet': 'Terciopelo Carmesí',
-      'theme.solarized': 'Atardecer Solarizado'
+      'theme.solarized': 'Atardecer Solarizado',
+      'tour.btn': 'Tour', 'tour.next': 'Siguiente', 'tour.back': 'Atrás', 'tour.skip': 'Saltar', 'tour.done': 'Vamos',
+      'tour.s1t': 'Añade tus archivos', 'tour.s1d': 'Arrastra archivos, haz clic o pega con Ctrl+V. Una barra sigue cada subida.',
+      'tour.s2t': 'Crea carpetas', 'tour.s2d': 'Organízate — las carpetas anidan sin límite.',
+      'tour.s3t': 'No te pierdas', 'tour.s3d': 'La ruta muestra dónde estás. Raíz vuelve al inicio; las flechas van y vienen.',
+      'tour.s4t': 'Ordena todo', 'tour.s4d': 'Por nombre, tamaño, fecha, tipo o extensión — ascendente o descendente.',
+      'tour.s5t': 'Cambia la vista', 'tour.s5d': 'Cuatro vistas, de cuadrículas compactas a lista limpia.',
+      'tour.s6t': 'Busca al instante', 'tour.s6d': 'Filtra todo mientras escribes, con rutas completas.',
+      'tour.s7t': 'Acciones en grupo', 'tour.s7d': 'Activa Elegir, marca tarjetas y descarga o borra todo de una vez.',
+      'tour.s8t': 'Pestañas especiales', 'tour.s8d': 'Favoritos, historial completo y la papelera viven aquí arriba.',
+      'tour.s9t': 'Ajustes y temas', 'tour.s9d': 'Treinta temas, cristal líquido, copias y diagnóstico tras este botón.',
+      'tour.s10t': 'Abre y gestiona', 'tour.s10d': 'Toca una tarjeta para verla. El menú Más trae renombrar, mover y borrar.',
+      'tour.s11t': 'Listo', 'tour.s11d': 'Fin del tour — tu nube es tuya. ¡Diviértete!',
+      'move.file': 'Mover archivo', 'move.folder': 'Mover carpeta', 'move.moving': 'Moviendo: {name}',
+      'move.search': 'Buscar carpetas...', 'move.noMatch': 'Ninguna carpeta coincide con "{term}"', 'mv.cancel': 'Cancelar',
+      'pf.clearAll': 'Borrar caché (borrar todo)', 'pf.delAccount': 'Borrar cuenta', 'pf.terminate': 'Terminar cuenta (permanente)',
+      'set.resetInfo': 'Borra solo caché — tu biblioteca intacta.', 'set.dlUserInfo': 'Descarga tus datos en JSON — llévalos a otro navegador.',
+      'set.calm': 'Menos movimiento ✦ <small class="toggle-hint">interfaz calmada, mejor batería</small>'
     }, fr: {
       'nav.files': 'Fichiers', 'nav.favorites': 'Favoris', 'nav.history': 'Historique', 'nav.trash': 'Corbeille',
       'tagline': 'Ton cloud privé - toujours avec toi, sans serveurs, sans abonnements.',
@@ -11609,7 +11919,24 @@
       'theme.forestwhisper': 'Murmure de la Forêt', 'theme.rosegold': 'Or Rose', 'theme.nebularose': 'Rose Nébulaire',
       'theme.arcticmidnight': 'Minuit Arctique', 'theme.sunsetboulevard': 'Boulevard Coucher de Soleil', 'theme.twilightamethyst': 'Améthyste Crépuscule',
       'theme.carbonfiber': 'Fibre de Carbone', 'theme.emeraldfrost': 'Givre Émeraude', 'theme.crimsonvelvet': 'Velours Cramoisi',
-      'theme.solarized': 'Crépuscule Solarisé'
+      'theme.solarized': 'Crépuscule Solarisé',
+      'tour.btn': 'Visite', 'tour.next': 'Suivant', 'tour.back': 'Retour', 'tour.skip': 'Passer', 'tour.done': 'Allons-y',
+      'tour.s1t': 'Ajoute tes fichiers', 'tour.s1d': 'Dépose des fichiers, clique ou colle avec Ctrl+V. Une barre suit chaque envoi.',
+      'tour.s2t': 'Crée des dossiers', 'tour.s2d': 'Range tout — les dossiers s’imbriquent sans limite.',
+      'tour.s3t': 'Repère-toi', 'tour.s3d': 'Le fil montre où tu es. Racine revient au début ; les flèches vont et viennent.',
+      'tour.s4t': 'Trie tout', 'tour.s4d': 'Par nom, taille, date, type ou extension — croissant ou décroissant.',
+      'tour.s5t': "Change la vue", 'tour.s5d': 'Quatre vues, des grilles compactes à la liste épurée.',
+      'tour.s6t': 'Cherche instantanément', 'tour.s6d': 'Filtre tout pendant que tu tapes, chemins complets inclus.',
+      'tour.s7t': 'Actions groupées', 'tour.s7d': 'Active Choisir, coche des cartes, puis télécharge ou supprime tout.',
+      'tour.s8t': 'Onglets spéciaux', 'tour.s8d': 'Favoris, historique complet et corbeille vivent là-haut.',
+      'tour.s9t': 'Réglages et thèmes', 'tour.s9d': 'Trente thèmes, verre liquide, sauvegardes et diagnostic derrière ce bouton.',
+      'tour.s10t': 'Ouvre et gère', 'tour.s10d': 'Touche une carte pour la voir. Le menu Plus a renommer, déplacer, supprimer.',
+      'tour.s11t': 'Prêt', 'tour.s11d': 'Fin de la visite — ton cloud est à toi. Amuse-toi !',
+      'move.file': 'Déplacer le fichier', 'move.folder': 'Déplacer le dossier', 'move.moving': 'Déplacement : {name}',
+      'move.search': 'Chercher des dossiers...', 'move.noMatch': 'Aucun dossier pour "{term}"', 'mv.cancel': 'Annuler',
+      'pf.clearAll': 'Vider le cache (tout supprimer)', 'pf.delAccount': 'Supprimer le compte', 'pf.terminate': 'Résilier le compte (définitif)',
+      'set.resetInfo': 'Vide le cache seul — ta bibliothèque reste intacte.', 'set.dlUserInfo': 'Télécharge tes données en JSON — pour un autre navigateur.',
+      'set.calm': 'Moins de mouvements ✦ <small class="toggle-hint">interface calme, meilleure batterie</small>'
     } });
     Object.assign(I18N, { de: {
       'nav.files': 'Dateien', 'nav.favorites': 'Favoriten', 'nav.history': 'Verlauf', 'nav.trash': 'Papierkorb',
@@ -11693,7 +12020,24 @@
       'theme.forestwhisper': 'Waldflüstern', 'theme.rosegold': 'Roségold', 'theme.nebularose': 'Nebelrose',
       'theme.arcticmidnight': 'Arktische Mitternacht', 'theme.sunsetboulevard': 'Sunset Boulevard', 'theme.twilightamethyst': 'Zwielicht-Amethyst',
       'theme.carbonfiber': 'Karbonfaser', 'theme.emeraldfrost': 'Smaragdfrost', 'theme.crimsonvelvet': 'Purpur-Samt',
-      'theme.solarized': 'Solaruntergang'
+      'theme.solarized': 'Solaruntergang',
+      'tour.btn': 'Tour', 'tour.next': 'Weiter', 'tour.back': 'Zurück', 'tour.skip': 'Überspringen', 'tour.done': 'Los geht’s',
+      'tour.s1t': 'Füge Dateien hinzu', 'tour.s1d': 'Dateien hierher ziehen, klicken oder mit Strg+V einfügen. Ein Balken folgt jedem Upload.',
+      'tour.s2t': 'Ordner erstellen', 'tour.s2d': 'Bring Ordnung rein — Ordner schachteln beliebig tief.',
+      'tour.s3t': 'Finde dich zurecht', 'tour.s3d': 'Der Pfad zeigt, wo du bist. Stamm springt nach Hause; die Pfeile gehen vor und zurück.',
+      'tour.s4t': 'Alles sortieren', 'tour.s4d': 'Nach Name, Größe, Datum, Typ oder Endung — auf- oder absteigend.',
+      'tour.s5t': 'Ansicht wechseln', 'tour.s5d': 'Vier Ansichten, von dichten Rastern bis zur klaren Liste.',
+      'tour.s6t': 'Sofort suchen', 'tour.s6d': 'Filtert alles beim Tippen, mit vollen Pfaden.',
+      'tour.s7t': 'Stapelaktionen', 'tour.s7d': 'Wählen an, Karten ticken, dann alles laden oder löschen.',
+      'tour.s8t': 'Spezial-Tabs', 'tour.s8d': 'Favoriten, Verlauf und Papierkorb wohnen hier oben.',
+      'tour.s9t': 'Einstellungen & Themes', 'tour.s9d': 'Dreißig Themes, Flüssigglas, Backups und Diagnose hinter diesem Knopf.',
+      'tour.s10t': 'Öffnen & verwalten', 'tour.s10d': 'Karte anklicken zum Ansehen. Das Mehr-Menü hat Umbenennen, Verschieben, Löschen.',
+      'tour.s11t': 'Fertig', 'tour.s11d': 'Das war die Tour — deine Cloud gehört dir. Viel Spaß!',
+      'move.file': 'Datei verschieben', 'move.folder': 'Ordner verschieben', 'move.moving': 'Verschiebe: {name}',
+      'move.search': 'Ordner suchen...', 'move.noMatch': 'Keine Ordner für "{term}"', 'mv.cancel': 'Abbrechen',
+      'pf.clearAll': 'Cache leeren (alles löschen)', 'pf.delAccount': 'Konto löschen', 'pf.terminate': 'Konto kündigen (endgültig)',
+      'set.resetInfo': 'Leert nur den Cache — deine Bibliothek bleibt.', 'set.dlUserInfo': 'Lädt deine Daten als JSON — für einen neuen Browser.',
+      'set.calm': 'Weniger Bewegung ✦ <small class="toggle-hint">ruhige UI, besserer Akku</small>'
     }, pt: {
       'nav.files': 'Arquivos', 'nav.favorites': 'Favoritos', 'nav.history': 'Histórico', 'nav.trash': 'Lixeira',
       'tagline': 'Tua nuvem privada - sempre contigo, sem servidores, sem assinaturas.',
@@ -11776,7 +12120,24 @@
       'theme.forestwhisper': 'Sussurro da Floresta', 'theme.rosegold': 'Ouro Rosa', 'theme.nebularose': 'Rosa Nebulosa',
       'theme.arcticmidnight': 'Meia-Noite Ártica', 'theme.sunsetboulevard': 'Boulevard do Pôr do Sol', 'theme.twilightamethyst': 'Ametista Crepúsculo',
       'theme.carbonfiber': 'Fibra de Carbono', 'theme.emeraldfrost': 'Geada Esmeralda', 'theme.crimsonvelvet': 'Veludo Carmesim',
-      'theme.solarized': 'Pôr do Sol Solarizado'
+      'theme.solarized': 'Pôr do Sol Solarizado',
+      'tour.btn': 'Tour', 'tour.next': 'Próximo', 'tour.back': 'Voltar', 'tour.skip': 'Pular', 'tour.done': 'Vamos lá',
+      'tour.s1t': 'Põe teus arquivos', 'tour.s1d': 'Arrasta arquivos, clica ou cola com Ctrl+V. Uma barra segue cada envio.',
+      'tour.s2t': 'Cria pastas', 'tour.s2d': 'Organiza tudo — pastas aninham sem limite.',
+      'tour.s3t': 'Acha teu lugar', 'tour.s3d': 'A trilha mostra onde estás. Raiz volta ao início; as setas vão e vêm.',
+      'tour.s4t': 'Ordena tudo', 'tour.s4d': 'Por nome, tamanho, data, tipo ou extensão — crescente ou não.',
+      'tour.s5t': 'Muda a vista', 'tour.s5d': 'Quatro vistas, de grades justas à lista limpa.',
+      'tour.s6t': 'Pesquisa na hora', 'tour.s6d': 'Filtra tudo enquanto digitas, com caminhos completos.',
+      'tour.s7t': 'Ações em grupo', 'tour.s7d': 'Liga Escolher, marca cartões e baixa ou apaga tudo de uma vez.',
+      'tour.s8t': 'Abas especiais', 'tour.s8d': 'Favoritos, histórico completo e lixeira moram aqui em cima.',
+      'tour.s9t': 'Ajustes e temas', 'tour.s9d': 'Trinta temas, vidro líquido, cópias e diagnóstico atrás deste botão.',
+      'tour.s10t': 'Abre e gere', 'tour.s10d': 'Toca num cartão para ver. O menu Mais tem renomear, mover e apagar.',
+      'tour.s11t': 'Pronto', 'tour.s11d': 'Fim do tour — tua nuvem é tua. Diverte-te!',
+      'move.file': 'Mover arquivo', 'move.folder': 'Mover pasta', 'move.moving': 'Movendo: {name}',
+      'move.search': 'Pesquisar pastas...', 'move.noMatch': 'Nenhuma pasta para "{term}"', 'mv.cancel': 'Cancelar',
+      'pf.clearAll': 'Limpar cache (apagar tudo)', 'pf.delAccount': 'Apagar conta', 'pf.terminate': 'Encerrar conta (permanente)',
+      'set.resetInfo': 'Limpa só o cache — tua biblioteca intacta.', 'set.dlUserInfo': 'Baixa teus dados em JSON — leva para outro navegador.',
+      'set.calm': 'Menos movimento ✦ <small class="toggle-hint">interface calma, melhor bateria</small>'
     } });
     Object.assign(I18N, { hi: {
       'nav.files': 'फाइलें', 'nav.favorites': 'पसंदीदा', 'nav.history': 'इतिहास', 'nav.trash': 'कचरा',
@@ -11860,7 +12221,24 @@
       'theme.forestwhisper': 'जंगल की सरसराहट', 'theme.rosegold': 'रोज़ गोल्ड', 'theme.nebularose': 'नेबुला रोज़',
       'theme.arcticmidnight': 'आर्कटिक आधी रात', 'theme.sunsetboulevard': 'सूर्यास्त मार्ग', 'theme.twilightamethyst': 'गोधूलि नीलम',
       'theme.carbonfiber': 'कार्बन फाइबर', 'theme.emeraldfrost': 'पन्ना ठंड', 'theme.crimsonvelvet': 'लाल मखमल',
-      'theme.solarized': 'सौर संध्या'
+      'theme.solarized': 'सौर संध्या',
+      'tour.btn': 'टूर', 'tour.next': 'आगे', 'tour.back': 'पीछे', 'tour.skip': 'छोड़ें', 'tour.done': 'चलो शुरू करें',
+      'tour.s1t': 'अपनी फाइलें डालें', 'tour.s1d': 'फाइलें यहाँ डालें, क्लिक करें या Ctrl+V दबाएं। हर अपलोड पर लाइव बार चलता है।',
+      'tour.s2t': 'फोल्डर बनाएं', 'tour.s2d': 'चीजें जमाएं — फोल्डर जितने चाहें उतने अंदर बनते हैं।',
+      'tour.s3t': 'रास्ता जानें', 'tour.s3d': 'ब्रेडक्रम्ब बताता है आप कहां हैं। मूल घर ले जाता है; तीर आगे-पीछे।',
+      'tour.s4t': 'सब क्रम में करें', 'tour.s4d': 'नाम, आकार, तारीख, प्रकार या एक्सटेंशन से — बढ़ते या घटते क्रम में।',
+      'tour.s5t': 'लेआउट बदलें', 'tour.s5d': 'चार व्यू — सघन ग्रिड से साफ सूची तक।',
+      'tour.s6t': 'तुरंत खोजें', 'tour.s6d': 'लिखते ही सब फिल्टर होता है, पूरे पते के साथ।',
+      'tour.s7t': 'थोक काम', 'tour.s7d': 'चुनें चालू करें, कार्ड टिक करें, फिर एक साथ डाउनलोड या मिटाएं।',
+      'tour.s8t': 'खास टैब', 'tour.s8d': 'पसंदीदा, पूरा इतिहास और कचरा ऊपर रहते हैं।',
+      'tour.s9t': 'सेटिंग्स और थीम', 'tour.s9d': 'तीस थीम, लिक्विड ग्लास, बैकअप और जांच इस बटन के पीछे हैं।',
+      'tour.s10t': 'खोलें और संभालें', 'tour.s10d': 'झलक के लिए कार्ड दबाएं। More मेनू में नाम बदलना, ले जाना, मिटाना है।',
+      'tour.s11t': 'तैयार हैं', 'tour.s11d': 'टूर खत्म — आपका क्लाउड आपका है। मज़े करें!',
+      'move.file': 'फाइल ले जाएं', 'move.folder': 'फोल्डर ले जाएं', 'move.moving': 'ले जा रहे: {name}',
+      'move.search': 'फोल्डर खोजें...', 'move.noMatch': '"{term}" से कोई फोल्डर नहीं मिला', 'mv.cancel': 'रद्द करें',
+      'pf.clearAll': 'कैश साफ करें (सभी मिटाएं)', 'pf.delAccount': 'खाता मिटाएं', 'pf.terminate': 'खाता समाप्त करें (स्थायी)',
+      'set.resetInfo': 'सिर्फ कैश साफ होता है — आपकी लाइब्रेरी सुरक्षित।', 'set.dlUserInfo': 'आपका डेटा JSON में डाउनलोड होता है — नए ब्राउज़र में ले जाएं।',
+      'set.calm': 'कम मोशन ✦ <small class="toggle-hint">शांत UI, बेहतर बैटरी</small>'
     }, ar: {
       'nav.files': 'الملفات', 'nav.favorites': 'المفضلة', 'nav.history': 'السجل', 'nav.trash': 'المهملات',
       'tagline': 'سحابتك الخاصة - معك دائمًا، بلا خوادم، بلا اشتراكات.',
@@ -11943,7 +12321,24 @@
       'theme.forestwhisper': 'همس الغابة', 'theme.rosegold': 'ذهب وردي', 'theme.nebularose': 'ورد سديمي',
       'theme.arcticmidnight': 'منتصف ليل قطبي', 'theme.sunsetboulevard': 'شارع الغروب', 'theme.twilightamethyst': 'جمشت الغسق',
       'theme.carbonfiber': 'ألياف كربون', 'theme.emeraldfrost': 'صقيع زمردي', 'theme.crimsonvelvet': 'مخمل قرمزي',
-      'theme.solarized': 'غروب مشمس'
+      'theme.solarized': 'غروب مشمس',
+      'tour.btn': 'جولة', 'tour.next': 'التالي', 'tour.back': 'رجوع', 'tour.skip': 'تخطي', 'tour.done': 'هيا بنا',
+      'tour.s1t': 'أضف ملفاتك', 'tour.s1d': 'أسقط الملفات هنا أو انقر أو الصق بـ Ctrl+V. شريط حي يتابع كل رفع.',
+      'tour.s2t': 'أنشئ مجلدات', 'tour.s2d': 'نظّم أمورك — المجلدات تتداخل بلا حد.',
+      'tour.s3t': 'اعرف طريقك', 'tour.s3d': 'المسار يوضح أين أنت. الجذر يعود للبيت؛ والأسهم للأمام والخلف.',
+      'tour.s4t': 'رتّب كل شيء', 'tour.s4d': 'بالاسم أو الحجم أو التاريخ أو النوع — تصاعديًا أو تنازليًا.',
+      'tour.s5t': 'غيّر العرض', 'tour.s5d': 'أربعة عروض، من شبكات مضغوطة إلى قائمة نظيفة.',
+      'tour.s6t': 'ابحث فورًا', 'tour.s6d': 'رشّح كل شيء أثناء الكتابة، مع المسارات الكاملة.',
+      'tour.s7t': 'إجراءات جماعية', 'tour.s7d': 'فعّل الاختيار، علّم البطاقات، ثم حمّل أو احذف الكل دفعة واحدة.',
+      'tour.s8t': 'تبويبات خاصة', 'tour.s8d': 'المفضلة والسجل الكامل والمهملات تعيش في الأعلى.',
+      'tour.s9t': 'الإعدادات والسمات', 'tour.s9d': 'ثلاثون سمة وزجاج سائل ونسخ وتشخيص خلف هذا الزر.',
+      'tour.s10t': 'افتح وأدر', 'tour.s10d': 'انقر أي بطاقة لمعاينتها. قائمة المزيد فيها التسمية والنقل والحذف.',
+      'tour.s11t': 'أنت جاهز', 'tour.s11d': 'انتهت الجولة — سحابتك لك. استمتع!',
+      'move.file': 'نقل الملف', 'move.folder': 'نقل المجلد', 'move.moving': 'جارٍ النقل: {name}',
+      'move.search': 'بحث في المجلدات...', 'move.noMatch': 'لا مجلدات تطابق "{term}"', 'mv.cancel': 'إلغاء',
+      'pf.clearAll': 'مسح الكاش (حذف الكل)', 'pf.delAccount': 'حذف الحساب', 'pf.terminate': 'إنهاء الحساب (نهائي)',
+      'set.resetInfo': 'يمسح الكاش فقط — مكتبتك بأمان.', 'set.dlUserInfo': 'يحمّل بياناتك JSON — خذها لمتصفح جديد.',
+      'set.calm': 'تقليل الحركة ✦ <small class="toggle-hint">واجهة هادئة وبطارية أفضل</small>'
     }, zh: {
       'nav.files': '文件', 'nav.favorites': '收藏', 'nav.history': '历史', 'nav.trash': '回收站',
       'tagline': '你的私人云 - 随时相伴，无服务器，无订阅。',
@@ -12026,7 +12421,24 @@
       'theme.forestwhisper': '森林低语', 'theme.rosegold': '玫瑰金', 'theme.nebularose': '星云粉',
       'theme.arcticmidnight': '北极午夜', 'theme.sunsetboulevard': '日落大道', 'theme.twilightamethyst': '暮紫水晶',
       'theme.carbonfiber': '碳纤维', 'theme.emeraldfrost': '翡翠寒霜', 'theme.crimsonvelvet': '绯红丝绒',
-      'theme.solarized': '太阳落日'
+      'theme.solarized': '太阳落日',
+      'tour.btn': '导览', 'tour.next': '下一个', 'tour.back': '上一个', 'tour.skip': '跳过', 'tour.done': '开始吧',
+      'tour.s1t': '添加文件', 'tour.s1d': '把文件拖到这里、点击浏览，或按 Ctrl+V 粘贴。实时进度条跟踪每次上传。',
+      'tour.s2t': '新建文件夹', 'tour.s2d': '分门别类 — 文件夹可以无限嵌套。',
+      'tour.s3t': '找准位置', 'tour.s3d': '面包屑显示你在哪里。根目录回家；箭头前进后退。',
+      'tour.s4t': '整理一切', 'tour.s4d': '按名称、大小、日期、类型或扩展名 — 升序或降序。',
+      'tour.s5t': '切换布局', 'tour.s5d': '四种视图，从紧凑网格到清爽列表。',
+      'tour.s6t': '即时搜索', 'tour.s6d': '边输入边过滤全部内容，并显示完整路径。',
+      'tour.s7t': '批量操作', 'tour.s7d': '打开选择，勾选卡片，一次下载或删除全部。',
+      'tour.s8t': '特别标签', 'tour.s8d': '收藏、完整历史和回收站住在上面。',
+      'tour.s9t': '设置和主题', 'tour.s9d': '三十套主题、液态玻璃、备份和诊断都在这个按钮后面。',
+      'tour.s10t': '打开和管理', 'tour.s10d': '点击卡片预览。更多菜单里有重命名、移动和删除。',
+      'tour.s11t': '准备好了', 'tour.s11d': '导览结束 — 你的云属于你。玩得开心！',
+      'move.file': '移动文件', 'move.folder': '移动文件夹', 'move.moving': '正在移动：{name}',
+      'move.search': '搜索文件夹...', 'move.noMatch': '没有匹配 "{term}" 的文件夹', 'mv.cancel': '取消',
+      'pf.clearAll': '清除缓存（删除全部）', 'pf.delAccount': '删除账户', 'pf.terminate': '终止账户（永久）',
+      'set.resetInfo': '仅清除缓存 — 你的资料库不受影响。', 'set.dlUserInfo': '下载 JSON 账户数据 — 带到新浏览器。',
+      'set.calm': '减少动态 ✦ <small class="toggle-hint">界面更静，电池更省</small>'
     } });
     document.getElementById('showSignup').onclick = () => {
       document.getElementById('loginView').classList.add('hidden');
@@ -12205,13 +12617,20 @@
       const wrap = document.getElementById('profileWrap');
       const menu = document.getElementById('profileMenu');
       if (!wrap || !menu) return;
+      // Move to <body>: navbar blur/filter would trap fixed centering otherwise
+      if (menu.parentNode !== document.body) document.body.appendChild(menu);
+      const bd0 = document.getElementById('profileBackdrop');
+      if (bd0 && bd0.parentNode !== document.body) document.body.appendChild(bd0);
       // Toggle only when clicking the header part (avatar/name/chevron), never when interacting inside the menu
       wrap.addEventListener('click', (e) => {
         if (e.target.closest('.profile-menu')) return;
         syncProfileUI();
+        closeLangMenu();
         menu.classList.toggle('open');
+        menu.scrollTop = 0;
+        document.getElementById('profileBackdrop').classList.toggle('show', menu.classList.contains('open'));
       });
-      document.addEventListener('click', (e) => { if (!e.target.closest('#profileWrap')) menu.classList.remove('open'); });
+      document.addEventListener('click', (e) => { if (!e.target.closest('#profileWrap') && !e.target.closest('#profileMenu')) { menu.classList.remove('open'); document.getElementById('profileBackdrop').classList.remove('show'); } });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menu.classList.remove('open'); });
       const rBtn = document.getElementById('profileRenameBtn');
       const rRow = document.getElementById('profileRenameRow');
@@ -12280,7 +12699,43 @@
         };
         reader.readAsDataURL(f); pfpInput.value = '';
       });
-      ['profileThemesBtn','profileBannerBtn','bannerBtn'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('click', (e) => { e.stopPropagation(); showToast('Coming Soon — profile & banner themes arrive in a future update'); }); });
+      const bd = document.getElementById('profileBackdrop');
+      if (bd) bd.addEventListener('click', () => { menu.classList.remove('open'); bd.classList.remove('show'); });
+      // Banner upload that finally works (downscaled, per account)
+      const bannerInput = document.getElementById('bannerInput');
+      const openBannerPicker = (e) => { if (e) e.stopPropagation(); if (bannerInput) bannerInput.click(); };
+      ['profileBannerBtn', 'bannerBtn'].forEach(id => { const el = document.getElementById(id); if (el) { el.disabled = false; el.addEventListener('click', openBannerPicker); } });
+      if (bannerInput) bannerInput.addEventListener('change', () => {
+        const f = bannerInput.files[0]; if (!f) return;
+        if (!f.type.startsWith('image/')) { showToast('Pick an image file'); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const img = new Image();
+            img.onload = () => {
+              try {
+                const MAX = 900; let w = img.width, h = img.height; const sc = Math.min(1, MAX / Math.max(w, h));
+                w = Math.round(w * sc); h = Math.round(h * sc);
+                const c = document.createElement('canvas'); c.width = w; c.height = h;
+                c.getContext('2d').drawImage(img, 0, 0, w, h);
+                localStorage.setItem(getBannerKey(currentUser), c.toDataURL('image/jpeg', 0.82));
+                syncProfileUI();
+                showToast('Banner updated');
+              } catch (err) { showToast('Banner too large to save'); }
+            };
+            img.src = reader.result;
+          } catch (e) { showToast('Could not read that image'); }
+        };
+        reader.readAsDataURL(f); bannerInput.value = '';
+      });
+      // Profile themes jumps straight to Settings themes
+      const ptBtn = document.getElementById('profileThemesBtn');
+      if (ptBtn) { ptBtn.disabled = false; ptBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.remove('open'); if (bd) bd.classList.remove('show');
+        document.getElementById('settingsBtn').click();
+        setTimeout(() => { const th = document.querySelector('.theme-section-label.standard-section'); if (th) th.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 350);
+      }); }
     })();
 
     function rememberAccount(id, displayName, avatarHTML, isGuest) { let list = []; try { list = JSON.parse(localStorage
@@ -14176,6 +14631,12 @@
       localStorage.setItem('nc_volumeBoost', on ? '1' : '0');
       if (on && mediaPlayer && mediaPlayer instanceof HTMLMediaElement) ensureAudioGraph(mediaPlayer);
       if (boostGainNode && audioCtx) { try { boostGainNode.gain.linearRampToValueAtTime(on ? 1.8 : 1, audioCtx.currentTime + 0.15); } catch (e) {} } }
+    // iPhone lock screen suspends WebAudio: resume it when coming back so boosted audio is heard again.
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && volumeBoostOn && audioCtx && audioCtx.state === 'suspended') {
+        try { audioCtx.resume(); } catch (e) {}
+      }
+    });
 
     // ─── MEDIA SESSION (lock-screen controls + background audio on mobile) ───
     let mediaSessionWired = false;
@@ -15468,11 +15929,38 @@
         if (e.target.closest('.img-toolbar') || e.target.closest('.nav-arrow')) return;
         if (zoom !== 1) { setZoom(1); } else { setZoom(2); }
       }
+      // Touch: pinch-to-zoom + swipe to navigate (iPhone/iPad)
+      let pinchD0 = 0, pinchZ0 = 1, swipeX0 = null, pinchOn = false;
+      function onTouchStart(e) {
+        if (e.touches.length === 2) {
+          pinchOn = true;
+          pinchD0 = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          pinchZ0 = zoom;
+        } else if (e.touches.length === 1) { swipeX0 = e.touches[0].clientX; }
+      }
+      function onTouchMove(e) {
+        if (pinchOn && e.touches.length === 2) {
+          e.preventDefault();
+          const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          if (pinchD0 > 0) setZoom(pinchZ0 * d / pinchD0);
+        }
+      }
+      function onTouchEnd(e) {
+        if (pinchOn) { pinchOn = false; pinchD0 = 0; return; }
+        if (swipeX0 !== null && zoom === 1 && !e.target.closest('.img-toolbar') && !e.target.closest('.nav-arrow')) {
+          const tx = (e.changedTouches[0] || {}).clientX;
+          if (tx !== undefined && Math.abs(tx - swipeX0) > 60) navigateToImage(currentImageIndex + (tx < swipeX0 ? 1 : -1));
+        }
+        swipeX0 = null;
+      }
 
       function cleanup() {
         document.removeEventListener('keydown', onKey);
         viewport.removeEventListener('wheel', onWheel);
         viewport.removeEventListener('pointerdown', onPointerDown);
+        viewport.removeEventListener('touchstart', onTouchStart);
+        viewport.removeEventListener('touchmove', onTouchMove);
+        viewport.removeEventListener('touchend', onTouchEnd);
         document.removeEventListener('pointermove', onPointerMove);
         document.removeEventListener('pointerup', onPointerUp);
         viewport.removeEventListener('dblclick', onDblClick);
@@ -15507,6 +15995,9 @@
       document.addEventListener('keydown', onKey);
       viewport.addEventListener('wheel', onWheel, { passive: false });
       viewport.addEventListener('pointerdown', onPointerDown);
+      viewport.addEventListener('touchstart', onTouchStart, { passive: true });
+      viewport.addEventListener('touchmove', onTouchMove, { passive: false });
+      viewport.addEventListener('touchend', onTouchEnd);
       document.addEventListener('pointermove', onPointerMove);
       document.addEventListener('pointerup', onPointerUp);
       viewport.addEventListener('dblclick', onDblClick);
@@ -15608,8 +16099,8 @@
 
     // ─── MOVE MODAL ───
     function showMoveModal(context) { moveContext = context;
-      document.getElementById('moveModalTitle').textContent = context.type === 'file' ? 'Move File' : 'Move Folder';
-      document.getElementById('moveModalSub').textContent = `Moving: ${context.name}`;
+      document.getElementById('moveModalTitle').textContent = context.type === 'file' ? t('move.file') : t('move.folder');
+      document.getElementById('moveModalSub').textContent = t('move.moving').replace('{name}', context.name);
       populateFolderList(context);
       document.getElementById('moveModal').classList.add('active'); }
     let moveFolderCandidates = [],
@@ -15644,7 +16135,7 @@
 
     function renderMoveFolderFlat(term) { const container = document.getElementById('folderList'); const matches =
         moveFolderCandidates.filter(f => f.name.toLowerCase().includes(term)); if (matches.length === 0) { container
-          .innerHTML = `<div class="move-search-empty">No folders match "${escapeHtml(term)}"</div>`; return; }
+          .innerHTML = `<div class="move-search-empty">${t('move.noMatch').replace('{term}', escapeHtml(term))}</div>`; return; }
       let html = matches.map(folder =>
         `<div class="folder-option" data-path='${JSON.stringify(folder.path)}'><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span class="fo-text"><span class="fo-name">${escapeHtml(folder.name)}</span><span class="fo-path">${folder.parentPath.length ? escapeHtml(folder.parentPath.join(' / ')) : t('root')}</span></span></div>`
         ).join('');
@@ -16395,8 +16886,7 @@
       if (t) { t.classList.toggle('active', liquidGlassOn); t.setAttribute('aria-checked', liquidGlassOn ? 'true' : 'false'); }
     }
     applyLiquidGlass();
-    const liquidGlassToggle = document.getElementById('liquidGlassToggle');
-    if (liquidGlassToggle) {
+    const liquidGlassToggle = document.getElementById('liquidGlassToggle');    if (liquidGlassToggle) {
       liquidGlassToggle.addEventListener('click', function() {
         liquidGlassOn = !liquidGlassOn;
         localStorage.setItem('nc_liquidGlass', liquidGlassOn ? '1' : '0');
@@ -16406,22 +16896,28 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
       });
     }
-    function refreshPremiumClass() { document.body.classList.toggle('is-premium', PREMIUM_THEMES.includes(document.body.className)); }
-    refreshPremiumClass();
-
-    const dangerToggle = document.getElementById('dangerToggle');
-    const dangerContent = document.getElementById('dangerZoneContent');
-    if (dangerToggle) {
-      dangerToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        const show = this.classList.contains('active');
-        dangerContent.style.display = show ? 'flex' : 'none';
-        if (show) {
-          dangerContent.style.flexDirection = 'column';
-          dangerContent.style.gap = '3px';
-        }
+    // ─── SITE-WIDE REDUCE MOTION (like themes) ───
+    let calmMotion = localStorage.getItem('nebula_calm_motion');
+    calmMotion = calmMotion === null ? (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) : calmMotion === '1';
+    function applyCalmMotion() {
+      document.body.classList.toggle('reduce-motion', !!calmMotion);
+      const t = document.getElementById('calmToggle');
+      if (t) { t.classList.toggle('active', !!calmMotion); t.setAttribute('aria-checked', calmMotion ? 'true' : 'false'); }
+    }
+    applyCalmMotion();
+    const calmToggle = document.getElementById('calmToggle');
+    if (calmToggle) {
+      calmToggle.addEventListener('click', function() {
+        calmMotion = !calmMotion;
+        localStorage.setItem('nebula_calm_motion', calmMotion ? '1' : '0');
+        applyCalmMotion();
+      });
+      calmToggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
       });
     }
+    function refreshPremiumClass() { document.body.classList.toggle('is-premium', PREMIUM_THEMES.includes(baseThemeName())); }
+    refreshPremiumClass();
 
     // Save Login toggle — controls whether the session survives a browser
     // restart. On by default (matches the app's existing behavior).
@@ -16567,13 +17063,14 @@
       localStorage.setItem('nebula_terms_accepted', 'true'); };
 
     // ─── CLEAR ALL ───
-    document.getElementById('clearAllFilesBtn').onclick = async () => { if (confirm(
-          'Delete ALL your files? They will be moved to trash.')) { const files = await getAllUserFiles(); for (let f of
+    document.getElementById('clearAllFilesBtn').onclick = async () => { const ok = await nebulaConfirm({ title: 'Delete everything?', html: 'Move <span class="confirm-name">ALL your files</span> to Trash?<br>You can still restore them from Trash.', confirmLabel: 'Move all to Trash' }); if (!ok) return;
+      const files = await getAllUserFiles(); for (let f of
           files) { await moveToTrash(f.fileId); }
         await loadCurrentFolder();
         updateInfoPanel();
         showToast('All files moved to trash');
-        closeSettingsWithAnimation(); } };
+        document.getElementById('profileMenu').classList.remove('open');
+        document.getElementById('profileBackdrop').classList.remove('show'); };
 
     // ─── RESET CACHE ───
     document.getElementById('resetCacheBtn').onclick = async () => {
@@ -16659,19 +17156,31 @@
       const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='${color}'/><text x='50' y='68' font-size='58' text-anchor='middle' fill='white'>☁</text></svg>`;
       link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
     }
+    // ─── THEME CORE (mode classes survive switches + reloads) ───
+    function baseThemeName() {
+      const c = (document.body.className || '').split(/\s+/);
+      return c.find(x => x && x !== 'liquid-glass' && x !== 'reduce-motion' && x !== 'is-premium') || 'dark';
+    }
+    function setThemeName(theme) {
+      const keep = [];
+      if (document.body.classList.contains('liquid-glass')) keep.push('liquid-glass');
+      if (document.body.classList.contains('reduce-motion')) keep.push('reduce-motion');
+      document.body.className = theme;
+      keep.forEach(k => document.body.classList.add(k));
+      try { if (typeof refreshPremiumClass === 'function') refreshPremiumClass(); } catch (e) {}
+      try { localStorage.setItem('nebula_theme', theme); } catch (e) {}
+      updateFavicon(theme);
+      updateActiveTheme();
+    }
     function updateActiveTheme() {
-      const current = document.body.className;
+      const current = baseThemeName();
       document.querySelectorAll('.theme-option').forEach(el => {
         el.classList.toggle('active-theme', el.dataset.theme === current);
       });
     }
     document.querySelectorAll('.theme-option').forEach(opt => { opt.onclick = () => { const theme = opt
           .dataset.theme || 'solarized';
-        document.body.className = theme;
-        try { if (typeof refreshPremiumClass === 'function') refreshPremiumClass(); } catch (e) {}
-        localStorage.setItem('nebula_theme', theme);
-        updateFavicon(theme);
-        updateActiveTheme();
+        setThemeName(theme);
         closeSettingsWithAnimation(); }; });
     updateActiveTheme();
 
@@ -16976,9 +17485,7 @@
 
     // ─── INIT ───
     const savedTheme = localStorage.getItem('nebula_theme') || 'dark';
-    document.body.className = savedTheme;
-    try { if (typeof refreshPremiumClass === 'function') refreshPremiumClass(); } catch (e) {}
-    updateFavicon(savedTheme);
+    setThemeName(savedTheme);
     const savedUser = localStorage.getItem('nebula_current_user'); if (savedUser) { currentUser = savedUser;
       Promise.all([openDB(), initOPFS()]).then(async () => { const avatar = currentUser.startsWith('guest') ? "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>" :
           currentUser[0].toUpperCase(); const displayName = currentUser.startsWith('guest') ? 'Guest' : currentUser.split(
@@ -17000,17 +17507,101 @@
         await loadCurrentFolder();
         showToast(`Renamed to "${newName.trim()}"`); } };
 
+    // ─── GUIDED TOUR ───
+    const TOUR_STEPS = [
+      { sel: '#uploadArea', tk: 'tour.s1t', dk: 'tour.s1d' },
+      { sel: '#newFolderBtn', tk: 'tour.s2t', dk: 'tour.s2d' },
+      { sel: '.breadcrumb-wrap', tk: 'tour.s3t', dk: 'tour.s3d' },
+      { sel: '#sortBtn', tk: 'tour.s4t', dk: 'tour.s4d' },
+      { sel: '#viewBtn', tk: 'tour.s5t', dk: 'tour.s5d' },
+      { sel: '#searchInput', tk: 'tour.s6t', dk: 'tour.s6d' },
+      { sel: '#selectionToggleBtn', tk: 'tour.s7t', dk: 'tour.s7d' },
+      { sel: '#navTabsContainer', tk: 'tour.s8t', dk: 'tour.s8d' },
+      { sel: '#settingsBtn', tk: 'tour.s9t', dk: 'tour.s9d' },
+      { sel: '#filesGrid .file-card, #filesGrid .folder-card', tk: 'tour.s10t', dk: 'tour.s10d' },
+      { sel: null, tk: 'tour.s11t', dk: 'tour.s11d' }
+    ];
+    let tourIdx = -1, tourEl = null, tourCard = null;
+    function tourSteps() { return TOUR_STEPS.filter(s => !s.sel || document.querySelector(s.sel)); }
+    function startTour() { if (tourIdx !== -1) return; tourIdx = 0; buildTourDom(); showTourStep(); }
+    function endTour() {
+      tourIdx = -1;
+      document.removeEventListener('keydown', tourKey);
+      window.removeEventListener('resize', tourPlace);
+      if (tourEl) tourEl.remove(); tourEl = null;
+      if (tourCard) tourCard.remove(); tourCard = null;
+      document.querySelectorAll('.tour-spotlight').forEach(e => e.classList.remove('tour-spotlight'));
+      try { localStorage.setItem('nebula_tour_seen', '1'); } catch (e) {}
+    }
+    function buildTourDom() {
+      tourEl = document.createElement('div'); tourEl.className = 'tour-overlay';
+      tourCard = document.createElement('div'); tourCard.className = 'tour-card';
+      document.body.appendChild(tourEl); document.body.appendChild(tourCard);
+      tourEl.addEventListener('click', (e) => { if (e.target === tourEl) endTour(); });
+      document.addEventListener('keydown', tourKey);
+      window.addEventListener('resize', tourPlace);
+    }
+    function tourKey(e) { if (tourIdx !== -1 && e.key === 'Escape') endTour(); }
+    function showTourStep() {
+      const steps = tourSteps();
+      if (tourIdx < 0 || tourIdx >= steps.length) { endTour(); return; }
+      document.querySelectorAll('.tour-spotlight').forEach(e => e.classList.remove('tour-spotlight'));
+      const s = steps[tourIdx];
+      const last = tourIdx === steps.length - 1;
+      tourCard.innerHTML = `<div class="tour-step">${tourIdx + 1} / ${steps.length}</div><div class="tour-title">${escapeHtml(t(s.tk))}</div><div class="tour-desc">${escapeHtml(t(s.dk))}</div><div class="tour-progress"><div style="width:${((tourIdx + 1) / steps.length) * 100}%"></div></div><div class="tour-actions">${tourIdx > 0 ? `<button data-tact="back">${escapeHtml(t('tour.back'))}</button>` : ''}<button data-tact="skip">${escapeHtml(t('tour.skip'))}</button><button class="tour-next" data-tact="next">${escapeHtml(t(last ? 'tour.done' : 'tour.next'))}</button></div>`;
+      tourCard.querySelectorAll('[data-tact]').forEach(b => b.addEventListener('click', () => {
+        const a = b.dataset.tact;
+        if (a === 'next') { tourIdx++; showTourStep(); }
+        else if (a === 'back') { tourIdx--; showTourStep(); }
+        else endTour();
+      }));
+      if (s.sel) {
+        const el = document.querySelector(s.sel);
+        if (el) {
+          el.classList.add('tour-spotlight');
+          try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+          setTimeout(tourPlace, 350);
+          return;
+        }
+      }
+      tourPlace();
+    }
+    function tourPlace() {
+      if (!tourCard || tourIdx === -1) return;
+      const steps = tourSteps();
+      const s = steps[tourIdx]; if (!s) return;
+      const pad = 12;
+      let top = Math.max(pad, window.innerHeight / 2 - 150);
+      let left = Math.max(16, (window.innerWidth - Math.min(340, window.innerWidth - 32)) / 2);
+      if (s.sel) {
+        const el = document.querySelector(s.sel);
+        if (el) {
+          const r = el.getBoundingClientRect();
+          const cw = Math.min(340, window.innerWidth - 32), ch = tourCard.offsetHeight || 280;
+          left = Math.max(16, Math.min(window.innerWidth - cw - 16, r.left + r.width / 2 - cw / 2));
+          top = r.bottom + 16;
+          if (top + ch > window.innerHeight - pad) top = Math.max(pad, r.top - ch - 16);
+        }
+      }
+      tourCard.style.top = top + 'px'; tourCard.style.left = left + 'px';
+    }
+    document.getElementById('tutorialBtn').addEventListener('click', (e) => { e.stopPropagation(); startTour(); });
+
     // ─── LANGUAGE SWITCHER WIRING ───
     document.getElementById('langBtn').addEventListener('click', function(e) { e.stopPropagation();
       document.getElementById('sortMenu').classList.remove('show');
       document.getElementById('viewMenu').classList.remove('show');
-      document.getElementById('langMenu').classList.toggle('show'); });
+      document.getElementById('profileMenu').classList.remove('open');
+      const lm = document.getElementById('langMenu');
+      const willOpen = !lm.classList.contains('show');
+      lm.classList.toggle('show', willOpen);
+      lm.classList.toggle('as-modal', willOpen);
+      document.getElementById('profileBackdrop').classList.toggle('show', willOpen); });
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('#langMenu') && !e.target.closest('#langBtn')) {
-        const lm = document.getElementById('langMenu'); if (lm) lm.classList.remove('show');
-      } });
+      if (!e.target.closest('#langMenu') && !e.target.closest('#langBtn')) closeLangMenu(); });
     buildLangMenu();
     applyLang();
+    try { if (!localStorage.getItem('nebula_lang')) showWelcomeLang(); } catch (e) {}
   </script>
 
 </body>
