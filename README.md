@@ -16,7 +16,7 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 - 🎨 **30 themes + Liquid Glass** — 11 standard + 19 premium, plus a site-wide glass effect toggle
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
 - ✨ **Premium UI everywhere** — spring animations, ripple presses, staggered entrances, glow accents
-- 🌐 **8 languages** — English, Español, Français, Deutsch, Português, हिन्दी, العربية, 中文 from the globe button: nav, toolbar, menus, dialogs, cards, profile, themes, player, settings, hover hints, empty states — everything switches instantly and remembers your choice
+- 🌐 **8 languages** — globe button opens a centered menu (new visitors get a welcome picker first): nav, toolbar, menus, dialogs, cards, profile, themes, player, settings, hover hints, empty states — everything switches instantly and remembers your choice
 
 ---
 
@@ -78,6 +78,18 @@ A proper trash system with zero native browser popups — every delete flows thr
 ## ⭐ Favourites
 
 Gold-starred header with a live count. Everything you've starred, from anywhere — click to jump to where it lives. Empty state guides you to tap the star.
+
+---
+
+## 👤 Profile
+
+Click your avatar for a centered menu with backdrop blur and spring entrance.
+
+- 🖼️ **Banner that works** — upload any image, auto-downscaled and saved per account
+- 🎨 **Profile themes shortcut** — jumps straight to Settings themes
+- ⚠️ **Danger Zone lives here now** — collapsed by default; Clear Cache, Delete Account, Terminate, all with warning styling and real confirm dialogs (removed from Settings)
+- 📱 **iPhone-safe overlays** — blur effects auto-disable on touch devices where they blank scrolling cards
+- 🟢 **Statuses** — Online, Organizing, Uploading, Backing up, Away, Offline, or your own custom text — all translated
 
 ---
 
@@ -147,17 +159,20 @@ Click the info pill to see resolution, bitrate, file size, format, and duration.
 
 Click any file to preview it — each format gets its own viewer:
 
-🖼️ **Images** → full-screen lightbox · 📝 **Text / code / markdown** → formatted block · 📊 **CSV** → styled table · 📑 **PDF** → embedded iframe · 🎵 **Audio / Video** → media player
+🖼️ **Images** → full-screen lightbox (pinch-zoom + swipe through photos on mobile, spring entrance, safe-area aware) · 📝 **Text / code / markdown** → formatted block · 📊 **CSV** → styled table · 📑 **PDF** → embedded iframe · 🎵 **Audio / Video** → media player
 
 ---
 
 ## 🎨 Themes + Liquid Glass
 
-Eleven standard themes and nineteen premium ones — toggle the switches in **Settings → Themes** to show each collection.
+Eleven standard themes and nineteen premium ones — toggle the switches in **Settings → Themes** to show each collection. The active theme always shows a check; switching never drops Liquid Glass or Reduce Motion.
 
 - ⚡ **Instant switching** — custom gradients, adaptive text colours, accent glows, and speed selector overrides. No reload; your choice persists.
 - 📱 **iPhone-friendly Light theme** — same colours, minus the costly extras: no glow layers, no shine sweeps, no backdrop blur, no floating orbs. Flat and still, easy on mobile GPUs.
 - 🫧 **Liquid Glass ✦** — site-wide glass effect toggle at the top of the Themes section. Deep blur + saturation on bars, cards, and dialogs. Works with every theme, saved across sessions.
+- 🐢 **Reduce Motion ✦** — site-wide calm mode next to it (also honors your OS setting). Kills animations and transitions everywhere.
+- ✨ **No shine sweeps** — all gloss-shimmer loops removed on every device for lag-free scrolling.
+- 🔤 **Readable accents** — pale-accent themes (Midnight Gold, Pine Grove, Graphite) get dark text on pills and buttons instead of washed-out white.
 - 🎚️ **Remade switches** — spring sliding knobs that widen when pressed, glow when on, keyboard accessible.
 
 ---
@@ -186,11 +201,12 @@ Open **Settings → Diagnostics** to scan every file record against actual stora
 ## 🚀 Getting Started
 
 1. 📥 Download `index.html` and open it in a browser — nothing to install
-2. 👤 Create an account or tap **Continue as Guest**
-3. 📤 Drag files in or click the upload area
-4. 📂 Make folders, sort, search, star favourites
-5. 🎬 Click any file to preview or play it
-6. ⚙️ Open Settings for Liquid Glass, themes, storage stats, and diagnostics
+2. 🧭 Hit the **Tour** button next to Select for an 11-step guided walkthrough (fully translated, works on mobile)
+3. 👤 Create an account or tap **Continue as Guest**
+4. 📤 Drag files in or click the upload area
+5. 📂 Make folders, sort, search, star favourites
+6. 🎬 Click any file to preview or play it
+7. ⚙️ Open Settings for Liquid Glass, themes, storage stats, and diagnostics
 
 ---
 
@@ -240,7 +256,7 @@ Check 🗑️ Trash first, then run 🩺 Diagnostics.
 File types are auto-detected from the extension, so it should just work. If it still fails, run 🩺 Diagnostics and use 🔧 Repair to re-upload it.
 
 **Works on mobile?**
-Yes — responsive across Android and iOS, touch-safe menus and controls. Music keeps playing with the screen locked (lock-screen controls included); just keep Volume Boost off, as iOS suspends boosted audio in the background. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
+Yes — responsive across Android and iOS, touch-safe menus and controls. Music keeps playing with the screen locked (lock-screen controls included); keep Volume Boost off for background listening, as iOS suspends boosted audio on lock but resumes it when you return. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
 
 **Is my data encrypted?**
 Not by default — it's local, so only you and your browser can access it. Client-side encryption is on the roadmap.
