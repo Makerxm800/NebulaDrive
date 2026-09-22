@@ -133,15 +133,22 @@ Play / pause, drag-to-seek, volume with percentage, skip ±5 seconds with overla
 ### ⚙️ Settings menu
 
 - ⚡ **Playback speed + Repeat hero rows** — accent-tinted with white value pills, press-squash with pill pop
-- 🎛️ **Remade toggles** — Ambient mode, Volume boost, Stable Volume, Annotations: bordered spring switches with shine knobs and accent glow when on
+- 🎛️ **Remade toggles** — Ambient mode, Volume boost, Stable Volume, Captions, Annotations: bordered spring switches with shine knobs and accent glow when on
 - Long titles truncate cleanly; controls wrap on narrow screens; hover lifts disabled on touch
 
 ### Modes
 
 - 🔈 **Mini player** — slim bar pinned to the bottom; play, skip, volume, and repeat while you browse
-- 🖥️ **Immersive fullscreen** — hides all UI after 3 seconds idle, mouse or tap brings it back
-- 🎥 **Cinema mode** — true native fullscreen via the browser API
+- 🖥️ **Fullscreen (Nebula premium)** — the Fullscreen button opens the premium overlay (top bar with file title + NebulaCloud badge + auto-hiding glass "press Esc" hint, accent progress bar, floating glass dock: Prev / Play-Pause / Next / Mute with state-synced SVG icons, volume slider + % (mirrors the normal player control), time pill, "In this file ›" shortcut to Media Info (opens inside fullscreen, no need to exit), Settings gear, Exit, accent ••• More) and takes over the **full device screen** via the browser Fullscreen API. Gear / More open the REAL settings and more menus inside fullscreen. Follows the active theme, hides UI after 3s idle.
+- 🎥 **Cinema mode (in-page immersive, improved)** — same premium dock but stays in the page (no device fullscreen), for browsing-friendly watching
+- 🎥 **Cinema mode** — true native fullscreen via the browser API (separate from the Nebula Fullscreen above)
 - 🖼️ **Picture-in-Picture** — pop video into a floating always-on-top window (Chrome/Edge)
+- 📱 **Mobile music fix** — smaller artwork + compact info card on phones; fullscreen dock wraps, Esc hint and chapter pill hide on small screens
+- ⌨️ **Keyboard button hidden on touch/iPhone** — the keyboard-shortcuts icon never shows on coarse-pointer or iOS devices (shortcuts stay available on desktop)
+
+## ℹ️ Info Button — About NebulaCloud
+
+New **Info** button in the top navbar (next to Settings). Toggles a premium About GUI with everything about NebulaCloud: files, player, fullscreen, themes, safety, shortcuts — plus quick actions (Take the Tour, Open Settings, Try Fullscreen Player). Shortcuts: press `I` to toggle, `Esc` to close, or click outside the card.
 
 ### More
 
@@ -218,7 +225,8 @@ Open **Settings → Diagnostics** to scan every file record against actual stora
 | `←` / `→` or `J` / `L` | ⏪ / ⏩ Seek 5s (Shift: prev / next track) |
 | `↑` / `↓` | 🔊 Volume |
 | `M` | 🔇 Mute |
-| `F` | 🖥️ Toggle immersive fullscreen |
+| `F` | 🖥️ Toggle Nebula premium fullscreen (audio + video) |
+| `I` | ℹ️ Toggle About NebulaCloud info panel |
 | `P` | 🖼️ Picture-in-Picture |
 | `,` / `.` | ⚡ Speed down / up |
 | `Escape` | ✕ Exit fullscreen, minimise player, or close viewer |
