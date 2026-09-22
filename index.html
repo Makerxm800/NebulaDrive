@@ -7352,6 +7352,143 @@
       }
     }
 
+    /* --- NEBULA INFO BUTTON + ABOUT MODAL --- */
+    #aboutBtn { border-color: rgba(102,126,234,0.45) !important; }
+    #aboutBtn:hover { box-shadow: 0 0 18px var(--glow-color); transform: translateY(-2px); }
+    .nebula-about-modal { display:none; position:fixed; inset:0; z-index:3000; align-items:center; justify-content:center; padding:20px; background:rgba(5,4,15,0.7); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+    .nebula-about-modal.open { display:flex; animation:nebAboutIn .35s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes nebAboutIn { from { opacity:0; transform:scale(.94) translateY(16px);} to { opacity:1; transform:none;} }
+    .nebula-about-card { width:min(560px,94vw); max-height:min(82vh,760px); overflow-y:auto; border-radius:24px; padding:28px 28px 24px; background:linear-gradient(180deg,rgba(40,34,80,0.97),rgba(18,15,40,0.97)); border:1px solid rgba(102,126,234,0.35); box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 60px rgba(102,126,234,0.18),inset 0 1px 0 rgba(255,255,255,0.12); position:relative; color:var(--text); }
+    .nebula-about-card h2 { font-size:1.3rem; display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+    .nebula-about-card .neb-sub { color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px; }
+    .nebula-about-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+    @media (max-width:560px){ .nebula-about-grid{grid-template-columns:1fr;} }
+    .nebula-about-feat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:10px 12px; font-size:0.78rem; line-height:1.45; color:var(--text-secondary); }
+    .nebula-about-feat b { display:block; color:var(--text); font-size:0.8rem; margin-bottom:2px; }
+    .nebula-about-close { position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:50%; border:1px solid var(--glass-border); background:rgba(255,255,255,0.08); color:var(--text); cursor:pointer; font-size:1rem; }
+    .nebula-about-close:hover { background:rgba(255,80,80,0.25); color:#fff; transform:rotate(90deg); }
+    .nebula-about-foot { margin-top:14px; font-size:0.75rem; color:var(--text-muted); text-align:center; }
+    .nebula-about-toggle-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .nebula-about-toggle-row button { flex:1; min-width:120px; padding:9px 10px; border-radius:12px; border:1px solid rgba(102,126,234,0.35); background:rgba(102,126,234,0.12); color:var(--text); cursor:pointer; font-weight:700; font-size:0.78rem; }
+    .nebula-about-toggle-row button:hover { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; }
+    /* --- PREMIUM YT-STYLE FULLSCREEN (original Nebula spin) --- */
+    .media-player-modal.custom-fullscreen { background:#05040f; }
+    .media-player-modal.custom-fullscreen .media-player-content { background:radial-gradient(ellipse at 50% 0%,rgba(102,126,234,0.16),transparent 55%),linear-gradient(180deg,#0b0a1e 0%,#05040f 40%,#05040f 100%); padding:0; gap:0; justify-content:flex-start; }
+    .neb-fs-topbar { display:none; }
+    .media-player-modal.custom-fullscreen .neb-fs-topbar { display:flex; align-items:center; gap:12px; padding:14px 20px 10px; background:linear-gradient(180deg,rgba(102,126,234,0.35),transparent); z-index:6; }
+    .neb-fs-title { font-weight:800; font-size:0.95rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
+    .neb-fs-badge { font-size:0.62rem; font-weight:800; letter-spacing:1px; padding:3px 8px; border-radius:20px; background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; text-transform:uppercase; flex-shrink:0; box-shadow:0 0 16px rgba(102,126,234,0.5); }
+    .neb-fs-esc { position:absolute; top:12px; left:50%; transform:translateX(-50%); background:rgba(10,10,20,0.85); border:1px solid rgba(255,255,255,0.14); color:#fff; font-size:0.72rem; padding:8px 14px; border-radius:8px; z-index:30; display:flex; gap:8px; align-items:center; box-shadow:0 8px 30px rgba(0,0,0,0.5); white-space:nowrap; }
+    .neb-fs-esc kbd { border:1px solid rgba(255,255,255,0.4); border-radius:4px; padding:1px 6px; font-family:inherit; font-size:0.68rem; background:rgba(255,255,255,0.08); }
+    .neb-fs-esc.hide { opacity:0; pointer-events:none; transition:opacity .6s ease; }
+    .media-player-modal.custom-fullscreen .media-player-body.video-mode .media-artwork { max-height:calc(100vh - 190px); background:#000; border-radius:0; }
+    .media-player-modal.custom-fullscreen .media-artwork video { border-radius:0; }
+    .neb-fs-bottom { display:none; }
+    .media-player-modal.custom-fullscreen .neb-fs-bottom { display:block; padding:0 0 calc(10px + env(safe-area-inset-bottom)); background:linear-gradient(0deg,rgba(5,4,15,0.95) 30%,transparent); z-index:6; }
+    .neb-fs-progress { height:22px; display:flex; align-items:center; padding:0 16px; cursor:pointer; }
+    .neb-fs-track { height:4px; flex:1; border-radius:4px; background:rgba(255,255,255,0.22); position:relative; }
+    .neb-fs-progress:hover .neb-fs-track { height:6px; }
+    .neb-fs-fill { position:absolute; top:0; bottom:0; left:0; width:0%; border-radius:4px; background:linear-gradient(90deg,#ff2d2d,#ff5c5c); box-shadow:0 0 12px rgba(255,45,45,0.7); }
+    .neb-fs-fill::after { content:""; position:absolute; right:-7px; top:50%; transform:translateY(-50%) scale(0.6); width:13px; height:13px; border-radius:50%; background:#ff2d2d; box-shadow:0 0 10px rgba(255,45,45,0.9); opacity:0; transition:all .15s ease; }
+    .neb-fs-progress:hover .neb-fs-fill::after { opacity:1; transform:translateY(-50%) scale(1); }
+    .neb-fs-row { display:flex; align-items:center; gap:8px; padding:2px 14px 0; flex-wrap:nowrap; }
+    .neb-fs-btn { min-width:38px; height:38px; padding:0 8px; border-radius:10px; border:1px solid transparent; background:transparent; color:#fff; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:0.8rem; font-weight:700; transition:all .2s ease; }
+    .neb-fs-btn:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.12); transform:translateY(-1px); }
+    .neb-fs-btn:active { transform:scale(0.92); }
+    .neb-fs-time { color:#fff; font-size:0.78rem; font-weight:600; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.12); padding:6px 10px; border-radius:20px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .neb-fs-chapter { color:#fff; font-size:0.72rem; font-weight:700; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.14); padding:7px 12px; border-radius:20px; cursor:pointer; white-space:nowrap; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
+    .neb-fs-chapter:hover { background:rgba(255,255,255,0.22); }
+    .neb-fs-spacer { flex:1; }
+    .neb-fs-pill { display:inline-flex; align-items:center; gap:6px; font-size:0.68rem; font-weight:800; color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.14); padding:6px 10px; border-radius:8px; cursor:pointer; }
+    .neb-fs-pill:hover { background:rgba(255,255,255,0.2); }
+    .neb-fs-pill.accent { background:linear-gradient(135deg,#667eea,#764ba2); border-color:transparent; box-shadow:0 0 14px rgba(102,126,234,0.5); }
+    .media-player-modal.custom-fullscreen .media-player-title, .media-player-modal.custom-fullscreen .media-player-close { display:none; }
+    .media-player-modal.custom-fullscreen .media-player-body { padding:0 0 6px; }
+    .media-player-modal.custom-fullscreen .media-info, .media-player-modal.custom-fullscreen .media-controls { display:none !important; }
+    .media-player-modal.custom-fullscreen.controls-hidden .neb-fs-topbar, .media-player-modal.custom-fullscreen.controls-hidden .neb-fs-bottom { opacity:0; pointer-events:none; transform:translateY(8px); }
+    .media-player-modal.custom-fullscreen .neb-fs-topbar, .media-player-modal.custom-fullscreen .neb-fs-bottom { transition:opacity .35s ease,transform .35s ease; }
+    body.light .nebula-about-card { background:linear-gradient(180deg,#ffffff,#eef2fb); color:#1a1d2e; }
+
+    /* --- NEBULA FS V2: theme-aware premium dock (overrides YT-style V1) --- */
+    .media-player-modal.custom-fullscreen { background: var(--bg); }
+    .media-player-modal.custom-fullscreen .media-player-content { background: linear-gradient(180deg, var(--glass), transparent 32%), var(--bg); }
+    .neb-fs-esc { display: none !important; }
+    .media-player-modal.custom-fullscreen .neb-fs-topbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 20px 8px; background: linear-gradient(180deg, var(--glass), transparent); z-index: 6; }
+    .neb-fs-badge { background: var(--accent); color: #fff; box-shadow: 0 0 16px var(--glow-color); }
+    .neb-fs-title { color: var(--text); text-shadow: none; flex: 1 1 140px; min-width: 0; }
+    .neb-fs-esc-inline { flex: 0 1 auto; margin-left: auto; background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-secondary); font-size: 0.7rem; padding: 6px 12px; border-radius: 20px; display: inline-flex; gap: 8px; align-items: center; white-space: nowrap; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: opacity 0.6s ease; }
+    .neb-fs-esc-inline kbd { border: 1px solid var(--glass-border); border-radius: 5px; padding: 1px 7px; font-family: inherit; font-size: 0.66rem; background: var(--glass-hover); color: var(--text); }
+    .neb-fs-esc-inline.hide { opacity: 0; pointer-events: none; }
+    .media-player-modal.custom-fullscreen .neb-fs-bottom { background: linear-gradient(0deg, var(--glass) 20%, transparent); padding: 0 14px calc(12px + env(safe-area-inset-bottom)); }
+    .neb-fs-track { background: var(--glass-border); }
+    .neb-fs-fill { background: var(--accent); box-shadow: 0 0 12px var(--glow-color); }
+    .neb-fs-fill::after { background: var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); }
+    .neb-fs-dock { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding: 8px 10px; border-radius: 20px; background: var(--glass); border: 1px solid var(--glass-border); backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3); box-shadow: var(--shadow); flex-wrap: wrap; }
+    .neb-fs-btn { color: var(--text); border-color: transparent; }
+    .neb-fs-btn:hover { background: var(--glass-hover); border-color: var(--glass-border); }
+    .neb-fs-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+    .neb-fs-btn.neb-fs-play { background: var(--accent); color: #fff; border-radius: 14px; min-width: 52px; height: 42px; box-shadow: 0 0 18px var(--glow-color); }
+    .neb-fs-btn.neb-fs-play:hover { background: var(--accent); filter: brightness(1.12); transform: translateY(-1px); }
+    .neb-fs-btn.is-muted { color: var(--text-muted); }
+    .neb-fs-time { color: var(--text); background: var(--glass); border-color: var(--glass-border); }
+    .neb-fs-chip { color: var(--text-secondary); background: var(--glass); border: 1px solid var(--glass-border); }
+    .neb-fs-chip:hover { background: var(--glass-hover); color: var(--text); }
+    .neb-fs-chip.accent { background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 0 14px var(--glow-color); }
+    .neb-fs-chip.accent:hover { filter: brightness(1.12); color: #fff; }
+    /* --- unified media-player toggle buttons: icon + label pills, theme-aware --- */
+    .media-secondary-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .media-secondary-actions button, .fullscreen-btn, .cinema-btn { color: var(--text-secondary); background: var(--glass); border: 1px solid var(--glass-border); }
+    .media-secondary-actions button:hover, .fullscreen-btn:hover, .cinema-btn:hover { color: var(--text); background: var(--glass-hover); border-color: var(--accent-solid); box-shadow: 0 0 14px var(--glow-color); }
+    .media-secondary-actions button.is-on, .fullscreen-btn.is-on, .cinema-btn.is-on { color: #fff; background: var(--accent); border-color: transparent; box-shadow: 0 0 14px var(--glow-color); }
+    .pswitch[aria-checked="true"] { border-color: var(--accent-solid); box-shadow: 0 0 12px var(--glow-color); }
+    /* --- keyboard-shortcuts button: never on touch / iPhone --- */
+    @media (pointer: coarse) { .keybinds-btn, #mediaKeybindsBtn { display: none !important; } }
+    body.is-ios .keybinds-btn, body.is-ios #mediaKeybindsBtn, body.is-touch .keybinds-btn, body.is-touch #mediaKeybindsBtn { display: none !important; }
+    /* --- mobile music size fix --- */
+    @media (max-width: 480px) {
+      .media-artwork { width: 120px; height: 120px; }
+      .media-player-body:not(.video-mode) .media-info { padding: 10px 12px; margin-top: 8px; }
+      .media-player-body:not(.video-mode) .media-track { font-size: 1.02rem; }
+      .media-player-modal.custom-fullscreen .media-artwork { width: min(30vh, 66vw); height: min(30vh, 66vw); }
+      .neb-fs-esc-inline { display: none; }
+      .neb-fs-time { font-size: 0.68rem; padding: 5px 8px; }
+      .neb-fs-chip#nebFsChapter { display: none; }
+      .neb-fs-dock { gap: 4px; padding: 6px 8px; border-radius: 16px; }
+    }
+
+    /* --- NEBULA V4: FS hosts real menus, decluttered dock --- */
+    .neb-fs-bottom { position: relative; }
+    .neb-fs-bottom.fs-host-menus .settings-menu { position: absolute; bottom: calc(100% + 10px); right: 12px; top: auto; z-index: 60; }
+    .neb-fs-bottom.fs-host-menus .more-menu { position: absolute; bottom: calc(100% + 10px); right: 12px; top: auto; z-index: 60; }
+    .neb-fs-speed { display: none !important; }
+    .media-player-modal.custom-fullscreen:fullscreen { padding: 0; }
+    .media-player-modal.custom-fullscreen:fullscreen .media-player-content { height: 100%; max-height: 100%; }
+
+    /* --- NEBULA V5: premium dock buttons, FS volume slider, about fix --- */
+    #aboutBtn > * { pointer-events: none; }
+    .neb-fs-dock { gap: 8px; padding: 10px 12px; border-radius: 22px; background: linear-gradient(180deg, var(--glass-hover), var(--glass)); box-shadow: var(--shadow), 0 0 30px var(--glow-color), inset 0 1px 0 rgba(255,255,255,0.14); }
+    .neb-fs-btn { width: 42px; height: 42px; min-width: 42px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-border); color: var(--text); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+    .neb-fs-btn:hover { background: var(--glass-hover); border-color: var(--accent-solid); color: var(--text); box-shadow: 0 0 16px var(--glow-color), inset 0 1px 0 rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .neb-fs-btn:active { transform: scale(0.9); }
+    .neb-fs-btn:disabled { opacity: 0.3; }
+    .neb-fs-btn.neb-fs-play { width: 50px; height: 50px; min-width: 50px; background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 6px 22px var(--glow-color), inset 0 1px 0 rgba(255,255,255,0.25); }
+    .neb-fs-btn.neb-fs-play:hover { filter: brightness(1.12); background: var(--accent); color: #fff; }
+    .neb-fs-chip { border-radius: 14px; padding: 8px 14px; font-size: 0.72rem; background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-secondary); box-shadow: inset 0 1px 0 rgba(255,255,255,0.07); transition: all 0.2s ease; }
+    .neb-fs-chip:hover { background: var(--glass-hover); color: var(--text); border-color: var(--accent-solid); box-shadow: 0 0 14px var(--glow-color); transform: translateY(-1px); }
+    .neb-fs-chip:active { transform: scale(0.94); }
+    .neb-fs-chip.accent { background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 4px 18px var(--glow-color), inset 0 1px 0 rgba(255,255,255,0.25); }
+    .neb-fs-chip.accent:hover { filter: brightness(1.12); color: #fff; }
+    .neb-fs-time { border-radius: 14px; padding: 8px 12px; }
+    .neb-fs-chapter { border-color: var(--accent-solid); }
+    #nebFsCc { display: none !important; }
+    .neb-fs-vol { display: inline-flex; align-items: center; gap: 8px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 6px 12px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.07); }
+    .neb-fs-vol:hover { border-color: var(--accent-solid); box-shadow: 0 0 14px var(--glow-color); }
+    .neb-fs-vol input[type="range"] { width: 90px; height: 4px; border-radius: 3px; -webkit-appearance: none; appearance: none; background: linear-gradient(to right, var(--accent-solid) 0%, var(--accent-solid) var(--volp, 80%), var(--glass-border) var(--volp, 80%)); cursor: pointer; }
+    .neb-fs-vol input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 2px solid var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); cursor: pointer; }
+    .neb-fs-vol input[type="range"]::-moz-range-thumb { width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2px solid var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); cursor: pointer; }
+    .neb-fs-volpct { font-size: 0.68rem; font-weight: 800; color: var(--text); background: var(--glass-hover); border: 1px solid var(--glass-border); padding: 3px 8px; border-radius: 12px; min-width: 44px; text-align: center; font-variant-numeric: tabular-nums; }
+    @media (max-width: 480px) { .neb-fs-vol input[type="range"] { width: 60px; } .neb-fs-volpct { display: none; } }
+
     .more-menu-wrap {
       position: relative;
     }
@@ -7722,7 +7859,30 @@
       z-index: 1;
     }
 
-    /* ─── MINI PLAYER ─── */
+    /*  <!-- NEBULA ABOUT / INFO MODAL -->
+  <div class="nebula-about-modal" id="nebulaAboutModal">
+    <div class="nebula-about-card">
+      <button class="nebula-about-close" id="nebulaAboutClose">X</button>
+      <h2>Cloud NebulaCloud <span style="font-size:0.6rem;background:linear-gradient(135deg,#667eea,#764ba2);padding:3px 8px;border-radius:20px;letter-spacing:1px;">BETA PREMIUM</span></h2>
+      <div class="neb-sub">Your private cloud — always with you, no servers, no subscriptions. One HTML file. 100% local: OPFS + IndexedDB, vanilla JS. Made by <b>makerxm800</b>.</div>
+      <div class="nebula-about-grid">
+        <div class="nebula-about-feat"><b>Files</b>Upload by drag-drop / click / Ctrl+V, nested folders, breadcrumb, rename, move picker, search, batch select, custom icons, auto file-type detection + missing-MIME fix.</div>
+        <div class="nebula-about-feat"><b>Media Player</b>Audio + video, play/pause, seek, volume %, +-5s skip, 0.5x-3x speed, repeat off/all/one, PiP, mini player, cinema + immersive fullscreen, trim/cut, download.</div>
+        <div class="nebula-about-feat"><b>Fullscreen Premium</b>YouTube-style: top title + Nebula badge, Esc hint pill, red progress bar with glow thumb, time pill, In-this-file pill, right side More (...) + settings + fullscreen only. No like/dislike clutter.</div>
+        <div class="nebula-about-feat"><b>Themes + Glass</b>30 themes (11 standard + 19 premium), Liquid Glass toggle, Reduce Motion, instant switching, iPhone-safe Light mode.</div>
+        <div class="nebula-about-feat"><b>Safety</b>Trash with restore, History with jump-to-file, Favourites, Backup real ZIP + JSON export/restore, Diagnostics repair, Profile + Danger Zone.</div>
+        <div class="nebula-about-feat"><b>Shortcuts</b>Space/K play, J/L or arrows 5s, Shift+arrows prev/next, Up/Down volume, M mute, F fullscreen, P PiP, ,/. speed, Esc exit.</div>
+      </div>
+      <div class="nebula-about-toggle-row">
+        <button id="nebAboutTour">Take the Tour</button>
+        <button id="nebAboutSettings">Open Settings</button>
+        <button id="nebAboutFullscreen">Try Fullscreen Player</button>
+      </div>
+      <div class="nebula-about-foot">NebulaCloud — your cloud. Your control. No compromise. | MIT License | Chrome/Edge best, Firefox/Safari supported.</div>
+    </div>
+  </div>
+
+ ─── MINI PLAYER ─── */
     .mini-player-bar {
       display: none;
       position: fixed;
@@ -11252,6 +11412,7 @@
           <div class="dropdown"><button class="icon-btn ghost-btn" id="langBtn" title="Language" data-i18n-title="gen.language"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="btn-label" id="langLabel">EN</span></button><div class="dropdown-menu" id="langMenu"></div></div>
           <button class="icon-btn ghost-btn" id="switchAccountBtn" title="Switch Account" data-i18n-title="gen.switch"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg><span class="btn-label" data-i18n="gen.switch">Switch</span></button>
           <button class="icon-btn primary-btn" id="settingsBtn" title="Settings" data-i18n-title="gen.settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="btn-label" data-i18n="gen.settings">Settings</span></button>
+          <button class="icon-btn ghost-btn" id="aboutBtn" title="About NebulaCloud"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span class="btn-label">Info</span></button>
         </div>
       </div>
     </nav>
@@ -17603,6 +17764,386 @@
     applyLang();
     try { if (!localStorage.getItem('nebula_lang')) showWelcomeLang(); } catch (e) {}
   </script>
+
+<script>
+(function(){
+  function $(id){ return document.getElementById(id); }
+  // ABOUT modal toggle
+  function toggleAbout(force){
+    var m = $('nebulaAboutModal'); if(!m) return;
+    var open = force !== undefined ? !!force : !m.classList.contains('open');
+    m.classList.toggle('open', open);
+  }
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.id === 'aboutBtn'){ toggleAbout(); }
+    if(e.target && (e.target.id === 'nebulaAboutClose')){ toggleAbout(false); }
+    if(e.target && e.target.id === 'nebulaAboutModal'){ toggleAbout(false); }
+    if(e.target && e.target.id === 'nebAboutSettings'){ toggleAbout(false); var s=$('settingsBtn'); if(s) s.click(); }
+    if(e.target && e.target.id === 'nebAboutTour'){ toggleAbout(false); var t=$('tutorialBtn'); if(t) t.click(); }
+    if(e.target && e.target.id === 'nebAboutFullscreen'){ toggleAbout(false); var f=$('mediaFullscreenBtn'); if(f) f.click(); else { var c=$('cinemaBtn'); if(c) c.click(); } }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ toggleAbout(false); }
+    if((e.key === 'i' || e.key === 'I') && !e.ctrlKey && !e.metaKey && document.activeElement && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)){ toggleAbout(); }
+  });
+  window.nebToggleAbout = toggleAbout;
+
+  // NEBULA-STYLE FULLSCREEN premium dock (theme-aware, original Nebula design — not a YT copy)
+  function fmt(s){ if(!isFinite(s)||s<0) s=0; s=Math.floor(s); var m=Math.floor(s/60), h=Math.floor(m/60); m=m%60; s=s%60;
+    if(h>0) return h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    return m+':'+String(s).padStart(2,'0'); }
+  var NEB_SVG_PLAY = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 3 20 12 7 21 7 3"/></svg>';
+  var NEB_SVG_PAUSE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.5"/><rect x="14" y="4" width="5" height="16" rx="1.5"/></svg>';
+  var NEB_SVG_PREV = '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><rect x="5" y="5" width="2.5" height="14" rx="1"/></svg>';
+  var NEB_SVG_NEXT = '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><rect x="16.5" y="5" width="2.5" height="14" rx="1"/></svg>';
+  var NEB_SVG_VOL = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  var NEB_SVG_MUTED = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><line x1="15" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="15" y2="15"/></svg>';
+  function ensureFs(){
+    var content = $('mediaPlayerContent'); if(!content) return null;
+    var legacyEsc = content.querySelector('.neb-fs-esc');
+    if(legacyEsc) legacyEsc.remove();
+    var top = content.querySelector('.neb-fs-topbar');
+    if(!top){
+      top = document.createElement('div'); top.className='neb-fs-topbar';
+      top.innerHTML = '<span class="neb-fs-badge">NebulaCloud</span><span class="neb-fs-title" id="nebFsTitle">Now Playing</span><span class="neb-fs-esc-inline" id="nebFsEsc">To exit full screen, press <kbd>Esc</kbd></span>';
+      content.insertBefore(top, content.firstChild);
+      var bottom = document.createElement('div'); bottom.className='neb-fs-bottom'; bottom.id='nebFsBottom';
+      bottom.innerHTML = ''
+        + '<div class="neb-fs-progress" id="nebFsProgress"><div class="neb-fs-track"><div class="neb-fs-fill" id="nebFsFill"></div></div></div>'
+        + '<div class="neb-fs-dock">'
+        + '<button class="neb-fs-btn" id="nebFsPrev" title="Previous">' + NEB_SVG_PREV + '</button>'
+        + '<button class="neb-fs-btn neb-fs-play" id="nebFsPlay" title="Play / Pause">' + NEB_SVG_PLAY + '</button>'
+        + '<button class="neb-fs-btn" id="nebFsNext" title="Next">' + NEB_SVG_NEXT + '</button>'
+        + '<button class="neb-fs-btn" id="nebFsMute" title="Mute">' + NEB_SVG_VOL + '</button>'
+        + '<span class="neb-fs-time" id="nebFsTime">0:00 / 0:00</span>'
+        + '<button class="neb-fs-chip" id="nebFsChapter">In this file ›</button>'
+        + '<span class="neb-fs-spacer"></span>'
+        + '<button class="neb-fs-chip neb-fs-speed" id="nebFsSpeed">1x</button>'
+        + '<button class="neb-fs-chip" id="nebFsCc">CC</button>'
+        + '<button class="neb-fs-chip" id="nebFsGear" title="Settings">⚙</button>'
+        + '<button class="neb-fs-chip" id="nebFsFull" title="Exit fullscreen">⤢</button>'
+        + '<button class="neb-fs-chip accent" id="nebFsMore" title="More">•••</button>'
+        + '</div>';
+      content.appendChild(bottom);
+      // wire — every dock button proxies the real player control so all toggles stay in sync
+      $('nebFsPlay').onclick = function(){ var p=$('mediaPlayBtn'); if(p) p.click(); };
+      $('nebFsPrev').onclick = function(){ var p=$('mediaPrevBtn'); if(p && !p.disabled) p.click(); };
+      $('nebFsNext').onclick = function(){ var p=$('mediaNextBtn'); if(p && !p.disabled) p.click(); };
+      $('nebFsMute').onclick = function(){ var p=$('mediaMuteBtn'); if(p) p.click(); };
+      var prog = $('nebFsProgress');
+      function seekEv(e){
+        var bar = $('mediaProgressBar'); if(!bar) return;
+        var r = prog.getBoundingClientRect();
+        var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        var ratio = Math.min(1, Math.max(0, x / r.width));
+        var max = parseFloat(bar.max || '100');
+        bar.value = ratio * max;
+        bar.dispatchEvent(new Event('input', {bubbles:true}));
+        bar.dispatchEvent(new Event('change', {bubbles:true}));
+      }
+      prog.addEventListener('pointerdown', function(e){ seekEv(e); function mv(ev){ seekEv(ev); } function up(){ window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); } window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up); });
+      $('nebFsChapter').onclick = function(){ var q=$('mediaQualityBtn'); if(q) q.click(); };
+      $('nebFsSpeed').onclick = function(){ var b=$('mediaSpeedBtn'); if(b) b.click(); };
+      $('nebFsGear').onclick = function(e){ e.stopPropagation(); var b=$('mediaSettingsBtn'); if(b) b.click(); };
+      $('nebFsMore').onclick = function(e){ e.stopPropagation(); var b=$('mediaMoreBtn'); if(b) b.click(); };
+      $('nebFsFull').onclick = function(){ if(typeof exitCustomFullscreen==='function') exitCustomFullscreen(); };
+      $('nebFsCc').onclick = function(){ var v=document.querySelector('#mediaArtwork video'); if(v&&v.textTracks&&v.textTracks.length){ for(var i=0;i<v.textTracks.length;i++){ v.textTracks[i].mode = v.textTracks[i].mode==='showing'?'hidden':'showing'; } } };
+    }
+    return true;
+  }
+  function nebMediaEl(){ try{ return document.querySelector('#mediaArtwork video, #mediaArtwork audio'); }catch(e){ return null; } }
+  function syncFs(){
+    ensureFs();
+    var modal = $('mediaPlayerModal'); if(!modal) return;
+    var isFs = modal.classList.contains('custom-fullscreen');
+    var title = $('nebFsTitle'), track = $('mediaTrack');
+    if(title && track){ var t=(track.textContent||'').trim(); if(t && title.textContent!==t) title.textContent = t; }
+    var fill = $('nebFsFill'), time = $('nebFsTime'), play = $('nebFsPlay'), mute = $('nebFsMute');
+    var v = nebMediaEl();
+    var pct = 0, cs = '0:00', ds = '0:00', paused = true, muted = false;
+    if(v){ try{
+      if(isFinite(v.duration) && v.duration>0){ pct = (v.currentTime/v.duration)*100; cs = fmt(v.currentTime); ds = fmt(v.duration); }
+      paused = !!v.paused; muted = !!(v.muted || v.volume===0);
+    }catch(e){} }
+    else {
+      var bar = $('mediaProgressBar');
+      if(bar){ var max=parseFloat(bar.max||'100'), bv=parseFloat(bar.value||'0'); if(max>0) pct=(bv/max)*100; }
+      var cur=$('mediaCurrentTime'), dur=$('mediaDuration');
+      if(cur) cs=cur.textContent; if(dur) ds=dur.textContent;
+    }
+    if(fill) fill.style.width = pct + '%';
+    if(time){ var label = cs + ' / ' + ds; if(time.textContent!==label) time.textContent = label; }
+    if(play){ var want = paused ? NEB_SVG_PLAY : NEB_SVG_PAUSE; if(play.getAttribute('data-state')!==(paused?'p':'pl')){ play.innerHTML = want; play.setAttribute('data-state', paused?'p':'pl'); play.classList.toggle('is-paused', paused); } }
+    if(mute){ var mw = muted ? NEB_SVG_MUTED : NEB_SVG_VOL; if(mute.getAttribute('data-state')!==(muted?'m':'u')){ mute.innerHTML = mw; mute.setAttribute('data-state', muted?'m':'u'); mute.classList.toggle('is-muted', muted); } }
+    var pv=$('mediaPrevBtn'), nx=$('mediaNextBtn'), fp=$('nebFsPrev'), fn=$('nebFsNext');
+    if(pv&&fp) fp.disabled=!!pv.disabled; if(nx&&fn) fn.disabled=!!nx.disabled;
+    var sv=$('nebFsSpeed'); if(sv){ try{ var cur2=document.querySelector('#settingsMenu .speed-btn .settings-row-value'); if(cur2){ var st=(cur2.textContent||'').trim(); if(st && sv.textContent!==st) sv.textContent=st; } }catch(e2){} }
+    var esc = $('nebFsEsc');
+    if(esc && isFs && !modal.classList.contains('controls-hidden')){ esc.classList.remove('hide'); clearTimeout(esc._t); esc._t=setTimeout(function(){ esc.classList.add('hide'); },3500); }
+  }
+  setInterval(syncFs, 400);
+
+})();
+</script>
+
+<script>
+(function(){
+  function $id(id){ return document.getElementById(id); }
+  // touch / iPhone: hide keyboard-shortcuts button everywhere
+  try{
+    var ua = navigator.userAgent || '';
+    var isiOS = /iPad|iPhone|iPod/.test(ua) || (navigator.maxTouchPoints > 1 && /Mac/.test(ua));
+    var isTouch = isiOS || ('ontouchstart' in window) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    if(isiOS) document.body.classList.add('is-ios');
+    if(isTouch) document.body.classList.add('is-touch');
+    if(isTouch){ var kb = $id('mediaKeybindsBtn'); if(kb) kb.style.display = 'none'; }
+  }catch(e){}
+  // pswitch toggles: keep aria-checked in sync with visual state
+  document.addEventListener('click', function(e){
+    var sw = e.target && e.target.closest ? e.target.closest('.pswitch') : null;
+    if(!sw) return;
+    setTimeout(function(){
+      var on = sw.classList.contains('on') || sw.classList.contains('active') || sw.getAttribute('aria-checked') === 'true';
+      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+    }, 60);
+  });
+  var SVG_EXPAND = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>';
+  var SVG_EXIT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="21" y2="3"/><line x1="14" y1="10" x2="3" y2="21"/></svg>';
+  function fsBtnLabel(btn, exit){
+    if(!btn) return;
+    var keep = btn.querySelector('[data-i18n]');
+    btn.innerHTML = (exit ? SVG_EXIT : SVG_EXPAND) + ' ';
+    if(keep){ btn.appendChild(keep); }
+    else { var s = document.createElement('span'); s.textContent = 'Fullscreen'; btn.appendChild(s); }
+    btn.classList.toggle('is-on', !!exit);
+    btn.title = exit ? 'Exit fullscreen' : 'Fullscreen';
+  }
+  // FULLSCREEN = Nebula premium immersive (audio + video). CINEMA = true native fullscreen.
+  function wirePlayerModes(){
+    var f = $id('mediaFullscreenBtn'), c = $id('cinemaBtn'), modal = $id('mediaPlayerModal');
+    if(f && !f.dataset.nebWired){
+      f.dataset.nebWired = '1';
+      f.onclick = function(){
+        if(modal && modal.classList.contains('custom-fullscreen')){ exitCustomFullscreen(); fsBtnLabel(f, false); }
+        else { enterCustomFullscreen(); fsBtnLabel(f, true); if(window.nebToggleAbout) nebToggleAbout(false); }
+      };
+    }
+    if(c && !c.dataset.nebWired){
+      c.dataset.nebWired = '1';
+      c.onclick = function(){
+        try{
+          if(document.fullscreenElement || document.webkitFullscreenElement){ (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+          var target = $id('mediaPlayerContent') || modal;
+          var req = target.requestFullscreen || target.webkitRequestFullscreen || target.msRequestFullscreen;
+          if(req) req.call(target);
+          else { var v = document.querySelector('#mediaArtwork video'); if(v && v.webkitEnterFullscreen) v.webkitEnterFullscreen(); }
+        }catch(err){}
+      };
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wirePlayerModes);
+  else wirePlayerModes();
+  setTimeout(wirePlayerModes, 800);
+})();
+</script>
+
+<script>
+(function(){
+  var modal = document.getElementById('mediaPlayerModal');
+  var f = document.getElementById('mediaFullscreenBtn');
+  if(!modal || !f || window.__nebFsObs) return;
+  window.__nebFsObs = true;
+  var EXP = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>';
+  var EXT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="21" y2="3"/><line x1="14" y1="10" x2="3" y2="21"/></svg>';
+  function sync(){
+    var on = modal.classList.contains('custom-fullscreen');
+    var keep = f.querySelector('[data-i18n]');
+    f.innerHTML = (on ? EXT : EXP) + ' ';
+    if(keep) f.appendChild(keep);
+    else { var s = document.createElement('span'); s.textContent = 'Fullscreen'; f.appendChild(s); }
+    f.classList.toggle('is-on', on);
+    f.title = on ? 'Exit fullscreen' : 'Fullscreen';
+  }
+  try{ new MutationObserver(sync).observe(modal, { attributes: true, attributeFilter: ['class'] }); }catch(e){}
+})();
+</script>
+
+
+
+<script>
+(function(){
+  function $id(id){ return document.getElementById(id); }
+  // "In this file" chip -> the real Media Info panel (works everywhere, unchanged UI)
+  var chipPoll = setInterval(function(){
+    var ch = $id('nebFsChapter'); if(!ch) return;
+    if(ch.dataset.v4) { clearInterval(chipPoll); return; }
+    ch.dataset.v4 = '1'; clearInterval(chipPoll);
+    ch.onclick = function(e){ if(e) e.stopPropagation();
+      if(window.toggleSettingsMenu) toggleSettingsMenu(false);
+      if(window.toggleMoreMenu) toggleMoreMenu(false);
+      var p = $id('infoPanel'); if(p){ p.classList.remove('hiding'); void p.offsetWidth; p.classList.add('show'); }
+    };
+  }, 500);
+  setTimeout(function(){ clearInterval(chipPoll); }, 12000);
+  // move the REAL settings + more menus into the dock while fullscreen (restored on exit)
+  var savedMenus = null;
+  function dockMenus(){
+    var bottom = $id('nebFsBottom'); if(!bottom) return;
+    var sm = $id('settingsMenu'), mm = $id('mediaMoreMenu'); if(!sm || !mm) return;
+    if(!savedMenus) savedMenus = { smP: sm.parentNode, smN: sm.nextSibling, mmP: mm.parentNode, mmN: mm.nextSibling };
+    try{
+      bottom.appendChild(sm); bottom.appendChild(mm);
+      bottom.classList.add('fs-host-menus', 'settings-menu-wrap', 'more-menu-wrap');
+    }catch(e){}
+  }
+  function undockMenus(){
+    if(!savedMenus) return;
+    try{
+      var sm = $id('settingsMenu'), mm = $id('mediaMoreMenu');
+      if(sm && savedMenus.smP) savedMenus.smP.insertBefore(sm, savedMenus.smN);
+      if(mm && savedMenus.mmP) savedMenus.mmP.insertBefore(mm, savedMenus.mmN);
+      var bottom = $id('nebFsBottom'); if(bottom) bottom.classList.remove('fs-host-menus');
+      if(window.toggleSettingsMenu) toggleSettingsMenu(false);
+      if(window.toggleMoreMenu) toggleMoreMenu(false);
+    }catch(e){}
+    savedMenus = null;
+  }
+  function goNative(){
+    try{
+      var modal = $id('mediaPlayerModal'); if(!modal) return;
+      if(document.fullscreenElement || document.webkitFullscreenElement) return;
+      var req = modal.requestFullscreen || modal.webkitRequestFullscreen || modal.msRequestFullscreen;
+      if(req){ var r = req.call(modal); if(r && r.catch) r.catch(function(){}); return; }
+      var v = document.querySelector('#mediaArtwork video');
+      if(v && v.webkitEnterFullscreen){ try{ v.webkitEnterFullscreen(); }catch(e2){} }
+    }catch(e){}
+  }
+  function leaveNative(){
+    try{ if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen(); else if(document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen(); }catch(e){}
+  }
+  // FULLSCREEN = premium overlay + full device screen. CINEMA = in-page immersive (as before, better dock).
+  if(typeof enterCustomFullscreen === 'function' && !window.__nebV4Wrapped){
+    window.__nebV4Wrapped = true;
+    var _enter = enterCustomFullscreen, _exit = exitCustomFullscreen;
+    enterCustomFullscreen = function(fromCinema){
+      if(window.nebToggleAbout) nebToggleAbout(false);
+      _enter(); dockMenus();
+      if(!fromCinema) goNative();
+    };
+    exitCustomFullscreen = function(){ _exit(); undockMenus(); leaveNative(); };
+    var cin = $id('cinemaBtn');
+    if(cin){ cin.onclick = function(){ var m = $id('mediaPlayerModal'); if(m && m.classList.contains('custom-fullscreen')) exitCustomFullscreen(); else enterCustomFullscreen(true); }; }
+    document.addEventListener('fullscreenchange', function(){
+      if(!document.fullscreenElement){ var m = $id('mediaPlayerModal'); if(m && m.classList.contains('custom-fullscreen')) exitCustomFullscreen(); }
+    });
+    document.addEventListener('webkitfullscreenchange', function(){
+      if(!document.webkitFullscreenElement){ var m = $id('mediaPlayerModal'); if(m && m.classList.contains('custom-fullscreen')) exitCustomFullscreen(); }
+    });
+  }
+  // transport taps close open menus, like the desktop player
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target.closest('#nebFsPlay,#nebFsPrev,#nebFsNext,#nebFsMute,#nebFsProgress,#nebFsChapter,#nebFsCc') : null;
+    if(t){ if(window.toggleSettingsMenu) toggleSettingsMenu(false); if(window.toggleMoreMenu) toggleMoreMenu(false); }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function $id(id){ return document.getElementById(id); }
+  function nebMedia(){ try{ return document.querySelector('#mediaArtwork video, #mediaArtwork audio'); }catch(e){ return null; } }
+  // panels that live outside the player modal are invisible in device fullscreen -> stage them inside while FS
+  var stagedPanels = null;
+  function stageFsPanels(){
+    var modal = $id('mediaPlayerModal'); if(!modal) return;
+    var ip = $id('infoPanel'), kp = $id('keybindsPanel');
+    if(!stagedPanels) stagedPanels = { ipP: ip ? ip.parentNode : null, ipN: ip ? ip.nextSibling : null, kpP: kp ? kp.parentNode : null, kpN: kp ? kp.nextSibling : null };
+    try{ if(ip) modal.appendChild(ip); if(kp) modal.appendChild(kp); }catch(e){}
+  }
+  function restoreFsPanels(){
+    if(!stagedPanels) return;
+    try{
+      var ip = $id('infoPanel'), kp = $id('keybindsPanel');
+      if(ip && stagedPanels.ipP) stagedPanels.ipP.insertBefore(ip, stagedPanels.ipN);
+      if(kp && stagedPanels.kpP) stagedPanels.kpP.insertBefore(kp, stagedPanels.kpN);
+      if(ip) ip.classList.remove('show');
+      if(kp && kp.classList.contains('show') && kp.classList.contains('hiding') === false){ kp.classList.add('hiding'); setTimeout(function(){ kp.classList.remove('show','hiding'); }, 240); }
+    }catch(e){}
+    stagedPanels = null;
+  }
+  if(typeof enterCustomFullscreen === 'function' && !window.__nebV5Wrapped){
+    window.__nebV5Wrapped = true;
+    var _e = enterCustomFullscreen, _x = exitCustomFullscreen;
+    enterCustomFullscreen = function(a){ stageFsPanels(); _e(a); };
+    exitCustomFullscreen = function(){ _x(); restoreFsPanels(); };
+  }
+  // Captions toggle row inside the REAL settings menu (CC chip removed from dock)
+  function captionsOn(){
+    var v = document.querySelector('#mediaArtwork video'); if(!v || !v.textTracks) return false;
+    for(var i=0;i<v.textTracks.length;i++){ if(v.textTracks[i].mode === 'showing') return true; }
+    return false;
+  }
+  function setCapSwitch(on){
+    var b = $id('captionsToggle'); if(!b) return;
+    b.classList.toggle('on', !!on); b.setAttribute('aria-checked', on ? 'true' : 'false');
+  }
+  function buildCaptionsRow(){
+    if($id('captionsRow')) return true;
+    var anchor = $id('annotationsRow'); if(!anchor || !anchor.parentNode) return false;
+    var row = document.createElement('div');
+    row.className = 'settings-menu-row'; row.id = 'captionsRow';
+    row.innerHTML = '<span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10.5 10.5H9a2 2 0 0 0 0 3h1.5M17.5 10.5H16a2 2 0 0 0 0 3h1.5"/></svg></span><span class="settings-row-label">Captions</span><button class="pswitch" id="captionsToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button>';
+    anchor.parentNode.insertBefore(row, anchor.nextSibling);
+    $id('captionsToggle').onclick = function(){
+      var v = document.querySelector('#mediaArtwork video');
+      if(!v || !v.textTracks || !v.textTracks.length){ setCapSwitch(false); return; }
+      var anyOn = captionsOn();
+      for(var i=0;i<v.textTracks.length;i++){ v.textTracks[i].mode = (!anyOn && i === 0) ? 'showing' : 'hidden'; }
+      setCapSwitch(!anyOn);
+    };
+    return true;
+  }
+  // volume slider + % in the dock, mirroring the normal player control
+  var volDragging = false;
+  function buildVol(){
+    if($id('nebFsVolWrap')) return true;
+    var mute = $id('nebFsMute'); if(!mute || !mute.parentNode) return false;
+    var wrap = document.createElement('span');
+    wrap.className = 'neb-fs-vol'; wrap.id = 'nebFsVolWrap';
+    wrap.innerHTML = '<input type="range" id="nebFsVol" min="0" max="1" step="0.01" value="0.8"><span class="neb-fs-volpct" id="nebFsVolPct">80%</span>';
+    mute.parentNode.insertBefore(wrap, mute.nextSibling);
+    var slider = $id('nebFsVol');
+    slider.addEventListener('pointerdown', function(){ volDragging = true; });
+    window.addEventListener('pointerup', function(){ volDragging = false; });
+    slider.addEventListener('input', function(){
+      var val = Math.round(parseFloat(slider.value) * 100) / 100;
+      var v = nebMedia();
+      if(v){ v.volume = val; v.muted = (val === 0); }
+      var mb = $id('mediaVolumeBar');
+      if(mb){ mb.value = val; mb.dispatchEvent(new Event('input', { bubbles: true })); }
+      paintVol(val);
+    });
+    return true;
+  }
+  function paintVol(val){
+    var slider = $id('nebFsVol'), pct = $id('nebFsVolPct');
+    var p = Math.round(val * 100);
+    if(slider){ slider.value = val; slider.style.setProperty('--volp', p + '%'); }
+    if(pct){ var label = p + '%'; if(pct.textContent !== label) pct.textContent = label; }
+  }
+  buildCaptionsRow();
+  var bootPoll = setInterval(function(){
+    var done = buildCaptionsRow() & buildVol();
+    if(done){ clearInterval(bootPoll); }
+  }, 600);
+  setTimeout(function(){ clearInterval(bootPoll); }, 12000);
+  setInterval(function(){
+    var v = nebMedia();
+    if(v && !volDragging) paintVol(v.muted ? 0 : v.volume);
+    setCapSwitch(captionsOn());
+  }, 900);
+})();
+</script>
 
 </body>
 </html>
