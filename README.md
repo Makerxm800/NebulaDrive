@@ -1,4 +1,4 @@
-# ☁️ NebulaCloud
+# ☁️ NebulaDrive
 
 ### Your private cloud — always with you, no servers, no subscriptions.
 
