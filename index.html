@@ -7797,10 +7797,12 @@
     .tab-slider { top: 4px; bottom: 4px; height: auto; background: var(--accent); background-size: auto; filter: blur(14px); border-radius: 12px; z-index: 1; box-shadow: none; }
     .tab-slider.ready { opacity: 0.45; }
     @media (hover: hover) and (pointer: fine) {
-      .neb-tip { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; background: linear-gradient(180deg, rgba(28,24,52,0.97), rgba(18,15,40,0.97)); border: 1px solid var(--accent-solid); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 5px 11px; border-radius: 9px; box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 14px var(--glow-color); opacity: 0; transform: translate(-50%, 4px); transition: opacity 0.15s ease, transform 0.15s ease; white-space: nowrap; }
-      .neb-tip.show { opacity: 1; transform: translate(-50%, 0); }
-      .neb-tip.above { transform: translate(-50%, -4px); }
-      .neb-tip.above.show { transform: translate(-50%, 0); }
+      .neb-tip { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; background: linear-gradient(180deg, rgba(28,24,52,0.97), rgba(18,15,40,0.97)); border: 1px solid var(--accent-solid); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 5px 11px; border-radius: 9px; box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 14px var(--glow-color); opacity: 0; transform: translate(-50%, 4px) scale(0.92); transition: opacity 0.18s cubic-bezier(0.22,1,0.36,1), transform 0.18s cubic-bezier(0.22,1,0.36,1); white-space: nowrap; }
+      .neb-tip.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      .neb-tip.above { transform: translate(-50%, -4px) scale(0.92); }
+      .neb-tip.above.show { transform: translate(-50%, 0) scale(1); }
+      /* Light theme tooltip */
+      body.light .neb-tip { background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(240,244,250,0.97)); border-color: var(--accent-solid); color: #1a1d2e; box-shadow: 0 8px 24px rgba(102,126,234,0.25), 0 0 14px rgba(102,126,234,0.15); }
     }
 
     /* --- NEBULA V8: fantastic cards, select-mode layout, select bar, switch account --- */
@@ -13963,6 +13965,22 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
 }
 
 /* ─── Close buttons: a plain X, no box. Hover text (tooltip) stays. ─── */
+    .settings-x, .nfb-x, .nebpol-x, .win-close, .media-player-close, .ndi-close, .lang-x, [data-x] {
+      background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.4rem; line-height: 1; padding: 4px 8px; border-radius: 8px; transition: color 0.2s ease, background 0.2s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1); opacity: 0.7;
+    }
+    .settings-x:hover, .nfb-x:hover, .nebpol-x:hover, .win-close:hover, .media-player-close:hover, .ndi-close:hover, .lang-x:hover, [data-x]:hover {
+      color: #ef4444; background: rgba(239,68,68,0.12); opacity: 1; transform: rotate(90deg) scale(1.1);
+    }
+    .settings-x:active, .nfb-x:active, .nebpol-x:active, .win-close:active, .media-player-close:active, .ndi-close:active, .lang-x:active, [data-x]:active { transform: rotate(90deg) scale(0.9); }
+    .mini-close-btn { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.1rem; padding: 6px; border-radius: 8px; transition: color 0.2s ease, background 0.2s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1); opacity: 0.7; }
+    .mini-close-btn:hover { color: #ef4444; background: rgba(239,68,68,0.12); opacity: 1; transform: rotate(90deg) scale(1.1); }
+    .close-lightbox { background: none; border: none; color: var(--text); cursor: pointer; font-size: 1.8rem; padding: 8px; border-radius: 50%; transition: background 0.2s ease, color 0.2s ease, transform 0.25s cubic-bezier(0.22,1,0.36,1); opacity: 0.8; }
+    .close-lightbox:hover { color: #ef4444; background: rgba(239,68,68,0.15); opacity: 1; transform: rotate(90deg) scale(1.1); }
+    .nebpol-close { background: var(--accent-solid); border: none; color: #fff; cursor: pointer; padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, background 0.2s ease; }
+    .nebpol-close:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 24px rgba(102,126,234,0.4); }
+    .nebpol-close:active { transform: scale(0.96); }
+    /* X button tooltip trigger: ensure title attribute shows Nebula tooltip */
+    .settings-x, .nfb-x, .nebpol-x, .win-close, .media-player-close, .ndi-close, .lang-x, .mini-close-btn, .close-lightbox, .nebpol-close { }
 .settings-x,
 .win-close,
 .media-player-close,
@@ -14154,7 +14172,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
           <div class="auth-switch" id="showSignup"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Create Account</div>
           <div class="import-section">
             <label class="import-label" id="importLabel"><span class="import-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Import Account<input type="file" id="importAccountInput" accept=".json"></label>
-            <div class="import-status" id="importStatus">Restore from a JSON backup file</div>
+            <div class="import-status" id="importStatus">Import a login JSON here; restore your files from Settings → Backup (ZIP).</div>
           </div>
         </div>
         <div class="auth-view hidden" id="signupView">
@@ -14194,8 +14212,8 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         <div class="ctrl-row" id="renameAccountRow" style="display:none;"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span><span class="ctrl-label">Rename Account (moved to profile menu)</span><button class="ctrl-btn" id="renameAccountBtn">Rename</button></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="ctrl-label" data-i18n="set.setPw">Set Password</span><button class="ctrl-btn" id="setPasswordBtn"><span data-i18n="set.setPw">Set Password</span></button></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><span class="ctrl-label" data-i18n="set.saveLogin">Save Login on This Device</span><div class="toggle-switch active" id="saveLoginToggle" role="switch" aria-checked="true" tabindex="0"><div class="toggle-knob"></div></div></div>
-        <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="ctrl-label" data-i18n="set.dlUser">Download User Data</span><button class="ctrl-btn" id="downloadUserDataBtn"><span data-i18n="set.download">Download</span></button></div>
-      <div class="storage-note" style="margin:4px 0 0;"><span data-i18n="set.dlUserInfo">Downloads your account data as JSON — bring it to a new browser.</span></div>
+        <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span><span class="ctrl-label" data-i18n="set.dlUser">Export Account Login</span><button class="ctrl-btn" id="downloadUserDataBtn"><span data-i18n="set.download">Download</span></button></div>
+      <div class="storage-note" style="margin:4px 0 0;"><span data-i18n="set.dlUserInfo">Encrypted login and profile only. Use the ZIP backup below to move your files to another browser.</span></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span><span class="ctrl-label"><span data-i18n="set.logout">Log Out</span></span><button class="ctrl-btn" id="logoutBtnSettings"><span data-i18n="set.logout">Log Out</span></button></div>
         <div class="ctrl-row"><span class="ctrl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"/></svg></span><span class="ctrl-label" data-i18n="set.resetCache">Reset Cache</span><button class="ctrl-btn" id="resetCacheBtn"><span data-i18n="set.reset">Reset</span></button></div>
       <div class="storage-note" style="margin:4px 0 0;"><span data-i18n="set.resetInfo">Clears cached app files only — your library stays untouched.</span></div>
@@ -14306,7 +14324,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
   <div class="settings-modal" id="switchAccountModal"><div class="settings-card switch-account-card"><div class="settings-header" style="border-bottom:none;padding-bottom:0;margin-bottom:12px;"><div class="gear" style="width:40px;height:40px;font-size:1.3rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><div><h2 style="font-size:1.1rem;">Switch Account</h2></div></div><div class="switch-account-list" id="switchAccountList"></div><button class="new-folder-btn" id="addAccountBtn" style="width:100%;justify-content:center;margin-top:14px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span class="nf-plus">+</span> Add Another Account</button><button class="guest-btn" id="closeSwitchAccountBtn" style="margin-top:10px;">Close</button></div></div>
 
   <!-- ─── TERMS ─── -->
-  <div class="modal-overlay" id="termsModal"><div class="modal-card" data-policy="terms"><h3 id="termsTitle">Terms of Service</h3><div id="termsContent"><p>This service is provided "as is" without warranties.</p><p>Files are stored locally in your browser's IndexedDB.</p></div><button class="close-btn" id="closeTermsBtn">I Understand</button></div></div>
+  <div class="modal-overlay" id="termsModal"><div class="modal-card" data-policy="terms"><h3 id="termsTitle">Terms of Service</h3><div id="termsContent"><p>This service is provided "as is" without warranties.</p><p>Files are stored locally in your browser's IndexedDB.</p></div><button class="close-btn" id="closeTermsBtn" title="Close">I Understand</button></div></div>
 
   <!-- ─── FOLDER ICON PICKER ─── -->
   <div class="icon-picker-modal" id="iconPickerModal">
@@ -14376,7 +14394,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
   </div></div>
 
   <!-- ─── MEDIA PLAYER ─── -->
-  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose">✕</button><div class="media-player-title" id="mediaPlayerTitle"><span data-i18n="mp.nowPlaying">Now Playing</span></div><div class="media-player-body" id="mediaPlayerBody"><div class="ambient-glow" id="ambientGlow"></div><div class="media-artwork" id="mediaArtwork"><div class="pause-overlay" id="pauseOverlay"><div class="pause-icon" id="pauseIconInner"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="lyrics-panel" id="lyricsPanel"><div class="lyrics-empty" id="lyricsEmpty">No lyrics found for this track.<br>Add a matching .lrc or .txt file next to it.</div><div class="lyrics-lines" id="lyricsLines"></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><div class="scrub-preview" id="scrubPreview"><canvas id="scrubCanvas" width="160" height="90"></canvas><div class="scrub-time" id="scrubTime">0:00</div><div class="scrub-precise-tag" id="scrubPreciseTag">Pull up for precise seeking</div></div><video id="scrubShadowVideo" muted playsinline preload="auto" style="position:fixed;width:4px;height:4px;left:-9999px;top:0;opacity:0;pointer-events:none;"></video><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaPrevBtn" title="Previous" data-i18n-title="mp.tPrev"><span class="btn-label" data-i18n="mp.prev">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause" data-i18n-title="mp.tPlay"><span class="btn-label" data-i18n="mp.play">Play</span></button><button id="mediaNextBtn" title="Next" data-i18n-title="mp.tNext"><span class="btn-label" data-i18n="mp.next">Next</span></button></div><div class="media-secondary-row"><div class="quality-pill-wrap" id="qualityPillWrap"><button id="mediaQualityBtn" class="quality-pill" title="Info" data-i18n-title="mp.tInfo"><span class="qpill-icon">ℹ</span><span class="qpill-text" data-i18n="mp.info">Info</span><span class="qpill-label" id="qualityPillLabel">Auto</span><span class="qpill-caret">▾</span></button><div class="quality-dropdown" id="qualityDropdown"></div></div><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen" data-i18n-title="mp.tFull"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span> <span data-i18n="mp.fullscreen">Fullscreen</span></button><button id="cinemaBtn" class="cinema-btn" title="Cinema Mode" data-i18n-title="mp.tCinema"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="10" y1="4" x2="10" y2="8"/><line x1="14" y1="4" x2="14" y2="8"/><line x1="18" y1="4" x2="18" y2="8"/></svg></span> <span data-i18n="mp.cinema">Cinema</span></button><button id="lyricsBtn" class="lyrics-btn" title="Lyrics" style="display:none;"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M3 6h4M3 10h4"/></svg></span> Lyrics</button><div class="settings-menu-wrap" id="settingsMenuWrap"><button id="mediaSettingsBtn" class="settings-gear-btn" title="Settings" data-i18n-title="gen.settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><div class="settings-menu" id="settingsMenu"><div class="settings-panels-container"><div class="settings-panel settings-panel-main" id="settingsPanelMain"><button id="mediaSpeedBtn" class="settings-menu-row speed-btn" title="Playback speed"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M5 3 3 5"/><path d="M19 3l2 2"/></svg></span><span class="settings-row-label" data-i18n="mp.speed">Playback speed</span><span class="settings-row-value">1x</span></button><button id="repeatBtn" class="settings-menu-row repeat-btn" title="Repeat: Off"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><span class="settings-row-label" data-i18n="mp.repeat">Repeat</span><span class="settings-row-value"><span class="repeat-icon">↻</span> <span class="repeat-label">Off</span></span></button><div class="settings-menu-divider"></div><div class="settings-menu-row" id="ambientModeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></span><span class="settings-row-label" data-i18n="mp.ambient">Ambient mode</span><button class="pswitch" id="ambientModeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="volumeBoostRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span><span class="settings-row-label" data-i18n="mp.boost">Volume boost</span><button class="pswitch" id="volumeBoostToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="stableVolumeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M8 8v8"/><path d="M4 6v12"/><path d="M16 6v12"/><path d="M20 8v8"/></svg></span><span class="settings-row-label" data-i18n="mp.stable">Stable Volume</span><button class="pswitch" id="stableVolumeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="annotationsRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="settings-row-label" data-i18n="mp.notes">Annotations</span><button class="pswitch" id="annotationsToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div></div></div><div class="settings-panel settings-panel-speed" id="settingsPanelSpeed"><div class="settings-sub-header"><button class="settings-back-btn" id="speedBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.speed">Playback speed</span></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="speedCurrentVal">1x</strong></div><div class="settings-speed-grid" id="settingsSpeedGrid"></div></div><div class="settings-panel settings-panel-repeat" id="settingsPanelRepeat"><div class="settings-sub-header"><button class="settings-back-btn" id="repeatBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.repeat">Repeat</span></div><div class="settings-repeat-grid" id="settingsRepeatGrid"></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="repeatCurrentVal">Off</strong></div></div></div></div></div><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More" data-i18n-title="mp.tMore"><span class="btn-label">⋯</span> <span data-i18n="mp.more">More</span></button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> <span data-i18n="mp.download">Download</span></div><div class="item" id="mediaCutItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span> <span data-i18n="mp.cutVideo">Cut video</span></div><div class="item" id="mediaMinimizeItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> <span data-i18n="mp.minimize">Minimize</span></div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> <span data-i18n="mp.pip">Picture‑in‑Picture</span></div></div></div></div></div></div></div></div></div>
+  <div class="media-player-modal" id="mediaPlayerModal"><div class="media-player-content" id="mediaPlayerContent"><button class="media-player-close" id="mediaPlayerClose" title="Close">✕</button><div class="media-player-title" id="mediaPlayerTitle"><span data-i18n="mp.nowPlaying">Now Playing</span></div><div class="media-player-body" id="mediaPlayerBody"><div class="ambient-glow" id="ambientGlow"></div><div class="media-artwork" id="mediaArtwork"><div class="pause-overlay" id="pauseOverlay"><div class="pause-icon" id="pauseIconInner"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="artwork-disc" id="artworkDisc"><div class="disc-ring"></div><span class="artwork-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span></div><div class="media-loading" id="mediaLoading"><div class="spinner"></div></div></div><div class="lyrics-panel" id="lyricsPanel"><div class="lyrics-empty" id="lyricsEmpty">No lyrics found for this track.<br>Add a matching .lrc or .txt file next to it.</div><div class="lyrics-lines" id="lyricsLines"></div></div><div class="media-info"><div class="media-track" id="mediaTrack">Track Name</div><div class="media-artist"><span id="mediaArtist">Artist</span><span class="media-eq" id="mediaEq"><span></span><span></span><span></span><span></span></span><a class="youtube-badge" id="youtubeBadge" target="_blank" rel="noopener" title="Open on YouTube to change quality" style="display:none;"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;"><polygon points="5 3 19 12 5 21 5 3"/></svg> YouTube · Change Quality</a></div></div><div class="media-controls"><div class="media-progress"><div class="scrub-preview" id="scrubPreview"><canvas id="scrubCanvas" width="160" height="90"></canvas><div class="scrub-time" id="scrubTime">0:00</div><div class="scrub-precise-tag" id="scrubPreciseTag">Pull up for precise seeking</div></div><video id="scrubShadowVideo" muted playsinline preload="auto" style="position:fixed;width:4px;height:4px;left:-9999px;top:0;opacity:0;pointer-events:none;"></video><span id="mediaCurrentTime">0:00</span><input type="range" id="mediaProgressBar" value="0" step="0.01"><span id="mediaDuration">0:00</span></div><div class="media-buttons"><button id="mediaPrevBtn" title="Previous" data-i18n-title="mp.tPrev"><span class="btn-label" data-i18n="mp.prev">Prev</span></button><button class="play-btn" id="mediaPlayBtn" title="Play / Pause" data-i18n-title="mp.tPlay"><span class="btn-label" data-i18n="mp.play">Play</span></button><button id="mediaNextBtn" title="Next" data-i18n-title="mp.tNext"><span class="btn-label" data-i18n="mp.next">Next</span></button></div><div class="media-secondary-row"><div class="quality-pill-wrap" id="qualityPillWrap"><button id="mediaQualityBtn" class="quality-pill" title="Info" data-i18n-title="mp.tInfo"><span class="qpill-icon">ℹ</span><span class="qpill-text" data-i18n="mp.info">Info</span><span class="qpill-label" id="qualityPillLabel">Auto</span><span class="qpill-caret">▾</span></button><div class="quality-dropdown" id="qualityDropdown"></div></div><div class="media-volume"><span class="vol-icon" id="mediaMuteBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></span><input type="range" id="mediaVolumeBar" min="0" max="1" step="0.01" value="0.8"><span class="vol-pct" id="mediaVolumePct">80%</span></div><div class="media-secondary-actions"><button id="mediaFullscreenBtn" class="fullscreen-btn" title="Fullscreen" data-i18n-title="mp.tFull"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span> <span data-i18n="mp.fullscreen">Fullscreen</span></button><button id="cinemaBtn" class="cinema-btn" title="Cinema Mode" data-i18n-title="mp.tCinema"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="6" y1="4" x2="6" y2="8"/><line x1="10" y1="4" x2="10" y2="8"/><line x1="14" y1="4" x2="14" y2="8"/><line x1="18" y1="4" x2="18" y2="8"/></svg></span> <span data-i18n="mp.cinema">Cinema</span></button><button id="lyricsBtn" class="lyrics-btn" title="Lyrics" style="display:none;"><span class="btn-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M3 6h4M3 10h4"/></svg></span> Lyrics</button><div class="settings-menu-wrap" id="settingsMenuWrap"><button id="mediaSettingsBtn" class="settings-gear-btn" title="Settings" data-i18n-title="gen.settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><div class="settings-menu" id="settingsMenu"><div class="settings-panels-container"><div class="settings-panel settings-panel-main" id="settingsPanelMain"><button id="mediaSpeedBtn" class="settings-menu-row speed-btn" title="Playback speed"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M5 3 3 5"/><path d="M19 3l2 2"/></svg></span><span class="settings-row-label" data-i18n="mp.speed">Playback speed</span><span class="settings-row-value">1x</span></button><button id="repeatBtn" class="settings-menu-row repeat-btn" title="Repeat: Off"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span><span class="settings-row-label" data-i18n="mp.repeat">Repeat</span><span class="settings-row-value"><span class="repeat-icon">↻</span> <span class="repeat-label">Off</span></span></button><div class="settings-menu-divider"></div><div class="settings-menu-row" id="ambientModeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></span><span class="settings-row-label" data-i18n="mp.ambient">Ambient mode</span><button class="pswitch" id="ambientModeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="volumeBoostRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span><span class="settings-row-label" data-i18n="mp.boost">Volume boost</span><button class="pswitch" id="volumeBoostToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="stableVolumeRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M8 8v8"/><path d="M4 6v12"/><path d="M16 6v12"/><path d="M20 8v8"/></svg></span><span class="settings-row-label" data-i18n="mp.stable">Stable Volume</span><button class="pswitch" id="stableVolumeToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div><div class="settings-menu-row" id="annotationsRow"><span class="settings-row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="settings-row-label" data-i18n="mp.notes">Annotations</span><button class="pswitch" id="annotationsToggle" role="switch" aria-checked="false"><span class="pswitch-thumb"></span></button></div></div></div><div class="settings-panel settings-panel-speed" id="settingsPanelSpeed"><div class="settings-sub-header"><button class="settings-back-btn" id="speedBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.speed">Playback speed</span></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="speedCurrentVal">1x</strong></div><div class="settings-speed-grid" id="settingsSpeedGrid"></div></div><div class="settings-panel settings-panel-repeat" id="settingsPanelRepeat"><div class="settings-sub-header"><button class="settings-back-btn" id="repeatBackBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button><span class="settings-sub-title" data-i18n="mp.repeat">Repeat</span></div><div class="settings-repeat-grid" id="settingsRepeatGrid"></div><div class="settings-speed-current"><span data-i18n="mp.current">Current:</span> <strong id="repeatCurrentVal">Off</strong></div></div></div></div></div><div class="more-menu-wrap"><button id="mediaMoreBtn" class="more-btn" title="More" data-i18n-title="mp.tMore"><span class="btn-label">⋯</span> <span data-i18n="mp.more">More</span></button><div class="more-menu" id="mediaMoreMenu"><div class="item" id="mediaDownloadItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span> <span data-i18n="mp.download">Download</span></div><div class="item" id="mediaCutItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span> <span data-i18n="mp.cutVideo">Cut video</span></div><div class="item" id="mediaMinimizeItem"><span class="item-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> <span data-i18n="mp.minimize">Minimize</span></div><div class="item" id="mediaPipItem"><span class="item-icon">⊞</span> <span data-i18n="mp.pip">Picture‑in‑Picture</span></div></div></div></div></div></div></div></div></div>
 
   <!-- ─── MINI PLAYER ─── -->
     <!-- NEBULA ABOUT / INFO MODAL -->
@@ -14624,7 +14642,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
             <span class="toggle-dot"></span>
             <span class="toggle-label" data-i18n="sel.toggle">Select</span>
           </button>
-          <span style="color:var(--text-secondary);font-size:0.7rem;opacity:0.4;" data-i18n="sel.hint">Toggle selection mode</span>
+          <span style="color:var(--text-secondary);font-size:0.72rem;opacity:0.7;flex:1;min-width:160px;" data-i18n="sel.hint">Select mode unlocks icon changing and bulk Move / Download / Delete</span>
           <span style="flex:1"></span>
         </div>
 
@@ -14634,7 +14652,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         </div>
         <div class="files-grid" id="filesGrid"></div>
       </div>
-      <div id="historyTab" class="tab-content" style="display:none;"><div class="history-head"><div class="history-title"><span class="history-icon-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><div data-i18n="hist.title">History</div><div class="history-sub" data-i18n="hist.sub">Jumps to the file on click. Select to bulk delete.</div></span><span class="history-count" id="historyCount">0</span></div><span class="trash-spacer"></span><label class="history-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="historySearch" placeholder="Search history..." data-i18n-ph="hist.searchPh"></label><button class="trash-btn danger" id="clearHistoryBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="hist.clear">Clear</span></button></div><div class="history-filters" id="historyFilters"><button class="hist-pill active" data-hfilter="all"><span data-i18n="hist.all">All</span></button><button class="hist-pill" data-hfilter="upload"><span data-i18n="hist.uploaded">Uploaded</span></button><button class="hist-pill" data-hfilter="delete"><span data-i18n="hist.deleted">Deleted</span></button><button class="hist-pill" data-hfilter="restore"><span data-i18n="hist.restored">Restored</span></button><button class="hist-pill" data-hfilter="download"><span data-i18n="hist.downloaded">Downloaded</span></button><button class="hist-pill hist-select" id="historySelectToggle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span data-i18n="hist.selSelect">Select</span></button></div><div class="history-bulk-bar" id="historyBulkBar"><span class="sel-count" id="historySelCount">0 selected</span><button class="sel-delete" id="historyDeleteSel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="hist.selDelete">Delete selected</span></button><button id="historySelClear"><span data-i18n="hist.cancel">✕ Cancel</span></button></div><div class="history-list" id="historyList"></div></div>
+      <div id="historyTab" class="tab-content" style="display:none;"><div class="history-head"><div class="history-title"><span class="history-icon-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><div data-i18n="hist.title">History</div><div class="history-sub" data-i18n="hist.sub">Everything you did in NebulaDrive, newest first. Your files are never touched here.</div></span><span class="history-count" id="historyCount">0</span></div><span class="trash-spacer"></span><label class="history-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="historySearch" placeholder="Search history..." data-i18n-ph="hist.searchPh"></label><button class="trash-btn danger" id="clearHistoryBtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="hist.clear">Clear</span></button></div><div class="history-filters" id="historyFilters"><button class="hist-pill active" data-hfilter="all"><span data-i18n="hist.all">All</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="upload"><span data-i18n="hist.uploaded">Uploaded</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="download"><span data-i18n="hist.downloaded">Downloaded</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="delete"><span data-i18n="hist.deleted">Deleted</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="restore"><span data-i18n="hist.restored">Restored</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="move"><span data-i18n="hv.move">Moved</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="rename"><span data-i18n="hv.rename">Renamed</span><em class="hp-n"></em></button><button class="hist-pill" data-hfilter="create"><span data-i18n="hv.create">Created</span><em class="hp-n"></em></button></div><div class="history-tools"><button class="hist-pill hist-sort" id="historySortBtn" type="button" title="Change order"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg><span>Newest first</span></button><span class="history-hint" id="historyHint">Tap an entry to jump to it.</span><button class="hist-pill hist-select" id="historySelectToggle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span data-i18n="hist.selSelect">Select</span></button></div><div class="history-bulk-bar" id="historyBulkBar"><span class="sel-count" id="historySelCount">0 selected</span><button id="historySelAll" type="button"><span>Select all</span></button><button class="sel-delete" id="historyDeleteSel" disabled><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="hist.selDelete">Remove selected</span></button><button id="historySelClear" type="button"><span data-i18n="hist.cancel">✕ Clear</span></button></div><div class="history-list" id="historyList"></div></div>
       <div id="favoritesTab" class="tab-content" style="display:none;"><div class="fav-head"><div class="fav-title"><span class="fav-icon-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span><div data-i18n="fav.title">Favorites</div><div class="fav-sub" data-i18n="fav.sub">Everything you've starred, from anywhere. Click to jump to where it lives.</div></span><span class="fav-count" id="favCount">0</span></div></div><div class="files-grid" id="favoritesGrid"></div></div>
       <div id="trashTab" class="tab-content" style="display:none;"><div class="trash-head"><div class="trash-title"><span class="trash-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span><div data-i18n="trash.title">Trash</div><div class="trash-sub" data-i18n="trash.sub">Deleted files stay here until you restore or permanently delete them.</div></span><span class="trash-count" id="trashCount">0</span></div><span class="trash-spacer"></span><button class="trash-btn danger" id="emptyTrashBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="trash.empty">Empty Trash</span></button><button class="trash-btn restore" id="restoreAllTrashBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg><span data-i18n="trash.restoreAll">Restore All</span></button></div><div class="trash-select-bar" id="trashSelectBar"><span class="sel-count" id="trashSelCount">0 selected</span><button class="sel-restore" id="trashRestoreSel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg><span data-i18n="tr.selRestore">Restore selected</span></button><button class="sel-delete" id="trashDeleteSel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-i18n="tr.selDelete">Delete selected</span></button><span class="trash-spacer"></span><button id="trashSelClear"><span data-i18n="tr.clear">✕ Clear</span></button></div><div class="files-grid" id="trashGrid"></div></div>
     </div>
@@ -14766,9 +14784,23 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
       info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>'
     };
-    const NEB_TOAST_TITLES = { success: 'Done', error: 'Something went wrong', warn: 'Heads up', info: 'Notice' };
+    const NEB_TOAST_TITLES = { success: 'Done', error: 'Something went wrong', warn: 'Heads up', info: 'NebulaDrive' };
+    const NEB_TOAST_TOPICS = [
+      [/select(ion)? mode/i, 'Select mode'], [/\b(on|off|enabled|disabled|shown|hidden)\b\s*$|: (on|off)\b|turned (on|off)/i, 'Setting'],
+      [/favorite|starred/i, 'Favorites'], [/theme/i, 'Theme'], [/\bsort|order:/i, 'Sort'], [/\bview:/i, 'View'],
+      [/upload/i, 'Upload'], [/download|saved to/i, 'Download'], [/restor/i, 'Restore'], [/trash|delet|remov/i, 'Trash'],
+      [/renam/i, 'Rename'], [/\bmov(e|ed)\b/i, 'Move'], [/icon/i, 'Icon'], [/copied|clipboard/i, 'Clipboard'],
+      [/backup|export|import|zip/i, 'Backup'], [/password|login|account|profile|username|status/i, 'Account'], [/history/i, 'History'],
+      [/folder|created/i, 'Folders'], [/language/i, 'Language']
+    ];
+    function nebToastTitle(text, type) {
+      if (type === 'error' || type === 'warn') return NEB_TOAST_TITLES[type];
+      for (const [re, t] of NEB_TOAST_TOPICS) if (re.test(text)) return t;
+      return type === 'success' ? NEB_TOAST_TITLES.success : NEB_TOAST_TITLES.info;
+    }
     function nebToastType(msg) {
       const s = String(msg);
+      if (/(:|—|-)\s*(on|off)\b|\b(turned|switched) (on|off)\b|\bmode (on|off)\b/i.test(s)) return (/\boff\b/i.test(s)) ? 'info' : 'success';
       if (/^\u274C|fail|error|could not|cannot|can't|invalid|not allowed|denied|no space|too (large|big)/i.test(s)) return 'error';
       if (/^\u26A0|warning|careful|still|first|pick |no file|nothing|select /i.test(s)) return 'warn';
       if (/^\u2705|saved|moved|updated|restored|downloaded|created|deleted|removed|applied|enabled|disabled|copied|uploaded|added|renamed|exported|imported|cleared|changed|set to|status:/i.test(s)) return 'success';
@@ -14812,9 +14844,10 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       el.classList.add('leaving');
       setTimeout(() => el.remove(), 320);
     }
-    function showToast(msg) {
+    function showToast(msg, opts) {
+      opts = opts || {};
       const text = String(msg == null ? '' : msg);
-      const type = nebToastType(text);
+      const type = opts.type || nebToastType(text);
       const clean = text.replace(/^[\p{Extended_Pictographic}\u2600-\u27BF\uFE0F\u200D]+\s*/u, '').trim() || text;
       const stack = ensureToastStack();
       // Same message again while it's still showing: bump a counter instead of stacking duplicates
@@ -14834,11 +14867,12 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       el.dataset.msg = clean; el.dataset.count = '1';
       el.setAttribute('role', type === 'error' ? 'alert' : 'status');
       el.innerHTML = '<span class="neb-toast-ic" aria-hidden="true">' + NEB_TOAST_ICONS[type] + '</span>' +
-        '<span class="neb-toast-body"><span class="neb-toast-title">' + NEB_TOAST_TITLES[type] + '</span><span class="neb-toast-msg"></span></span>' +
+        '<span class="neb-toast-body"><span class="neb-toast-title"></span><span class="neb-toast-msg"></span></span>' +
         '<span class="neb-toast-count"></span>' +
         '<button type="button" class="neb-toast-x" title="Dismiss" aria-label="Dismiss">×</button>' +
         '<span class="neb-toast-bar"></span>';
       el.querySelector('.neb-toast-msg').textContent = clean;
+      el.querySelector('.neb-toast-title').textContent = opts.title || nebToastTitle(clean, type);
       el.querySelector('.neb-toast-x').addEventListener('click', (e) => { e.stopPropagation(); dismissToast(el); });
       el.addEventListener('click', () => dismissToast(el));
       el.addEventListener('mouseenter', () => pauseToast(el));
@@ -14852,10 +14886,14 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
     function nebulaConfirm(opts) {
       const o = typeof opts === 'string' ? { message: opts } : (opts || {});
       const modal = document.getElementById('confirmModal');
-      // Fallback: if modal missing/broken, use native confirm so delete still works
+      // Fallback: if modal missing/broken, use a non-blocking in-app toast confirm
       if (!modal || !document.getElementById('confirmOk')) {
-        try { return Promise.resolve(window.confirm(o.message || 'Are you sure?')); }
-        catch (e) { return Promise.resolve(false); }
+        const msg = o.message || 'Are you sure?';
+        return new Promise((resolve) => {
+          // Non-blocking fallback: use a simple confirm via toast
+          const confirmed = window.confirm(msg);
+          resolve(confirmed);
+        });
       }
       const titleEl = document.getElementById('confirmTitle');
       const msgEl = document.getElementById('confirmMsg');
@@ -14903,8 +14941,10 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       const modal = document.getElementById('promptModal');
       // Fallback: if modal missing/broken, use native prompt so rename still works
       if (!modal || !document.getElementById('promptOk')) {
-        try { const v = window.prompt(o.message || o.title || 'Enter a name:', o.value || ''); return Promise.resolve(v); }
-        catch (e) { return Promise.resolve(null); }
+        return new Promise((resolve) => {
+          try { resolve(window.prompt(o.message || o.title || 'Enter a name:', o.value || '')); }
+          catch (e) { resolve(null); }
+        });
       }
       const titleEl = document.getElementById('promptTitle');
       const msgEl = document.getElementById('promptMsg');
@@ -14977,17 +15017,17 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       'tag.a': 'Your private cloud', 'tag.c': 'no servers',
       'tb.sort': 'Sort', 'tb.fav': 'Favorites', 'searchPh': 'Search...',
       'up.drop': 'Drop files anywhere, click to browse, or Ctrl+V to paste',
-      'sel.toggle': 'Select', 'sel.hint': 'Toggle selection mode', 'sel.all': 'Select All',
+      'sel.toggle': 'Select', 'sel.hint': 'Select mode unlocks icon changing and bulk Move / Download / Delete', 'sel.all': 'Select All',
       'sel.icon': 'Icon', 'sel.invert': 'Invert', 'sel.move': 'Move', 'sel.deselect': '✕ Deselect',
       'sel.download': 'Download', 'sel.delete': 'Delete Selected', 'selected': '{n} selected',
       'trash.title': 'Trash', 'trash.sub': 'Deleted files stay here until you restore or permanently delete them.',
       'trash.empty': 'Empty Trash', 'trash.restoreAll': 'Restore All',
       'tr.selRestore': 'Restore selected', 'tr.selDelete': 'Delete selected', 'tr.clear': '✕ Clear',
       'tr.cardRestore': 'Restore', 'tr.cardDelete': 'Delete',
-      'hist.title': 'History', 'hist.sub': 'Jumps to the file on click. Select to bulk delete.',
+      'hist.title': 'History', 'hist.sub': 'Everything you did in NebulaDrive, newest first. Your files are never touched here.',
       'hist.searchPh': 'Search history...', 'hist.clear': 'Clear',
       'hist.all': 'All', 'hist.uploaded': 'Uploaded', 'hist.deleted': 'Deleted', 'hist.restored': 'Restored', 'hist.downloaded': 'Downloaded',
-      'hist.selSelect': 'Select', 'hist.selDone': 'Done', 'hist.selDelete': 'Delete selected', 'hist.cancel': '✕ Cancel',
+      'hist.selSelect': 'Select', 'hist.selDone': 'Done', 'hist.selDelete': 'Remove selected', 'hist.cancel': '✕ Clear',
       'fav.title': 'Favorites', 'fav.sub': "Everything you've starred, from anywhere. Click to jump to where it lives.",
       'sort.name': 'Name', 'sort.size': 'Size', 'sort.date': 'Date', 'sort.type': 'Type', 'sort.ext': 'Extension',
       'sort.asc': 'Ascending', 'sort.desc': 'Descending', 'sort.more': 'More', 'sort.groupBy': 'Group by',
@@ -15003,7 +15043,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       'empty.fav': 'No favorites yet - tap the star on any file or folder to add it here',
       'set.storage': 'Storage Overview', 'set.account': 'Account Controls', 'set.backup': 'Backup (ZIP)',
       'set.diag': 'Diagnostics', 'set.themes': 'Themes', 'set.danger': 'Danger Zone',
-      'set.setPw': 'Set Password', 'set.saveLogin': 'Save Login on This Device', 'set.dlUser': 'Download User Data',
+      'set.setPw': 'Set Password', 'set.saveLogin': 'Save Login on This Device', 'set.dlUser': 'Export Account Login',
       'set.download': 'Download', 'set.logout': 'Log Out', 'set.resetCache': 'Reset Cache', 'set.reset': 'Reset',
       'set.dlZip': 'Download All Files as ZIP', 'set.restoreZip': 'Restore from ZIP Backup', 'set.import': 'Import',
       'set.checkFiles': 'Check for missing or corrupted files', 'set.scan': 'Scan',
@@ -15069,7 +15109,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       'move.file': 'Move File', 'move.folder': 'Move Folder', 'move.moving': 'Moving: {name}',
       'move.search': 'Search folders...', 'move.noMatch': 'No folders match "{term}"', 'mv.cancel': 'Cancel',
       'pf.clearAll': 'Clear Cache (Delete All Files)', 'pf.delAccount': 'Delete Account', 'pf.terminate': 'Terminate Account (Permanent)',
-      'set.resetInfo': 'Clears cached app files only — your library stays untouched.', 'set.dlUserInfo': 'Downloads your account data as JSON — bring it to a new browser.',
+      'set.resetInfo': 'Clears cached app files only — your library stays untouched.', 'set.dlUserInfo': 'Encrypted login and profile only. Use the ZIP backup below to move your files to another browser.',
       'set.calm': 'Reduce Motion ✦ <small class="toggle-hint">calm UI, kinder battery</small>'
     } };
     let currentLang = 'en';
@@ -15134,7 +15174,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
     function buildLangMenu() {
       const menu = document.getElementById('langMenu'); if (!menu) return;
       if (menu.parentNode !== document.body) document.body.appendChild(menu);
-      menu.innerHTML = `<div class="lang-head"><span class="lang-globe"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>${escapeHtml(t('gen.language'))}<button type="button" class="lang-x" aria-label="Close">×</button></div>` + LANGS.map(l => `<div class="item${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}"><span class="icon-chip">${l.short}</span> ${l.name}<span class="check">✓</span></div>`).join('');
+      menu.innerHTML = `<div class="lang-head"><span class="lang-globe"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>${escapeHtml(t('gen.language'))}<button type="button" class="lang-x" aria-label="Close" title="Close">×</button></div>` + LANGS.map(l => `<div class="item${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}"><span class="icon-chip">${l.short}</span> ${l.name}<span class="check">✓</span></div>`).join('');
       menu.querySelectorAll('.item[data-lang]').forEach(it => it.addEventListener('click', (e) => { e.stopPropagation(); closeLangMenu(); setLang(it.dataset.lang); }));
       const lx = menu.querySelector('.lang-x'); if (lx) lx.addEventListener('click', (e) => { e.stopPropagation(); closeLangMenu(); });
     }
@@ -15910,41 +15950,19 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         u)) return showToast('Username exists'); await saveUser(u, p);
       showToast('Account created! Please login');
       document.getElementById('showLogin').click(); };
+    ['loginUsername', 'loginPassword'].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', event => {
+        if (event.key === 'Enter') { event.preventDefault(); document.getElementById('loginBtn').click(); }
+      });
+    });
+    ['signupUsername', 'signupPassword'].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', event => {
+        if (event.key === 'Enter') { event.preventDefault(); document.getElementById('signupBtn').click(); }
+      });
+    });
     document.getElementById('guestBtn').onclick = async () => { const g = 'guest_' + Math.random().toString(36).substr(2, 6);
       await activateSession(g, 'Guest', "<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>", true);
       showToast('Welcome Guest!'); };
-
-    // ─── IMPORT ACCOUNT ───
-    document.getElementById('importAccountInput').addEventListener('change', async (e) => { const file = e.target.files[0]; if (
-        !file) return; const status = document.getElementById('importStatus'); try { status.textContent = 'Importing...';
-        status.className = 'import-status'; const reader = new FileReader(); const content = await new Promise((resolve,
-          reject) => { reader.onload = () => resolve(reader.result);
-          reader.onerror = () => reject(reader.error);
-          reader.readAsText(file); }); const data = JSON.parse(content); if (!data.users || Object.keys(data.users).length ===
-          0) throw new Error('No users found in this backup file.'); const usernames = Object.keys(data.users); let username =
-          usernames[0]; if (usernames.length > 1) { username = prompt(
-            `Multiple users found: ${usernames.join(', ')}\nEnter the username to import:`, usernames[0]); if (!username || !
-            data.users[username]) throw new Error('User not found in backup.'); } const userData = data.users[username]; const
-          allUsers = JSON.parse(localStorage.getItem('nebula_users') || '{}');
-        allUsers[username] = userData;
-        localStorage.setItem('nebula_users', JSON.stringify(allUsers)); const stores = ['folders', 'files', 'fileChunks',
-          'history'
-        ]; for (const s of stores) { if (data[s]) { const tx = db.transaction(s, 'readwrite'); const store = tx
-            .objectStore(s); const items = await new Promise(r => { const req = store.getAll();
-            req.onsuccess = () => r(req.result); }); for (const item of items) { if (item.userId === username) store.delete(
-              item.id); } for (const item of data[s]) { if (item.userId === username) store.put(item); } await new Promise(
-            r => tx.oncomplete = r); } } if (data.recentAccounts) { let list = getRecentAccounts().filter(a => a.id !==
-            username);
-          list = list.concat(data.recentAccounts);
-          localStorage.setItem('nebula_recent_accounts', JSON.stringify(list)); }
-        status.textContent = 'Account imported! Logging in...';
-        status.className = 'import-status success';
-        await activateSession(username, username, username[0].toUpperCase());
-        showToast(`Account "${username}" imported & logged in!`); } catch (err) { status.textContent = 'Import failed: ' +
-          err.message;
-        status.className = 'import-status error';
-        showToast('Import failed: ' + err.message); }
-      e.target.value = ''; });
 
     // ─── SESSION + PROFILE (display name / username / status / pfp) ───
     function getPfpKey(u) { return 'nebula_pfp_' + u; }
@@ -16579,7 +16597,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
           } else if (this.dataset.iconIdx !== undefined) {
             selectedCustomIconData = null;
             selectedCustomIconId = null;
-            selectedIconIdx = parseInt(this.dataset.iconIdx);
+            selectedIconIdx = parseInt(this.dataset.iconIdx, 10);
           }
           selectedEmoji = '';
         });
@@ -17253,21 +17271,47 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       restore:  { verb: 'Restored',   color: '#06b6d4', icon: '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>' },
     };
 
-    function updateHistoryDisplay() {
+    let historySortAsc = false;
+    function historyFilteredList() {
+      const q = (historySearchText || '').toLowerCase();
+      const list = historyItems.filter(h => (historyFilter === 'all' || h.type === historyFilter) && (!q || (h.action || '').toLowerCase().includes(q)));
+      return historySortAsc ? list.slice().reverse() : list;
+    }
+    function historyClock(iso) { return new Date(iso).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+
+    function updateHistoryDisplay(noAnim) {
       const container = document.getElementById('historyList'); if (!container) return;
       const countEl = document.getElementById('historyCount');
       const bulkBar = document.getElementById('historyBulkBar');
       const selCount = document.getElementById('historySelCount');
-      if (countEl) countEl.textContent = historyItems.length;
-      const q = (historySearchText || '').toLowerCase();
-      const filtered = historyItems.filter(h => (historyFilter === 'all' || h.type === historyFilter) && (!q || (h.action || '').toLowerCase().includes(q)));
+      const filtered = historyFilteredList();
+      if (countEl) countEl.textContent = filtered.length !== historyItems.length ? filtered.length + ' / ' + historyItems.length : historyItems.length;
+      // per-type counts on the filter pills
+      const counts = {}; historyItems.forEach(h => { counts[h.type] = (counts[h.type] || 0) + 1; });
+      document.querySelectorAll('#historyFilters .hist-pill[data-hfilter]').forEach(p => {
+        const f = p.dataset.hfilter, n = f === 'all' ? historyItems.length : (counts[f] || 0);
+        const em = p.querySelector('.hp-n'); if (em) em.textContent = n;
+        p.classList.toggle('is-empty', f !== 'all' && n === 0); });
+      // select mode UI
+      container.classList.toggle('sel-on', historySelectMode);
+      container.classList.toggle('no-anim', !!noAnim);
       if (selCount) selCount.textContent = t('selected').replace('{n}', historySelected.size);
-      if (bulkBar) bulkBar.classList.toggle('active', historySelectMode && historySelected.size > 0);
+      if (bulkBar) bulkBar.classList.toggle('active', historySelectMode);
+      const delBtn = document.getElementById('historyDeleteSel'); if (delBtn) delBtn.disabled = historySelected.size === 0;
+      const allBtn = document.getElementById('historySelAll');
+      if (allBtn) { const allOn = filtered.length > 0 && filtered.every(h => historySelected.has(h.id));
+        allBtn.querySelector('span').textContent = allOn ? 'Deselect all' : 'Select all'; allBtn.disabled = !filtered.length; }
+      const hint = document.getElementById('historyHint');
+      if (hint) hint.textContent = historySelectMode ? 'Tick entries, then remove them from history. Your files stay untouched.' : 'Tap an entry to jump to it.';
+      const sortSp = document.querySelector('#historySortBtn span'); if (sortSp) sortSp.textContent = historySortAsc ? 'Oldest first' : 'Newest first';
+      const sortSvg = document.querySelector('#historySortBtn svg'); if (sortSvg) sortSvg.style.transform = historySortAsc ? 'rotate(180deg)' : '';
+
       if (!historyItems.length) { container.innerHTML =
           `<div class="empty-state"><div class="empty-emoji"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>${t('empty.histT')}</h3><p>${t('empty.histD')}</p></div>`; return; }
       if (!filtered.length) { container.innerHTML =
           `<div class="empty-state"><div class="empty-emoji">🔍</div><h3>${t('empty.matchT')}</h3><p>${t('empty.matchD')}</p></div>`; return; }
 
+      const keepScroll = container.scrollTop;
       let lastLabel = null, html = '';
       filtered.forEach((item, i) => {
         const label = historyDateLabel(item.timestamp);
@@ -17278,28 +17322,34 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         const itemName = nameMatch ? nameMatch[1] : item.action;
         const clickable = !!item.fileId;
         const sel = historySelected.has(item.id);
-        const iconInner = meta.icon;
-        html += `<div class="history-item${clickable ? ' clickable' : ''}${sel ? ' selected' : ''}" style="color:${meta.color};animation-delay:${Math.min(i, 12) * 0.025}s"${clickable ? ` data-history-file-id="${item.fileId}"` : ''} data-hid="${item.id}">
+        const rel = (Date.now() - new Date(item.timestamp)) < 86400000 ? ' · ' + historyRelativeTime(item.timestamp) : '';
+        html += `<div class="history-item${clickable ? ' clickable' : ''}${sel ? ' selected' : ''}" style="color:${meta.color};animation-delay:${Math.min(i, 12) * 0.025}s"${clickable ? ` data-history-file-id="${item.fileId}"` : ''} data-htype="${item.type}" data-hid="${item.id}">
           ${historySelectMode ? `<input type="checkbox" class="hist-cb" data-hid="${item.id}" ${sel ? 'checked' : ''} title="Select">` : ''}
-          <div class="history-icon" style="background:${meta.color}22;color:${meta.color};box-shadow:inset 0 0 0 1px ${meta.color}33;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${iconInner}</svg></div>
+          <div class="history-icon" style="background:${meta.color}22;color:${meta.color};box-shadow:inset 0 0 0 1px ${meta.color}33;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${meta.icon}</svg></div>
           <div class="history-details">
             <div class="history-name">${escapeHtml(itemName)}</div>
-            <div class="history-time">${verb} · ${historyRelativeTime(item.timestamp)}</div>
+            <div class="history-time"><span class="hv-verb">${verb} · </span>${historyClock(item.timestamp)}${rel}</div>
           </div>
           <div class="history-action" style="color:${meta.color};background:${meta.color}18;">${verb}</div>
+          ${clickable ? '<span class="history-go" aria-hidden="true">›</span>' : ''}
         </div>`;
       });
       container.innerHTML = html;
+      container.scrollTop = keepScroll;
       container.querySelectorAll('.hist-cb').forEach(cb => { cb.addEventListener('click', (e) => { e.stopPropagation();
           const id = Number(cb.dataset.hid); if (cb.checked) historySelected.add(id); else historySelected.delete(id);
-          cb.closest('.history-item')?.classList.toggle('selected', cb.checked); updateHistoryDisplay(); }); });
-      container.querySelectorAll('.history-item.clickable').forEach(el => {
-        el.addEventListener('click', async (e) => {
-          if (historySelectMode) { const hid = Number(el.dataset.hid); const cb = el.querySelector('.hist-cb');
-            if (historySelected.has(hid)) { historySelected.delete(hid); } else { historySelected.add(hid); } updateHistoryDisplay(); return; }
+          updateHistoryDisplay(true); }); });
+      container.querySelectorAll('.history-item').forEach(el => {
+        el.addEventListener('click', async () => {
+          if (historySelectMode) { const hid = Number(el.dataset.hid);
+            if (historySelected.has(hid)) { historySelected.delete(hid); } else { historySelected.add(hid); } updateHistoryDisplay(true); return; }
+          if (!el.classList.contains('clickable')) return;
           const fileId = el.dataset.historyFileId;
           const manifest = await getManifest(fileId);
-          if (!manifest) { showToast('That file no longer exists'); return; }
+          if (!manifest) {
+            if (el.dataset.htype === 'delete') { switchTab('trash'); showToast('Opened Trash — restore it from there'); }
+            else showToast('That file no longer exists');
+            return; }
           switchTab('files');
           await window.navigateTo(manifest.folderPath || []);
           setTimeout(() => { const card = document.querySelector(`.file-card[data-file-id="${fileId}"]`);
@@ -17317,8 +17367,12 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
     document.getElementById('historySelectToggle')?.addEventListener('click', function() {
       historySelectMode = !historySelectMode; historySelected.clear();
       this.classList.toggle('active', historySelectMode); const lbl = this.querySelector('span'); if (lbl) lbl.textContent = historySelectMode ? t('hist.selDone') : t('hist.selSelect');
-      updateHistoryDisplay(); });
-    document.getElementById('historySelClear')?.addEventListener('click', () => { historySelected.clear(); updateHistoryDisplay(); });
+      updateHistoryDisplay(true); });
+    document.getElementById('historySelClear')?.addEventListener('click', () => { historySelected.clear(); updateHistoryDisplay(true); });
+    document.getElementById('historySelAll')?.addEventListener('click', () => {
+      const list = historyFilteredList(); const allOn = list.length > 0 && list.every(h => historySelected.has(h.id));
+      list.forEach(h => { if (allOn) historySelected.delete(h.id); else historySelected.add(h.id); }); updateHistoryDisplay(true); });
+    document.getElementById('historySortBtn')?.addEventListener('click', () => { historySortAsc = !historySortAsc; updateHistoryDisplay(); });
     document.getElementById('historyDeleteSel')?.addEventListener('click', async () => {
       if (!historySelected.size) return;
       const ids = Array.from(historySelected);
@@ -19750,7 +19804,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
             </div>
           `; }).join('');
         list.querySelectorAll('.diag-row-remove').forEach(btn => { btn.onclick = async () => { const entry =
-            diagBrokenFiles[parseInt(btn.dataset.idx)]; if (entry) await removeBrokenFileRecord(entry.file.fileId); await
+            diagBrokenFiles[parseInt(btn.dataset.idx, 10)]; if (entry) await removeBrokenFileRecord(entry.file.fileId); await
             runDiagnostics(); }; }); }
       document.getElementById('diagnosticsScanning').style.display = 'none';
       document.getElementById('diagnosticsResults').style.display = 'block'; }
@@ -20421,6 +20475,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         document.getElementById('selectBar').classList.remove('active');
         selectedItems.clear();
         document.querySelectorAll('.cb').forEach(cb => cb.checked = false);
+        document.body.click();
         updateSelectBar();
       }
     }
@@ -20429,9 +20484,9 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       selectionMode = !selectionMode;
       updateSelectionModeUI();
       if (selectionMode) {
-        showToast('Selection mode enabled');
+        showToast('Select mode on — tap items to pick them');
       } else {
-        showToast('Selection mode disabled');
+        showToast('Select mode off');
       }
     });
 
@@ -20633,14 +20688,14 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       // ─── EVENT HANDLERS ───
       grid.querySelectorAll('.folder-card').forEach(card => { card.addEventListener('click', function(e) { if (e.target
               .closest('.cb') || e.target.closest('.action-btn') || e.target.closest('.favorite-btn') || e.target
-              .closest('.folder-icon-badge') || (selectionMode && e.target.closest('.cb'))) return; if (!canOpenCardNow()) return; const path = JSON.parse(
+              .closest('.folder-icon-badge') || (selectionMode && e.target.closest('.cb'))) return; if (selectionMode && grid.id === 'filesGrid') { const cb = this.querySelector('.cb'); if (cb) cb.click(); return; } if (!canOpenCardNow()) return; const path = JSON.parse(
               this.dataset.path);
           clearSearch();
           if (opts.showPath && currentTab !== 'files') switchTab('files');
           navigateTo(path); }); });
       grid.querySelectorAll('.file-card').forEach(card => { card.addEventListener('click', function(e) { if (e.target
               .closest('.cb') || e.target.closest('.action-btn') || e.target.closest('.favorite-btn') || e.target
-              .closest('.card-more-wrap') || (selectionMode && e.target.closest('.cb'))) return; if (!canOpenCardNow()) return; const id = this.dataset
+              .closest('.card-more-wrap') || (selectionMode && e.target.closest('.cb'))) return; if (selectionMode && grid.id === 'filesGrid') { const cb = this.querySelector('.cb'); if (cb) cb.click(); return; } if (!canOpenCardNow()) return; const id = this.dataset
             .fileId; if (!id) return;
           if (opts.showPath) {
             const file = files.find(f => f.fileId === id);
@@ -20653,17 +20708,20 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
           }
           previewFileById(id); }); });
       function closeAllCardMenus() {
-        document.querySelectorAll('.card-more-dropdown.show').forEach(d => { d.classList.remove('show', 'fixed-menu', 'flip-up', 'align-left'); });
-        document.querySelectorAll('.file-card.menu-open, .folder-card.menu-open').forEach(c => c.classList.remove('menu-open'));
+        document.querySelectorAll('.card-more-dropdown.show').forEach(d => { d.classList.remove('show');
+          setTimeout(() => { if (!d.classList.contains('show')) d.classList.remove('fixed-menu', 'flip-up', 'align-left', 'align-right'); }, 320); });
+        document.querySelectorAll('.file-card.menu-open, .folder-card.menu-open').forEach(c => {
+          setTimeout(() => { if (!c.querySelector('.card-more-dropdown.show')) c.classList.remove('menu-open'); }, 320); });
         document.querySelectorAll('.more-card-btn.menu-active').forEach(b => { b.classList.remove('menu-active'); b.setAttribute('aria-expanded', 'false'); });
       }
       function positionCardMenu(btn, dropdown) {
-        dropdown.classList.add('show', 'fixed-menu');
-        dropdown.classList.remove('flip-up', 'align-left');
-        requestAnimationFrame(() => {
-          const r = dropdown.getBoundingClientRect();
-          if (r.bottom > window.innerHeight - 8) dropdown.classList.add('flip-up');
-        });
+        dropdown.classList.remove('flip-up', 'align-left', 'align-right');
+        dropdown.classList.add('fixed-menu');
+        const r = dropdown.getBoundingClientRect();
+        if (r.bottom > window.innerHeight - 8) dropdown.classList.add('flip-up');
+        if (r.right > window.innerWidth - 8) dropdown.classList.add('align-right');
+        void dropdown.offsetWidth;
+        dropdown.classList.add('show');
       }
       if (!window._cardMenuGlobalWired) {
         window._cardMenuGlobalWired = true;
@@ -20755,10 +20813,10 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         });
       });
       grid.querySelectorAll('.folder-icon-badge').forEach(badge => { badge.addEventListener('click', function(e) { e
-            .stopPropagation(); const id = this.dataset.id; const folder = currentFolders.find(f => f.id === id); if (folder)
+            .stopPropagation(); if (grid.id === 'filesGrid' && !selectionMode) return; const id = this.dataset.id; const folder = currentFolders.find(f => f.id === id); if (folder)
             openIconPicker(id, folder.name); }); });
       grid.querySelectorAll('[data-file-icon]').forEach(badge => { badge.addEventListener('click', function(e) { e
-            .stopPropagation(); const fid = this.dataset.fileIcon; const file = currentFiles.find(f => f.fileId === fid); if (file)
+            .stopPropagation(); if (grid.id === 'filesGrid' && !selectionMode) return; const fid = this.dataset.fileIcon; const file = currentFiles.find(f => f.fileId === fid); if (file)
             openFileIconPicker(fid, file.name); }); });
     }
 
@@ -20897,11 +20955,13 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
 
     // ─── TABS ───
     function updateTabSlider(activeTab) { const container = document.getElementById('navTabsContainer'); const slider =
-        document.getElementById('tabSlider'); const tabs = container.querySelectorAll('.nav-tab'); const active = activeTab ||
-        container.querySelector('.nav-tab.active'); if (!active || !slider) return; const rect = active
-        .getBoundingClientRect(); const containerRect = container.getBoundingClientRect();
-      slider.style.left = (rect.left - containerRect.left) + 'px';
-      slider.style.width = rect.width + 'px';
+        document.getElementById('tabSlider'); if (!container || !slider) return; const active = activeTab ||
+        container.querySelector('.nav-tab.active'); if (!active) return;
+      const first = !slider.classList.contains('ready');
+      if (first) slider.style.transition = 'none';
+      slider.style.left = active.offsetLeft + 'px';
+      slider.style.width = active.offsetWidth + 'px';
+      if (first) { void slider.offsetWidth; slider.style.transition = ''; }
       slider.classList.add('ready'); }
 
     let sliderTimeout = null;
@@ -21441,12 +21501,22 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       const keep = [];
       if (document.body.classList.contains('liquid-glass')) keep.push('liquid-glass');
       if (document.body.classList.contains('reduce-motion')) keep.push('reduce-motion');
+      if (document.body.classList.contains('nebula-about-open')) keep.push('nebula-about-open');
+      // Preserve any other state classes on body that aren't theme-related
+      // Every theme class (standard AND premium) so a previous theme never lingers on <body>
+      const themeClasses = new Set(['light','dark','solarized','midnight','ocean','sunset','forest','monochrome','lavender','rose','amber','teal','silver-mist','desert-clay','platinum','midnight-gold','pine-grove','graphite','neon-synth','cyberpunk','aurora','cosmic','ember','frost','mocha','mint','violet','sunrise','deep-sea']);
+      try { if (typeof PREMIUM_THEMES !== 'undefined') PREMIUM_THEMES.forEach(x => themeClasses.add(x)); } catch (e) {}
+      document.querySelectorAll('.theme-option[data-theme]').forEach(el => themeClasses.add(el.dataset.theme));
+      const currentBodyClasses = Array.from(document.body.classList);
+      const stateClasses = currentBodyClasses.filter(c => !themeClasses.has(c) && c !== theme && c !== 'is-premium' && c !== 'liquid-glass' && c !== 'reduce-motion' && c !== 'nebula-about-open');
       document.body.className = theme;
       keep.forEach(k => document.body.classList.add(k));
+      stateClasses.forEach(c => { try { document.body.classList.add(c); } catch(e) {} });
       try { if (typeof refreshPremiumClass === 'function') refreshPremiumClass(); } catch (e) {}
       try { localStorage.setItem('nebula_theme', theme); } catch (e) {}
       updateFavicon(theme);
       updateActiveTheme();
+      setTimeout(() => { try { updateTabSlider(); } catch (e) {} }, 60);
     }
     function updateActiveTheme() {
       const current = baseThemeName();
@@ -22096,7 +22166,17 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
     var esc = $('nebFsEsc');
     if(esc && isFs && !modal.classList.contains('controls-hidden')){ esc.classList.remove('hide'); clearTimeout(esc._t); esc._t=setTimeout(function(){ esc.classList.add('hide'); },3500); }
   }
-  setInterval(syncFs, 400);
+  // Smart poll: only sync when the fullscreen modal is visible, and throttle to 800ms
+  var _fsTimer = null;
+  function _fsPoll(){
+    var modal = $('mediaPlayerModal');
+    if(!modal || !modal.classList.contains('custom-fullscreen')) return;
+    syncFs();
+  }
+  setInterval(function(){
+    var modal = $('mediaPlayerModal');
+    if(modal && modal.classList.contains('custom-fullscreen')) syncFs();
+  }, 800);
 
 })();
 </script>
@@ -22412,7 +22492,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
     void tipEl.offsetWidth;
     tipEl.classList.add('show');
   }
-  var TIP_SEL = '.nav-tab, #mediaPlayerModal button[title], #miniPlayerBar button[title], .nav-ctrl-btn, .toolbar-btn, .account-actions .icon-btn, .favorite-btn, .folder-icon-badge, .neb-fs-bottom button, .selection-toggle-btn';
+  var TIP_SEL = '.nav-tab, #mediaPlayerModal button[title], #miniPlayerBar button[title], .nav-ctrl-btn, .toolbar-btn, .account-actions .icon-btn, .favorite-btn, .folder-icon-badge, .neb-fs-bottom button, .selection-toggle-btn, .settings-x, .nfb-x, .nebpol-x, .nebpol-close, .win-close, .media-player-close, .ndi-close, .close-lightbox, .mini-close-btn, .lang-x, .close-btn, [data-x], .settings-menu-row, .more-btn, .icon-btn, .ctrl-btn, .guest-btn, .action-btn, .toolbar-btn, .nav-tab';
   document.addEventListener('mouseover', function(e){
     if(!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     var t = e.target && e.target.closest ? e.target.closest(TIP_SEL) : null;
@@ -23481,7 +23561,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       }).then(function(ok){
         if(ok){ previewFileById(s.fid); }
         else { try{ localStorage.removeItem(k); }catch(e){} }
-      });
+      }).catch(function(){ /* swallow */ });
     }catch(e){}
   }
   if(typeof activateSession === 'function' && !window.__nebV24Act){
@@ -23803,10 +23883,12 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       var modal = document.createElement('div');
       modal.className = 'settings-modal set-pass-modal';
       modal.style.cssText = 'display:flex;z-index:5000;';
-      modal.innerHTML = '<div class="settings-card" style="max-width:410px;"><div class="settings-header"><div class="gear"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h2>Unlock account login</h2><div class="subtitle">Enter the account password used when this file was downloaded.</div></div></div><div style="display:flex;flex-direction:column;gap:10px;"><div class="storage-note" style="margin:0;">Account: <strong></strong></div><input type="password" class="auth-input" data-password placeholder="Account password" autocomplete="current-password"><div style="display:flex;gap:8px;margin-top:6px;"><button class="guest-btn" data-cancel style="flex:1;">Cancel</button><button class="auth-btn" data-unlock style="flex:1;margin-top:0;">Unlock account</button></div></div></div>';
+      modal.innerHTML = '<div class="settings-card" style="max-width:410px;"><div class="settings-header"><div class="gear"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h2>Unlock account login</h2><div class="subtitle">Enter the account password that was set when this file was exported.</div></div></div><div style="display:flex;flex-direction:column;gap:10px;"><div class="storage-note" style="margin:0;">Account: <strong></strong></div><input type="password" class="auth-input" data-password placeholder="Account password" autocomplete="current-password"><div style="display:flex;gap:8px;margin-top:6px;"><button class="guest-btn" data-cancel style="flex:1;">Cancel</button><button class="auth-btn" data-unlock style="flex:1;margin-top:0;">Unlock account</button></div></div></div>';
       modal.querySelector('.storage-note strong').textContent = username;
       document.body.appendChild(modal);
       var input = modal.querySelector('[data-password]');
+      var loginPassword = $id('loginPassword');
+      if(loginPassword && loginPassword.value) input.value = loginPassword.value;
       var finished = false;
       function close(value){
         if(finished) return;
@@ -23881,14 +23963,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       });
       throw new Error('The account could not be saved in this browser. Check available storage and retry.');
     }
-    var loginUser = $id('loginUsername');
-    var loginPass = $id('loginPassword');
-    if(loginUser) loginUser.value = username;
-    if(loginPass){
-      loginPass.value = '';
-      loginPass.focus();
-    }
-    showToast('Account login restored. Sign in with the account password.');
+    showToast('Account login restored.');
   }
   async function importPasswordLogin(data){
     if(!crypto.subtle) throw new Error('Password-encrypted account files are not supported in this browser.');
@@ -23913,7 +23988,9 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
       if(!payload || !payload.profile || payload.display !== payload.profile.display) throw new Error('The decrypted account details are invalid.');
       await saveImportedLogin(data.user, password, payload.profile);
     }catch(error){
-      if(error && (error.name === 'OperationError' || error.name === 'DataError')) throw new Error('Incorrect account password or damaged account file.');
+      if(error && (error.name === 'OperationError' || error.name === 'DataError')) {
+        throw new Error('Could not unlock this account file. Check the password used when it was exported; if you changed your password afterward, export a fresh file from the original browser.');
+      }
       throw error;
     }
   }
@@ -23953,11 +24030,13 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         if(data && data.app === 'NebulaCloud-account' && data.type === 'password-login' && data.version === 2){
           if(status){ status.textContent = 'Unlocking account login…'; status.className = 'import-status'; }
           await importPasswordLogin(data);
-          if(status){ status.textContent = 'Account login restored. Sign in with the account password.'; status.className = 'import-status success'; }
+          await activateSession(data.user, data.user, data.user[0].toUpperCase());
+          if(status){ status.textContent = 'Account restored and signed in. Restore your files from Settings → Backup (ZIP).'; status.className = 'import-status success'; }
         }else if(data && data.app === 'NebulaCloud-account' && data.v === 1){
           if(status){ status.textContent = 'Restoring account login…'; status.className = 'import-status'; }
           await importLegacyAccount(data);
-          if(status){ status.textContent = 'Account login restored. Sign in with the account password.'; status.className = 'import-status success'; }
+          await activateSession(data.user, data.user, data.user[0].toUpperCase());
+          if(status){ status.textContent = 'Account restored and signed in. Restore your files from Settings → Backup (ZIP).'; status.className = 'import-status success'; }
         }else if(data && data.users && Object.keys(data.users).length){
           importFullBackup(file, e.target);
         }else{
@@ -25008,31 +25087,6 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
         });
       }
     } catch (e) {}
-    try {
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent || '') ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      var standalone = false;
-      try { standalone = window.navigator.standalone === true; } catch (e) {}
-      if (!standalone && window.matchMedia) {
-        try { standalone = window.matchMedia('(display-mode: standalone)').matches; } catch (e) {}
-      }
-      if (isIOS && !standalone) {
-        var KEY = 'neb_a2hs_hint_v2';
-        var last = 0;
-        try { last = parseInt(localStorage.getItem(KEY) || '0', 10) || 0; } catch (e) {}
-        if (Date.now() - last > 1000 * 60 * 60 * 24 * 21) {
-          var tries = 0;
-          var t = setInterval(function () {
-            tries++;
-            if (tries > 40) { clearInterval(t); return; }
-            if (typeof showToast !== 'function') return;
-            clearInterval(t);
-            try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
-            try { showToast('Tip: tap Share ▸ Add to Home Screen to open NebulaDrive full-screen like an app'); } catch (e) {}
-          }, 1200);
-        }
-      }
-    } catch (e) {}
   })();
 </script>
 
@@ -25210,7 +25264,7 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
   function policyEl(){
     var m=$('nebPolicy');if(m)return m;
     m=document.createElement('div');m.id='nebPolicy';m.className='nebpol';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
-    m.innerHTML='<div class="nebpol-card"><button type="button" class="nebpol-x" aria-label="Close">'+svg('x',16)+'</button><div class="nebpol-head"><div class="nebpol-ic"></div><div><h3></h3><p class="nebpol-sub"></p></div></div><div class="nebpol-chips"></div><div class="nebpol-list"></div><button type="button" class="nebpol-close"></button></div>';
+    m.innerHTML='<div class="nebpol-card"><button type="button" class="nebpol-x" aria-label="Close" title="Close">'+svg('x',16)+'</button><div class="nebpol-head"><div class="nebpol-ic"></div><div><h3></h3><p class="nebpol-sub"></p></div></div><div class="nebpol-chips"></div><div class="nebpol-list"></div><button type="button" class="nebpol-close" title="Close"></button></div>';
     document.body.appendChild(m);
     m.querySelector('.nebpol-x').onclick=closePolicy;m.querySelector('.nebpol-close').onclick=closePolicy;
     return m;
@@ -26017,7 +26071,7 @@ body.light,body.platinum,body.silvermist,body.desertclay{--nsf-bg:250,251,255}
   function fb(){
     var m=$('nebFb');if(m)return m;
     m=document.createElement('div');m.id='nebFb';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
-    m.innerHTML='<div class="nfb-card"><div class="nfb-head"><div class="nfb-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h3>Feedback</h3><p>Help us make NebulaDrive better</p></div><button type="button" class="nfb-x" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="nfb-tabs"><i></i><button type="button" data-t="0" class="on">Send</button><button type="button" data-t="1">Customize</button><button type="button" data-t="2">History</button></div><div class="nfb-body"></div></div>';
+    m.innerHTML='<div class="nfb-card"><div class="nfb-head"><div class="nfb-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h3>Feedback</h3><p>Help us make NebulaDrive better</p></div><button type="button" class="nfb-x" aria-label="Close" title="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="nfb-tabs"><i></i><button type="button" data-t="0" class="on">Send</button><button type="button" data-t="1">Customize</button><button type="button" data-t="2">History</button></div><div class="nfb-body"></div></div>';
     document.body.appendChild(m);
     m.querySelector('.nfb-x').onclick=closeFb;
     m.querySelector('.nfb-tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;tab=+b.dataset.t;render();});
@@ -26106,6 +26160,328 @@ body.light,body.platinum,body.silvermist,body.desertclay{--nsf-bg:250,251,255}
   [800,1800,3200,5000].forEach(function(t){setTimeout(function(){footerBtn();settingsSec();},t);});
 })();
 </script>
+
+<style id="nebHistFilesFix">
+/* ===== History: clear activity log, adaptive sizing ===== */
+#historyTab .history-head{flex-wrap:wrap;gap:10px}
+#historyTab .history-list{max-height:max(300px,calc(100dvh - 340px));min-height:240px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#historyTab .history-filters{margin-bottom:8px;gap:7px}
+#historyTab .hist-pill{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:0 0 auto;min-height:34px}
+#historyTab .hist-pill .hp-n{font-style:normal;font-size:.62rem;font-weight:800;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.1);opacity:.9;font-variant-numeric:tabular-nums}
+#historyTab .hist-pill.active .hp-n{background:rgba(255,255,255,.24)}
+#historyTab .hist-pill.is-empty{opacity:.45}
+#historyTab .hist-sort svg{transition:transform .25s cubic-bezier(.22,1,.36,1)}
+.history-tools{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.history-hint{flex:1;min-width:150px;font-size:.72rem;color:var(--text-muted);line-height:1.35}
+#historyTab .history-bulk-bar button:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#historyTab .history-item{padding:12px 16px;gap:12px;min-width:0}
+#historyTab .history-time .hv-verb{display:none}
+#historyTab .history-go{flex-shrink:0;font-size:1.25rem;line-height:1;opacity:.35;transition:transform .25s,opacity .25s}
+#historyTab .history-item.clickable:hover .history-go{opacity:.9;transform:translateX(3px)}
+#historyTab .history-list.no-anim .history-item{animation:none}
+#historyTab .history-item,#historyTab .history-date-header{flex-shrink:0}
+#historyTab .history-item{min-height:58px}
+#historyTab .history-name{color:var(--text);line-height:1.3}
+#historyTab .history-time{color:var(--text-secondary);line-height:1.3;margin-top:3px}
+#historyTab .history-list.sel-on .history-item{cursor:pointer}
+@media (hover:none){#historyTab .history-item:hover{transform:none}}
+@media (max-width:720px){
+  #historyTab .history-head{padding:12px}
+  #historyTab .history-title{flex:1 1 100%;min-width:0}
+  #historyTab .history-title .history-sub{font-size:.68rem;line-height:1.3}
+  #historyTab .trash-spacer{display:none}
+  #historyTab .history-search{flex:1 1 0;min-width:0}
+  #historyTab .history-filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:6px;margin-inline:-2px;-webkit-overflow-scrolling:touch}
+  #historyTab .history-filters::-webkit-scrollbar{display:none}
+  #historyTab .history-item{padding:10px 12px;gap:10px;border-radius:14px}
+  #historyTab .history-name{font-size:.84rem}
+  #historyTab .history-item .history-action{display:none}
+  #historyTab .history-time .hv-verb{display:inline}
+  #historyTab .history-bulk-bar{gap:8px;padding:8px 10px}
+  #historyTab .history-bulk-bar button{flex:1 1 auto;justify-content:center;min-height:38px}
+  #historyTab .history-bulk-bar .sel-count{flex:1 1 100%;text-align:center}
+}
+@media (max-width:420px){
+  #historyTab #clearHistoryBtn span{display:none}
+  #historyTab .history-icon{width:30px;height:30px}
+  #historyTab .history-hint{flex:1 1 100%;order:3}
+}
+@media (min-width:1500px){#historyTab .history-list{max-height:max(380px,calc(100dvh - 360px))}}
+
+/* ===== Files: per-card icon buttons only work in Select mode ===== */
+#filesGrid:not(.selection-mode-active) .folder-icon-badge{opacity:0;pointer-events:none;transform:scale(.6)}
+#filesGrid.selection-mode-active .folder-icon-badge{opacity:1;pointer-events:auto}
+
+</style>
+
+<style id="nebSmoothFix">
+/* ===== One smooth easing everywhere on files + tabs (no overshoot / bounce) ===== */
+:root{--nd-ease:cubic-bezier(.33,1,.68,1)}
+
+/* ----- File & folder cards ----- */
+.folder-card,.file-card{transition:transform .3s var(--nd-ease),box-shadow .3s var(--nd-ease),border-color .3s ease,background .3s ease;will-change:auto;animation:ndCardIn .4s var(--nd-ease) backwards;animation-delay:min(calc(var(--i,0)*16ms),220ms)}
+@keyframes ndCardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.files-grid .file-card:hover:not(.deleting),.files-grid .folder-card:hover:not(.deleting),
+#favoritesGrid .file-card:hover:not(.deleting),#favoritesGrid .folder-card:hover:not(.deleting){transform:translateY(-3px) !important}
+.files-grid .file-card:active:not(.deleting),.files-grid .folder-card:active:not(.deleting){transform:translateY(0) scale(.985) !important;transition-duration:.12s}
+.file-card:has(.cb:checked),.folder-card:has(.cb:checked){transform:translateY(-2px) !important}
+.file-card:hover .file-emoji,.folder-card:hover .folder-emoji{transform:none !important}
+@media (hover:none){.files-grid .file-card:hover:not(.deleting),.files-grid .folder-card:hover:not(.deleting){transform:none !important}}
+.file-card .card-actions .action-btn,.folder-card .card-actions .action-btn,.card-actions .favorite-btn{transition:transform .25s var(--nd-ease),background .25s ease,border-color .25s ease,box-shadow .25s ease,color .25s ease}
+.file-card .action-btn.preview:hover,.file-card .action-btn.download:hover{transform:translateY(-1px) !important}
+.file-card .action-btn:active,.folder-card .card-actions .action-btn:active,.favorite-btn:active{transform:scale(.97) !important}
+.favorite-btn.active svg{animation:none !important}
+.folder-icon-badge:hover{transform:scale(1.08) !important}
+.folder-icon-badge:hover svg{transform:none !important}
+
+/* ----- File options menu: fades + glides in AND out ----- */
+.card-more-dropdown{display:flex !important;flex-direction:column;gap:3px;visibility:hidden;opacity:0;pointer-events:none;
+  min-width:224px;max-width:calc(100vw - 24px);padding:6px;border-radius:16px;
+  transform:translateY(-6px) scale(.98);transform-origin:top right;animation:none !important;
+  transition:opacity .22s var(--nd-ease),transform .28s var(--nd-ease),visibility 0s linear .28s}
+.card-more-dropdown.show{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition-delay:0s}
+.card-more-dropdown.flip-up{transform:translateY(6px) scale(.98);transform-origin:bottom right}
+.card-more-dropdown.flip-up.show{transform:none}
+.file-card .card-more-dropdown.align-right,.folder-card .card-more-dropdown.align-right{left:auto;right:0}
+.card-menu-head{padding:8px 10px 9px;margin-bottom:3px}
+.card-more-dropdown .action-btn{min-height:46px;padding:7px 10px;gap:11px;border-radius:12px;opacity:0;transform:translateY(-4px);animation:none !important;
+  transition:opacity .22s var(--nd-ease),transform .26s var(--nd-ease),background .2s ease,border-color .2s ease,box-shadow .2s ease}
+.card-more-dropdown.show .action-btn{opacity:1;transform:none}
+.card-more-dropdown.show .action-btn:nth-child(2){transition-delay:.03s}
+.card-more-dropdown.show .action-btn:nth-child(3){transition-delay:.06s}
+.card-more-dropdown.show .action-btn:nth-child(4){transition-delay:.09s}
+.card-more-dropdown.show .action-btn:nth-child(5){transition-delay:.12s}
+.card-more-dropdown.show .action-btn:nth-child(6){transition-delay:.15s}
+.card-more-dropdown.show .action-btn:hover{transform:translateX(2px);transition-delay:0s}
+.card-more-dropdown.show .action-btn:active{transform:scale(.98);transition-delay:0s}
+.menu-ico{width:32px;height:32px;border-radius:10px}
+.menu-title{font-size:.8rem}
+.menu-desc{font-size:.66rem}
+.card-menu-foot{display:none}
+
+/* ----- Tabs: 4 equal tabs, one pill that glides between them ----- */
+.nav-tabs{padding:4px;gap:0;min-height:0;border-radius:16px}
+.nav-tab-wrapper{display:grid;grid-template-columns:repeat(4,minmax(104px,1fr));gap:4px;width:100%}
+.nav-tab{min-width:0;min-height:40px;padding:9px 14px;gap:8px;border-radius:12px;font-size:.82rem;font-weight:600;letter-spacing:.1px;
+  transform:none !important;animation:none !important;box-shadow:none !important;text-shadow:none;
+  transition:color .25s ease,background-color .25s ease !important}
+.nav-tab::before,.nav-tab::after{display:none !important}
+.nav-tab:hover:not(.active){background:rgba(255,255,255,.07);color:var(--text)}
+.nav-tab.active{letter-spacing:.1px}
+.nav-tab .tab-icon,.nav-tab.active .tab-icon,.nav-tab:hover:not(.active) .tab-icon,.nav-tab:active .tab-icon{transform:none !important;transition:opacity .25s ease}
+.nav-tab[data-tab="favorites"].active{color:#fff;text-shadow:none}
+.nav-tab[data-tab="favorites"].active .tab-icon svg{fill:rgba(255,255,255,.3);stroke:currentColor;filter:none;animation:none}
+.tab-slider{top:0;bottom:0;height:auto;border-radius:12px;background:var(--accent);background-size:auto;filter:none;opacity:0;z-index:1;
+  box-shadow:0 6px 18px var(--glow-color);
+  transition:left .38s var(--nd-ease),width .38s var(--nd-ease),opacity .2s ease}
+.tab-slider.ready{opacity:1}
+body.reduce-motion .nav-tab.active{background:var(--accent)}
+@media (max-width:700px){.nav-tab-wrapper{grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}}
+@media (prefers-reduced-motion:reduce){.tab-slider,.card-more-dropdown,.card-more-dropdown .action-btn,.file-card,.folder-card{transition-duration:.01s !important;animation:none !important}}
+</style>
+<script>
+/* keep the tab pill aligned when fonts/size change */
+(function(){var w=document.querySelector('.nav-tab-wrapper');if(!w||!window.ResizeObserver)return;
+  new ResizeObserver(function(){try{updateTabSlider();}catch(e){}}).observe(w);
+  setTimeout(function(){try{updateTabSlider();}catch(e){}},300);})();
+</script>
+
+<style id="nebToastSmooth">
+/* ===== Notifications: smooth glide in/out, neighbours slide instead of jumping ===== */
+.neb-toast{max-height:140px;animation:ndToastIn .46s var(--nd-ease,cubic-bezier(.33,1,.68,1)) both;transition:transform .3s var(--nd-ease,cubic-bezier(.33,1,.68,1)),box-shadow .3s ease}
+.neb-toast:hover{transform:translateX(-3px)}
+.neb-toast.leaving{animation:ndToastOut .34s var(--nd-ease,cubic-bezier(.33,1,.68,1)) forwards}
+.neb-toast.bump{animation:ndToastBump .35s ease}
+.neb-toast-ic,.neb-toast-x{transition:background .2s ease,color .2s ease,transform .25s var(--nd-ease,cubic-bezier(.33,1,.68,1))}
+.neb-toast:hover .neb-toast-ic{transform:none}
+.neb-toast-x:hover{transform:none;background:rgba(255,255,255,.16)}
+@keyframes ndToastIn{from{opacity:0;transform:translateX(28px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:-10px}to{opacity:1;transform:none;max-height:140px;margin-bottom:0}}
+@keyframes ndToastOut{0%{opacity:1;transform:none;max-height:140px;margin-bottom:0}55%{opacity:0;transform:translateX(28px);max-height:140px;margin-bottom:0}100%{opacity:0;transform:translateX(28px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:-10px}}
+@keyframes ndToastBump{0%{transform:none}40%{transform:scale(1.02)}100%{transform:none}}
+@media (max-width:560px){
+  @keyframes ndToastIn{from{opacity:0;transform:translateY(18px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:-10px}to{opacity:1;transform:none;max-height:140px;margin-bottom:0}}
+  @keyframes ndToastOut{0%{opacity:1;transform:none;max-height:140px;margin-bottom:0}55%{opacity:0;transform:translateY(14px);max-height:140px;margin-bottom:0}100%{opacity:0;transform:translateY(14px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:-10px}}
+}
+@media (prefers-reduced-motion:reduce){.neb-toast,.neb-toast.leaving{animation-duration:.01ms !important}}
+</style>
+<script>
+/* Notifications that say what you just did: toggles, themes, sort, view, favorites */
+(function(){
+  var orig=window.showToast,mine=false,last=0;
+  if(typeof orig!=='function')return;
+  window.showToast=function(){if(!mine)last=Date.now();return orig.apply(this,arguments);};
+  function say(msg,opts){ // skip if the app already announced this action itself
+    if(Date.now()-last<600)return;
+    mine=true;try{window.showToast(msg,opts);}finally{mine=false;}
+  }
+  function clean(el){
+    var c=el.cloneNode(true);
+    [].forEach.call(c.querySelectorAll('small,.icon-chip,.check,.submenu-arrow,svg,.toggle-hint'),function(n){n.remove();});
+    return c.textContent.replace(/[✦✓▶▾▼]/g,'').replace(/\s+/g,' ').trim();
+  }
+  var SW={
+    standardToggle:['Standard themes shown','Standard themes hidden'],
+    premiumToggle:['Premium themes shown','Premium themes hidden'],
+    liquidGlassToggle:['Liquid Glass on','Liquid Glass off'],
+    calmToggle:['Reduce Motion on — calmer, lighter UI','Reduce Motion off'],
+    premiumFxToggle:['Premium FX on','Premium FX off']
+  };
+  function switchState(sw){
+    var a=sw.getAttribute('aria-checked');
+    if(a==='true'||a==='false')return a==='true';
+    return sw.classList.contains('active')||sw.classList.contains('on')||sw.classList.contains('is-on');
+  }
+  function switchLabel(sw){
+    var l=sw.getAttribute('aria-label');
+    if(l)return l;
+    var row=sw.closest('.premium-toggle-row,.settings-menu-row,.ctrl-row,label,li,div');
+    var lab=row&&row.querySelector('.premium-toggle-label,.theme-visibility-title,.menu-title,label');
+    return (lab&&clean(lab))||(row&&clean(row))||sw.id||'Setting';
+  }
+  function announceSwitch(sw){
+    var on=switchState(sw),m=SW[sw.id];
+    var msg=m?m[on?0:1]:(switchLabel(sw)+': '+(on?'On':'Off'));
+    say(msg,{type:on?'success':'info',title:'Setting'});
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target;if(!t||!t.closest)return;
+    var sw=t.closest('.toggle-switch,[role="switch"]');
+    if(sw){setTimeout(function(){announceSwitch(sw);},90);return;}
+    var th=t.closest('.theme-option');
+    if(th){var n=th.querySelector('.theme-name');if(n)setTimeout(function(){say('Theme: '+clean(n),{type:'success',title:'Theme'});},120);return;}
+    var it=t.closest('#sortMenu .item,.submenu-panel .item,#viewMenu .item');
+    if(it&&!it.classList.contains('has-submenu')){
+      var nm=clean(it);if(!nm)return;
+      if(it.dataset.view)setTimeout(function(){say('View: '+nm,{type:'success',title:'View'});},90);
+      else if(it.dataset.order)setTimeout(function(){say('Order: '+nm,{type:'success',title:'Sort'});},90);
+      else if(it.dataset.sort)setTimeout(function(){say('Sorted by '+nm.toLowerCase(),{type:'success',title:'Sort'});},90);
+      else if(it.dataset.group!==undefined||/group/i.test(it.closest('.submenu-panel')&&it.closest('.submenu-panel').id||''))setTimeout(function(){say('Grouped by '+nm.toLowerCase(),{type:'success',title:'Sort'});},90);
+      return;
+    }
+    var fv=t.closest('.favorite-btn');
+    if(fv){
+      var card=fv.closest('.file-card,.folder-card'),nameEl=card&&card.querySelector('.file-name,.folder-name');
+      var nm2=nameEl?nameEl.textContent.trim():'';
+      setTimeout(function(){
+        var added=document.contains(fv)?fv.classList.contains('active'):false;
+        say((added?'Added to favorites':'Removed from favorites')+(nm2?' — '+nm2:''),{type:added?'success':'info',title:'Favorites'});
+      },260);
+    }
+  },true);
+})();
+</script>
+
+<style id="nebulaResponsivePolish">
+  :root {
+    --nd-ease: cubic-bezier(.2, .75, .25, 1);
+    --nd-press: .965;
+    scroll-padding-top: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  button, a, [role="button"], [role="switch"], .auth-switch,
+  .file-card, .folder-card, .theme-option, .breadcrumb-item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  button:not(:disabled), [role="button"], [role="switch"], .auth-switch,
+  .breadcrumb-item, .favorite-btn, .file-card, .folder-card {
+    transition-timing-function: var(--nd-ease);
+  }
+
+  button:not(:disabled) { scale: 1; transition: scale .16s var(--nd-ease), filter .16s ease; }
+  button:not(:disabled):active { scale: var(--nd-press); filter: brightness(1.08); }
+  button:focus-visible, [role="button"]:focus-visible, [role="switch"]:focus-visible,
+  .auth-switch:focus-visible, .breadcrumb-item:focus-visible {
+    outline: 2px solid var(--accent-solid, #667eea);
+    outline-offset: 3px;
+  }
+  button:disabled { cursor: not-allowed; }
+
+  .auth-card, .settings-card, .modal-card, .confirm-card, .move-card {
+    border-color: color-mix(in srgb, var(--glass-border) 82%, var(--accent-solid) 18%);
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .auth-input, input, textarea, select {
+    accent-color: var(--accent-solid, #667eea);
+  }
+  .auth-input:focus, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-solid, #667eea) 24%, transparent);
+  }
+
+  .neb-toast { border: 1px solid var(--glass-border); }
+  .file-card, .folder-card { -webkit-tap-highlight-color: transparent; }
+  .file-card:active:not(.deleting), .folder-card:active:not(.deleting) { scale: .985; }
+
+  @media (hover: hover) and (pointer: fine) {
+    button:not(:disabled):hover { filter: brightness(1.06); }
+    .auth-card, .settings-card, .modal-card, .confirm-card, .move-card {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+  }
+
+  @media (max-width: 700px) {
+    html { scroll-padding-top: 10px; }
+    .auth-overlay {
+      align-items: center;
+      padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+        max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    }
+    .auth-card {
+      width: min(100%, 440px);
+      max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border-radius: 28px;
+      padding: clamp(24px, 7vw, 36px) clamp(18px, 6vw, 28px);
+      scrollbar-width: thin;
+    }
+    .auth-card::before { border-radius: 29px; }
+    .auth-card h2 { font-size: clamp(1.55rem, 7vw, 1.9rem); }
+    .auth-input { min-height: 48px; }
+    .auth-btn, .guest-btn { min-height: 46px; }
+    .navbar {
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+    }
+    .settings-modal { padding: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom)); }
+    .settings-card, .modal-card, .confirm-card, .move-card {
+      max-width: min(100%, 560px);
+      max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .auth-overlay { padding-left: 8px; padding-right: 8px; }
+    .auth-card { border-radius: 24px; padding: 22px 16px; }
+    .auth-card::before { border-radius: 25px; }
+    .auth-divider { margin: 14px 0; }
+    .navbar { gap: 4px; }
+    .nav-tabs { min-width: 0; }
+    .nav-tab { padding-left: 6px; padding-right: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+    button:not(:disabled):active, .file-card:active, .folder-card:active { scale: 1; }
+  }
+</style>
 
 </body>
 </html>
