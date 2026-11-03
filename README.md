@@ -1,4 +1,4 @@
-# ☁️ NebulaDrive
+# ☁️ NebulaDrive (Beta)
 
 ### Your private Drive — always with you, no servers, no subscriptions.
 
