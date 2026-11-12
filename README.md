@@ -2,9 +2,13 @@
 
 ### Your private Drive — always with you, no servers, no subscriptions.
 
+![NebulaDrive — preview](preview.jpg)
+
+> **Preview above** — the real thing is a single web page that runs entirely on your device. Everything you see here is local.
+
 One HTML file. Open it in your browser and you've got a full-featured personal cloud. Everything stays on your device — nothing is ever sent anywhere. Built with vanilla JavaScript, OPFS, and IndexedDB. Made by **makerxm800**.
 
-A few small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons) make it installable as a real app — the HTML still works standalone if you only copy that one file.
+A few small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, plus `preview.jpg`) make it installable as a real app — the HTML still works standalone if you only copy that one file.
 
 ---
 
@@ -17,11 +21,33 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 - 🎬 **Built-in media player** — audio & video with PiP, speed control, trimming, precise seeking, and premium animations
 - 🎨 **30 themes + Liquid Glass** — 11 standard + 19 premium, plus a site-wide glass effect toggle
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
-- ✨ **Premium UI everywhere** — smooth expo-out motion (no bouncy overshoot), staggered entrances, soft accent shimmer instead of white shine
+- ✨ **Premium UI everywhere** — smooth expo-out motion (no bouncy overshoot), staggered entrances, soft accent shimmer instead of white shine, **ripple feedback on every button**, shimmer sweep on hover, deeper card lifts, and a springy modal entrance
+- 🎯 **Details that feel right** — spring-smooth button hovers, press snap, keyboard ripple, smooth themed scrollbars, and a full `prefers-reduced-motion` fallback so nothing moves when you don't want it to
 - 📱 **Install as an app** — web manifest + service worker + Apple touch icon, so **Add to Home Screen** on iPhone gives you a full-screen NebulaDrive app with its own icon (the home-screen name is **NebulaDrive**)
 - 🚀 **Animated boot logo** — every open/reload plays a spring-free logo build (tile scales in, cloud rises, arrow draws, wordmark letters stagger) over a drifting aurora, then hands off to the app with a soft reveal
 - 🌐 **8 languages + flag chips** — globe button opens a centered menu with real CSS-drawn flag chips per language (offline-safe, no emoji); welcome picker matches. Everything switches instantly and remembers your choice
 - 🧭 Hit the **Tour** button for a showtime walkthrough: spotlight beam, directional card slides, shimmer progress, clickable step dots
+
+---
+
+## 📊 Details & specs
+
+Everything the app promises, in one place — so there are no surprises:
+
+| Detail | What it means for you |
+|---|---|
+| 📦 **One file, zero build** | Just `index.html` — no npm, no framework, no dependencies. Double-click and go. |
+| 🧠 **Storage engine** | OPFS (Origin Private File System) with automatic chunked fallback via IndexedDB for browsers without OPFS. |
+| 🗄️ **Data location** | Files live in your browser's local storage on your device. Export a ZIP backup anytime — nothing goes to any server. |
+| 🖥️ **Device support** | Responsive across phones, tablets and desktops; touch-safe menus, big tap targets, safe-area insets on iOS; landscape and portrait both fine. |
+| 🎨 **Themes** | 11 standard + 19 premium palettes, site-wide **Liquid Glass** toggle, per-account theme memory. |
+| 🌐 **Languages** | English, Español, Français, Deutsch, Português, हिन्दी, العربية, 中文 — instant switching, remembered per account. |
+| 🎬 **Media** | Audio + video player with PiP, speed (0.25×–2×), repeat, volume boost, stable volume, ambient mode, lyrics (`.lrc`), scrub preview, cinema mode, video cutting. |
+| 🔐 **Accounts** | Local accounts + Guest mode; per-account avatars, banners, display names, statuses and icons. |
+| 💾 **Backup** | Real `.zip` archives (stored locally) with progress, cancel, restore and per-file export. |
+| 🩺 **Diagnostics** | Storage usage, OPFS health, theme/language state — all read-only, all local. |
+| ⌨️ **Keyboard** | Full shortcut set (Space/K, J/L, ←/→, ↑/↓, M, F, P, …) with an in-app keybinds panel. |
+| 🧹 **Housekeeping** | Trash with restore, History log, favorites, selection mode, custom folder icons. |
 
 ---
 
@@ -327,6 +353,9 @@ Animated NebulaDrive boot logo (tile → cloud → arrow → staggered wordmark)
 - 📱 **Mobile-ready** — theme-color, installable-web-app meta, safe-area insets, touch-safe controls throughout, plus a real PWA manifest + service worker for iPhone home-screen installs
 - 🧯 **No more init race crash** — language mounting used to reload the folder before IndexedDB was open (`db.transaction of null`); storage is now opened once (idempotent), awaited before any session work, and every loader waits for readiness first
 - The player already had: fullscreen fallbacks (Safari/Edge), live backup/diagnostics progress, chunked large-file storage, position save on hide/close.
+- 🩹 **DOM balance restored** — an extra `</div>` after the media-player modal was breaking the markup structure; the whole document now parses cleanly.
+- 📎 **Sidecar files are real now** — `manifest.webmanifest`, `sw.js`, and the icon set (`icon-192.png`, `icon-512.png`, `apple-touch-icon.png`) actually exist in the repo, so installs and offline caching work instead of 404ing.
+- 🌊 **Smooth-motion layer** — spring-smooth transitions, ripple feedback on press, shimmer sweep on hover, deeper card lifts, springy modal entrances, and slim themed scrollbars — all with a full `prefers-reduced-motion` fallback.
 
 ---
 

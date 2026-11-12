@@ -1,0 +1,22 @@
+{
+  "name": "NebulaDrive",
+  "short_name": "Drive",
+  "description": "Your private cloud — no servers, no subscriptions. Everything stays on your device.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0a1e",
+  "theme_color": "#667eea",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Upload", "url": "./#upload", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "New folder", "url": "./#newfolder", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}
