@@ -2109,14 +2109,17 @@
     }
 
     /* ─── TABS ─── Windows-style */
+    /* ═══════════════ NAV TABS — clean redesign, working animation ═══════════════
+       What a user expects: one obvious active tab, a highlight that slides to it
+       with a spring, clear hover/press feedback, and count badges. No stray glow. */
     .nav-tabs {
       display: flex;
       gap: 2px;
       background: rgba(255, 255, 255, 0.04);
       padding: 3px 4px;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--glass-border);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.04);
       position: relative;
       margin: 0 auto;
       justify-self: center;
@@ -2124,7 +2127,7 @@
       backdrop-filter: blur(8px);
       overflow: visible;
       isolation: isolate;
-      min-height: 40px;
+      min-height: 42px;
     }
     .nav-tab-wrapper {
       position: relative;
@@ -2135,90 +2138,77 @@
       width: 100%;
     }
     .nav-tab {
-      padding: 6px 18px;
+      padding: 7px 18px;
       border: none;
       background: transparent;
       color: var(--text-secondary);
       cursor: pointer;
-      border-radius: 9px;
-      transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      font-weight: 600;
+      border-radius: 10px;
+      transition: color 0.3s var(--nd-ease), transform 0.3s var(--nd-ease),
+                  box-shadow 0.3s ease, background-color 0.3s ease;
+      font-weight: 700;
       font-size: 0.8rem;
       line-height: 1.4;
       position: relative;
-      overflow: hidden;
       z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
       letter-spacing: 0.2px;
-      min-width: 70px;
+      min-width: 72px;
       white-space: nowrap;
       flex-shrink: 0;
-    }
-    .nav-tab::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 9px;
-      background: var(--accent);
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: -1;
-    }
-    .nav-tab:hover:not(.active)::before {
-      opacity: 0.08;
-      transform: scale(1);
-    }
-    .nav-tab:hover:not(.active) {
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-    .nav-tab:active:not(.active) {
-      transform: scale(0.94);
-      transition-duration: 0.1s;
-    }
-    .nav-tab.active {
-      color: white;
-      transform: translateY(-1px);
-      letter-spacing: 0.4px;
-    }
-    .nav-tab.active::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 9px;
-      background: linear-gradient(115deg, transparent 30%, rgba(196, 181, 253, 0.2) 48%, transparent 62%);
-      background-size: 250% 100%;
-      animation: tabShine 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1 both;
-      pointer-events: none;
-    }
-    @keyframes tabShine {
-      0% { background-position: 120% 0; }
-      55%, 100% { background-position: -120% 0; }
-    }
-    .nav-tab:hover:not(.active) {
-      color: var(--text);
-      transform: translateY(-1px);
-      box-shadow: inset 0 0 0 1px var(--glass-border), 0 4px 14px var(--glow-color);
-    }
-    .nav-tab.active::before {
-      opacity: 1;
-      transform: scale(1);
-      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.35);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .nav-tab .tab-icon {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0.75;
+      transition: opacity 0.3s ease, transform 0.35s var(--nd-ease-spring), color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .nav-tab:hover:not(.active) {
+      color: var(--text);
+      transform: translateY(-1px);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .nav-tab:hover:not(.active) .tab-icon {
+      opacity: 1;
+      transform: scale(1.12) rotate(-5deg);
+    }
+    .nav-tab:active:not(.active) {
+      transform: scale(0.95) translateY(0);
+      transition-duration: 0.12s;
+      background-color: rgba(255, 255, 255, 0.07);
+    }
+    .nav-tab.active {
+      color: #fff;
+      transform: translateY(-1px);
+      letter-spacing: 0.3px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     }
     .nav-tab.active .tab-icon {
       opacity: 1;
-      transform: scale(1.1);
+      transform: scale(1.12);
     }
+    /* the sliding highlight pill — the one active indicator, animates on switch */
+    .tab-slider {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 0;
+      width: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #000 0%));
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: left 0.48s var(--nd-ease), width 0.48s var(--nd-ease), opacity 0.3s ease;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .tab-slider.ready { opacity: 1; }
     /* count badge — tells the user what's inside each tab */
     .nav-tab .tab-badge {
       display: none;
@@ -2228,7 +2218,7 @@
       height: 17px;
       padding: 0 5px;
       border-radius: 9px;
-      background: var(--accent);
+      background: rgba(255, 255, 255, 0.22);
       color: #fff;
       font-size: 0.62rem;
       font-weight: 800;
@@ -2236,60 +2226,32 @@
       letter-spacing: 0.3px;
       line-height: 1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-      transition: display 0.3s var(--nd-ease), transform 0.3s var(--nd-ease);
+      transition: transform 0.3s var(--nd-ease-spring);
       flex-shrink: 0;
     }
-    .nav-tab .tab-badge.show { display: inline-flex; }
-    .nav-tab:not(.active) .tab-badge { background: var(--text-muted); color: var(--bg); opacity: 0.85; }
+    .nav-tab .tab-badge.show { display: inline-flex; animation: badgeIn 0.35s var(--nd-ease) both; }
     .nav-tab .tab-badge.bump { animation: badgeBump 0.4s var(--nd-ease-spring); }
+    @keyframes badgeIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
     @keyframes badgeBump {
       0% { transform: scale(0.4); }
       60% { transform: scale(1.25); }
       100% { transform: scale(1); }
     }
-    @media (max-width: 480px) {
-      .nav-tab { padding: 5px 10px; gap: 4px; font-size: 0.74rem; min-width: 58px; }
-      .nav-tab .tab-badge { min-width: 15px; height: 15px; font-size: 0.58rem; padding: 0 4px; }
-    }
+    /* switch pop — the active tab settles in with a springy micro-bounce */
     .nav-tab.tab-pop {
-      animation: navTabPop 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: navTabPop 0.42s var(--nd-ease-spring);
     }
     @keyframes navTabPop {
       0% { transform: translateY(-1px) scale(1); }
-      45% { transform: translateY(-1px) scale(0.9); }
+      45% { transform: translateY(-2px) scale(0.94); }
       100% { transform: translateY(-1px) scale(1); }
     }
-    /* Windows-style slider - positioned at bottom with glow, springy motion */
-    .tab-slider {
-      position: absolute;
-      bottom: 2px;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #667eea, #a78bfa, #667eea);
-      background-size: 200% 100%;
-      border-radius: 3px;
-      transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
-      z-index: 3;
-      box-shadow: 0 0 16px rgba(102, 126, 234, 0.5), 0 0 8px rgba(102, 126, 234, 0.2);
-      animation: sliderShimmer 2s ease-in-out infinite;
-      opacity: 0;
+    @media (max-width: 480px) {
+      .nav-tab { padding: 6px 11px; gap: 4px; font-size: 0.74rem; min-width: 58px; }
+      .nav-tab .tab-badge { min-width: 15px; height: 15px; font-size: 0.58rem; padding: 0 4px; }
     }
-    .tab-slider.ready {
-      opacity: 1;
-    }
-    /* ─── NO SHINY SWEEPS (all devices, pro lag) ─── */
+    /* ─── no stray shine sweeps on the tabs (clean, no lag) ─── */
     .nav-tab.active::after, #viewBtn::after, #sortBtn::after, .breadcrumb-item.crumb-current::after { animation: none !important; opacity: 0 !important; }
-    .tab-slider { animation: none !important; }
-    .new-folder-btn::before { display: none; }
-    @keyframes sliderShimmer {
-      0%,
-      100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-    }
 
     .user-section {
       display: flex;
@@ -7823,11 +7785,11 @@
     .nebula-about-toggle-row button { flex: 1; min-width: 120px; padding: 10px; border-radius: 12px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text); cursor: pointer; font-weight: 700; font-size: 0.78rem; transition: all 0.2s ease; }
     .nebula-about-toggle-row button:hover { background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 6px 18px var(--glow-color); }
     body.light .nebula-about-card, body.silvermist .nebula-about-card, body.desertclay .nebula-about-card, body.platinum .nebula-about-card { background: linear-gradient(180deg, #ffffff, #eef2fb); }
-    /* --- icon-only inactive tabs (text on active only), rounded kept --- */
+    /* --- icon-only inactive tabs on small screens (text on active only), rounded kept --- */
     .nav-tab { min-width: 0; padding: 6px 12px; gap: 0; }
-    .nav-tab > span:last-child { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: max-width 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease, margin 0.3s ease; margin-left: 0; }
+    .nav-tab > span:nth-child(2) { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: max-width 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease, margin 0.3s ease; margin-left: 0; }
     .nav-tab.active { padding: 6px 18px; gap: 5px; }
-    .nav-tab.active > span:last-child { max-width: 140px; opacity: 1; margin-left: 5px; }
+    .nav-tab.active > span:nth-child(2) { max-width: 140px; opacity: 1; margin-left: 5px; }
     /* --- pale-accent readability for Nebula chrome --- */
     body.midnightgold .neb-fs-btn.neb-fs-play, body.pinegrove .neb-fs-btn.neb-fs-play, body.graphite .neb-fs-btn.neb-fs-play,
     body.midnightgold .neb-fs-chip.accent, body.pinegrove .neb-fs-chip.accent, body.graphite .neb-fs-chip.accent,
@@ -7859,8 +7821,8 @@
     body.silvermist .pause-icon, body.desertclay .pause-icon { color: #3c5a7a; text-shadow: none; filter: none; }
 
     /* --- NEBULA V7: aurora tab tracker + hover tips --- */
-    .tab-slider { top: 4px; bottom: 4px; height: auto; background: var(--accent); background-size: auto; filter: blur(14px); border-radius: 12px; z-index: 1; box-shadow: none; }
-    .tab-slider.ready { opacity: 0.45; }
+    .tab-slider { top: 4px; bottom: 4px; height: auto; border-radius: 10px; z-index: 1; }
+    .tab-slider.ready { opacity: 1; }
     @media (hover: hover) and (pointer: fine) {
       .neb-tip { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; background: linear-gradient(180deg, rgba(28,24,52,0.97), rgba(18,15,40,0.97)); border: 1px solid var(--accent-solid); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 5px 11px; border-radius: 9px; box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 14px var(--glow-color); opacity: 0; transform: translate(-50%, 4px) scale(0.92); transition: opacity 0.18s cubic-bezier(0.22,1,0.36,1), transform 0.18s cubic-bezier(0.22,1,0.36,1); white-space: nowrap; }
       .neb-tip.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
@@ -8239,8 +8201,7 @@
       body.premium-fx .icon-btn.primary-btn, body.premium-fx .new-folder-btn, body.premium-fx .tour-next, body.premium-fx .neb-fs-btn.neb-fs-play { position: relative; overflow: hidden; }
       body.premium-fx .icon-btn.primary-btn:hover::after, body.premium-fx .new-folder-btn:hover::after, body.premium-fx .tour-next:hover::after, body.premium-fx .neb-fs-btn.neb-fs-play:hover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(196, 181, 253, 0.26) 48%, transparent 62%); background-size: 250% 100%; animation: premiumShine 0.85s cubic-bezier(0.4, 0, 0.2, 1) 1; pointer-events: none; }
       @keyframes premiumShine { from { background-position: 120% 0; } to { background-position: -120% 0; } }
-      body.premium-fx .nav-tab.active { animation: tabBreathe 3s ease-in-out infinite; }
-      @keyframes tabBreathe { 0%, 100% { box-shadow: 0 4px 16px rgba(102,126,234,0.35); } 50% { box-shadow: 0 4px 26px var(--glow-color); } }
+      /* tabs use the clean sliding highlight — no breathing glow */
       body.premium-fx .nebula-about-card { animation: nebAboutIn 0.35s cubic-bezier(0.22,1,0.36,1), nebAboutFloat 7s ease-in-out 0.4s infinite; }
       @keyframes nebAboutFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
       body.premium-fx .media-player-content { animation: playerFishIn 0.45s cubic-bezier(0.22,1,0.36,1); }
