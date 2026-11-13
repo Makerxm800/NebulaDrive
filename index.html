@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0b0a1e" />
-  <meta name="application-name" content="Drive" />
+  <meta name="application-name" content="NebulaDrive (Beta)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Drive" />
+  <meta name="apple-mobile-web-app-title" content="NebulaDrive (Beta)" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="description" content="NebulaDrive — your private cloud. No servers, no subscriptions. Everything stays on your device." />
   <meta name="color-scheme" content="dark light" />
-  <title>NebulaDrive — Premium</title>
+  <title>NebulaDrive (Beta)</title>
   <link rel="icon" id="faviconLink" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23667eea'/><stop offset='1' stop-color='%23764ba2'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><g transform='translate(14 14) scale(3)' fill='none' stroke-linecap='round' stroke-linejoin='round'><path d='M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z' stroke='%23fff' stroke-width='2.1'/><path d='M12 18.2V12.6m0 0-2.3 2.3M12 12.6l2.3 2.3' stroke='%23ddd6fe' stroke-width='2.1'/></g></svg>" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="manifest.webmanifest" />
@@ -1672,6 +1672,39 @@
       opacity: 0.9;
       transform: translateY(-50%) scale(1.15);
     }
+    /* password reveal toggle — smooth eye swap */
+    .auth-input-wrap .pw-reveal, .forgot-panel-inner .pw-reveal {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: none;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.3s var(--nd-ease), background-color 0.3s ease, transform 0.3s var(--nd-ease);
+      z-index: 2;
+    }
+    .pw-reveal:hover {
+      color: var(--accent);
+      background: rgba(102, 126, 234, 0.12);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .pw-reveal:active { transform: translateY(-50%) scale(0.92); transition-duration: 0.12s; }
+    .pw-reveal .pw-eye, .pw-reveal .pw-eye-off {
+      grid-area: 1 / 1;
+      transition: opacity 0.3s ease, transform 0.4s var(--nd-ease-spring);
+    }
+    .pw-reveal .pw-eye-off { opacity: 0; transform: rotate(-40deg) scale(0.6); }
+    .pw-reveal.on .pw-eye { opacity: 0; transform: rotate(40deg) scale(0.6); }
+    .pw-reveal.on .pw-eye-off { opacity: 1; transform: none; }
+    .auth-input-wrap:has(.pw-reveal) .auth-input,
+    .forgot-panel-inner .auth-input-wrap:has(.pw-reveal) .auth-input { padding-right: 44px; }
     .auth-input {
       width: 100%;
       padding: 14px 16px 14px 42px;
@@ -2185,6 +2218,38 @@
     .nav-tab.active .tab-icon {
       opacity: 1;
       transform: scale(1.1);
+    }
+    /* count badge — tells the user what's inside each tab */
+    .nav-tab .tab-badge {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      line-height: 1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      transition: display 0.3s var(--nd-ease), transform 0.3s var(--nd-ease);
+      flex-shrink: 0;
+    }
+    .nav-tab .tab-badge.show { display: inline-flex; }
+    .nav-tab:not(.active) .tab-badge { background: var(--text-muted); color: var(--bg); opacity: 0.85; }
+    .nav-tab .tab-badge.bump { animation: badgeBump 0.4s var(--nd-ease-spring); }
+    @keyframes badgeBump {
+      0% { transform: scale(0.4); }
+      60% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+    @media (max-width: 480px) {
+      .nav-tab { padding: 5px 10px; gap: 4px; font-size: 0.74rem; min-width: 58px; }
+      .nav-tab .tab-badge { min-width: 15px; height: 15px; font-size: 0.58rem; padding: 0 4px; }
     }
     .nav-tab.tab-pop {
       animation: navTabPop 0.38s cubic-bezier(0.22, 1, 0.36, 1);
@@ -8288,6 +8353,10 @@
     @keyframes markGlyphIn { 0% { opacity: 0; transform: scale(0.7); } 70% { opacity: 1; } 100% { opacity: 1; transform: scale(1); } }
     .neb-boot-mark .mark-arrow { stroke-dasharray: 12; stroke-dashoffset: 12; animation: markArrowDraw 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards; }
     @keyframes markArrowDraw { to { stroke-dashoffset: 0; } }
+    .neb-boot-mark .mark-glow { animation: markGlowIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; transform-origin: 50% 50%; }
+    @keyframes markGlowIn { 0% { opacity: 0; transform: scale(0.7); } 100% { opacity: 0.35; transform: scale(1); } }
+    .neb-boot-mark .mark-shine { animation: markShineIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both; }
+    @keyframes markShineIn { 0% { opacity: 0; } 60%, 100% { opacity: 1; } }
     @keyframes markFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     .neb-boot-name { font-weight: 800; letter-spacing: 3.5px; font-size: 1.02rem; display: flex; justify-content: center; flex-wrap: wrap; }
     .neb-boot-name span {
@@ -8363,8 +8432,41 @@
     }
     /* breadcrumb scrollframe: sticky root + edge fades */
     .breadcrumb { -webkit-mask-image: linear-gradient(90deg, transparent, #000 20px, #000 calc(100% - 20px), transparent); mask-image: linear-gradient(90deg, transparent, #000 20px, #000 calc(100% - 20px), transparent); }
-    .breadcrumb-item.crumb-root { position: sticky; left: 0; z-index: 2; background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 3px 12px var(--glow-color); font-weight: 700; flex-shrink: 0; }
-    .breadcrumb-item.crumb-root:hover { color: #fff; filter: brightness(1.1); }
+    .breadcrumb-item.crumb-root {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 13px 4px 11px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--accent), #764ba2);
+      color: #fff;
+      border-color: transparent;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 16px var(--glow-color), inset 0 1px 0 rgba(255,255,255,.18);
+      animation: crumbRootIn 0.45s var(--nd-ease) both;
+      transition: transform 0.35s var(--nd-ease), box-shadow 0.35s ease, filter 0.35s ease;
+    }
+    @keyframes crumbRootIn {
+      from { opacity: 0; transform: translateX(-8px) scale(0.92); }
+      to { opacity: 1; transform: none; }
+    }
+    .breadcrumb-item.crumb-root svg {
+      transition: transform 0.4s var(--nd-ease-spring);
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
+    }
+    .breadcrumb-item.crumb-root:hover {
+      color: #fff;
+      filter: brightness(1.08);
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 8px 22px var(--glow-color), inset 0 1px 0 rgba(255,255,255,.22);
+    }
+    .breadcrumb-item.crumb-root:hover svg { transform: scale(1.15) rotate(-6deg); }
+    .breadcrumb-item.crumb-root:active { transform: scale(0.95); transition-duration: 0.12s; }
     .breadcrumb-wrap { -webkit-backdrop-filter: blur(8px); }
     /* safari + old browsers: solid fallbacks where blur unsupported */
     @supports not (backdrop-filter: blur(2px)) {
@@ -8528,8 +8630,17 @@
     .neb-login-key { color: var(--text-secondary); flex-shrink: 0; min-width: 110px; }
     .neb-login-val { color: var(--text); font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .neb-login-val.mono { font-family: ui-monospace, Consolas, monospace; font-weight: 600; }
-    .neb-login-show { padding: 4px 12px; border-radius: 9px; border: 1px solid var(--glass-border); background: var(--glass-hover); color: var(--text); font-size: 0.68rem; font-weight: 700; cursor: pointer; flex-shrink: 0; }
-    .neb-login-show:hover { border-color: var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); }
+    .neb-login-show { padding: 4px 12px; border-radius: 9px; border: 1px solid var(--glass-border); background: var(--glass-hover); color: var(--text); font-size: 0.68rem; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: background 0.3s var(--nd-ease), border-color 0.3s ease, transform 0.3s var(--nd-ease); }
+    .neb-login-show:hover { border-color: var(--accent-solid); box-shadow: 0 0 10px var(--glow-color); transform: translateY(-1px); }
+    .neb-login-show:active { transform: scale(0.94); transition-duration: 0.12s; }
+    /* smooth password reveal in the saved-login box */
+    .neb-login-val.mono { transition: opacity 0.25s ease, transform 0.35s var(--nd-ease); }
+    .neb-login-val.mono.revealing { animation: loginReveal 0.45s var(--nd-ease); }
+    @keyframes loginReveal {
+      0% { opacity: 0.25; transform: translateY(3px) scale(0.97); filter: blur(2px); }
+      60% { opacity: 1; transform: translateY(0) scale(1.01); filter: blur(0); }
+      100% { opacity: 1; transform: none; }
+    }
 
     /* --- NEBULA V30: set-pass premium, login box life, diag meta --- */
     .set-pass-modal { animation: nebAboutFade 0.25s ease; }
@@ -13561,7 +13672,10 @@
 .ndi-hero-copy{min-width:0}
 .ndi-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent-solid);opacity:.9}
 .ndi-hero h2{margin:3px 0 0;font-size:1.45rem;font-weight:800;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ndi-badge{font-size:.6rem;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:20px;background:var(--accent);color:#fff}
+.ndi-badge{display:inline-flex;align-items:center;gap:5px;font-size:.62rem;font-weight:800;letter-spacing:1.4px;padding:3px 10px 3px 8px;border-radius:20px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;box-shadow:0 3px 12px rgba(102,126,234,.45);animation:ndiBadgeIn .5s cubic-bezier(.22,1,.36,1) both;text-transform:uppercase}
+.ndi-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#a5b4fc;box-shadow:0 0 6px #a5b4fc;animation:ndiBadgePulse 2.2s ease-in-out infinite}
+@keyframes ndiBadgeIn{0%{opacity:0;transform:scale(.6) translateY(4px)}100%{opacity:1;transform:none}}
+@keyframes ndiBadgePulse{0%,100%{opacity:1}50%{opacity:.4}}
 .ndi-tag{margin:6px 0 0;font-size:.84rem;line-height:1.5;color:var(--text-secondary)}
 .ndi-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0 6px}
 .ndi-fact{text-align:center;padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .2s}
@@ -13661,6 +13775,79 @@ body.light .account-actions .icon-btn{color:#1a1d2e}
 #settingsModal .stat-val{font-size:1.02rem;font-weight:800;color:var(--accent-solid);font-variant-numeric:tabular-nums}
 #settingsModal .stat-label{font-size:.66rem;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)}
 #settingsModal .stat-icon{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(102,126,234,.14);color:#a5b4fc}
+/* theme group tabs — switch between Standard / Premium with a sliding indicator */
+#settingsModal .theme-tabs{
+  position: relative;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 12px;
+  isolation: isolate;
+}
+#settingsModal .theme-tab{
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: color .3s var(--nd-ease), transform .3s var(--nd-ease);
+  touch-action: manipulation;
+}
+#settingsModal .theme-tab:hover:not(.active){ color: var(--text); transform: translateY(-1px); }
+#settingsModal .theme-tab:active:not(.active){ transform: scale(.96); transition-duration: .12s; }
+#settingsModal .theme-tab.active{ color: #fff; }
+#settingsModal .theme-tab-dot{
+  width: 11px; height: 11px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+  flex-shrink: 0;
+  transition: transform .35s var(--nd-ease-spring);
+}
+#settingsModal .theme-tab.active .theme-tab-dot{ transform: scale(1.15) rotate(6deg); }
+#settingsModal .theme-tab-count{
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px; height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: rgba(255,255,255,.12);
+  font-size: .62rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  transition: background .3s ease, color .3s ease;
+}
+#settingsModal .theme-tab.active .theme-tab-count{ background: rgba(255,255,255,.28); }
+#settingsModal .theme-tab.disabled{ opacity: .4; cursor: not-allowed; pointer-events: none; }
+#settingsModal .theme-tab-slider{
+  position: absolute;
+  z-index: 1;
+  top: 4px; bottom: 4px;
+  left: 4px;
+  width: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(102,126,234,.9), rgba(118,75,162,.9));
+  box-shadow: 0 6px 18px rgba(102,126,234,.4);
+  transition: left .42s var(--nd-ease), width .42s var(--nd-ease);
+  pointer-events: none;
+}
+@media (max-width:600px){
+  #settingsModal .theme-tab{ font-size: .72rem; gap: 5px; padding: 7px 6px; }
+  #settingsModal .theme-tab-dot{ width: 9px; height: 9px; }
+}
 #settingsModal .themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
 #settingsModal .theme-option{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:8px;border-radius:16px;border:1px solid var(--glass-border);background:rgba(255,255,255,.04);cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .3s,background .25s}
 #settingsModal .theme-option:hover{transform:translateY(-4px);border-color:rgba(102,126,234,.5);box-shadow:0 12px 26px rgba(0,0,0,.3)}
@@ -13695,6 +13882,67 @@ body.light .account-actions .icon-btn{color:#1a1d2e}
   #settingsModal .storage-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (prefers-reduced-motion:reduce){#settingsModal .settings-card{animation:none}#settingsModal *{transition-duration:.01ms !important}}
+/* ── settings remake: sharper header, deeper sections, responsive ── */
+#settingsModal .settings-card{
+  box-shadow: 0 40px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(102,126,234,.08);
+  background-image: linear-gradient(180deg, rgba(102,126,234,.06), transparent 220px), var(--card-bg, rgba(22,20,44,.97));
+}
+#settingsModal .settings-header{
+  align-items: center;
+  gap: 12px;
+}
+#settingsModal .settings-header h2{
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+  background: linear-gradient(120deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#settingsModal .settings-header .gear{
+  width: 40px; height: 40px;
+  border-radius: 13px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, rgba(102,126,234,.25), rgba(118,75,162,.25));
+  border: 1px solid rgba(102,126,234,.35);
+  color: #a5b4fc;
+  box-shadow: 0 6px 18px rgba(102,126,234,.25);
+  animation: gearSpinIn .6s var(--nd-ease) both;
+  flex-shrink: 0;
+}
+@keyframes gearSpinIn { from { opacity: 0; transform: rotate(-90deg) scale(.6); } to { opacity: 1; transform: none; } }
+#settingsModal .settings-header .subtitle{ font-size: .74rem; color: var(--text-secondary); margin-top: 2px; }
+#settingsModal .settings-section{
+  transition: border-color .3s ease, background .3s ease, transform .3s var(--nd-ease), box-shadow .3s ease;
+}
+#settingsModal .settings-section:hover{
+  border-color: rgba(102,126,234,.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+}
+#settingsModal .settings-section-title{ gap: 9px; }
+#settingsModal .settings-section .ctrl-row{
+  transition: background .3s ease, transform .3s var(--nd-ease);
+}
+#settingsModal .settings-section .ctrl-row:hover{
+  background: rgba(102,126,234,.08);
+  transform: translateX(2px);
+}
+@media (max-width: 600px){
+  #settingsModal .settings-modal, #settingsModal{ align-items: flex-end; }
+  #settingsModal .settings-card{
+    width: 100%; max-width: none;
+    max-height: 92dvh;
+    border-radius: 28px 28px 0 0;
+    padding: 18px 14px calc(14px + env(safe-area-inset-bottom,0px));
+    box-shadow: 0 -24px 60px rgba(0,0,0,.5);
+  }
+  #settingsModal .settings-header{ top: -18px; margin: -18px -14px 12px; padding: 16px 14px 12px; }
+  #settingsModal .themes-grid{ grid-template-columns: repeat(2,1fr); }
+  #settingsModal .storage-grid{ grid-template-columns: repeat(2,1fr); }
+  #settingsModal .settings-section{ padding: 13px; }
+}
 </style>
 <style id="nebdrive-v5">
 /* ─── Theme visibility toggles: animated show / hide ─── */
@@ -14193,22 +14441,21 @@ button.primary-btn:hover{
   transform: scale(0.95) translateY(1px);
   transition-duration: 0.12s;
 }
-/* ── shimmer sweep on hover (buttons with glass background) ─────────────── */
-.icon-btn::after, .ctrl-btn::after, .nav-tab::after, .guest-btn::after, .auth-btn::after,
-.settings-menu-row button::after, .profile-status-grid button::after{
+/* ── shimmer sweep on hover — reserved for primary actions (not every button) ── */
+.icon-btn.primary-btn::after, .guest-btn::after, .auth-btn::after, .panel-submit::after, .mv2-go::after{
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.22) 48%, transparent 66%);
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.24) 48%, transparent 66%);
   transform: translateX(-120%);
   opacity: 0;
   transition: transform 0.7s var(--nd-ease), opacity 0.4s ease;
   pointer-events: none;
 }
 @media (hover: hover){
-  .icon-btn:hover::after, .ctrl-btn:hover::after, .nav-tab:hover::after, .guest-btn:hover::after,
-  .auth-btn:hover::after, .settings-menu-row button:hover::after, .profile-status-grid button:hover::after{
+  .icon-btn.primary-btn:hover::after, .guest-btn:hover::after, .auth-btn:hover::after,
+  .panel-submit:hover::after, .mv2-go:hover::after{
     transform: translateX(120%);
     opacity: 1;
   }
@@ -14347,6 +14594,10 @@ button.primary-btn:hover{
           <div class="auth-input-wrap">
             <input type="password" id="loginPassword" class="auth-input" placeholder="Password" autocomplete="current-password">
             <span class="input-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+            <button type="button" class="pw-reveal" data-toggle="loginPassword" aria-label="Show password" title="Show password">
+              <svg class="pw-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="pw-eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
           </div>
           <button class="auth-btn" id="loginBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Login</button>
           <span class="forgot-pw" id="forgotPwBtn">Forgot password?</span>
@@ -14355,7 +14606,13 @@ button.primary-btn:hover{
               <div class="panel-title">Reset Password</div>
               <div class="panel-sub">Enter your username and new password</div>
               <input type="text" id="forgotUsername" class="auth-input" placeholder="Username" autocomplete="username">
-              <input type="password" id="forgotNewPass" class="auth-input" placeholder="New password (6+ chars)" autocomplete="new-password">
+              <div class="auth-input-wrap">
+                <input type="password" id="forgotNewPass" class="auth-input" placeholder="New password (6+ chars)" autocomplete="new-password">
+                <button type="button" class="pw-reveal" data-toggle="forgotNewPass" aria-label="Show password" title="Show password">
+                  <svg class="pw-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="pw-eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+              </div>
               <div class="panel-actions">
                 <button class="panel-cancel" id="forgotCancel">Cancel</button>
                 <button class="panel-submit" id="forgotSubmit">Reset Password</button>
@@ -14382,6 +14639,10 @@ button.primary-btn:hover{
           <div class="auth-input-wrap">
             <input type="password" id="signupPassword" class="auth-input" placeholder="Choose password" autocomplete="new-password">
             <span class="input-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+            <button type="button" class="pw-reveal" data-toggle="signupPassword" aria-label="Show password" title="Show password">
+              <svg class="pw-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="pw-eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
           </div>
           <button class="auth-btn" id="signupBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Sign Up</button>
           <div class="auth-divider"><span>or</span></div>
@@ -14458,6 +14719,11 @@ button.primary-btn:hover{
       <div class="premium-toggle-row theme-visibility-row">
         <span class="premium-toggle-label"><span class="theme-visibility-title" data-i18n="set.showPrem">Show Premium Themes ✦</span><small class="toggle-hint">Signature palettes with premium styling</small></span>
         <div class="toggle-switch active" id="premiumToggle" role="switch" aria-checked="true" tabindex="0" aria-label="Show premium themes"><div class="toggle-knob"></div></div>
+      </div>
+      <div class="theme-tabs" id="themeTabs" role="tablist" aria-label="Theme groups">
+        <button class="theme-tab active" id="themeTabStd" role="tab" aria-selected="true" data-group="standard"><span class="theme-tab-dot" style="background:linear-gradient(135deg,#667eea,#764ba2)"></span><span data-i18n="set.standard">Standard</span><span class="theme-tab-count" id="themeCountStd">0</span></button>
+        <button class="theme-tab" id="themeTabPrem" role="tab" aria-selected="false" data-group="premium"><span class="theme-tab-dot" style="background:linear-gradient(135deg,#f5d76e,#b8860b)"></span><span data-i18n="set.premium">Premium</span><span class="theme-tab-count" id="themeCountPrem">0</span></button>
+        <span class="theme-tab-slider" id="themeTabSlider"></span>
       </div>
       <div class="themes-grid" id="themesGrid">
         <div class="theme-section-label standard-section" data-i18n="set.standard">Standard</div>
@@ -14605,7 +14871,7 @@ button.primary-btn:hover{
         <span class="ndi-logo" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 48 48"><defs><linearGradient id="ndiG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs><rect x="3" y="3" width="42" height="42" rx="13" fill="url(#ndiG)"/><g transform="translate(7.8 5.75) scale(1.35)"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" fill="#ffffff"/><path d="M12 17.7V12.5m0 0-2.3 2.3M12 12.5l2.3 2.3" fill="none" stroke="#5b21b6" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
         <div class="ndi-hero-copy">
           <div class="ndi-eyebrow">Personal file library</div>
-          <h2 id="nebulaAboutTitle">NebulaDrive <span class="ndi-badge">BETA</span></h2>
+          <h2 id="nebulaAboutTitle">NebulaDrive <span class="ndi-badge">Beta</span></h2>
           <p class="ndi-tag">Store, organize and play your files in one place, right in your browser.</p>
         </div>
       </header>
@@ -14773,9 +15039,9 @@ button.primary-btn:hover{
       <div class="nav-tabs" id="navTabsContainer">
         <div class="nav-tab-wrapper">
           <button class="nav-tab active" data-tab="files"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="nav.files">Files</span></button>
-          <button class="nav-tab" data-tab="favorites"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span data-i18n="nav.favorites">Favorites</span></button>
-          <button class="nav-tab" data-tab="history"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span data-i18n="nav.history">History</span></button>
-          <button class="nav-tab" data-tab="trash"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span data-i18n="nav.trash">Trash</span></button>
+          <button class="nav-tab" data-tab="favorites"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span data-i18n="nav.favorites">Favorites</span><span class="tab-badge" id="tabBadgeFav" aria-hidden="true"></span></button>
+          <button class="nav-tab" data-tab="history"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span data-i18n="nav.history">History</span><span class="tab-badge" id="tabBadgeHist" aria-hidden="true"></span></button>
+          <button class="nav-tab" data-tab="trash"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span data-i18n="nav.trash">Trash</span><span class="tab-badge" id="tabBadgeTrash" aria-hidden="true"></span></button>
           <div class="tab-slider" id="tabSlider"></div>
         </div>
       </div>
@@ -16177,6 +16443,20 @@ button.primary-btn:hover{
         if (event.key === 'Enter') { event.preventDefault(); document.getElementById('loginBtn').click(); }
       });
     });
+    // ─── PASSWORD REVEAL (smooth eye toggle on every password field) ───
+    document.querySelectorAll('.pw-reveal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.toggle);
+        if (!input) return;
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.classList.toggle('on', show);
+        btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+        btn.title = show ? 'Hide password' : 'Show password';
+        // keep focus & caret position smooth
+        try { input.focus({ preventScroll: true }); const len = input.value.length; input.setSelectionRange(len, len); } catch (e) {}
+      });
+    });
     ['signupUsername', 'signupPassword'].forEach(id => {
       document.getElementById(id).addEventListener('keydown', event => {
         if (event.key === 'Enter') { event.preventDefault(); document.getElementById('signupBtn').click(); }
@@ -16271,6 +16551,7 @@ button.primary-btn:hover{
       await loadHistory();
       setTimeout(updateTabSlider, 100);
       loadTrash();
+      setTimeout(updateTabBadges, 400);
     }
     // ─── PROFILE MENU (display name, status, PFP) ───
     (function initProfileMenu() {
@@ -21217,7 +21498,7 @@ button.primary-btn:hover{
         favoritesTab.classList.remove('tab-content');
         void favoritesTab.offsetWidth;
         favoritesTab.classList.add('tab-content');
-        loadFavorites(); } else if (tab === 'history') { historyTab.style.display = 'block';
+        loadFavorites(); setTimeout(updateTabBadges, 300); } else if (tab === 'history') { historyTab.style.display = 'block';
         historyTab.classList.remove('tab-content');
         void historyTab.offsetWidth;
         historyTab.classList.add('tab-content');
@@ -21227,6 +21508,46 @@ button.primary-btn:hover{
         trashTab.classList.add('tab-content');
         loadTrash(); } }
     document.querySelectorAll('.nav-tab').forEach(tab => { tab.onclick = () => switchTab(tab.dataset.tab); });
+
+    // ─── TAB COUNT BADGES (better details: what's inside each tab, at a glance) ───
+    function setTabBadge(id, n) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const count = Math.max(0, n | 0);
+      el.textContent = count > 99 ? '99+' : String(count);
+      el.classList.toggle('show', count > 0);
+      el.classList.toggle('bump', count > 0);
+      setTimeout(() => el.classList.remove('bump'), 400);
+    }
+    async function updateTabBadges() {
+      if (!currentUser) return;
+      try {
+        await waitDbReady();
+        // Trash
+        try {
+          const trashTx = db.transaction(['trash'], 'readonly');
+          const trashReq = trashTx.objectStore('trash').getAll();
+          trashReq.onsuccess = () => setTabBadge('tabBadgeTrash', trashReq.result.filter(i => i.userId === currentUser).length);
+        } catch (e) {}
+        // History
+        try {
+          const histTx = db.transaction(['history'], 'readonly');
+          const histReq = histTx.objectStore('history').getAll();
+          histReq.onsuccess = () => setTabBadge('tabBadgeHist', histReq.result.filter(h => h.userId === currentUser).length);
+        } catch (e) {}
+        // Favorites
+        try {
+          const favFolders = await getAllFolders();
+          const favFiles = await getAllUserFiles();
+          setTabBadge('tabBadgeFav', favFolders.filter(f => f.favorite).length + favFiles.filter(f => f.favorite).length);
+        } catch (e) {}
+      } catch (e) {}
+    }
+    // refresh badges after any content change
+    const _origLoadTrash = loadTrash;
+    const _origLoadHistory = loadHistory;
+    loadTrash = async function () { await _origLoadTrash(); updateTabBadges(); };
+    loadHistory = async function () { await _origLoadHistory(); updateTabBadges(); };
 
     async function loadFavorites() {
       await waitDbReady();
@@ -21288,7 +21609,8 @@ button.primary-btn:hover{
         });
         if (premiumSectionLabel) setTimeout(() => { premiumSectionLabel.style.display = 'none'; }, 400);
       }
-      localStorage.setItem('nebula_premium_visible', showPremium ? 'true' : 'false');
+        localStorage.setItem('nebula_premium_visible', showPremium ? 'true' : 'false');
+        updateThemeTabAvailability();
     });
     // ─── STANDARD toggle (mirrors premium) ───
     let showStandard = localStorage.getItem('nebula_standard_visible');
@@ -21313,6 +21635,7 @@ button.primary-btn:hover{
           if (standardSectionLabel) setTimeout(() => { standardSectionLabel.style.display = 'none'; }, 400);
         }
         localStorage.setItem('nebula_standard_visible', showStandard ? 'true' : 'false');
+        updateThemeTabAvailability();
       });
       standardToggle.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
@@ -21323,6 +21646,56 @@ button.primary-btn:hover{
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
       });
     }
+    // ─── THEME GROUP TABS (Standard / Premium) — fixed, improved, easy to use ───
+    let themeActiveGroup = 'standard';
+    const themeTabStd = document.getElementById('themeTabStd');
+    const themeTabPrem = document.getElementById('themeTabPrem');
+    const themeTabSlider = document.getElementById('themeTabSlider');
+    const themeCountStd = document.getElementById('themeCountStd');
+    const themeCountPrem = document.getElementById('themeCountPrem');
+    // counts
+    if (themeCountStd) themeCountStd.textContent = document.querySelectorAll('.theme-option.standard').length;
+    if (themeCountPrem) themeCountPrem.textContent = document.querySelectorAll('.theme-option.premium').length;
+    function moveThemeTabSlider(activeTab) {
+      if (!themeTabSlider || !activeTab) return;
+      themeTabSlider.style.left = activeTab.offsetLeft + 'px';
+      themeTabSlider.style.width = activeTab.offsetWidth + 'px';
+    }
+    function applyThemeGroup(group) {
+      themeActiveGroup = group;
+      const isPrem = group === 'premium';
+      themeTabStd.classList.toggle('active', !isPrem);
+      themeTabPrem.classList.toggle('active', isPrem);
+      themeTabStd.setAttribute('aria-selected', String(!isPrem));
+      themeTabPrem.setAttribute('aria-selected', String(isPrem));
+      // show active group, hide the other (with smooth fade)
+      const activeOpts = document.querySelectorAll(`.theme-option.${group}`);
+      const otherOpts = document.querySelectorAll(`.theme-option:not(.${group})`);
+      otherOpts.forEach(el => { el.classList.add('hiding'); });
+      setTimeout(() => {
+        activeOpts.forEach(el => { el.classList.remove('hiding'); el.style.display = 'flex'; });
+        otherOpts.forEach(el => { el.style.display = 'none'; el.classList.remove('hiding'); });
+      }, 180);
+      setTimeout(() => { try { if (window.nebCascadeOptions) window.nebCascadeOptions(); } catch (e) {} }, 240);
+      // section labels only matter in "both" view; hide the inactive one's label
+      const stdLabel = document.querySelector('.theme-section-label.standard-section');
+      const premLabel = document.querySelector('.theme-section-label.premium-section');
+      if (stdLabel) stdLabel.style.display = isPrem ? 'none' : 'flex';
+      if (premLabel) premLabel.style.display = isPrem ? 'flex' : 'none';
+      moveThemeTabSlider(isPrem ? themeTabPrem : themeTabStd);
+    }
+    function updateThemeTabAvailability() {
+      // tabs for hidden groups get disabled; never leave the user on an empty group
+      if (themeTabStd) themeTabStd.classList.toggle('disabled', !showStandard);
+      if (themeTabPrem) themeTabPrem.classList.toggle('disabled', !showPremium);
+      if ((themeActiveGroup === 'standard' && !showStandard) || (themeActiveGroup === 'premium' && !showPremium)) {
+        applyThemeGroup(showStandard ? 'standard' : 'premium');
+      }
+    }
+    if (themeTabStd) themeTabStd.addEventListener('click', () => { if (!themeTabStd.classList.contains('disabled')) applyThemeGroup('standard'); });
+    if (themeTabPrem) themeTabPrem.addEventListener('click', () => { if (!themeTabPrem.classList.contains('disabled')) applyThemeGroup('premium'); });
+    setTimeout(() => { applyThemeGroup('standard'); updateThemeTabAvailability(); }, 60);
+    window.addEventListener('resize', () => setTimeout(() => moveThemeTabSlider(themeActiveGroup === 'premium' ? themeTabPrem : themeTabStd), 100));
     const PREMIUM_THEMES = ['midnightgold','velvetrose','emeraldnoir','platinum','crimsonember','sapphireroyale','obsidianchrome','auroraborealis','cosmiclatte','forestwhisper','rosegold','nebularose','arcticmidnight','sunsetboulevard','twilightamethyst','carbonfiber','emeraldfrost','crimsonvelvet','solarized'];
     // ─── SITE-WIDE LIQUID GLASS (body.liquid-glass, like themes) ───
     let liquidGlassOn = localStorage.getItem('nc_liquidGlass');
@@ -21400,7 +21773,9 @@ button.primary-btn:hover{
       const modal = document.getElementById('settingsModal');
       modal.classList.remove('closing');
       void modal.offsetWidth; // restart open animation every time
-      modal.classList.add('active'); };
+      modal.classList.add('active');
+      // reposition the theme group tab slider once the modal is laid out
+      setTimeout(() => { try { moveThemeTabSlider(themeActiveGroup === 'premium' ? themeTabPrem : themeTabStd); } catch (e) {} }, 380); };
 
     let settingsCloseTimer = null;
     function closeSettingsWithAnimation() {
@@ -21527,6 +21902,12 @@ button.primary-btn:hover{
           type: 'password-login',
           version: 2,
           algorithm: 'PBKDF2-SHA-256+A256GCM',
+          // ── human-readable details (the encrypted part below stays machine-only) ──
+          name: 'NebulaDrive account login',
+          account: username,
+          displayName: profile.display || username,
+          note: 'NebulaDrive (Beta) account login export. This file contains your login and profile, encrypted with your account password. To restore it on another browser, use Settings → Account Controls → Import account login, and enter the account password when asked. Your files are NOT included — restore them from a ZIP backup.',
+          contents: ['encrypted account login', 'display name', 'profile picture', 'banner', 'status', 'last folder path', 'volume preference'],
           iterations,
           user: username,
           salt: toBase64(salt),
@@ -23231,17 +23612,24 @@ button.primary-btn:hover{
       '<b>Tip:</b> ZIP-backup your cloud from Settings now and then'
     ];
     var NEB_MARK = '<svg class="neb-boot-mark" viewBox="0 0 48 48" aria-hidden="true">' +
-      '<defs><linearGradient id="nebBootG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>' +
+      '<defs>' +
+      '<linearGradient id="nebBootG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient>' +
+      '<radialGradient id="nebBootShine" cx="0.3" cy="0.25" r="0.85"><stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/><stop offset="0.55" stop-color="#ffffff" stop-opacity="0.05"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>' +
+      '<filter id="nebBootGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.2"/></filter>' +
+      '</defs>' +
+      '<ellipse class="mark-glow" cx="24" cy="24" rx="21" ry="21" fill="#667eea" opacity="0.35" filter="url(#nebBootGlow)"/>' +
       '<rect class="mark-tile" x="3" y="3" width="42" height="42" rx="13" fill="url(#nebBootG)"/>' +
-      '<g transform="translate(7.8 5.75) scale(1.35)"><g class="mark-cloud">' +
+      '<rect class="mark-shine" x="3" y="3" width="42" height="42" rx="13" fill="url(#nebBootShine)"/>' +
+      '<g transform="translate(7.6 5.6) scale(1.42)"><g class="mark-cloud">' +
+      '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" fill="#ffffff" filter="url(#nebBootGlow)"/>' +
       '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" fill="#ffffff"/>' +
-      '<path class="mark-arrow" d="M12 17.7V12.5m0 0-2.3 2.3M12 12.5l2.3 2.3" fill="none" stroke="#5b21b6" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="mark-arrow" d="M12 17.7V12.5m0 0-2.3 2.3M12 12.5l2.3 2.3" fill="none" stroke="#5b21b6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
       '</g></g></svg>';
     var boot = document.createElement('div');
     boot.id = 'nebBoot';
     boot.innerHTML = '<div class="neb-boot-aurora"><i></i><i></i><i></i></div><div class="neb-boot-card">' + NEB_MARK +
-      '<div class="neb-boot-name" id="nebBootName" aria-label="NebulaDrive">NEBULADRIVE</div>' +
-      '<div class="neb-boot-sub">your private cloud</div>' +
+      '<div class="neb-boot-name" id="nebBootName" aria-label="NebulaDrive (Beta)">NEBULADRIVE</div>' +
+      '<div class="neb-boot-sub">your private cloud · Beta</div>' +
       '<div class="neb-boot-track"><div class="neb-boot-fill" id="nebBootFill"></div></div>' +
       '<div class="neb-boot-row"><span id="nebBootMsg">Loading</span><span class="neb-boot-pct" id="nebBootPct">0%</span></div>' +
       '<div class="neb-boot-tip" id="nebBootTip">' + TIPS[0] + '</div></div>';
@@ -23647,6 +24035,7 @@ button.primary-btn:hover{
       });
     }catch(e){}
   }
+  window.nebCascadeOptions = cascadeOptions;
   function hookToggle(id){
     try{
       var t = document.getElementById(id);
@@ -24395,6 +24784,11 @@ button.primary-btn:hover{
       pv.dataset.real = (c.pass === null || c.pass === undefined || c.pass === '') ? '' : String(c.pass);
       var revealed = btn && btn.dataset.on === '1';
       pv.textContent = !pv.dataset.real ? (c.guest ? 'Guest session' : '—') : (revealed ? pv.dataset.real : '••••••••');
+      if (revealed && pv.dataset.real) {
+        pv.classList.remove('revealing');
+        void pv.offsetWidth;
+        pv.classList.add('revealing');
+      }
     }
     if(btn) btn.textContent = (btn.dataset.on === '1') ? T('set.hide', 'Hide') : T('set.show', 'Show');
   }
