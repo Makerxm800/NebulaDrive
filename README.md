@@ -23,6 +23,13 @@ A personal cloud that runs entirely in your browser. Upload, organise, play, and
 - 💾 **Backup & restore** — real `.zip` archives with progress tracking and cancel support
 - ✨ **Premium UI everywhere** — smooth expo-out motion (no bouncy overshoot), staggered entrances, soft accent shimmer instead of white shine, **ripple feedback on every button**, shimmer sweep on hover, deeper card lifts, and a springy modal entrance
 - 🎯 **Details that feel right** — spring-smooth button hovers, press snap, keyboard ripple, smooth themed scrollbars, and a full `prefers-reduced-motion` fallback so nothing moves when you don't want it to
+- 🏷️ **Site name is NebulaDrive (Beta)** — no "Premium" suffix anywhere
+- 🗂️ **Smarter tabs** — Files / Favorites / History / Trash now carry live count badges so you always know what's inside
+- 🎨 **Theme tabs** — Standard ⇄ Premium group tabs with a sliding indicator and per-group counts, fixed and easy to use
+- 👁️ **Password reveal** — smooth eye toggle on every login, signup and reset field (and the saved-login box)
+- 📤 **Account export, readable** — the exported login file now carries human-readable details (name, note, contents) alongside the encrypted payload
+- 🏠 **Redesigned Root pill** — gradient home pill with a smooth entrance and hover
+- 🚀 **Remade boot logo** — matches the site logo (cloud + arrow) with glow, shine and spring build
 - 📱 **Install as an app** — web manifest + service worker + Apple touch icon, so **Add to Home Screen** on iPhone gives you a full-screen NebulaDrive app with its own icon (the home-screen name is **NebulaDrive**)
 - 🚀 **Animated boot logo** — every open/reload plays a spring-free logo build (tile scales in, cloud rises, arrow draws, wordmark letters stagger) over a drifting aurora, then hands off to the app with a soft reveal
 - 🌐 **8 languages + flag chips** — globe button opens a centered menu with real CSS-drawn flag chips per language (offline-safe, no emoji); welcome picker matches. Everything switches instantly and remembers your choice
