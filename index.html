@@ -3546,6 +3546,12 @@
       background: var(--accent);
       color: white;
       border-color: transparent;
+      animation: selPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes selPop {
+      0% { transform: scale(0.9); }
+      55% { transform: scale(1.06); }
+      100% { transform: scale(1); }
     }
     .selection-toggle-btn .toggle-dot {
       width: 7px;
@@ -3557,6 +3563,11 @@
     .selection-toggle-btn.active .toggle-dot {
       background: #4caf50;
       transform: scale(1.2);
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5); }
+      50% { box-shadow: 0 0 0 4px rgba(76, 175, 80, 0); }
     }
     /* ─── GUIDED TOUR ─── */
     .tour-btn { border-style: dashed; }
@@ -3755,6 +3766,17 @@
       color: var(--text);
       min-width: 18px;
       text-align: center;
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .select-count.bump .count-num {
+      transform: scale(1.35);
+      color: var(--accent-solid);
+    }
+    .select-count.has-items {
+      background: rgba(102, 126, 234, 0.14);
+      border-color: rgba(102, 126, 234, 0.35);
+      color: var(--text);
     }
     .delete-selected-btn {
       background: rgba(255, 71, 87, 0.12);
@@ -7606,7 +7628,9 @@
     #aboutBtn:hover { box-shadow: 0 0 18px var(--glow-color); transform: translateY(-2px); }
     .nebula-about-modal { display:none; position:fixed; inset:0; z-index:3000; align-items:center; justify-content:center; padding:20px; background:rgba(5,4,15,0.7); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
     .nebula-about-modal.open { display:flex; animation:nebAboutIn .35s cubic-bezier(0.22,1,0.36,1); }
+    .nebula-about-modal.open.closing { animation:nebAboutOut .28s cubic-bezier(0.4,0,0.2,1) forwards; }
     @keyframes nebAboutIn { from { opacity:0; transform:scale(.94) translateY(16px);} to { opacity:1; transform:none;} }
+    @keyframes nebAboutOut { from { opacity:1; transform:none;} to { opacity:0; transform:scale(.96) translateY(8px);} }
     .nebula-about-card { width:min(560px,94vw); max-height:min(82vh,760px); overflow-y:auto; border-radius:24px; padding:28px 28px 24px; background:linear-gradient(180deg,rgba(40,34,80,0.97),rgba(18,15,40,0.97)); border:1px solid rgba(102,126,234,0.35); box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 60px rgba(102,126,234,0.18),inset 0 1px 0 rgba(255,255,255,0.12); position:relative; color:var(--text); }
     .nebula-about-card h2 { font-size:1.3rem; display:flex; align-items:center; gap:10px; margin-bottom:4px; }
     .nebula-about-card .neb-sub { color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px; }
@@ -7744,7 +7768,9 @@
     #aboutBtn > * { pointer-events: none; }
     .nebula-about-modal { display: none; position: fixed; inset: 0; z-index: 3000; align-items: center; justify-content: center; padding: 20px; background: rgba(5,4,15,0.7); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
     .nebula-about-modal.open { display: flex; animation: nebAboutIn 0.35s cubic-bezier(0.22,1,0.36,1); }
+    .nebula-about-modal.open.closing { animation: nebAboutOut 0.28s cubic-bezier(0.4,0,0.2,1) forwards; }
     @keyframes nebAboutIn { from { opacity: 0; transform: scale(0.94) translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes nebAboutOut { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(0.96) translateY(8px); } }
     .nebula-about-card { width: min(560px, 94vw); max-height: min(82vh, 760px); overflow-y: auto; border-radius: 24px; padding: 26px 26px 22px; background: linear-gradient(180deg, rgba(40,34,80,0.97), rgba(18,15,40,0.97)); border: 1px solid var(--glass-border); border-top: 2px solid var(--accent-solid); box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px var(--glow-color), inset 0 1px 0 rgba(255,255,255,0.12); position: relative; color: var(--text); }
     .nebula-about-hero { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
     .nebula-about-logo { width: 46px; height: 46px; flex-shrink: 0; border-radius: 14px; background: var(--accent); color: #fff; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 22px var(--glow-color); }
@@ -14070,6 +14096,42 @@ body.has-mini-player .neb-toast-stack{bottom:96px}
   @keyframes nebToastOut{to{opacity:0;transform:translateY(20px) scale(.96)}}
 }
 @media (prefers-reduced-motion:reduce){.neb-toast,.neb-toast.leaving,.neb-toast-bar{animation-duration:.01ms !important}}
+
+/* ─── NOTIFICATION CENTER ─── */
+.notif-dot{position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:#f87171;border:2px solid var(--card-bg,rgba(22,20,44,.97));box-shadow:0 0 8px rgba(248,113,113,.7);animation:notifPulse 2s ease-in-out infinite}
+@keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.notif-panel{position:fixed;top:64px;right:24px;z-index:1150;width:min(400px,calc(100vw - 32px));max-height:min(70vh,560px);display:flex;flex-direction:column;background:var(--card-bg,rgba(24,22,46,.97));border:1px solid var(--glass-border);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);opacity:0;transform:translateY(-12px) scale(.96);pointer-events:none;transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1)}
+.notif-panel.open{opacity:1;transform:none;pointer-events:auto;animation:notifIn .4s cubic-bezier(.22,1,.36,1)}
+@keyframes notifIn{from{opacity:0;transform:translateY(-14px) scale(.95)}to{opacity:1;transform:none}}
+.notif-head{display:flex;align-items:center;gap:8px;padding:14px 14px 10px;border-bottom:1px solid var(--glass-border)}
+.notif-head-title{font-size:.85rem;font-weight:800;letter-spacing:.3px;flex:1}
+.notif-mark-all{font-size:.7rem;font-weight:700;color:var(--accent-solid);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .2s}
+.notif-mark-all:hover{background:rgba(102,126,234,.14)}
+.notif-x{width:30px;height:30px;border-radius:10px;border:1px solid var(--glass-border);background:rgba(255,255,255,.06);color:var(--text-secondary);font-size:1.1rem;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .2s,color .2s;display:grid;place-items:center}
+.notif-x:hover{transform:rotate(90deg);background:rgba(255,80,80,.22);color:#fff}
+.notif-list{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:8px}
+.notif-list::-webkit-scrollbar{width:6px}
+.notif-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:3px}
+.notif-item{display:flex;gap:11px;padding:11px 12px;border-radius:14px;margin-bottom:6px;cursor:pointer;transition:background .2s;position:relative;animation:notifItemIn .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes notifItemIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.notif-item:hover{background:rgba(255,255,255,.05)}
+.notif-item.unread::before{content:'';position:absolute;left:5px;top:18px;width:6px;height:6px;border-radius:50%;background:var(--accent-solid)}
+.notif-item.unread{background:rgba(102,126,234,.07)}
+.notif-item-ic{width:34px;height:34px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:var(--tcbg);color:var(--tc)}
+.notif-item-ic svg{width:17px;height:17px}
+.notif-item-body{flex:1;min-width:0}
+.notif-item-title{font-size:.72rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--tc)}
+.notif-item-msg{font-size:.84rem;font-weight:600;line-height:1.4;color:var(--text);overflow-wrap:anywhere;word-break:break-word;margin-top:2px}
+.notif-item-time{font-size:.68rem;font-weight:600;color:var(--text-secondary);margin-top:4px;opacity:.8}
+.notif-item-close{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:8px;border:none;background:transparent;color:var(--text-secondary);font-size:.95rem;cursor:pointer;opacity:0;transition:opacity .2s,background .2s;display:grid;place-items:center}
+.notif-item:hover .notif-item-close{opacity:1}
+.notif-item-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.notif-empty{padding:40px 16px;text-align:center;font-size:.85rem;color:var(--text-secondary);opacity:.7}
+.notif-item.t-success{--tc:#34d399;--tcbg:rgba(52,211,153,.16)}
+.notif-item.t-error{--tc:#f87171;--tcbg:rgba(248,113,113,.16)}
+.notif-item.t-warn{--tc:#fbbf24;--tcbg:rgba(251,191,36,.16)}
+.notif-item.t-info{--tc:#818cf8;--tcbg:rgba(129,140,248,.16)}
+@media (max-width:560px){.notif-panel{top:auto;bottom:16px;right:12px;left:12px;width:auto;max-height:70vh}}
 </style>
 <style id="nebdrive-profile-desktop">
 /* PC: the profile card is an anchored dropdown under the avatar again (no dimmed backdrop) */
@@ -15033,10 +15095,12 @@ button.primary-btn:hover{
           <div class="dropdown"><button class="icon-btn ghost-btn" id="langBtn" title="Language" data-i18n-title="gen.language"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="btn-label" id="langLabel">EN</span></button><div class="dropdown-menu" id="langMenu"></div></div>
           <button class="icon-btn ghost-btn" id="switchAccountBtn" title="Switch Account" data-i18n-title="gen.switch"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg><span class="btn-label" data-i18n="gen.switch">Switch</span></button>
           <button class="icon-btn primary-btn" id="settingsBtn" title="Settings" data-i18n-title="gen.settings"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="btn-label" data-i18n="gen.settings">Settings</span></button>
+          <button class="icon-btn ghost-btn" id="notifBtn" title="Notifications" data-i18n-title="notif.title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="btn-label" data-i18n="notif.title">Notifs</span><span class="notif-dot" id="notifDot" style="display:none;"></span></button>
           <button class="icon-btn ghost-btn" id="aboutBtn" title="About NebulaDrive"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span class="btn-label">Info</span></button>
         </div>
       </div>
     </nav>
+    <div class="notif-panel" id="notifPanel" aria-hidden="true"><div class="notif-head"><span class="notif-head-title" data-i18n="notif.title">Notifications</span><button class="notif-mark-all" id="notifMarkAll" data-i18n="notif.readAll">Mark all read</button><button class="notif-x" id="notifClose" aria-label="Close" title="Close">×</button></div><div class="notif-list" id="notifList"></div><div class="notif-empty" id="notifEmpty" data-i18n="notif.empty">No notifications yet</div></div>
     <div class="container">
       <div id="filesTab" class="tab-content">
         <!-- ─── TAGLINE ─── -->
@@ -15308,8 +15372,105 @@ button.primary-btn:hover{
       el.addEventListener('mouseleave', () => resumeToast(el));
       stack.appendChild(el);
       startToastTimer(el, type === 'error' ? 5200 : type === 'warn' ? 4200 : 3400);
+      // record into notification history (non-blocking)
+      try { nebNotifLog(clean, type, opts.title || nebToastTitle(clean, type)); } catch (e) {}
       return el;
     }
+
+    // ─── NOTIFICATION CENTER ───
+    const NEB_NOTIF_KEY = 'nebula_notifs';
+    const NEB_NOTIF_MAX = 60;
+    let nebNotifs = [];
+    function nebNotifLoad() {
+      try { const raw = localStorage.getItem(NEB_NOTIF_KEY); nebNotifs = raw ? JSON.parse(raw) : []; if (!Array.isArray(nebNotifs)) nebNotifs = []; } catch (e) { nebNotifs = []; }
+    }
+    function nebNotifSave() { try { localStorage.setItem(NEB_NOTIF_KEY, JSON.stringify(nebNotifs.slice(0, NEB_NOTIF_MAX))); } catch (e) {} }
+    function nebNotifLog(msg, type, title) {
+      nebNotifLoad();
+      nebNotifs.unshift({ id: 'n' + Date.now() + Math.random().toString(36).slice(2, 6), msg: String(msg), type: type || 'info', title: title || NEB_TOAST_TITLES[type || 'info'], ts: Date.now(), read: false });
+      if (nebNotifs.length > NEB_NOTIF_MAX) nebNotifs.length = NEB_NOTIF_MAX;
+      nebNotifSave();
+      nebNotifRender();
+      nebNotifDot();
+    }
+    function nebNotifTime(ts) {
+      const diff = Math.max(0, Date.now() - ts);
+      const s = Math.floor(diff / 1000);
+      if (s < 60) return t('notif.justNow');
+      const m = Math.floor(s / 60);
+      if (m < 60) return t('notif.minAgo').replace('{n}', m);
+      const h = Math.floor(m / 60);
+      if (h < 24) return t('notif.hourAgo').replace('{n}', h);
+      const d = Math.floor(h / 24);
+      if (d < 7) return t('notif.dayAgo').replace('{n}', d);
+      const dt = new Date(ts);
+      return dt.toLocaleDateString(currentLang || 'en', { month: 'short', day: 'numeric' });
+    }
+    function nebNotifRender() {
+      const list = document.getElementById('notifList');
+      const empty = document.getElementById('notifEmpty');
+      if (!list) return;
+      list.innerHTML = '';
+      nebNotifs.forEach(n => {
+        const item = document.createElement('div');
+        item.className = 'notif-item t-' + n.type + (n.read ? '' : ' unread');
+        item.innerHTML = '<span class="notif-item-ic" aria-hidden="true">' + (NEB_TOAST_ICONS[n.type] || NEB_TOAST_ICONS.info) + '</span>' +
+          '<div class="notif-item-body"><div class="notif-item-title"></div><div class="notif-item-msg"></div><div class="notif-item-time"></div></div>' +
+          '<button class="notif-item-close" aria-label="Dismiss" title="Dismiss">×</button>';
+        item.querySelector('.notif-item-title').textContent = n.title;
+        item.querySelector('.notif-item-msg').textContent = n.msg;
+        item.querySelector('.notif-item-time').textContent = nebNotifTime(n.ts);
+        item.querySelector('.notif-item-close').addEventListener('click', (e) => { e.stopPropagation(); nebNotifRemove(n.id); });
+        item.addEventListener('click', () => { nebNotifMark(n.id); });
+        list.appendChild(item);
+      });
+      if (empty) empty.style.display = nebNotifs.length ? 'none' : 'block';
+    }
+    function nebNotifRemove(id) {
+      nebNotifLoad();
+      nebNotifs = nebNotifs.filter(n => n.id !== id);
+      nebNotifSave(); nebNotifRender(); nebNotifDot();
+    }
+    function nebNotifMark(id) {
+      nebNotifLoad();
+      nebNotifs.forEach(n => { if (n.id === id) n.read = true; });
+      nebNotifSave(); nebNotifRender(); nebNotifDot();
+    }
+    function nebNotifMarkAll() {
+      nebNotifLoad();
+      nebNotifs.forEach(n => { n.read = true; });
+      nebNotifSave(); nebNotifRender(); nebNotifDot();
+    }
+    function nebNotifDot() {
+      const dot = document.getElementById('notifDot');
+      if (!dot) return;
+      const unread = nebNotifs.filter(n => !n.read).length;
+      dot.style.display = unread ? 'block' : 'none';
+      if (unread) { dot.textContent = ''; }
+      const btn = document.getElementById('notifBtn');
+      if (btn) btn.setAttribute('aria-label', unread ? (t('notif.unread').replace('{n}', unread)) : t('notif.title'));
+    }
+    function nebNotifToggle(force) {
+      const panel = document.getElementById('notifPanel');
+      if (!panel) return;
+      const open = force !== undefined ? !!force : !panel.classList.contains('open');
+      panel.classList.toggle('open', open);
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) { nebNotifLoad(); nebNotifRender(); }
+    }
+    nebNotifLoad();
+    try {
+      document.getElementById('notifBtn').addEventListener('click', (e) => { e.stopPropagation(); nebNotifToggle(); });
+      document.getElementById('notifClose').addEventListener('click', () => nebNotifToggle(false));
+      document.getElementById('notifMarkAll').addEventListener('click', () => nebNotifMarkAll());
+      document.addEventListener('click', (e) => {
+        const panel = document.getElementById('notifPanel');
+        if (!panel || !panel.classList.contains('open')) return;
+        const tgt = e.target && e.target.closest ? e.target.closest('#notifBtn, #notifPanel, #notifClose, #notifMarkAll, .notif-item, .notif-item-close') : null;
+        if (!tgt) nebNotifToggle(false);
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const panel = document.getElementById('notifPanel'); if (panel && panel.classList.contains('open')) nebNotifToggle(false); } });
+    } catch (e) {}
 
     // ─── PREMIUM CONFIRM (replaces native confirm(), fallback-safe) ───
     function nebulaConfirm(opts) {
@@ -15539,7 +15700,13 @@ button.primary-btn:hover{
       'move.search': 'Search folders...', 'move.noMatch': 'No folders match "{term}"', 'mv.cancel': 'Cancel',
       'pf.clearAll': 'Clear Cache (Delete All Files)', 'pf.delAccount': 'Delete Account', 'pf.terminate': 'Terminate Account (Permanent)',
       'set.resetInfo': 'Clears cached app files only — your library stays untouched.', 'set.dlUserInfo': 'Encrypted login and profile only. Use the ZIP backup below to move your files to another browser.',
-      'set.calm': 'Reduce Motion ✦ <small class="toggle-hint">calm UI, kinder battery</small>'
+      'set.calm': 'Reduce Motion ✦ <small class="toggle-hint">calm UI, kinder battery</small>',
+      'notif.title': 'Notifications', 'notif.readAll': 'Mark all read', 'notif.empty': 'No notifications yet',
+      'notif.unread': '{n} unread', 'notif.justNow': 'just now', 'notif.minAgo': '{n} min ago',
+      'notif.hourAgo': '{n} h ago', 'notif.dayAgo': '{n} d ago',
+      'msg.selOn': 'Select mode on — tap items to pick them', 'msg.selOff': 'Select mode off',
+      'msg.trashSelOn': 'Selection mode enabled', 'msg.trashSelOff': 'Selection mode disabled',
+      'msg.saveLoginOn': 'Login will be remembered on this device', 'msg.saveLoginOff': "You'll need to log in again next time you open Nebula"
     } };
     let currentLang = 'en';
     try { currentLang = localStorage.getItem('nebula_lang') || 'en'; } catch (e) {}
@@ -20928,9 +21095,9 @@ button.primary-btn:hover{
       selectionMode = !selectionMode;
       updateSelectionModeUI();
       if (selectionMode) {
-        showToast('Select mode on — tap items to pick them');
+        showToast(t('msg.selOn'));
       } else {
-        showToast('Select mode off');
+        showToast(t('msg.selOff'));
       }
     });
 
@@ -21275,8 +21442,13 @@ button.primary-btn:hover{
       const toggle = document.getElementById('selectAllToggle');
       const indicator = document.getElementById('selectAllIndicator');
       bar.classList.toggle('active', !!selectionMode);
-      countEl.textContent = count;
       const has = count > 0 && !!selectionMode;
+      const countWrap = document.getElementById('selectedCountWrap') || countEl.parentElement;
+      if (countWrap) {
+        countWrap.classList.toggle('has-items', has);
+        if (count > 0) { countWrap.classList.remove('bump'); void countWrap.offsetWidth; countWrap.classList.add('bump'); setTimeout(() => countWrap.classList.remove('bump'), 320); }
+      }
+      countEl.textContent = count;
       deleteBtn.disabled = !has; if (downloadBtn) downloadBtn.disabled = !has; if (moveBtn) moveBtn.disabled = !has;
       ['bulkIconBtn', 'deselectAllBtn'].forEach(function(i) { const x = document.getElementById(i); if (x) x.disabled = !has; });
       const invB = document.getElementById('invertSelectionBtn'); if (invB) invB.disabled = !selectionMode;
@@ -21699,10 +21871,10 @@ button.primary-btn:hover{
         localStorage.setItem('nebula_save_login', saveLoginPref ? 'true' : 'false');
         if (saveLoginPref) {
           if (currentUser) localStorage.setItem('nebula_current_user', currentUser);
-          showToast('Login will be remembered on this device');
+          showToast(t('msg.saveLoginOn'));
         } else {
           localStorage.removeItem('nebula_current_user');
-          showToast('You\'ll need to log in again next time you open Nebula');
+          showToast(t('msg.saveLoginOff'));
         }
       });
       saveLoginToggle.addEventListener('keydown', function(e) {
@@ -22509,12 +22681,25 @@ button.primary-btn:hover{
 (function(){
   function $(id){ return document.getElementById(id); }
   // ABOUT modal toggle
+  var _aboutCloseTimer = null;
   function toggleAbout(force){
     var m = $('nebulaAboutModal'); if(!m) return;
+    clearTimeout(_aboutCloseTimer);
     var open = force !== undefined ? !!force : !m.classList.contains('open');
-    m.classList.toggle('open', open);
-    document.body.classList.toggle('nebula-about-open', open);
-    document.documentElement.classList.toggle('nebula-about-open', open);
+    if (open) {
+      m.classList.remove('closing');
+      m.classList.add('open');
+      document.body.classList.add('nebula-about-open');
+      document.documentElement.classList.add('nebula-about-open');
+    } else {
+      if (!m.classList.contains('open')) return;
+      m.classList.add('closing');
+      _aboutCloseTimer = setTimeout(function(){
+        m.classList.remove('open', 'closing');
+        document.body.classList.remove('nebula-about-open');
+        document.documentElement.classList.remove('nebula-about-open');
+      }, 280);
+    }
   }
   document.addEventListener('click', function(e){
     var target = e.target && e.target.closest ? e.target.closest('#aboutBtn, #nebulaAboutClose, #nebulaAboutModal, #nebAboutSettings, #nebAboutFullscreen') : null;
@@ -26051,7 +26236,7 @@ body:not(.light):not(.platinum):not(.silvermist):not(.desertclay) #selectBar.act
     var t=document.createElement('button');t.type='button';t.id='trashSelToggle';t.className='selection-toggle-btn';
     t.innerHTML='<span class="toggle-dot"></span><span class="toggle-label">Select</span>';
     var eb=$('emptyTrashBtn');head.insertBefore(t,eb);
-    t.addEventListener('click',function(){setTrashMode(!trashMode);if(typeof showToast==='function')showToast(trashMode?'Selection mode enabled':'Selection mode disabled');});
+    t.addEventListener('click',function(){setTrashMode(!trashMode);if(typeof showToast==='function')showToast(trashMode?(typeof t==='function'?t('msg.trashSelOn'):'Selection mode enabled'):(typeof t==='function'?t('msg.trashSelOff'):'Selection mode disabled'));});
     var ex=document.createElement('span');ex.className='trash-sel-extra';
     ex.innerHTML='<button type="button" id="trashSelAll">Select all</button><button type="button" id="trashSelInvert">Invert</button>';
     var cnt=$('trashSelCount');cnt.insertAdjacentElement('afterend',ex);
