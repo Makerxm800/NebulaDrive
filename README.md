@@ -2,13 +2,13 @@
 
 ### Your private Drive — always with you, no servers, no subscriptions.
 
-![NebulaDrive — preview](preview.jpg)
+![NebulaDrive — preview](preview.png)
 
 > **Preview above** — the real thing is a single web page that runs entirely on your device. Everything you see here is local.
 
 One HTML file. Open it in your browser and you've got a full-featured personal cloud. Everything stays on your device — nothing is ever sent anywhere. Built with vanilla JavaScript, OPFS, and IndexedDB. Made by **makerxm800**.
 
-A few small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, plus `preview.jpg`) make it installable as a real app — the HTML still works standalone if you only copy that one file.
+A few small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, plus `preview.png`) make it installable as a real app — the HTML still works standalone if you only copy that one file.
 
 ---
 
