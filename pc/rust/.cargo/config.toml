@@ -1,0 +1,5 @@
+# Cargo directives for the windows-gnu build. The linker below is the wrapper
+# script in bin/zig-link.sh; it defers to zig as the linker driver so the
+# Windows .exe can be linked without a full MinGW installation.
+[target.x86_64-pc-windows-gnu]
+linker = "bin/zig-link.sh"

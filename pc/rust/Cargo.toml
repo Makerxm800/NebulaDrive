@@ -1,0 +1,19 @@
+[package]
+name = "nebuladrive"
+version = "1.1.1"
+edition = "2021"
+description = "NebulaDrive PC — local-first, no-server file storage (Rust, no Electron)"
+license = "GPL-3.0-or-later"
+
+# This crate is intentionally dependency-free: it links SQLite from the repo's
+# vendored sqlite3.c (compiled by build.rs) and otherwise uses only std. No
+# crates.io access is required.
+
+[[bin]]
+name = "nebuladrive"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 2
+panic = "unwind"
+lto = false
