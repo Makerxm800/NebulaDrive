@@ -1,0 +1,29 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.vcxproj*
+*.sln
+
+# NebulaDrive data
+NebulaDriveData/
+
+# Compiled files
+*.exe
+*.dll
+*.lib
+*.o
+*.obj
+*.a
+*.so
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

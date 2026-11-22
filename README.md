@@ -2,13 +2,28 @@
 
 ### Your private Drive — always with you, no servers, no subscriptions.
 
+---
+
+## Two versions — pick yours
+
+| Version | What | Where |
+|---|---|---|
+| **🌐 The Web App** — *this documentation below* | A single HTML page that runs entirely in your browser | `index.html` (+ `sw.js`, `manifest.webmanifest`, icons) |
+| **🖥️ The PC App (new)** | The native desktop build for Windows — plus a cross-platform CLI | [`pc/`](pc/README.md) |
+
+Both are **100% local** — your files never leave your device. Pick the one that fits you, or run both.
+
+---
+
+## 🌐 The Web App (for the web)
+
+> **Preview below** — a real screenshot of the web app. It is a single HTML page that runs entirely on your device. Everything you see here is local.
+
 ![NebulaDrive — preview](preview.png)
 
-> **Preview above** — the real thing is a single web page that runs entirely on your device. Everything you see here is local.
+Open `index.html` in your browser and you've got a full-featured personal cloud. Everything stays on your device — nothing is ever sent anywhere. Built with vanilla JavaScript, OPFS, and IndexedDB. Made by **makerxm800**.
 
-One HTML file. Open it in your browser and you've got a full-featured personal cloud. Everything stays on your device — nothing is ever sent anywhere. Built with vanilla JavaScript, OPFS, and IndexedDB. Made by **makerxm800**.
-
-A few small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, plus `preview.png`) make it installable as a real app — the HTML still works standalone if you only copy that one file.
+Some small sidecar files (`manifest.webmanifest`, `sw.js`, and PNG icons — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, plus `preview.png`) make it installable as a real app — the HTML still works standalone if you only copy that one file.
 
 ---
 
@@ -76,39 +91,57 @@ Open the **Install** icon in the address bar (or menu ▸ Install app). Same sta
 
 ---
 
-## 🖥️ C++ Backend (CLI)
+## 🖥️ The PC App (for the PC) — new
 
-NebulaDrive also includes a C++ backend CLI tool for local file management and monitoring.
+![NebulaDrive PC — illustrative preview](pc/preview-pc.png)
+
+> **Illustrative preview** — the native Win32 + GDI+ desktop shell with the same
+> dark aurora theme. The real window is painted by the app itself (same palette as the web app).
+
+NebulaDrive also ships a native desktop build for Windows plus a cross-platform
+CLI, both in [`pc/`](pc/README.md). The two share one SQLite-backed library:
+
+- **NebulaDrive** — the Win32 + GDI+ desktop app (Windows), a native version of this same workspace
+- **NebulaDriveCLI** — a terminal companion (Windows, Linux, macOS) with the full file workflow
 
 ### Setup
 
-1. **Prerequisites**: C++20 compiler, CMake 4.3+
+1. **Prerequisites**: C++20 compiler, CMake 3.22+ (MSVC 2022 or MinGW 64-bit on Windows)
 2. **Build**:
    ```bash
-   cmake -B build -S .
+   cmake -B build -S pc
    cmake --build build
    ```
 3. **Run**:
    ```bash
-   ./build/NebulaDrive
+   ./build/NebulaDriveCLI           # CLI (any platform)
+   ./build/NebulaDrive.exe         # desktop app (Windows)
    ```
 
-### CLI Commands
+### CLI commands
 
-| Command   | Description              |
-|-----------|--------------------------|
-| `status`  | Show storage status      |
-| `list`    | List files in storage    |
-| `backup`  | Create a backup archive  |
-| `help`    | Show available commands  |
-| `quit`    | Exit NebulaDrive         |
+| Command            | Description                    |
+|-------------------|--------------------------------|
+| `status`          | Show storage status            |
+| `list`            | List files in storage          |
+| `import <path>`   | Import a file                  |
+| `search <query>`  | Search files by name           |
+| `move <id> [folder]` | Move a file (empty = root)  |
+| `delete <id>`     | Move a file to trash           |
+| `restore <id>`    | Restore a file from trash      |
+| `mkdir <name>`    | Create a folder                |
+| `backup`          | Create a timestamped backup    |
+| `emptytrash`      | Permanently delete trash (bytes + records) |
+| `help`            | Show available commands        |
+| `quit`            | Exit NebulaDrive               |
 
 ### Features
 
-- **Storage Management**: Automatic directory structure creation
-- **File Listing**: View all files with sizes
-- **Backup System**: Timestamped backup archives
-- **Status Monitor**: Real-time storage usage tracking
+- **Storage management**: automatic directory structure (`files/`, `trash/`, `backups/`)
+- **File listing & search**: sizes, favourites, types
+- **Backup system**: timestamped copies of the library under `backups/`
+- **Status monitor**: storage usage, favourites, trash and backup counts
+- **Data location**: `%APPDATA%\NebulaDrive` for the desktop app, `./NebulaDriveData` for the CLI
 
 ---
 

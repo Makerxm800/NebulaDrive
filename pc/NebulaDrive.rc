@@ -1,0 +1,28 @@
+#include <windows.h>
+
+101 ICON "nebula.ico"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,1,0,0
+PRODUCTVERSION 1,1,0,0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "NebulaDrive"
+            VALUE "FileDescription", "NebulaDrive — your private cloud"
+            VALUE "FileVersion", "1.1.0.0"
+            VALUE "InternalName", "NebulaDrive"
+            VALUE "OriginalFilename", "NebulaDrive.exe"
+            VALUE "ProductName", "NebulaDrive"
+            VALUE "ProductVersion", "1.1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
