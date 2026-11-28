@@ -14578,6 +14578,14 @@ button.primary-btn:hover{
   .navbar .user-section{order:2;margin-left:auto;flex:0 1 auto;flex-wrap:wrap;justify-content:flex-end;min-width:0}
   .navbar .nav-tabs{order:3;flex:1 1 100%;justify-content:center;max-width:100%;margin:0}
 }
+/* Keep the tab bar a fixed, compact height so it can never stretch */
+@media (min-width:701px){
+  .navbar .nav-tabs{align-self:center;box-sizing:border-box;height:50px;max-height:50px}
+  .navbar .nav-tab-wrapper{max-height:40px}
+  .navbar .nav-tab{box-sizing:border-box;height:40px;min-height:0}
+  .navbar .tab-slider{max-height:40px}
+}
+@media (min-width:1341px){ .navbar{box-sizing:border-box;max-height:67px} }
 /* Smoother on slower devices: respect reduced-motion setting */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
 </style>
