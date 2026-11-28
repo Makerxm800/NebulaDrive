@@ -14570,6 +14570,17 @@ button.primary-btn:hover{
 .ndi-facts .ndi-fact{ transition: transform 0.3s var(--nd-ease), background-color 0.3s ease; }
 .ndi-facts .ndi-fact:hover{ transform: translateY(-2px) scale(1.04); background: color-mix(in srgb, var(--accent) 12%, var(--glass)); }
 </style>
+<style id="nd-fixes">
+/* Header: keep tabs from sitting under the account/settings buttons on medium windows */
+@media (min-width:701px) and (max-width:1340px){
+  .navbar{display:flex !important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px}
+  .navbar .logo{order:1}
+  .navbar .user-section{order:2;margin-left:auto;flex:0 1 auto;flex-wrap:wrap;justify-content:flex-end;min-width:0}
+  .navbar .nav-tabs{order:3;flex:1 1 100%;justify-content:center;max-width:100%;margin:0}
+}
+/* Smoother on slower devices: respect reduced-motion setting */
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+</style>
 </head>
 <body>
 
@@ -14878,11 +14889,6 @@ button.primary-btn:hover{
           <p class="ndi-tag">Store, organize and play your files in one place, right in your browser.</p>
         </div>
       </header>
-
-      <div class="ndi-preview">
-        <img src="preview.png" alt="NebulaDrive app — real screenshot of the running site" loading="lazy">
-        <span class="ndi-preview-cap">Preview · everything runs locally</span>
-      </div>
 
       <div class="ndi-facts" aria-label="At a glance">
         <div class="ndi-fact"><b>Local</b><span>Storage</span></div>
