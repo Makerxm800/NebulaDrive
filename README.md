@@ -4,14 +4,17 @@
 
 ---
 
-## Two versions — pick yours
+## Three ways to use it
 
 | Version | What | Where |
 |---|---|---|
-| **🌐 The Web App** — *this documentation below* | A single HTML page that runs entirely in your browser | `index.html` (+ `sw.js`, `manifest.webmanifest`, icons) |
-| **🖥️ The PC App (new)** | The native desktop build for Windows — plus a cross-platform CLI | [`pc/`](pc/README.md) |
+| **🌐 Web App** | Runs in your browser on any device, phone or computer | [makerxm800.github.io/NebulaDrive](https://makerxm800.github.io/NebulaDrive/) (`index.html`) |
+| **🖥️ Desktop App** (Windows and macOS) | The exact same app in its own window, installed like any program | [Download the latest release](../../releases/latest) (code in [`desktop/`](desktop/README.md)) |
+| **⌨️ Command-line tool** (older) | A small terminal tool from an early experiment | [`pc/`](pc/README.md) |
 
-Both are **100% local** — your files never leave your device. Pick the one that fits you, or run both.
+The Web App and the Desktop App have **the same features**, because the Desktop App runs the web app's own code.
+The command-line tool is separate and much smaller.
+All of them are **100% local** — your files never leave your device. Pick the one that fits you, or use several.
 
 ---
 
@@ -91,34 +94,36 @@ Open the **Install** icon in the address bar (or menu ▸ Install app). Same sta
 
 ---
 
-## 🖥️ The PC App (for the PC) — new
+## 🖥️ The Desktop App (Windows and macOS)
 
-![NebulaDrive PC — illustrative preview](pc/preview-pc.png)
+The same NebulaDrive as the website, in its own window. Every feature is the same — files, folders, favorites, history, trash, backups, 30 themes, 8 languages and the built-in players — and everything stays on your computer. It also works with no internet.
 
-> **Illustrative preview** — the native Win32 + GDI+ desktop shell with the same
-> dark aurora theme. The real window is painted by the app itself (same palette as the web app).
+**Download:** open the [latest release](../../releases/latest).
 
-NebulaDrive also ships a native desktop build for Windows plus a cross-platform
-CLI, both in [`pc/`](pc/README.md). The two share one SQLite-backed library:
+- **Windows:** `NebulaDrive-Setup-<version>.exe` (installer) or `NebulaDrive-<version>-portable.exe` (no install needed)
+- **macOS:** `NebulaDrive-<version>-mac.dmg` (Intel and Apple silicon)
+- **Linux:** planned
 
-- **NebulaDrive** — the Win32 + GDI+ desktop app (Windows), a native version of this same workspace
-- **NebulaDriveCLI** — a terminal companion (Windows, Linux, macOS) with the full file workflow
+**Why does Windows show a blue "Windows protected your desktop" screen?** The app is not virus-infected. Windows shows that screen for any new program that has no paid code-signing certificate yet. Click **More info**, then **Run anyway**. On macOS, right-click the app and choose **Open** the first time.
 
-### Setup
+Your data lives in `%APPDATA%\NebulaDrive` on Windows. How it is built and tested is explained in [`desktop/README.md`](desktop/README.md).
 
-1. **Prerequisites**: C++20 compiler, CMake 3.22+ (MSVC 2022 or MinGW 64-bit on Windows)
-2. **Build**:
-   ```bash
-   cmake -B build -S pc
-   cmake --build build
-   ```
-3. **Run**:
-   ```bash
-   ./build/NebulaDriveCLI           # CLI (any platform)
-   ./build/NebulaDrive.exe         # desktop app (Windows)
-   ```
+### Why is there a `desktop/` folder and a `pc/` folder?
 
-### CLI commands
+Both folders are for computers, but they are different things:
+
+- **`desktop/` is the real app.** It is what the Download button gives you.
+- **`pc/` is older.** It came from an early experiment (a C++ Windows window plus a terminal tool) before the Desktop App existed. The window part was never released as an installer and was replaced by the Desktop App. Only the small terminal tool is kept, in case someone wants to manage a library from a command line.
+
+If you just want to use NebulaDrive on a computer, use the **Desktop App** or the **Web App** and ignore `pc/`.
+
+### ⌨️ Command-line tool (older, optional)
+
+A small terminal tool in [`pc/`](pc/README.md) that manages a NebulaDrive library from the command line (Windows, Linux, macOS). It is not the Desktop App and does not need to be installed to use NebulaDrive.
+
+1. **Prerequisites**: C++20 compiler, CMake 3.22+
+2. **Build**: `cmake -B build -S pc` then `cmake --build build`
+3. **Run**: `./build/NebulaDriveCLI`
 
 | Command            | Description                    |
 |-------------------|--------------------------------|
@@ -133,15 +138,9 @@ CLI, both in [`pc/`](pc/README.md). The two share one SQLite-backed library:
 | `backup`          | Create a timestamped backup    |
 | `emptytrash`      | Permanently delete trash (bytes + records) |
 | `help`            | Show available commands        |
-| `quit`            | Exit NebulaDrive               |
+| `quit`            | Exit                           |
 
-### Features
-
-- **Storage management**: automatic directory structure (`files/`, `trash/`, `backups/`)
-- **File listing & search**: sizes, favourites, types
-- **Backup system**: timestamped copies of the library under `backups/`
-- **Status monitor**: storage usage, favourites, trash and backup counts
-- **Data location**: `%APPDATA%\NebulaDrive` for the desktop app, `./NebulaDriveData` for the CLI
+Its data lives in `./NebulaDriveData` (or the folder you pass with `--path`).
 
 ---
 
@@ -157,9 +156,9 @@ Upload anything by dragging files onto the page or clicking the upload area — 
 - 📁 **New folders** — created through the same premium dialog, autofocused with the name preselected
 - 📤 **Move** — move files anywhere with a searchable folder picker: spring modal entrance, JS-driven staggered rows (no list-length limit), hover slide + accent rail, animated selected check, tree guides, full-width Cancel
 
-## 👤 Profile (PC-polished, mobile sheet)
+## 👤 Profile (desktop-polished, mobile sheet)
 
-Centered menu with backdrop blur and spring entrance — wider on PC (400px, bigger avatar), bottom-sheet-like on phones.
+Centered menu with backdrop blur and spring entrance — wider on desktop (400px, bigger avatar), bottom-sheet-like on phones.
 
 - 🖼️ **One picture editor** — click your avatar or banner to open a single popup for both: preview + Upload + Remove for profile picture and banner, with live info (dimensions, KB, downscale limits) and a **history of previous uploads** — click any thumbnail to go back to it, × to drop it, Select mode for bulk delete. The three scattered buttons are gone (Profile themes shortcut stays)
 - 🎨 **Profile themes shortcut** — jumps straight to Settings themes
@@ -171,8 +170,8 @@ Centered menu with backdrop blur and spring entrance — wider on PC (400px, big
 - 📦 **Batch ops** — Select mode with a sticky command bar: Select All, Invert, Deselect, bulk **Download**, bulk Delete (with a real confirm dialog). Trash and History have matching select bars with Restore/Delete.
 - 🎯 **Folder & file icons** — pick from standard SVG icons or upload your own image. Two-tab picker (My Icons + Icons, same card layout), simple hue control (swatches + color picker), per-icon delete plus Select mode with bulk delete for custom icons. Heart, Globe, Users and Settings icons unhidden for real file-management use. Window controls reduced to just Close.
 - 🏷️ **File type detection** — automatic icon for PDF, Word, Excel, PowerPoint, audio, video, code, fonts, and more
-- 🎞️ **Marquee names** — hover a truncated file/folder name on PC and it smooth-scrolls to the end (only truncated ones, ping-pong with end pauses)
-- 🖱️ **Cursor aura** — soft theme glow follows your mouse (Premium FX, PC-only)
+- 🎞️ **Marquee names** — hover a truncated file/folder name on desktop and it smooth-scrolls to the end (only truncated ones, ping-pong with end pauses)
+- 🖱️ **Cursor aura** — soft theme glow follows your mouse (Premium FX, desktop-only)
 - 🩹 **Missing MIME fix** — MP3/WAV/FLAC/M4A/OGG and videos whose browser reported no type are auto-detected from the extension, so they always open in the player
 
 ### ⋯ Card menus
@@ -241,9 +240,9 @@ Four file-management layouts with smooth transitions — pick what fits:
 
 Sort by **name**, **size**, **date**, **type**, or **extension** — ascending or descending. Group by any field.
 
-- 📱 **Responsive toolbar** — PC keeps the full row; tablet drops search to its own row; mobile scrolls Sort/View/Favorites in one row with full-width dropdowns
+- 📱 **Responsive toolbar** — desktop keeps the full row; tablet drops search to its own row; mobile scrolls Sort/View/Favorites in one row with full-width dropdowns
 - 📜 **Scrollframe menus** — Sort and View menus scroll inside the viewport on small screens, submenus drop below instead of off-screen
-- ⭐ **Favourites has its own layout** — tidy adaptive grid on PC, compact two-column cards on mobile (row layouts stay in Files)
+- ⭐ **Favourites has its own layout** — tidy adaptive grid on desktop, compact two-column cards on mobile (row layouts stay in Files)
 - 🔘 **Premium toolbar pills** — Sort and View have ripple, press squash, and an active glow while open; only one menu opens at a time
 
 ---
@@ -254,12 +253,12 @@ Sort by **name**, **size**, **date**, **type**, or **extension** — ascending o
 
 Play / pause stays visible with a live Play/Pause label on touch and desktop, alongside drag-to-seek, volume with percentage, animated ±5-second video skip buttons, and playback speed from 0.5× to 3×. Three repeat modes: off, all, or one — with visual indicators. **Resume everywhere**: position saves continuously, on hide and on tab close; logging in offers to pick up the last track where you left off (even after a refresh).
 
-### 🎯 Progress & precise seeking (PC beta)
+### 🎯 Progress & precise seeking (desktop beta)
 
 - The bar thickens with an accent ring + glow on hover; the thumb grows
 - Hover shows a YouTube-style glass tooltip with a live frame thumbnail + timestamp
 - Pull **up** while dragging for fine 0.22× seeking with a highlighted precise state
-- Hover preview and precise mode are PC-only — touch devices just drag to seek
+- Hover preview and precise mode are desktop-only — touch devices just drag to seek
 
 ### ✨ Visuals
 
@@ -336,7 +335,7 @@ Eleven standard themes and nineteen premium ones — toggle the switches in **Se
 - 📱 **iPhone-friendly Light theme** — same colours, minus the costly extras: no glow layers, no shine sweeps, no backdrop blur, no floating orbs. Flat and still, easy on mobile GPUs.
 - 🫧 **Liquid Glass ✦** — site-wide glass effect toggle at the top of the Themes section. Deep blur + saturation on bars, cards, and dialogs. Works with every theme, saved across sessions.
 - 🐢 **Reduce Motion ✦** — site-wide calm mode next to it (also honors your OS setting). Kills animations and transitions everywhere.
-- ⚡ **Premium FX ✦** — PC-only wild animations toggle (card aurora rings, button shine sweeps, breathing tabs, floating About, spring player entrance). Gated behind fine-pointer + hover, auto-off on touch devices, saved across sessions.
+- ⚡ **Premium FX ✦** — desktop-only wild animations toggle (card aurora rings, button shine sweeps, breathing tabs, floating About, spring player entrance). Gated behind fine-pointer + hover, auto-off on touch devices, saved across sessions.
 - ✨ **No shine sweeps** — all gloss-shimmer loops removed on every device for lag-free scrolling.
 - 🌐 **Translated chrome** — switch-account, prompts, delete/terminate dialogs, info panels, settings headers/stats, icon picker, keybind list, about headers and dock tips carry language keys in all 8 languages (no more stuck English).
 - 🔤 **Readable accents** — pale-accent themes (Midnight Gold, Pine Grove, Graphite) get dark text on pills and buttons instead of washed-out white.
@@ -446,7 +445,7 @@ Check 🗑️ Trash first, then run 🩺 Diagnostics.
 File types are auto-detected from the extension, so it should just work. If it still fails, run 🩺 Diagnostics and use 🔧 Repair to re-upload it.
 
 **Works on mobile?**
-Yes — responsive across Android and iOS, touch-safe menus and controls. Music keeps playing with the screen locked (lock-screen controls included); keep Volume Boost off for background listening, as iOS suspends boosted audio on lock but resumes it when you return. Hover-only extras (seek preview, precise mode) are PC-only. Large files are slower on iOS (no OPFS).
+Yes — responsive across Android and iOS, touch-safe menus and controls. Music keeps playing with the screen locked (lock-screen controls included); keep Volume Boost off for background listening, as iOS suspends boosted audio on lock but resumes it when you return. Hover-only extras (seek preview, precise mode) are desktop-only. Large files are slower on iOS (no OPFS).
 
 **Is my data encrypted?**
 Not by default — it's local, so only you and your browser can access it. Client-side encryption is on the roadmap.
