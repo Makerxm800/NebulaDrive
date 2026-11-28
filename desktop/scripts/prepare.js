@@ -23,5 +23,5 @@ fs.copyFileSync(require.resolve('jszip/dist/jszip.min.js'), path.join(out, 'vend
 for (const f of ['manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png']) {
   if (fs.existsSync(path.join(root, f))) fs.copyFileSync(path.join(root, f), path.join(out, f));
 }
-fs.copyFileSync(path.join(root, 'icon-512.png'), path.join(desktop, 'build', 'icon.png'));
+fs.copyFileSync(path.join(desktop, 'icon.png'), path.join(desktop, 'build', 'icon.png'));
 console.log('Prepared desktop/app from index.html (' + html.length + ' bytes)');
