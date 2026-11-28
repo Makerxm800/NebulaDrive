@@ -1,24 +1,18 @@
-# NebulaDrive — PC
+# NebulaDrive — command-line tool (older)
 
-![NebulaDrive PC — illustrative preview](preview-pc.png)
+> **This is not the NebulaDrive app.** The app for Windows and macOS is the **Desktop App** — see [`../desktop`](../desktop/README.md) and the [latest release](../../../releases/latest).
+>
+> This folder is an earlier experiment, kept only for its small terminal tool (`NebulaDriveCLI`). The Windows window (`NebulaDrive.exe` built from this folder) was never released and has been replaced by the Desktop App.
 
-> **Illustrative preview** — a sketch of the desktop shell (dark aurora + glass,
-> same palette as the web app). The real window is painted by the app itself;
-> the PC app cannot be run in this sandbox, so this is a representative image,
-> not a screenshot.
 
-The desktop version of NebulaDrive. Same idea as the web app (`../index.html`):
-your files stay on your PC — no servers, no subscriptions.
+It manages the same kind of private, local library as the web app (`../index.html`): your files stay on your computer — no servers, no subscriptions.
 
 There are two builds, sharing one codebase:
 
-| Target | Description | Platforms |
+| Target | Description | Status |
 |---|---|---|
-| **NebulaDrive** (`NebulaDrive.exe`) | The desktop app (Win32 + GDI+ UI) | Windows |
-| **NebulaDriveCLI** (`NebulaDriveCLI`) | Terminal UI — a scriptable, cross-platform companion | Windows, Linux, macOS |
-
-The library (SQLite + folder storage) is shared between both. The web app at
-`../index.html` is unchanged and stays fully available.
+| **NebulaDriveCLI** (`NebulaDriveCLI`) | Terminal UI — a scriptable, cross-platform tool | Works on Windows, Linux, macOS |
+| **NebulaDrive** (`NebulaDrive.exe`) | An early native Windows window (Win32 + GDI+) | Experiment, never released — use the Desktop App instead |
 
 ## What it does
 
@@ -38,7 +32,7 @@ The library (SQLite + folder storage) is shared between both. The web app at
 | C++20 compiler | MSVC 2022 **or** MinGW-w64 64-bit (Windows) · GCC/Clang (Linux/macOS, CLI only) |
 | SQLite | bundled (`vendor/sqlite/`, amalgamation 3.54.1 — no network needed) |
 
-> The desktop app targets Windows (Win32 API + GDI+). The CLI is portable.
+> The CLI is portable. The Windows window is an old experiment and is not maintained.
 
 ## Building
 
@@ -66,15 +60,6 @@ cmake --build build -j
 Result: `build/NebulaDriveCLI`.
 
 ## Running
-
-### Desktop app
-
-```powershell
-.\build\NebulaDrive.exe
-```
-
-Your library lives in `%APPDATA%\NebulaDrive` (portable installs using an
-existing `NebulaDriveData` next to the exe are kept as-is).
 
 ### CLI
 
@@ -111,11 +96,7 @@ pc/
 - ✅ CLI builds and passes a full end-to-end run (import → folders → move →
   trash → restore → backup → empty-trash → status) on Linux — **built and
   verified with CMake + GCC 12**.
-- 🖥️ Desktop app: same codebase, Win32/GDI+; designed to build on Windows
-  (MSVC 2022 / MinGW 64-bit). The desktop build requires a Windows toolchain,
-  so it was normalized (line endings, encoding) but not compiled in this
-  environment — please build it on your Windows machine; the build files are
-  tested and the shared library layer is proven.
+- 🖥️ Windows window: an early experiment that was never compiled or released. It has been replaced by the Desktop App (see `../desktop`).
 
 ## License
 
